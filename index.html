@@ -43,7 +43,8 @@
   const loadingDiv = document.getElementById("loading");
 
   let data = {}; // structured Master CSV data
-  const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRfO-EOoUaTX55fOvNTUEHg1yG8kszdIGiikQYe1JdHyD1hQ5iNs3VL-7leImeg2JUrwoKHH0ZHIqgj/pub?gid=0&single=true&output=csv";
+const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRfO-EOoUaTX55fOvNTUEHg1yG8kszdIGiikQYe1JdHyD1hQ5iNs3VL-7leImeg2JUrwoKHH0ZHIqgj/pub?gid=0&single=true&output=csv"
+               + "&nocache=" + new Date().getTime();
 
   // Fetch CSV and build structured data
   fetch(csvUrl)

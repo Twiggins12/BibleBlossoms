@@ -5,9 +5,15 @@
   <title>Bible Blossoms - Topical Reference</title>
   <style>
     body { font-family: Arial, sans-serif; padding: 30px; max-width: 700px; margin: auto; }
-    select, button { padding: 8px; margin: 5px 0; width: 100%; }
-    #verseText { margin-top: 20px; white-space: pre-wrap; font-size: 1.1em; }
+    select { padding: 8px; margin: 5px 0; width: 100%; }
+    #verseText { margin-top: 20px; font-size: 1.1em; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    td { vertical-align: top; padding: 4px 8px; }
+    td.verse-number { width: 50px; font-weight: bold; text-align: right; color: #555; }
+    td.verse-text { text-align: left; }
     h1 { text-align: center; }
+    #loading { display: none; font-style: italic; color: #555; margin-top: 10px; }
+    tr.chapter-row td { font-weight: bold; padding-top: 12px; background-color: #f0f0f0; }
   </style>
 </head>
 <body>
@@ -26,48 +32,42 @@
   <option value="">Select Book</option>
 </select>
 
-<select id="chapter">
-  <option value="">Select Chapter</option>
-</select>
-
-<select id="verse">
-  <option value="">Select Verse</option>
-</select>
-
-<button onclick="getVerse()">Get Verse</button>
-
+<div id="loading">Loading verses...</div>
 <div id="verseText"></div>
 
 <script>
   const mainTopicSelect = document.getElementById("mainTopic");
   const subheadingSelect = document.getElementById("subheading");
   const bookSelect = document.getElementById("book");
-  const chapterSelect = document.getElementById("chapter");
-  const verseSelect = document.getElementById("verse");
   const verseTextDiv = document.getElementById("verseText");
+  const loadingDiv = document.getElementById("loading");
 
-  let data = {}; // structured data from CSV
-
-  // Replace with your published Master CSV link
+  let data = {}; // structured Master CSV data
   const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRfO-EOoUaTX55fOvNTUEHg1yG8kszdIGiikQYe1JdHyD1hQ5iNs3VL-7leImeg2JUrwoKHH0ZHIqgj/pub?gid=0&single=true&output=csv";
 
   // Fetch CSV and build structured data
   fetch(csvUrl)
     .then(res => res.text())
     .then(csvText => {
-      const rows = csvText.split("\n").slice(1); // skip header
+      const rows = csvText.split("\n").slice(1);
       rows.forEach(row => {
-        const [main, sub, book, chapter, verse] = row.split(",");
-        if(!main || !sub || !book || !chapter || !verse) return;
+        const cells = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+        if(!cells || cells.length < 5) return;
+
+        let [main, sub, book, chapter, verse] = cells;
+        main = main.replace(/^"|"$/g,'').trim();
+        sub = sub.replace(/^"|"$/g,'').trim();
+        book = book.replace(/^"|"$/g,'').trim();
+        chapter = chapter.replace(/^"|"$/g,'').trim();
+        verse = verse.replace(/^"|"$/g,'').trim();
 
         if(!data[main]) data[main] = {};
         if(!data[main][sub]) data[main][sub] = {};
-        if(!data[main][sub][book]) data[main][sub][book] = {};
-        if(!data[main][sub][book][chapter]) data[main][sub][book][chapter] = [];
-        data[main][sub][book][chapter].push(verse);
+        if(!data[main][sub][book]) data[main][sub][book] = [];
+        data[main][sub][book].push(`${chapter}:${verse}`);
       });
 
-      // Populate Main Topics dropdown after CSV loads
+      // Populate Main Topics dropdown
       Object.keys(data).forEach(topic => {
         const option = document.createElement("option");
         option.value = topic;
@@ -77,12 +77,12 @@
     })
     .catch(err => console.error("Error loading CSV:", err));
 
-  // Dropdown population events
+  // Populate Subheadings
   mainTopicSelect.addEventListener("change", () => {
     subheadingSelect.innerHTML = '<option value="">Select Subheading</option>';
     bookSelect.innerHTML = '<option value="">Select Book</option>';
-    chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
-    verseSelect.innerHTML = '<option value="">Select Verse</option>';
+    verseTextDiv.innerHTML = '';
+    loadingDiv.style.display = 'none';
     const subheadings = data[mainTopicSelect.value];
     if(subheadings){
       Object.keys(subheadings).forEach(sh => {
@@ -94,10 +94,11 @@
     }
   });
 
+  // Populate Books
   subheadingSelect.addEventListener("change", () => {
     bookSelect.innerHTML = '<option value="">Select Book</option>';
-    chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
-    verseSelect.innerHTML = '<option value="">Select Verse</option>';
+    verseTextDiv.innerHTML = '';
+    loadingDiv.style.display = 'none';
     const books = data[mainTopicSelect.value][subheadingSelect.value];
     if(books){
       Object.keys(books).forEach(book => {
@@ -109,49 +110,101 @@
     }
   });
 
+  // Display all verses for selected Book (optimized API fetch)
   bookSelect.addEventListener("change", () => {
-    chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
-    verseSelect.innerHTML = '<option value="">Select Verse</option>';
-    const chapters = data[mainTopicSelect.value][subheadingSelect.value][bookSelect.value];
-    if(chapters){
-      Object.keys(chapters).forEach(ch => {
-        const option = document.createElement("option");
-        option.value = ch;
-        option.text = ch;
-        chapterSelect.add(option);
-      });
-    }
-  });
+    verseTextDiv.innerHTML = '';
+    loadingDiv.style.display = 'block';
 
-  chapterSelect.addEventListener("change", () => {
-    verseSelect.innerHTML = '<option value="">Select Verse</option>';
-    const verses = data[mainTopicSelect.value][subheadingSelect.value][bookSelect.value][chapterSelect.value];
-    if(verses){
-      verses.forEach(v => {
-        const option = document.createElement("option");
-        option.value = v;
-        option.text = v;
-        verseSelect.add(option);
-      });
-    }
-  });
-
-  // Fetch and display verse text from Bible API
-  function getVerse(){
-    const book = bookSelect.value;
-    const chapter = chapterSelect.value;
-    const verse = verseSelect.value;
-    if(!book || !chapter || !verse){
-      alert("Please select all dropdowns.");
+    const verses = data[mainTopicSelect.value][subheadingSelect.value][bookSelect.value];
+    if(!verses || verses.length === 0){
+      loadingDiv.style.display = 'none';
+      verseTextDiv.innerText = "No verses found.";
       return;
     }
-    fetch(`https://bible-api.com/${book} ${chapter}:${verse}`)
+
+    // Group verses by chapter
+    const chapterMap = {};
+    verses.forEach(v => {
+      const [chapter, verse] = v.split(":");
+      if(!chapterMap[chapter]) chapterMap[chapter] = [];
+      chapterMap[chapter].push(parseInt(verse));
+    });
+
+    // Build ranges like "3:16-18,14:1"
+    const verseQueryParts = [];
+    Object.keys(chapterMap).forEach(ch => {
+      const sorted = chapterMap[ch].sort((a,b)=>a-b);
+      let start = sorted[0], end = sorted[0];
+      for(let i=1;i<sorted.length;i++){
+        if(sorted[i] === end + 1){
+          end = sorted[i];
+        } else {
+          verseQueryParts.push(end === start ? `${ch}:${start}` : `${ch}:${start}-${end}`);
+          start = end = sorted[i];
+        }
+      }
+      verseQueryParts.push(end === start ? `${ch}:${start}` : `${ch}:${start}-${end}`);
+    });
+
+    const queryString = verseQueryParts.join(",");
+
+    // Fetch all verses in one request
+    fetch(`https://bible-api.com/${bookSelect.value} ${queryString}`)
       .then(res => res.json())
-      .then(data => {
-        verseTextDiv.innerText = data.text;
+      .then(d => {
+        loadingDiv.style.display = 'none';
+        verseTextDiv.innerHTML = '';
+
+        if(Array.isArray(d.verses)){
+          const table = document.createElement("table");
+          let currentChapter = null;
+
+          d.verses.forEach(v => {
+            if(currentChapter !== v.chapter){
+              currentChapter = v.chapter;
+              const trChapter = document.createElement("tr");
+              trChapter.className = "chapter-row";
+              const tdChapter = document.createElement("td");
+              tdChapter.colSpan = 2;
+              tdChapter.innerText = `Chapter ${v.chapter}`;
+              trChapter.appendChild(tdChapter);
+              table.appendChild(trChapter);
+            }
+
+            const tr = document.createElement("tr");
+            const tdNum = document.createElement("td");
+            tdNum.className = "verse-number";
+            tdNum.innerText = v.verse;
+            const tdText = document.createElement("td");
+            tdText.className = "verse-text";
+            tdText.innerText = v.text;
+            tr.appendChild(tdNum);
+            tr.appendChild(tdText);
+            table.appendChild(tr);
+          });
+
+          verseTextDiv.appendChild(table);
+        } else {
+          // fallback for single verse
+          const table = document.createElement("table");
+          const tr = document.createElement("tr");
+          const tdNum = document.createElement("td");
+          tdNum.className = "verse-number";
+          tdNum.innerText = d.verse || '';
+          const tdText = document.createElement("td");
+          tdText.className = "verse-text";
+          tdText.innerText = d.text;
+          tr.appendChild(tdNum);
+          tr.appendChild(tdText);
+          table.appendChild(tr);
+          verseTextDiv.appendChild(table);
+        }
       })
-      .catch(()=> verseTextDiv.innerText = "Error fetching verse.");
-  }
+      .catch(() => {
+        loadingDiv.style.display = 'none';
+        verseTextDiv.innerText = "Error fetching verses.";
+      });
+  });
 </script>
 
 </body>

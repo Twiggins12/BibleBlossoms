@@ -1,46 +1,155 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Bible Demo</title>
+  <title>Bible Blossoms - Topical Reference</title>
   <style>
-    body { font-family: Arial; padding: 30px; }
-    select, button { padding: 8px; margin: 5px; }
-    #verse { margin-top: 20px; white-space: pre-wrap; }
+    body { font-family: Arial, sans-serif; padding: 30px; max-width: 700px; margin: auto; }
+    select, button { padding: 8px; margin: 5px 0; width: 100%; }
+    #verseText { margin-top: 20px; white-space: pre-wrap; font-size: 1.1em; }
+    h1 { text-align: center; }
   </style>
 </head>
 <body>
 
-<h1>Bible Verse Demo</h1>
+<h1>Bible Blossoms - Topical Reference</h1>
 
-<select id="reference">
-  <option value="">Select a verse</option>
-  <option value="John 3:16">John 3:16</option>
-  <option value="Psalm 23:1">Psalm 23:1</option>
-  <option value="Romans 8:28">Romans 8:28</option>
+<select id="mainTopic">
+  <option value="">Select Main Topic</option>
+</select>
+
+<select id="subheading">
+  <option value="">Select Subheading</option>
+</select>
+
+<select id="book">
+  <option value="">Select Book</option>
+</select>
+
+<select id="chapter">
+  <option value="">Select Chapter</option>
+</select>
+
+<select id="verse">
+  <option value="">Select Verse</option>
 </select>
 
 <button onclick="getVerse()">Get Verse</button>
 
-<div id="verse"></div>
+<div id="verseText"></div>
 
 <script>
-function getVerse() {
-  const ref = document.getElementById("reference").value;
-  if (!ref) {
-    alert("Please select a verse.");
-    return;
-  }
+  // Sample Data: Expand as you add topics/subheadings/books/chapters/verses
+  const data = {
+    "Faith": {
+      "Trust in God": {
+        "John": { "3": ["16"], "14": ["1"] },
+        "Hebrews": { "11": ["1"] }
+      },
+      "Perseverance": {
+        "James": { "1": ["12"] }
+      }
+    },
+    "Love": {
+      "Charity": {
+        "1 Corinthians": { "13": ["4","13"] }
+      }
+    }
+  };
 
-  fetch(`https://bible-api.com/${ref}`)
-    .then(response => response.json())
-    .then(data => {
-      document.getElementById("verse").innerText = data.text;
-    })
-    .catch(() => {
-      document.getElementById("verse").innerText = "Error fetching verse.";
-    });
-}
+  const mainTopicSelect = document.getElementById("mainTopic");
+  const subheadingSelect = document.getElementById("subheading");
+  const bookSelect = document.getElementById("book");
+  const chapterSelect = document.getElementById("chapter");
+  const verseSelect = document.getElementById("verse");
+  const verseTextDiv = document.getElementById("verseText");
+
+  // Populate Main Topics
+  Object.keys(data).forEach(topic => {
+    const option = document.createElement("option");
+    option.value = topic;
+    option.text = topic;
+    mainTopicSelect.add(option);
+  });
+
+  // Subheading population
+  mainTopicSelect.addEventListener("change", () => {
+    subheadingSelect.innerHTML = '<option value="">Select Subheading</option>';
+    bookSelect.innerHTML = '<option value="">Select Book</option>';
+    chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
+    verseSelect.innerHTML = '<option value="">Select Verse</option>';
+    const subheadings = data[mainTopicSelect.value];
+    if(subheadings){
+      Object.keys(subheadings).forEach(sh => {
+        const option = document.createElement("option");
+        option.value = sh;
+        option.text = sh;
+        subheadingSelect.add(option);
+      });
+    }
+  });
+
+  // Book population
+  subheadingSelect.addEventListener("change", () => {
+    bookSelect.innerHTML = '<option value="">Select Book</option>';
+    chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
+    verseSelect.innerHTML = '<option value="">Select Verse</option>';
+    const books = data[mainTopicSelect.value][subheadingSelect.value];
+    if(books){
+      Object.keys(books).forEach(book => {
+        const option = document.createElement("option");
+        option.value = book;
+        option.text = book;
+        bookSelect.add(option);
+      });
+    }
+  });
+
+  // Chapter population
+  bookSelect.addEventListener("change", () => {
+    chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
+    verseSelect.innerHTML = '<option value="">Select Verse</option>';
+    const chapters = data[mainTopicSelect.value][subheadingSelect.value][bookSelect.value];
+    if(chapters){
+      Object.keys(chapters).forEach(ch => {
+        const option = document.createElement("option");
+        option.value = ch;
+        option.text = ch;
+        chapterSelect.add(option);
+      });
+    }
+  });
+
+  // Verse population
+  chapterSelect.addEventListener("change", () => {
+    verseSelect.innerHTML = '<option value="">Select Verse</option>';
+    const verses = data[mainTopicSelect.value][subheadingSelect.value][bookSelect.value][chapterSelect.value];
+    if(verses){
+      verses.forEach(v => {
+        const option = document.createElement("option");
+        option.value = v;
+        option.text = v;
+        verseSelect.add(option);
+      });
+    }
+  });
+
+  // Fetch verse text from Bible API
+  function getVerse(){
+    const book = bookSelect.value;
+    const chapter = chapterSelect.value;
+    const verse = verseSelect.value;
+    if(!book || !chapter || !verse){
+      alert("Please select all dropdowns.");
+      return;
+    }
+    fetch(`https://bible-api.com/${book} ${chapter}:${verse}`)
+      .then(res => res.json())
+      .then(data => {
+        verseTextDiv.innerText = data.text;
+      })
+      .catch(()=> verseTextDiv.innerText = "Error fetching verse.");
+  }
 </script>
 
 </body>

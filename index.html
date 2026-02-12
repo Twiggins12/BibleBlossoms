@@ -39,24 +39,6 @@
 <div id="verseText"></div>
 
 <script>
-  // Sample Data: Expand as you add topics/subheadings/books/chapters/verses
-  const data = {
-    "Faith": {
-      "Trust in God": {
-        "John": { "3": ["16"], "14": ["1"] },
-        "Hebrews": { "11": ["1"] }
-      },
-      "Perseverance": {
-        "James": { "1": ["12"] }
-      }
-    },
-    "Love": {
-      "Charity": {
-        "1 Corinthians": { "13": ["4","13"] }
-      }
-    }
-  };
-
   const mainTopicSelect = document.getElementById("mainTopic");
   const subheadingSelect = document.getElementById("subheading");
   const bookSelect = document.getElementById("book");
@@ -64,15 +46,38 @@
   const verseSelect = document.getElementById("verse");
   const verseTextDiv = document.getElementById("verseText");
 
-  // Populate Main Topics
-  Object.keys(data).forEach(topic => {
-    const option = document.createElement("option");
-    option.value = topic;
-    option.text = topic;
-    mainTopicSelect.add(option);
-  });
+  let data = {}; // structured data from CSV
 
-  // Subheading population
+  // Replace with your published Master CSV link
+  const csvUrl = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRfO-EOoUaTX55fOvNTUEHg1yG8kszdIGiikQYe1JdHyD1hQ5iNs3VL-7leImeg2JUrwoKHH0ZHIqgj/pub?gid=0&single=true&output=csv";
+
+  // Fetch CSV and build structured data
+  fetch(csvUrl)
+    .then(res => res.text())
+    .then(csvText => {
+      const rows = csvText.split("\n").slice(1); // skip header
+      rows.forEach(row => {
+        const [main, sub, book, chapter, verse] = row.split(",");
+        if(!main || !sub || !book || !chapter || !verse) return;
+
+        if(!data[main]) data[main] = {};
+        if(!data[main][sub]) data[main][sub] = {};
+        if(!data[main][sub][book]) data[main][sub][book] = {};
+        if(!data[main][sub][book][chapter]) data[main][sub][book][chapter] = [];
+        data[main][sub][book][chapter].push(verse);
+      });
+
+      // Populate Main Topics dropdown after CSV loads
+      Object.keys(data).forEach(topic => {
+        const option = document.createElement("option");
+        option.value = topic;
+        option.text = topic;
+        mainTopicSelect.add(option);
+      });
+    })
+    .catch(err => console.error("Error loading CSV:", err));
+
+  // Dropdown population events
   mainTopicSelect.addEventListener("change", () => {
     subheadingSelect.innerHTML = '<option value="">Select Subheading</option>';
     bookSelect.innerHTML = '<option value="">Select Book</option>';
@@ -89,7 +94,6 @@
     }
   });
 
-  // Book population
   subheadingSelect.addEventListener("change", () => {
     bookSelect.innerHTML = '<option value="">Select Book</option>';
     chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
@@ -105,7 +109,6 @@
     }
   });
 
-  // Chapter population
   bookSelect.addEventListener("change", () => {
     chapterSelect.innerHTML = '<option value="">Select Chapter</option>';
     verseSelect.innerHTML = '<option value="">Select Verse</option>';
@@ -120,7 +123,6 @@
     }
   });
 
-  // Verse population
   chapterSelect.addEventListener("change", () => {
     verseSelect.innerHTML = '<option value="">Select Verse</option>';
     const verses = data[mainTopicSelect.value][subheadingSelect.value][bookSelect.value][chapterSelect.value];
@@ -134,7 +136,7 @@
     }
   });
 
-  // Fetch verse text from Bible API
+  // Fetch and display verse text from Bible API
   function getVerse(){
     const book = bookSelect.value;
     const chapter = chapterSelect.value;

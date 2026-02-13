@@ -1,224 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Life Link - Topical Reference</title>
-<!-- Lobster font from Google Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-<style>
-  body { font-family: Arial, sans-serif; padding: 20px; max-width: 700px; margin: auto; }
-  select { padding: 8px; margin: 5px 0; width: 100%; }
-  #verseText { margin-top: 20px; font-size: 1.1em; }
-  table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-  td { vertical-align: top; padding: 4px 8px; }
-  td.verse-number { width: 50px; font-weight: bold; text-align: right; color: #555; }
-  td.verse-text { text-align: left; }
-  tr.chapter-row td { font-weight: bold; padding-top: 12px; background-color: #f0f0f0; }
-  h1, h2 { text-align: center; margin: 0; padding: 5px 0; }
-  h1 { font-family: 'Lobster', cursive; font-size: 3em; color: #4B0082; }
-  .header-container { background-color: #E6E6FA; padding: 15px; margin-bottom: 20px; border-radius: 10px; }
-  #loading { display: none; font-style: italic; color: #555; margin-top: 10px; }
-</style>
+  <meta charset="UTF-8">
+  <title>Life Link - Topical Reference</title>
+
+  <!-- Lobster font -->
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #fdfaff;
+    }
+
+    header {
+      text-align: center;
+      background-color: #e6e6fa; /* lilac */
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-family: 'Lobster', cursive;
+      margin: 0;
+      font-size: 3em;
+      color: #4b0082;
+    }
+
+    header h2 {
+      margin: 5px 0 0 0;
+      font-size: 1.5em;
+      color: #4b0082;
+    }
+
+    select {
+      padding: 5px 10px;
+      margin: 5px;
+      font-size: 1em;
+    }
+
+    .verse-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    .chapter-row td {
+      background-color: #d8bfd8;
+      font-weight: bold;
+      text-align: center;
+      padding: 5px;
+      border-radius: 4px;
+    }
+
+    .verse-row td {
+      padding: 5px;
+      vertical-align: top;
+    }
+
+    .verse-number {
+      width: 50px;
+      font-weight: bold;
+      text-align: right;
+      padding-right: 10px;
+    }
+
+    .verse-text {
+      text-align: left;
+    }
+
+    #loading {
+      display: none;
+      font-style: italic;
+      color: #4b0082;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
 
-<div class="header-container">
-  <h1>Life Link</h1>
-  <h2>Topical Reference</h2>
-</div>
+  <header>
+    <h1>Life Link</h1>
+    <h2>Topical Reference</h2>
+  </header>
 
-<select id="mainTopic">
-  <option value="">Select Main Topic</option>
-</select>
+  <div id="selectors">
+    <select id="mainTopicSelect"><option value="">Select Main Topic</option></select>
+    <select id="subheadingSelect"><option value="">Select Subheading</option></select>
+    <select id="bookSelect"><option value="">Select Book</option></select>
+  </div>
 
-<select id="subheading">
-  <option value="">Select Subheading</option>
-</select>
+  <div id="loading">Loading verses...</div>
+  <div id="verseText"></div>
 
-<select id="book">
-  <option value="">Select Book</option>
-</select>
+  <script>
+    // Replace this link with your published CSV link
+    const sheetCSV = 'YOUR_GOOGLE_SHEETS_CSV_LINK_HERE';
 
-<div id="loading">Loading verses...</div>
-<div id="verseText"></div>
+    const mainTopicSelect = document.getElementById('mainTopicSelect');
+    const subheadingSelect = document.getElementById('subheadingSelect');
+    const bookSelect = document.getElementById('bookSelect');
+    const verseTextDiv = document.getElementById('verseText');
+    const loadingDiv = document.getElementById('loading');
 
-<script>
-const mainTopicSelect = document.getElementById("mainTopic");
-const subheadingSelect = document.getElementById("subheading");
-const bookSelect = document.getElementById("book");
-const verseTextDiv = document.getElementById("verseText");
-const loadingDiv = document.getElementById("loading");
+    let masterRows = [];
 
-// Add cache-busting to always fetch latest CSV
-const csvUrlBase = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRfO-EOoUaTX55fOvNTUEHg1yG8kszdIGiikQYe1JdHyD1hQ5iNs3VL-7leImeg2JUrwoKHH0ZHIqgj/pub?gid=0&single=true&output=csv";
-const csvUrl = csvUrlBase + "&nocache=" + new Date().getTime();
-
-let data = {}; // structured Master CSV data
-
-// Fetch CSV and build structured data
-fetch(csvUrl)
-  .then(res => res.text())
-  .then(csvText => {
-    const rows = csvText.split("\n").slice(1);
-    rows.forEach(row => {
-      // Handle multi-word cells correctly
-      const cells = row.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
-      if(!cells || cells.length < 5) return;
-      cells.forEach((c,i) => cells[i] = c.replace(/^"|"$/g,'').trim());
-
-      let [main, sub, book, chapter, verse] = cells;
-
-      if(!data[main]) data[main] = {};
-      if(!data[main][sub]) data[main][sub] = {};
-      if(!data[main][sub][book]) data[main][sub][book] = [];
-      data[main][sub][book].push(`${chapter}:${verse}`);
-    });
-
-    // Populate Main Topics dropdown
-    Object.keys(data).forEach(topic => {
-      const option = document.createElement("option");
-      option.value = topic;
-      option.text = topic;
-      mainTopicSelect.add(option);
-    });
-  })
-  .catch(err => console.error("Error loading CSV:", err));
-
-// Populate Subheadings
-mainTopicSelect.addEventListener("change", () => {
-  subheadingSelect.innerHTML = '<option value="">Select Subheading</option>';
-  bookSelect.innerHTML = '<option value="">Select Book</option>';
-  verseTextDiv.innerHTML = '';
-  loadingDiv.style.display = 'none';
-  const subheadings = data[mainTopicSelect.value];
-  if(subheadings){
-    Object.keys(subheadings).forEach(sh => {
-      const option = document.createElement("option");
-      option.value = sh;
-      option.text = sh;
-      subheadingSelect.add(option);
-    });
-  }
-});
-
-// Populate Books
-subheadingSelect.addEventListener("change", () => {
-  bookSelect.innerHTML = '<option value="">Select Book</option>';
-  verseTextDiv.innerHTML = '';
-  loadingDiv.style.display = 'none';
-  const books = data[mainTopicSelect.value][subheadingSelect.value];
-  if(books){
-    Object.keys(books).forEach(book => {
-      const option = document.createElement("option");
-      option.value = book;
-      option.text = book;
-      bookSelect.add(option);
-    });
-  }
-});
-
-// Display all verses for selected Book (optimized API fetch)
-bookSelect.addEventListener("change", () => {
-  verseTextDiv.innerHTML = '';
-  loadingDiv.style.display = 'block';
-
-  const verses = data[mainTopicSelect.value][subheadingSelect.value][bookSelect.value];
-  if(!verses || verses.length === 0){
-    loadingDiv.style.display = 'none';
-    verseTextDiv.innerText = "No verses found.";
-    return;
-  }
-
-  // Group verses by chapter
-  const chapterMap = {};
-  verses.forEach(v => {
-    const [chapter, verse] = v.split(":");
-    if(!chapterMap[chapter]) chapterMap[chapter] = [];
-    chapterMap[chapter].push(parseInt(verse));
-  });
-
-  // Build ranges for API
-  const verseQueryParts = [];
-  Object.keys(chapterMap).forEach(ch => {
-    const sorted = chapterMap[ch].sort((a,b)=>a-b);
-    let start = sorted[0], end = sorted[0];
-    for(let i=1;i<sorted.length;i++){
-      if(sorted[i] === end + 1){ end = sorted[i]; }
-      else { verseQueryParts.push(end === start ? `${ch}:${start}` : `${ch}:${start}-${end}`); start = end = sorted[i]; }
+    async function loadMasterCSV() {
+      loadingDiv.style.display = 'block';
+      try {
+        const res = await fetch(sheetCSV);
+        const csvText = await res.text();
+        masterRows = csvText.trim().split('\n').slice(1).map(line => {
+          const [MainTopic, Subheading, Book, Chapter, Verse] = line.split(',');
+          return {
+            MainTopic: MainTopic.trim(),
+            Subheading: Subheading.trim(),
+            Book: Book.trim(),
+            Chapter: parseInt(Chapter),
+            Verse: parseInt(Verse)
+          };
+        });
+        populateMainTopics();
+      } catch (err) {
+        console.error('Error loading CSV:', err);
+        loadingDiv.innerText = 'Error loading Master tab CSV.';
+      }
+      loadingDiv.style.display = 'none';
     }
-    verseQueryParts.push(end === start ? `${ch}:${start}` : `${ch}:${start}-${end}`);
-  });
 
-  const queryString = verseQueryParts.join(",");
-  // Inside your bookSelect change event:
-verseTextDiv.innerHTML = ''; // clear previous results
-loadingDiv.style.display = 'block'; // show loading indicator
+    function populateMainTopics() {
+      const mainTopics = [...new Set(masterRows.map(r => r.MainTopic))];
+      mainTopics.forEach(topic => {
+        const opt = document.createElement('option');
+        opt.value = topic;
+        opt.text = topic;
+        mainTopicSelect.appendChild(opt);
+      });
+    }
 
-let currentChapter = null;
+    mainTopicSelect.addEventListener('change', () => {
+      subheadingSelect.innerHTML = '<option value="">Select Subheading</option>';
+      bookSelect.innerHTML = '<option value="">Select Book</option>';
+      verseTextDiv.innerHTML = '';
+      const selectedTopic = mainTopicSelect.value;
+      if (!selectedTopic) return;
+      const subheadings = [...new Set(masterRows.filter(r => r.MainTopic === selectedTopic).map(r => r.Subheading))];
+      subheadings.forEach(sub => {
+        const opt = document.createElement('option');
+        opt.value = sub;
+        opt.text = sub;
+        subheadingSelect.appendChild(opt);
+      });
+    });
 
-// Create a table for all verses
-const table = document.createElement("table");
-table.className = "verse-table";
+    subheadingSelect.addEventListener('change', () => {
+      bookSelect.innerHTML = '<option value="">Select Book</option>';
+      verseTextDiv.innerHTML = '';
+      const selectedTopic = mainTopicSelect.value;
+      const selectedSub = subheadingSelect.value;
+      if (!selectedTopic || !selectedSub) return;
+      const books = [...new Set(masterRows.filter(r => r.MainTopic === selectedTopic && r.Subheading === selectedSub).map(r => r.Book))];
+      books.forEach(book => {
+        const opt = document.createElement('option');
+        opt.value = book;
+        opt.text = book;
+        bookSelect.appendChild(opt);
+      });
+    });
 
-async function fetchAllVerses() {
-  for (const row of filteredRows) {
-    // Build reference per row
-    const reference = `${row.Book} ${row.Chapter}:${row.Verse}`;
+    bookSelect.addEventListener('change', () => {
+      verseTextDiv.innerHTML = '';
+      const selectedTopic = mainTopicSelect.value;
+      const selectedSub = subheadingSelect.value;
+      const selectedBook = bookSelect.value;
+      if (!selectedTopic || !selectedSub || !selectedBook) return;
 
-    try {
-      const res = await fetch(`https://bible-api.com/${encodeURIComponent(reference)}`);
-      const d = await res.json();
+      const filteredRows = masterRows.filter(r =>
+        r.MainTopic === selectedTopic &&
+        r.Subheading === selectedSub &&
+        r.Book === selectedBook
+      );
 
-      if (!d.text) {
-        console.error(`Verse not found: ${reference}`);
-        continue; // skip missing verses
+      let currentChapter = null;
+      const table = document.createElement('table');
+      table.className = 'verse-table';
+      loadingDiv.style.display = 'block';
+
+      async function displayVerses() {
+        for (const row of filteredRows) {
+          const reference = `${row.Book} ${row.Chapter}:${row.Verse}`;
+          try {
+            const res = await fetch(`https://bible-api.com/${encodeURIComponent(reference)}`);
+            const d = await res.json();
+            if (!d.text) {
+              console.error(`Verse not found: ${reference}`);
+              continue;
+            }
+
+            if (currentChapter !== row.Chapter) {
+              currentChapter = row.Chapter;
+              const trChapter = document.createElement('tr');
+              trChapter.className = 'chapter-row';
+              const tdChapter = document.createElement('td');
+              tdChapter.colSpan = 2;
+              tdChapter.innerText = `Chapter ${currentChapter}`;
+              trChapter.appendChild(tdChapter);
+              table.appendChild(trChapter);
+            }
+
+            const trVerse = document.createElement('tr');
+            trVerse.className = 'verse-row';
+            const tdNumber = document.createElement('td');
+            tdNumber.className = 'verse-number';
+            tdNumber.innerText = row.Verse;
+            const tdText = document.createElement('td');
+            tdText.className = 'verse-text';
+            tdText.innerText = d.text;
+            trVerse.appendChild(tdNumber);
+            trVerse.appendChild(tdText);
+            table.appendChild(trVerse);
+
+          } catch (err) {
+            console.error(`Error fetching ${reference}:`, err);
+          }
+        }
+        verseTextDiv.appendChild(table);
+        loadingDiv.style.display = 'none';
       }
 
-      const verseChapter = row.Chapter;
+      displayVerses();
+    });
 
-      // Add chapter header if chapter changed
-      if (currentChapter !== verseChapter) {
-        currentChapter = verseChapter;
-        const trChapter = document.createElement("tr");
-        trChapter.className = "chapter-row";
-
-        const tdChapter = document.createElement("td");
-        tdChapter.colSpan = 2;
-        tdChapter.innerText = `Chapter ${verseChapter}`;
-
-        trChapter.appendChild(tdChapter);
-        table.appendChild(trChapter);
-      }
-
-      // Add verse row
-      const trVerse = document.createElement("tr");
-      trVerse.className = "verse-row";
-
-      const tdNumber = document.createElement("td");
-      tdNumber.className = "verse-number";
-      tdNumber.innerText = row.Verse;
-
-      const tdText = document.createElement("td");
-      tdText.className = "verse-text";
-      tdText.innerText = d.text;
-
-      trVerse.appendChild(tdNumber);
-      trVerse.appendChild(tdText);
-      table.appendChild(trVerse);
-
-    } catch (err) {
-      console.error(`Error fetching verse ${reference}:`, err);
-    }
-  }
-
-  verseTextDiv.appendChild(table);
-  loadingDiv.style.display = 'none';
-}
-
-// Start fetching
-fetchAllVerses();
-});
-</script>
-
+    loadMasterCSV(); // fetch CSV on page load
+  </script>
 </body>
 </html>

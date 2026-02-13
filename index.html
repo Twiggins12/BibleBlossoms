@@ -150,61 +150,64 @@ bookSelect.addEventListener("change", () => {
   });
 
   const queryString = verseQueryParts.join(",");
-  const reference = `${bookSelect.value} ${queryString}`;
+  // Inside your bookSelect change event:
+const reference = `${bookSelect.value} ${queryString}`; // Only declare once
+
 fetch(`https://bible-api.com/${encodeURIComponent(reference)}`)
-    .then(res => res.json())
-    .then(d => {
-      loadingDiv.style.display = 'none';
-      verseTextDiv.innerHTML = '';
-console.log(d);
-      if (d.verses && d.verses.length > 0) {
-        const table = document.createElement("table");
-        let currentChapter = null;
+  .then(res => res.json())
+  .then(d => {
+    loadingDiv.style.display = 'none';
+    verseTextDiv.innerHTML = '';
 
-        d.verses.forEach(v => {
-          if(currentChapter !== v.chapter){
-            currentChapter = v.chapter;
-            const trChapter = document.createElement("tr");
-            trChapter.className = "chapter-row";
-            const tdChapter = document.createElement("td");
-            tdChapter.colSpan = 2;
-            tdChapter.innerText = `Chapter ${v.chapter}`;
-            trChapter.appendChild(tdChapter);
-            table.appendChild(trChapter);
-          }
+    // Ensure verses exist
+    if (!d.verses || d.verses.length === 0) {
+      verseTextDiv.innerHTML = 'No verses found.';
+      return;
+    }
 
-          const tr = document.createElement("tr");
-          const tdNum = document.createElement("td");
-          tdNum.className = "verse-number";
-          tdNum.innerText = v.verse;
-          const tdText = document.createElement("td");
-          tdText.className = "verse-text";
-          tdText.innerText = v.text;
-          tr.appendChild(tdNum);
-          tr.appendChild(tdText);
-          table.appendChild(tr);
-        });
+    // Create table for verse-by-verse display
+    const table = document.createElement("table");
+    let currentChapter = null;
 
-        verseTextDiv.appendChild(table);
-      } else {
-        const table = document.createElement("table");
-        const tr = document.createElement("tr");
-        const tdNum = document.createElement("td");
-        tdNum.className = "verse-number";
-        tdNum.innerText = d.verse || '';
-        const tdText = document.createElement("td");
-        tdText.className = "verse-text";
-        tdText.innerText = d.text;
-        tr.appendChild(tdNum);
-        tr.appendChild(tdText);
-        table.appendChild(tr);
-        verseTextDiv.appendChild(table);
+    d.verses.forEach(v => {
+      // Add chapter row if it changes
+      if (currentChapter !== v.chapter) {
+        currentChapter = v.chapter;
+        const trChapter = document.createElement("tr");
+        trChapter.className = "chapter-row";
+
+        const tdChapter = document.createElement("td");
+        tdChapter.colSpan = 2;
+        tdChapter.innerText = `Chapter ${v.chapter}`;
+
+        trChapter.appendChild(tdChapter);
+        table.appendChild(trChapter);
       }
-    })
-    .catch(() => {
-      loadingDiv.style.display = 'none';
-      verseTextDiv.innerText = "Error fetching verses.";
+
+      // Add verse row
+      const trVerse = document.createElement("tr");
+      trVerse.className = "verse-row";
+
+      const tdNumber = document.createElement("td");
+      tdNumber.className = "verse-number";
+      tdNumber.innerText = v.verse;
+
+      const tdText = document.createElement("td");
+      tdText.className = "verse-text";
+      tdText.innerText = v.text;
+
+      trVerse.appendChild(tdNumber);
+      trVerse.appendChild(tdText);
+      table.appendChild(trVerse);
     });
+
+    verseTextDiv.appendChild(table);
+  })
+  .catch(err => {
+    loadingDiv.style.display = 'none';
+    verseTextDiv.innerHTML = 'Error loading verse. Check console.';
+    console.error(err);
+  });
 });
 </script>
 

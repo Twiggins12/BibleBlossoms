@@ -7,6 +7,9 @@
   <!-- Lobster font -->
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
+  <!-- PapaParse for proper CSV parsing -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js" integrity="sha512-+cYvowt1Yh3y1okL0xF7Fspxk0d4ZfdtvfsIbfTf9x/cfN1Z4Yy5q8wnxvSjYgH8m5kR7E1K5vN0Jr5S+Z+5RA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -41,11 +44,11 @@
       display: flex;
       align-items: flex-start;
       margin-bottom: 30px;
-      flex-wrap: wrap; /* allow wrapping on small screens */
+      flex-wrap: wrap;
     }
 
     .section-title {
-      width: 200px;
+      width: 220px;
       font-weight: bold;
       font-size: 1.2em;
       text-align: left;
@@ -55,10 +58,10 @@
 
     .dropdowns {
       display: grid;
-      grid-template-columns: repeat(3, 1fr); /* three equal columns */
+      grid-template-columns: repeat(3, 1fr);
       gap: 10px;
-      flex: 1; /* take remaining horizontal space */
-      min-width: 300px; /* prevent shrinking too small */
+      flex: 1;
+      min-width: 300px;
     }
 
     @media (max-width: 700px) {
@@ -182,9 +185,9 @@
       mainTopicSelect.innerHTML = '<option value="">Select Main Topic</option>';
       dropdowns.appendChild(mainTopicSelect);
 
-      const subheadingSelect = document.createElement('select');
-      subheadingSelect.innerHTML = '<option value="">Select Subheading</option>';
-      dropdowns.appendChild(subheadingSelect);
+      const subTopicSelect = document.createElement('select');
+      subTopicSelect.innerHTML = '<option value="">Select Sub-Topic</option>';
+      dropdowns.appendChild(subTopicSelect);
 
       const bookSelect = document.createElement('select');
       bookSelect.innerHTML = '<option value="">Select Book</option>';
@@ -193,25 +196,23 @@
       sectionDiv.appendChild(dropdowns);
       sectionsContainer.appendChild(sectionDiv);
 
-      loadSectionCSV(section.csv, mainTopicSelect, subheadingSelect, bookSelect);
+      loadSectionCSV(section.csv, mainTopicSelect, subTopicSelect, bookSelect);
     });
 
-    async function loadSectionCSV(csvFile, mainTopicSelect, subheadingSelect, bookSelect) {
+    async function loadSectionCSV(csvFile, mainTopicSelect, subTopicSelect, bookSelect) {
       loadingDiv.style.display = 'block';
       try {
         const res = await fetch(csvFile);
         const csvText = await res.text();
-        const masterRows = csvText.trim().split(/\r?\n/).slice(1).map(line => {
-          const [Section, MainTopic, Subheading, Book, Chapter, Verse] = line.split(',');
-          return {
-            Section: Section.trim(),
-            MainTopic: MainTopic.trim(),
-            Subheading: Subheading.trim(),
-            Book: Book.trim(),
-            Chapter: parseInt(Chapter),
-            Verse: parseInt(Verse)
-          };
-        });
+        const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+        const masterRows = parsed.data.map(row => ({
+          Section: row.Section.trim(),
+          MainTopic: row.MainTopic.trim(),
+          SubTopic: row.SubTopic.trim(),
+          Book: row.Book.trim(),
+          Chapter: parseInt(row.Chapter),
+          Verse: parseInt(row.Verse)
+        }));
 
         const mainTopics = [...new Set(masterRows.map(r => r.MainTopic))];
         mainTopics.forEach(topic => {
@@ -222,27 +223,27 @@
         });
 
         mainTopicSelect.addEventListener('change', () => {
-          subheadingSelect.innerHTML = '<option value="">Select Subheading</option>';
+          subTopicSelect.innerHTML = '<option value="">Select Sub-Topic</option>';
           bookSelect.innerHTML = '<option value="">Select Book</option>';
           verseTextDiv.innerHTML = '';
           const selectedTopic = mainTopicSelect.value;
           if (!selectedTopic) return;
-          const subheadings = [...new Set(masterRows.filter(r => r.MainTopic === selectedTopic).map(r => r.Subheading))];
-          subheadings.forEach(sub => {
+          const subTopics = [...new Set(masterRows.filter(r => r.MainTopic === selectedTopic).map(r => r.SubTopic))];
+          subTopics.forEach(sub => {
             const opt = document.createElement('option');
             opt.value = sub;
             opt.text = sub;
-            subheadingSelect.appendChild(opt);
+            subTopicSelect.appendChild(opt);
           });
         });
 
-        subheadingSelect.addEventListener('change', () => {
+        subTopicSelect.addEventListener('change', () => {
           bookSelect.innerHTML = '<option value="">Select Book</option>';
           verseTextDiv.innerHTML = '';
           const selectedTopic = mainTopicSelect.value;
-          const selectedSub = subheadingSelect.value;
+          const selectedSub = subTopicSelect.value;
           if (!selectedTopic || !selectedSub) return;
-          const books = [...new Set(masterRows.filter(r => r.MainTopic === selectedTopic && r.Subheading === selectedSub).map(r => r.Book))];
+          const books = [...new Set(masterRows.filter(r => r.MainTopic === selectedTopic && r.SubTopic === selectedSub).map(r => r.Book))];
           books.forEach(book => {
             const opt = document.createElement('option');
             opt.value = book;
@@ -254,13 +255,13 @@
         bookSelect.addEventListener('change', () => {
           verseTextDiv.innerHTML = '';
           const selectedTopic = mainTopicSelect.value;
-          const selectedSub = subheadingSelect.value;
+          const selectedSub = subTopicSelect.value;
           const selectedBook = bookSelect.value;
           if (!selectedTopic || !selectedSub || !selectedBook) return;
 
           const filteredRows = masterRows.filter(r =>
             r.MainTopic === selectedTopic &&
-            r.Subheading === selectedSub &&
+            r.SubTopic === selectedSub &&
             r.Book === selectedBook
           );
 

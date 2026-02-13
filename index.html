@@ -151,7 +151,7 @@ async function loadMasterCSV() {
       Chapter: parseInt(row.Chapter),
       Verse: parseInt(row.Verse)
     }));
-
+console.log(masterRows);
     // populate Main Topic dropdown
     const mainTopics = [...new Set(masterRows.map(r => r.MainTopic))];
     mainTopics.forEach(topic => {

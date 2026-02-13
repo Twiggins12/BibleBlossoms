@@ -64,14 +64,20 @@ fetch(csvUrl)
       // Handle multi-word cells correctly
       const cells = row.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
       if(!cells || cells.length < 5) return;
-      cells.forEach((c,i) => cells[i] = c.replace(/^"|"$/g,'').trim());
+      let main = cells[0] || "";
+let sub = cells[1] || "";
+let book = cells[2] || "";
+let chapter = cells[3] || "";
+let verse = cells[4] || "";
 
-      let [main, sub, book, chapter, verse] = cells;
+main = main.trim();
+sub = sub.trim();
+book = book.trim();
+chapter = chapter.trim();
+verse = verse.trim();
 
-      if(!data[main]) data[main] = {};
-      if(!data[main][sub]) data[main][sub] = {};
-      if(!data[main][sub][book]) data[main][sub][book] = [];
-      data[main][sub][book].push(`${chapter}:${verse}`);
+if (!main || !sub || !book || !chapter || !verse) return;
+
     });
 
     // Populate Main Topics dropdown

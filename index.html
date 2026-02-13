@@ -158,7 +158,7 @@ fetch(`https://bible-api.com/${encodeURIComponent(reference)}`)
     .then(d => {
       loadingDiv.style.display = 'none';
       verseTextDiv.innerHTML = '';
-
+console.log(d);
       if (d.verses && d.verses.length > 0) {
         const table = document.createElement("table");
         let currentChapter = null;

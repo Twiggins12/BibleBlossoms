@@ -151,7 +151,7 @@ bookSelect.addEventListener("change", () => {
 
   const queryString = verseQueryParts.join(",");
   // Inside your bookSelect change event:
-const reference = `${bookSelect.value} ${queryString}`; // Only declare once
+const reference = `${bookSelect.value} ${queryString}`;
 
 fetch(`https://bible-api.com/${encodeURIComponent(reference)}`)
   .then(res => res.json())
@@ -159,49 +159,31 @@ fetch(`https://bible-api.com/${encodeURIComponent(reference)}`)
     loadingDiv.style.display = 'none';
     verseTextDiv.innerHTML = '';
 
-    // Ensure verses exist
-    if (!d.verses || d.verses.length === 0) {
-      verseTextDiv.innerHTML = 'No verses found.';
-      return;
+    // Single-verse response (all your rows)
+    const trVerse = document.createElement("tr");
+    trVerse.className = "verse-row";
+
+    // Verse number
+    const tdNumber = document.createElement("td");
+    tdNumber.className = "verse-number";
+    tdNumber.innerText = `${d.reference.split(' ')[1]}`; // chapter:verse part
+
+    // Verse text
+    const tdText = document.createElement("td");
+    tdText.className = "verse-text";
+    tdText.innerText = d.text;
+
+    trVerse.appendChild(tdNumber);
+    trVerse.appendChild(tdText);
+
+    // Create table if it doesn't exist
+    let table = verseTextDiv.querySelector("table");
+    if (!table) {
+      table = document.createElement("table");
+      verseTextDiv.appendChild(table);
     }
 
-    // Create table for verse-by-verse display
-    const table = document.createElement("table");
-    let currentChapter = null;
-
-    d.verses.forEach(v => {
-      // Add chapter row if it changes
-      if (currentChapter !== v.chapter) {
-        currentChapter = v.chapter;
-        const trChapter = document.createElement("tr");
-        trChapter.className = "chapter-row";
-
-        const tdChapter = document.createElement("td");
-        tdChapter.colSpan = 2;
-        tdChapter.innerText = `Chapter ${v.chapter}`;
-
-        trChapter.appendChild(tdChapter);
-        table.appendChild(trChapter);
-      }
-
-      // Add verse row
-      const trVerse = document.createElement("tr");
-      trVerse.className = "verse-row";
-
-      const tdNumber = document.createElement("td");
-      tdNumber.className = "verse-number";
-      tdNumber.innerText = v.verse;
-
-      const tdText = document.createElement("td");
-      tdText.className = "verse-text";
-      tdText.innerText = v.text;
-
-      trVerse.appendChild(tdNumber);
-      trVerse.appendChild(tdText);
-      table.appendChild(trVerse);
-    });
-
-    verseTextDiv.appendChild(table);
+    table.appendChild(trVerse);
   })
   .catch(err => {
     loadingDiv.style.display = 'none';

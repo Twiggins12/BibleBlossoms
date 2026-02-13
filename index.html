@@ -63,26 +63,15 @@ fetch(csvUrl)
     rows.forEach(row => {
       // Handle multi-word cells correctly
       const cells = row.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
-      rows.forEach(row => {
+      if(!cells || cells.length < 5) return;
+      cells.forEach((c,i) => cells[i] = c.replace(/^"|"$/g,'').trim());
 
-  const cells = row.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
-  if (!cells || cells.length < 5) return;
+      let [main, sub, book, chapter, verse] = cells;
 
-  let main = cells[0] ? cells[0].replace(/^"|"$/g,'').trim() : "";
-  let sub = cells[1] ? cells[1].replace(/^"|"$/g,'').trim() : "";
-  let book = cells[2] ? cells[2].replace(/^"|"$/g,'').trim() : "";
-  let chapter = cells[3] ? cells[3].replace(/^"|"$/g,'').trim() : "";
-  let verse = cells[4] ? cells[4].replace(/^"|"$/g,'').trim() : "";
-
-  if (!main || !sub || !book || !chapter || !verse) return;
-
-  if(!data[main]) data[main] = {};
-  if(!data[main][sub]) data[main][sub] = {};
-  if(!data[main][sub][book]) data[main][sub][book] = [];
-  data[main][sub][book].push(`${chapter}:${verse}`);
-});
-
-
+      if(!data[main]) data[main] = {};
+      if(!data[main][sub]) data[main][sub] = {};
+      if(!data[main][sub][book]) data[main][sub][book] = [];
+      data[main][sub][book].push(`${chapter}:${verse}`);
     });
 
     // Populate Main Topics dropdown

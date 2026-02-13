@@ -152,7 +152,6 @@ bookSelect.addEventListener("change", () => {
   const queryString = verseQueryParts.join(",");
 
   const reference = `${bookSelect.value} ${queryString}`;
-const reference = `${bookSelect.value} ${queryString}`;
 fetch(`https://bible-api.com/${encodeURIComponent(reference)}`)
     .then(res => res.json())
     .then(d => {

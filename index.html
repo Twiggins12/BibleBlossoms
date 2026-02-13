@@ -7,8 +7,8 @@
   <!-- Lobster font -->
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
-  <!-- PapaParse for proper CSV parsing -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  <!-- PapaParse -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 
   <style>
     body {
@@ -21,7 +21,7 @@
 
     header {
       text-align: center;
-      background-color: #e6e6fa; /* lilac */
+      background-color: #e6e6fa;
       padding: 20px;
       border-radius: 10px;
       margin-bottom: 30px;
@@ -40,13 +40,21 @@
       color: #4b0082;
     }
 
-    #selectors {
+    .section-container {
       display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
+      align-items: flex-start;
+      margin-bottom: 25px;
     }
 
-    select {
+    .section-heading {
+      width: 250px;
+      font-weight: bold;
+      color: #4b0082;
+      padding-top: 5px;
+    }
+
+    .dropdown-column select {
+      margin: 5px;
       padding: 5px 10px;
       font-size: 1em;
     }
@@ -114,155 +122,157 @@
   <h2>Topical Reference</h2>
 </header>
 
-<!-- Dropdowns for Section 1 -->
-<div id="selectors">
-  <select id="mainTopicSelect"><option value="">Select Main Topic</option></select>
-  <select id="subTopicSelect"><option value="">Select Sub-Topic</option></select>
-  <select id="bookSelect"><option value="">Select Book</option></select>
+<!-- Section Containers -->
+<div id="sections-container">
+  <div class="section-container"><div class="section-heading">Father, Son, Holy Spirit</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
+  <div class="section-container"><div class="section-heading">Creation, Earth, Animals</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
+  <div class="section-container"><div class="section-heading">History, Laws, Sin</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
+  <div class="section-container"><div class="section-heading">People, Culture, Objects</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
+  <div class="section-container"><div class="section-heading">Mind, Body, Spirit</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
+  <div class="section-container"><div class="section-heading">Cities, Rivers, Other Locations, Travels</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
+  <div class="section-container"><div class="section-heading">Spiritual Beings, Miracles</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
+  <div class="section-container"><div class="section-heading">Visions, Prophecies, End Times</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
+  <div class="section-container"><div class="section-heading">Wisdom, Instructions</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
+  <div class="section-container"><div class="section-heading">Promises, Covenants</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
 </div>
 
 <div id="loading">Loading verses...</div>
-<div id="verseText"></div>
 
 <div id="domain-bottom-right">BibleBlossoms</div>
 
 <script>
-const sheetCSV = 'section1.csv'; // your Section 1 CSV
+  // Each section can point to its own CSV file
+  const csvFiles = [
+    'section1.csv','section2.csv','section3.csv','section4.csv','section5.csv',
+    'section6.csv','section7.csv','section8.csv','section9.csv','section10.csv'
+  ];
 
-const mainTopicSelect = document.getElementById('mainTopicSelect');
-const subTopicSelect = document.getElementById('subTopicSelect');
-const bookSelect = document.getElementById('bookSelect');
-const verseTextDiv = document.getElementById('verseText');
-const loadingDiv = document.getElementById('loading');
+  const sectionContainers = document.querySelectorAll('.section-container');
 
-let masterRows = [];
+  sectionContainers.forEach((section, index) => {
+    const mainTopicSelect = section.querySelector('.mainTopicSelect');
+    const subTopicSelect = section.querySelector('.subTopicSelect');
+    const bookSelect = section.querySelector('.bookSelect');
+    const verseTextDiv = section.querySelector('.verseText');
 
-async function loadMasterCSV() {
-  loadingDiv.style.display = 'block';
-  try {
-    const res = await fetch(sheetCSV);
-    const csvText = await res.text();
-    const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
-    masterRows = parsed.data.map(row => ({
-      Section: row.Section.trim(),
-      MainTopic: row.MainTopic.trim(),
-      SubTopic: row.SubTopic.trim(),
-      Book: row.Book.trim(),
-      Chapter: parseInt(row.Chapter),
-      Verse: parseInt(row.Verse)
-    }));
-console.log(masterRows);
-    // populate Main Topic dropdown
-    const mainTopics = [...new Set(masterRows.map(r => r.MainTopic))];
-    mainTopics.forEach(topic => {
-      const opt = document.createElement('option');
-      opt.value = topic;
-      opt.text = topic;
-      mainTopicSelect.appendChild(opt);
-    });
+    let masterRows = [];
 
-  } catch (err) {
-    console.error('Error loading CSV:', err);
-    loadingDiv.innerText = 'Error loading CSV.';
-  }
-  loadingDiv.style.display = 'none';
-}
-
-// Dropdown logic
-mainTopicSelect.addEventListener('change', () => {
-  subTopicSelect.innerHTML = '<option value="">Select Sub-Topic</option>';
-  bookSelect.innerHTML = '<option value="">Select Book</option>';
-  verseTextDiv.innerHTML = '';
-  const selectedTopic = mainTopicSelect.value;
-  if (!selectedTopic) return;
-  const subTopics = [...new Set(masterRows.filter(r => r.MainTopic === selectedTopic).map(r => r.SubTopic))];
-  subTopics.forEach(sub => {
-    const opt = document.createElement('option');
-    opt.value = sub;
-    opt.text = sub;
-    subTopicSelect.appendChild(opt);
-  });
-});
-
-subTopicSelect.addEventListener('change', () => {
-  bookSelect.innerHTML = '<option value="">Select Book</option>';
-  verseTextDiv.innerHTML = '';
-  const selectedTopic = mainTopicSelect.value;
-  const selectedSub = subTopicSelect.value;
-  if (!selectedTopic || !selectedSub) return;
-  const books = [...new Set(masterRows.filter(r => r.MainTopic === selectedTopic && r.SubTopic === selectedSub).map(r => r.Book))];
-  books.forEach(book => {
-    const opt = document.createElement('option');
-    opt.value = book;
-    opt.text = book;
-    bookSelect.appendChild(opt);
-  });
-});
-
-bookSelect.addEventListener('change', () => {
-  verseTextDiv.innerHTML = '';
-  const selectedTopic = mainTopicSelect.value;
-  const selectedSub = subTopicSelect.value;
-  const selectedBook = bookSelect.value;
-  if (!selectedTopic || !selectedSub || !selectedBook) return;
-
-  const filteredRows = masterRows.filter(r =>
-    r.MainTopic === selectedTopic &&
-    r.SubTopic === selectedSub &&
-    r.Book === selectedBook
-  );
-
-  let currentChapter = null;
-  const table = document.createElement('table');
-  table.className = 'verse-table';
-  loadingDiv.style.display = 'block';
-
-  async function displayVerses() {
-    for (const row of filteredRows) {
-      const reference = `${row.Book} ${row.Chapter}:${row.Verse}`;
+    async function loadMasterCSV() {
       try {
-        const res = await fetch(`https://bible-api.com/${encodeURIComponent(reference)}`);
-        const d = await res.json();
-        if (!d.text) {
-          console.error(`Verse not found: ${reference}`);
-          continue;
-        }
+        const res = await fetch(csvFiles[index]);
+        const csvText = await res.text();
+        const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+        masterRows = parsed.data.map(row => ({
+          Section: row.Section.trim(),
+          MainTopic: row.MainTopic.trim(),
+          SubTopic: row.SubTopic.trim(),
+          Book: row.Book.trim(),
+          Chapter: parseInt(row.Chapter),
+          Verse: parseInt(row.Verse)
+        }));
 
-        if (currentChapter !== row.Chapter) {
-          currentChapter = row.Chapter;
-          const trChapter = document.createElement('tr');
-          trChapter.className = 'chapter-row';
-          const tdChapter = document.createElement('td');
-          tdChapter.colSpan = 2;
-          tdChapter.innerText = `Chapter ${currentChapter}`;
-          trChapter.appendChild(tdChapter);
-          table.appendChild(trChapter);
-        }
-
-        const trVerse = document.createElement('tr');
-        trVerse.className = 'verse-row';
-        const tdNumber = document.createElement('td');
-        tdNumber.className = 'verse-number';
-        tdNumber.innerText = row.Verse;
-        const tdText = document.createElement('td');
-        tdText.className = 'verse-text';
-        tdText.innerText = d.text;
-        trVerse.appendChild(tdNumber);
-        trVerse.appendChild(tdText);
-        table.appendChild(trVerse);
-
-      } catch (err) {
-        console.error(`Error fetching ${reference}:`, err);
+        const mainTopics = [...new Set(masterRows.map(r => r.MainTopic))];
+        mainTopics.forEach(topic => {
+          const opt = document.createElement('option');
+          opt.value = topic;
+          opt.text = topic;
+          mainTopicSelect.appendChild(opt);
+        });
+      } catch(err) {
+        console.error('Error loading CSV:', err);
       }
     }
-    verseTextDiv.appendChild(table);
-    loadingDiv.style.display = 'none';
-  }
 
-  displayVerses();
-});
+    mainTopicSelect.addEventListener('change', () => {
+      subTopicSelect.innerHTML = '<option value="">Select Sub-Topic</option>';
+      bookSelect.innerHTML = '<option value="">Select Book</option>';
+      verseTextDiv.innerHTML = '';
+      const selectedTopic = mainTopicSelect.value;
+      if(!selectedTopic) return;
+      const subTopics = [...new Set(masterRows.filter(r => r.MainTopic === selectedTopic).map(r => r.SubTopic))];
+      subTopics.forEach(sub => {
+        const opt = document.createElement('option');
+        opt.value = sub;
+        opt.text = sub;
+        subTopicSelect.appendChild(opt);
+      });
+    });
 
-loadMasterCSV();
+    subTopicSelect.addEventListener('change', () => {
+      bookSelect.innerHTML = '<option value="">Select Book</option>';
+      verseTextDiv.innerHTML = '';
+      const selectedTopic = mainTopicSelect.value;
+      const selectedSub = subTopicSelect.value;
+      if(!selectedTopic || !selectedSub) return;
+      const books = [...new Set(masterRows.filter(r => r.MainTopic === selectedTopic && r.SubTopic === selectedSub).map(r => r.Book))];
+      books.forEach(book => {
+        const opt = document.createElement('option');
+        opt.value = book;
+        opt.text = book;
+        bookSelect.appendChild(opt);
+      });
+    });
+
+    bookSelect.addEventListener('change', () => {
+      verseTextDiv.innerHTML = '';
+      const selectedTopic = mainTopicSelect.value;
+      const selectedSub = subTopicSelect.value;
+      const selectedBook = bookSelect.value;
+      if(!selectedTopic || !selectedSub || !selectedBook) return;
+
+      const filteredRows = masterRows.filter(r =>
+        r.MainTopic === selectedTopic &&
+        r.SubTopic === selectedSub &&
+        r.Book === selectedBook
+      );
+
+      let currentChapter = null;
+      const table = document.createElement('table');
+      table.className = 'verse-table';
+
+      async function displayVerses() {
+        for(const row of filteredRows) {
+          const reference = `${row.Book} ${row.Chapter}:${row.Verse}`;
+          try {
+            const res = await fetch(`https://bible-api.com/${encodeURIComponent(reference)}`);
+            const d = await res.json();
+            if(!d.text) continue;
+
+            if(currentChapter !== row.Chapter) {
+              currentChapter = row.Chapter;
+              const trChapter = document.createElement('tr');
+              trChapter.className = 'chapter-row';
+              const tdChapter = document.createElement('td');
+              tdChapter.colSpan = 2;
+              tdChapter.innerText = `Chapter ${currentChapter}`;
+              trChapter.appendChild(tdChapter);
+              table.appendChild(trChapter);
+            }
+
+            const trVerse = document.createElement('tr');
+            trVerse.className = 'verse-row';
+            const tdNumber = document.createElement('td');
+            tdNumber.className = 'verse-number';
+            tdNumber.innerText = row.Verse;
+            const tdText = document.createElement('td');
+            tdText.className = 'verse-text';
+            tdText.innerText = d.text;
+            trVerse.appendChild(tdNumber);
+            trVerse.appendChild(tdText);
+            table.appendChild(trVerse);
+
+          } catch(err) {
+            console.error(`Error fetching ${reference}:`, err);
+          }
+        }
+        verseTextDiv.appendChild(table);
+      }
+
+      displayVerses();
+    });
+
+    loadMasterCSV();
+  });
 </script>
 
 </body>

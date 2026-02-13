@@ -63,20 +63,25 @@ fetch(csvUrl)
     rows.forEach(row => {
       // Handle multi-word cells correctly
       const cells = row.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
-      if(!cells || cells.length < 5) return;
-      let main = cells[0] || "";
-let sub = cells[1] || "";
-let book = cells[2] || "";
-let chapter = cells[3] || "";
-let verse = cells[4] || "";
+      rows.forEach(row => {
 
-main = main.trim();
-sub = sub.trim();
-book = book.trim();
-chapter = chapter.trim();
-verse = verse.trim();
+  const cells = row.split(/,(?=(?:[^"]*"[^"]*")*[^"]*$)/);
+  if (!cells || cells.length < 5) return;
 
-if (!main || !sub || !book || !chapter || !verse) return;
+  let main = cells[0] ? cells[0].replace(/^"|"$/g,'').trim() : "";
+  let sub = cells[1] ? cells[1].replace(/^"|"$/g,'').trim() : "";
+  let book = cells[2] ? cells[2].replace(/^"|"$/g,'').trim() : "";
+  let chapter = cells[3] ? cells[3].replace(/^"|"$/g,'').trim() : "";
+  let verse = cells[4] ? cells[4].replace(/^"|"$/g,'').trim() : "";
+
+  if (!main || !sub || !book || !chapter || !verse) return;
+
+  if(!data[main]) data[main] = {};
+  if(!data[main][sub]) data[main][sub] = {};
+  if(!data[main][sub][book]) data[main][sub][book] = [];
+  data[main][sub][book].push(`${chapter}:${verse}`);
+});
+
 
     });
 

@@ -151,45 +151,72 @@ bookSelect.addEventListener("change", () => {
 
   const queryString = verseQueryParts.join(",");
   // Inside your bookSelect change event:
-const reference = `${bookSelect.value} ${queryString}`;
+verseTextDiv.innerHTML = ''; // clear previous results
+loadingDiv.style.display = 'block'; // show loading indicator
 
-fetch(`https://bible-api.com/${encodeURIComponent(reference)}`)
-  .then(res => res.json())
-  .then(d => {
-    loadingDiv.style.display = 'none';
-    verseTextDiv.innerHTML = '';
+let currentChapter = null;
 
-    // Single-verse response (all your rows)
-    const trVerse = document.createElement("tr");
-    trVerse.className = "verse-row";
+// Create a table for all verses
+const table = document.createElement("table");
+table.className = "verse-table";
 
-    // Verse number
-    const tdNumber = document.createElement("td");
-    tdNumber.className = "verse-number";
-    tdNumber.innerText = `${d.reference.split(' ')[1]}`; // chapter:verse part
+async function fetchAllVerses() {
+  for (const row of filteredRows) {
+    // Build reference per row
+    const reference = `${row.Book} ${row.Chapter}:${row.Verse}`;
 
-    // Verse text
-    const tdText = document.createElement("td");
-    tdText.className = "verse-text";
-    tdText.innerText = d.text;
+    try {
+      const res = await fetch(`https://bible-api.com/${encodeURIComponent(reference)}`);
+      const d = await res.json();
 
-    trVerse.appendChild(tdNumber);
-    trVerse.appendChild(tdText);
+      if (!d.text) {
+        console.error(`Verse not found: ${reference}`);
+        continue; // skip missing verses
+      }
 
-    // Create table if it doesn't exist
-    let table = verseTextDiv.querySelector("table");
-    if (!table) {
-      table = document.createElement("table");
-      verseTextDiv.appendChild(table);
+      const verseChapter = row.Chapter;
+
+      // Add chapter header if chapter changed
+      if (currentChapter !== verseChapter) {
+        currentChapter = verseChapter;
+        const trChapter = document.createElement("tr");
+        trChapter.className = "chapter-row";
+
+        const tdChapter = document.createElement("td");
+        tdChapter.colSpan = 2;
+        tdChapter.innerText = `Chapter ${verseChapter}`;
+
+        trChapter.appendChild(tdChapter);
+        table.appendChild(trChapter);
+      }
+
+      // Add verse row
+      const trVerse = document.createElement("tr");
+      trVerse.className = "verse-row";
+
+      const tdNumber = document.createElement("td");
+      tdNumber.className = "verse-number";
+      tdNumber.innerText = row.Verse;
+
+      const tdText = document.createElement("td");
+      tdText.className = "verse-text";
+      tdText.innerText = d.text;
+
+      trVerse.appendChild(tdNumber);
+      trVerse.appendChild(tdText);
+      table.appendChild(trVerse);
+
+    } catch (err) {
+      console.error(`Error fetching verse ${reference}:`, err);
     }
+  }
 
-    table.appendChild(trVerse);
-  })
-  .catch(err => {
-    loadingDiv.style.display = 'none';
-    verseTextDiv.innerHTML = 'Error loading verse. Check console.';
-    console.error(err);
-  });
+  verseTextDiv.appendChild(table);
+  loadingDiv.style.display = 'none';
+}
+
+// Start fetching
+fetchAllVerses();
 });
 </script>
 

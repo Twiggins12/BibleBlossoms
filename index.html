@@ -114,13 +114,25 @@
       color: #4b0082;
     }
 
-    #domain-bottom-right {
-      position: absolute;
-      bottom: 10px;
-      right: 20px;
-      font-weight: bold;
-      color: #4b0082;
     }
+    .site-footer {
+  background-color: #ffe680;
+  padding: 15px 0;
+  margin-top: 50px;
+  text-align: center;
+}
+
+.site-footer a {
+  margin: 0 25px;
+  text-decoration: none;
+  font-weight: bold;
+  color: #4b0082;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
   </style>
 </head>
 <body>
@@ -153,8 +165,6 @@
     About
   </a>
 </div>
-
-<div id="domain-bottom-right">BibleBlossoms</div>
 
 <script>
   // Each section can point to its own CSV file
@@ -290,6 +300,10 @@
     loadMasterCSV();
   });
 </script>
-
+<footer class="site-footer">
+  <a href="index.html">Home</a>
+  <a href="about.html">About</a>
+  <a href="#">Top</a>
+</footer>
 </body>
 </html>

@@ -26,6 +26,10 @@ body {
   margin: 0;                /* remove page margin so header goes full width */
   background-color: #f7f3ff; /* very light blue */
   position: relative;
+
+  display: flex;          /* 👈 important */
+  flex-direction: column; /* 👈 important */
+  min-height: 100vh;      /* 👈 makes page full screen height */
 }
 
 header h1 {
@@ -138,6 +142,10 @@ header h2 {
   </style>
 </head>
 <body>
+<div class="page-content">
+  .page-content {
+  flex: 1; /*pushes footer to bottom*/
+  }
 <header id="top">
   <h1>Life Link</h1>
   <h2>Bible Topical Reference</h2>
@@ -297,6 +305,7 @@ header h2 {
     loadMasterCSV();
   });
 </script>
+</div
 <footer class="site-footer">
   <a href="index.html">Home</a>
   <a href="about.html">About</a>

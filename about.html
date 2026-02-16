@@ -72,17 +72,22 @@
     transition: background-color 0.3s, color 0.3s;
   }
 
-  .about-link:hover {
-    background-color: #ffda4d;
-    color: #2e0066;
-  }
+.about-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
 
   .page-content h2 {
     margin-top: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
+  
+  .page-content p {
+  margin-top: 0;        /* removes extra gap above paragraph */
+  margin-bottom: 18px;  /* comfortable spacing between sections */
+}
+  
 </style>
-
 
   <!-- Footer -->
   <footer class="site-footer">

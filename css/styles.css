@@ -74,3 +74,9 @@ header h2 {
   font-weight: bold;
 }
 
+.signature {
+  font-family: 'Lobster', cursive;
+  font-style: italic;
+  font-size: 1.6rem;
+  margin-top: 10px;
+}

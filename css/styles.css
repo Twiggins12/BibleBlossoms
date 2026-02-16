@@ -17,8 +17,12 @@ header {
   background: linear-gradient(to bottom, #7aa0d6, #f7f3ff 70%);
 }
 
-  .page-content {
-  flex: 1;   /* 👈 pushes footer to bottom */
+.page-content {
+  flex: 1;                   /* keeps footer at bottom */
+  padding: 20px 60px;        /* 20px top/bottom, 60px left/right */
+  max-width: 1200px;          /* limits line width on large screens */
+  margin: 0 auto;             /* centers the content horizontally */
+  box-sizing: border-box;     /* includes padding in width */
 }
 
 header h1 {

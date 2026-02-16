@@ -1,13 +1,3 @@
-  <!-- Lobster font -->
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-
-  <!-- PapaParse -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-
-  <style>
-    html {
-  scroll-behavior: smooth;
-}
 header {
   text-align: center;
   padding: 20px 0;           /* vertical padding */

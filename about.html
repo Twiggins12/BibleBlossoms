@@ -2,79 +2,99 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>About | BibleBlossoms</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bible Blossoms | Mazes</title>
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #fdfaff;
-      color: #333;
-    }
+  <!-- Shared CSS -->
+  <link rel="stylesheet" href="css/styles.css">
 
-    header {
-      text-align: center;
-      background-color: #e6e6fa;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 30px;
-    }
+  <!-- Optional Page-Specific CSS -->
+  <link rel="stylesheet" href="css/page-specific.css">
 
-    header h1 {
-      font-family: 'Lobster', cursive;
-      margin: 0;
-      font-size: 3em;
-      color: #4b0082;
-    }
-
-    .content {
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
-      font-family: "Times New Roman", serif;
-    }
-
-    a {
-      color: #4b0082;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-
-    .back-link {
-      text-align: center;
-      margin-top: 40px;
-    }
-  </style>
+  <!-- Optional JS (like PapaParse for Life Link) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
 
-<header>
-  <h1>BibleBlossoms</h1>
-</header>
+  <!-- Header -->
+  <header id="top">
+    <h1>Bible Blossoms</h1>
+    <h2>About</h2>
+  </header>
 
-<div class="content">
-  <h2>About Life Link</h2>
-
-  <p>
-    Life Link is a topical Bible reference created to connect Scripture by theme,
-    making it easier to explore spiritual topics across the entire Bible.
-  </p>
-
-  <p>
-    This project was built to organize verses in a structured way while preserving
-    their full context and beauty.
-  </p>
-
-  <div class="back-link">
-    <a href="index.html">← Back to Life Link</a>
+  <!-- Top-left home link -->
+  <div id="domain-top-left">
+    <a href="index.html">BibleBlossoms</a>
   </div>
+
+  <!-- Page content -->
+  <div class="page-content">
+  <p>Welcome to <strong>Bible Blossoms</strong>, a hub for Bible study, puzzles, creative activities, and journaling inspiration. Explore the Word of God in fun, interactive, and meaningful ways!</p>
+
+  <h2><a class="about-link" href="life_link.html">Life Link</a></h2>
+  <p>The Life Link page is a Bible topical reference tool. Explore Scripture organized by major themes, with sections broken down into main topics, sub-topics, and books. Select a topic, sub-topic, and book to see related verses from the <em>World English Bible (WEB)</em>.</p>
+
+  <h2><a class="about-link" href="wordoku.html">WORDoku</a></h2>
+  <p>The WORDoku puzzles are like Sudoku, but with words, or letters forming words and concepts from the Bible. Notice that <strong>WORD</strong> is capitalized to reflect the Word of God. These puzzles are free to download and enjoy.</p>
+
+  <h2><a class="about-link" href="mazes.html">Mazes (Coming Soon)</a></h2>
+  <p>On the Mazes page, you'll find Bible-themed mazes designed to challenge your problem-solving skills while learning about Scripture. Each maze can be downloaded and printed for personal use or for children's activities.</p>
+
+  <h2><a class="about-link" href="coloring_pages.html">Coloring Pages (Coming Soon)</a></h2>
+  <p>Coloring Pages offers beautifully designed Bible-themed images for coloring. Perfect for quiet time, meditation, or fun activities with kids. Coloring helps reinforce stories and concepts from Scripture creatively.</p>
+
+  <h2><a href="bible_reading_plans.html">Bible Reading Plans</a>Bible Reading Plans</h2>
+  <p>Our Bible reading plans guide daily or thematic Scripture readings. These plans help build consistent reading habits and deepen your understanding of God's Word.</p>
+
+  <h2>Bible Journaling Tips (Coming Soon)</h2>
+  <p>This upcoming page will offer tips and inspiration for <em>Bible journaling</em>. Learn ways to reflect on Scripture through art, notes, prayers, and other creative expressions for a richer personal study.</p>
+
+  <p>We hope you enjoy exploring <strong>Bible Blossoms</strong> and find inspiration in every corner of the site. May it bless your study, creativity, and time spent in God’s Word!</p>
 </div>
+
+<style>
+  /* Styles for About page links as buttons */
+  .about-link {
+    display: inline-block;
+    background-color: #ffe680;
+    color: #4b0082;
+    padding: 8px 15px;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .about-link:hover {
+    background-color: #ffda4d;
+    color: #2e0066;
+  }
+
+  .page-content h2 {
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+</style>
+
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <a href="index.html">Home</a>
+    <a href="life_link.html">Life Link</a>
+    <a href="wordoku.html">WORDokus</a>
+    <a href="mazes.html">Mazes</a>
+    <a href="coloring_pages.html">Coloring Pages</a>
+    <a href="bible_reading_plans.html">Bible Reading Plans</a>
+    <a href="about.html">About</a>
+    <a href="#top">Top</a>
+  </footer>
 
 </body>
 </html>

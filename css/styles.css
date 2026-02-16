@@ -42,6 +42,16 @@ header h2 {
   color: #4b0082;
 }
 
+#domain-top-left a {
+  text-decoration: none;
+  color: #4b0082;
+  font-weight: bold;
+}
+
+#domain-top-left a:hover {
+  opacity: 0.8;
+}
+
 .site-footer {
   padding: 15px 0;
   text-align: center;

@@ -34,13 +34,6 @@ header h2 {
   color: #4b0082;
 }
 
-#loading {
-  display: none;
-  font-style: italic;
-  color: #4b0082;
-  margin-top: 10px;
-}
-
 #domain-top-left {
   position: absolute;
   top: 10px;

@@ -87,17 +87,25 @@ header h2 {
   transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.card img {
-  width: 80px;  /* scale your icons */
-  height: 80px;
-  margin-bottom: 15px;
-}
-
 .card h3 {
   font-family: 'Lobster', cursive;
-  font-size: 1.8em;  /* increase title size */
+  font-size: 2em;  /* increase title size */
+  letter-spacing: 1px;
   margin: 10px 0;
   color: #4b0082;
+}
+.card h3::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(to right, #ffd700, #b8860b);
+  margin: 10px auto;
+  border-radius: 2px;
+}
+
+.card {
+  padding: 30px;
 }
 
 .card p {

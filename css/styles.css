@@ -55,6 +55,20 @@ header h2 {
 #domain-top-left a:hover {
   opacity: 0.8;
 }
+.hero {
+  text-align: center;
+  padding: 80px 20px 60px;
+}
+
+.hero h1 {
+  font-size: 3rem;
+  font-family: 'Lobster', cursive;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-top: 15px;
+}
 
 .site-footer {
   padding: 15px 0;

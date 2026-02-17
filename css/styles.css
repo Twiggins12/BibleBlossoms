@@ -95,22 +95,24 @@ header h2 {
 
 .card h3 {
   font-family: 'Lobster', cursive;
+  font-size: 1.8em;  /* increase title size */
   margin: 10px 0;
   color: #4b0082;
 }
 
 .card p {
-  font-size: 0.9em;
+  font-size: 1.1em;
   color: #333;
   margin-bottom: 15px;
 }
 
 .card a {
+  font-size: 1.1em;  /* increase button text */
   display: inline-block;
   text-decoration: none;
   color: #4b0082;
   font-weight: bold;
-  padding: 6px 12px;
+  padding: 8px 14px;
   border-radius: 8px;
   background: linear-gradient(to bottom, #ffe680, #ffc107);
   transition: background 0.3s;

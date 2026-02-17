@@ -230,11 +230,11 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Creation, Earth, Animals",Animals,Land Animals,Genesis,4,5
 "========== ANIMALS ==========", , , , ,
 "========== FISH SEA CREATURES ==========", , , , ,
-"Creation, Earth, Animals",Animals,Fish & Sea Creatures,Genesis,1,20
-"Creation, Earth, Animals",Animals,Fish & Sea Creatures,Genesis,1,21
-"Creation, Earth, Animals",Animals,Fish & Sea Creatures,Genesis,1,22
-"Creation, Earth, Animals",Animals,Fish & Sea Creatures,Genesis,1,26
-"Creation, Earth, Animals",Animals,Fish & Sea Creatures,Genesis,1,28
+"Creation, Earth, Animals",Animals,"Fish & Sea Creatures",Genesis,1,20
+"Creation, Earth, Animals",Animals,"Fish & Sea Creatures",Genesis,1,21
+"Creation, Earth, Animals",Animals,"Fish & Sea Creatures",Genesis,1,22
+"Creation, Earth, Animals",Animals,"Fish & Sea Creatures",Genesis,1,26
+"Creation, Earth, Animals",Animals,"Fish & Sea Creatures",Genesis,1,28
 
 
 

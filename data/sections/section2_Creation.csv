@@ -178,7 +178,7 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Creation, Earth, Animals",Earth,Time,Genesis,3,14
 "Creation, Earth, Animals",Earth,Time,Genesis,4,3
 "========== EARTH ==========", , , , ,
-"========== TWATER ==========", , , , ,
+"========== WATER ==========", , , , ,
 "Creation, Earth, Animals",Earth,Water,Genesis,1,2
 "Creation, Earth, Animals",Earth,Water,Genesis,1,6
 "Creation, Earth, Animals",Earth,Water,Genesis,1,7
@@ -192,6 +192,36 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Creation, Earth, Animals",Earth,Water,Genesis,2,12
 "Creation, Earth, Animals",Earth,Water,Genesis,2,13
 "Creation, Earth, Animals",Earth,Water,Genesis,2,14
+"========== EARTH ==========", , , , ,
+"========== WEATHER ==========", , , , ,
+"Creation, Earth, Animals",Earth,Weather,Genesis,2,5
+"Creation, Earth, Animals",Earth,Weather,Genesis,2,6
+"========== ANIMALS ==========", , , , ,
+"========== BIRDS ==========", , , , ,
+"Creation, Earth, Animals",Animals,Birds,Genesis,1,20
+"Creation, Earth, Animals",Animals,Birds,Genesis,1,21
+"Creation, Earth, Animals",Animals,Birds,Genesis,1,22
+"Creation, Earth, Animals",Animals,Birds,Genesis,1,26
+"Creation, Earth, Animals",Animals,Birds,Genesis,2,19
+"Creation, Earth, Animals",Animals,Birds,Genesis,2,20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

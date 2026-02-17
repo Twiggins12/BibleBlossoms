@@ -121,7 +121,7 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Creation, Earth, Animals",Earth,Light,Genesis,1,17
 "Creation, Earth, Animals",Earth,Light,Genesis,1,18
 "========== EARTH ==========", , , , ,
-"========== LIGHT ==========", , , , ,
+"========== PLANTS TREES ==========", , , , ,
 "Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,1,11
 "Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,1,12
 "Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,1,29
@@ -140,3 +140,11 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,12
 "Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,17
 "Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,22
+"========== EARTH ==========", , , , ,
+"========== PLANTS FRUITS SEEDS ==========", , , , ,
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,1,11
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,1,12
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,1,29
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,3,6
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,3,12
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,4,3

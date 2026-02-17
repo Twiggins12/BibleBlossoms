@@ -135,6 +135,14 @@ header h2 {
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
+.pdf-preview {
+  margin: 30px auto;
+  max-width: 800px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
 .site-footer {
   padding: 15px 0;
   text-align: center;

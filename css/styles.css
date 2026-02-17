@@ -17,6 +17,11 @@ header {
   background: linear-gradient(to bottom, #7aa0d6, #f7f3ff 70%);
 }
 
+.reading-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 .page-content {
   flex: 1;                   /* keeps footer at bottom */
   padding: 20px 25px;        /* 20px top/bottom, 25px left/right */

@@ -1,10 +1,9 @@
 Section,MainTopic,SubTopic,Book,Chapter,Verse
 "========== PLACES ==========", , , , ,
 "========== CITIES ==========", , , , ,
-"Places,Travels",Cities,Assyrias,Genesis,2,14
-"Places,Travels",Cities,Cush,Genesis,2,13
-"Places,Travels",Cities,Havilah,Genesis,2,11
-"Places,Travels",Cities,Havilah,Genesis,2,12
+"Places,Travels",Cities,Assyria,Genesis,2,14
+
+
 
 
 
@@ -14,9 +13,10 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "========== PLACES ==========", , , , ,
 "========== KINGDOMS ==========", , , , ,
 "Places,Travels",Places,Kingdoms,Genesis,,
+
 "========== PLACES ==========", , , , ,
 "========== OTHER LOCATIONS ==========", , , , ,
-"Places,Travels",Other Locations,Nod,Genesis,4,16
+"Places,Travels",Other Locations,Cush,Genesis,2,13
 "Places,Travels",Other Locations,Garden of Eden,Genesis,2,8
 "Places,Travels",Other Locations,Garden of Eden,Genesis,2,9
 "Places,Travels",Other Locations,Garden of Eden,Genesis,2,10
@@ -30,6 +30,9 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Places,Travels",Other Locations,Garden of Eden,Genesis,3,23
 "Places,Travels",Other Locations,Garden of Eden,Genesis,3,24
 "Places,Travels",Other Locations,Garden of Eden,Genesis,4,16
+"Places,Travels",Other Locations,Havilah,Genesis,2,11
+"Places,Travels",Other Locations,Havilah,Genesis,2,12
+"Places,Travels",Other Locations,Nod,Genesis,4,16
 
 
 

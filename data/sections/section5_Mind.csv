@@ -103,13 +103,40 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Mind,Despondency,Genesis,4,7
 "Mind,Body,Spirit",Mind,Despondency,Genesis,4,13
 "Mind,Body,Spirit",Mind,Despondency,Genesis,4,14
-
-
-
-
-
-
-
+"========== MIND ==========", , , , ,
+"========== FEAR ==========", , , , ,
+"Mind,Body,Spirit",Mind,Fear,Genesis,3,10
+"========== MIND ==========", , , , ,
+"========== KNOWLEDGE ==========", , , , ,
+"Mind,Body,Spirit",Mind,Knowledge,Genesis,2,9
+"Mind,Body,Spirit",Mind,Knowledge,Genesis,2,15
+"Mind,Body,Spirit",Mind,Knowledge,Genesis,2,16
+"Mind,Body,Spirit",Mind,Knowledge,Genesis,3,4
+"Mind,Body,Spirit",Mind,Knowledge,Genesis,3,5
+"Mind,Body,Spirit",Mind,Knowledge,Genesis,3,22
+"========== MIND ==========", , , , ,
+"========== LONELINESS ==========", , , , ,
+"Mind,Body,Spirit",Mind,Loneliness,Genesis,2,18
+"========== MIND ==========", , , , ,
+"========== LOVE FROM GOD ==========", , , , ,
+"Mind,Body,Spirit",Mind,"Love from God",Genesis,2,18
+"========== MIND ==========", , , , ,
+"========== SHAME ==========", , , , ,
+"Mind,Body,Spirit",Mind,Shame,Genesis,2,7
+"========== MIND ==========", , , , ,
+"========== WISDOM ==========", , , , ,
+"Mind,Body,Spirit",Mind,"Wisdom, Wise, Eyes Opened",Genesis,2,18
+"========== BODY ==========", , , , ,
+"========== ATTACK ==========", , , , ,
+"Mind,Body,Spirit",Body,"Attack, Strike",Genesis,4,15
+"========== BODY ==========", , , , ,
+"========== BIRTH CHILDBIRTH ==========", , , , ,
+"Mind,Body,Spirit",Body,"Birth, Childbirth",Genesis,3,16
+"Mind,Body,Spirit",Body,"Birth, Childbirth",Genesis,4,1
+"Mind,Body,Spirit",Body,"Birth, Childbirth",Genesis,4,2
+"========== BODY ==========", , , , ,
+"========== BLESSINGS ==========", , , , ,
+"Mind,Body,Spirit",Body,Blessings,Genesis,1,28
 
 
 

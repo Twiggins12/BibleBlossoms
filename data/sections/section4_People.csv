@@ -42,12 +42,45 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "People,Culture,Objects",People,Cain,Genesis,4,14
 "People,Culture,Objects",People,Cain,Genesis,4,15
 "People,Culture,Objects",People,Cain,Genesis,4,16
-
-
-
-
-
-
+"========== PEOPLE ==========", , , , ,
+"========== CHILDREN BABY CHILD OFFSPRING ==========", , , , ,
+"People,Culture,Objects",People,"Children, Baby, Child, Offspring",Genesis,3,15
+"People,Culture,Objects",People,"Children, Baby, Child, Offspring",Genesis,3,16
+"========== PEOPLE ==========", , , , ,
+"========== EVE ==========", , , , ,
+"People,Culture,Objects",People,Eve,Genesis,2,21
+"People,Culture,Objects",People,Eve,Genesis,2,22
+"People,Culture,Objects",People,Eve,Genesis,2,23
+"People,Culture,Objects",People,Eve,Genesis,3,1
+"People,Culture,Objects",People,Eve,Genesis,3,2
+"People,Culture,Objects",People,Eve,Genesis,3,3
+"People,Culture,Objects",People,Eve,Genesis,3,4
+"People,Culture,Objects",People,Eve,Genesis,3,5
+"People,Culture,Objects",People,Eve,Genesis,3,6
+"People,Culture,Objects",People,Eve,Genesis,3,7
+"People,Culture,Objects",People,Eve,Genesis,3,8
+"People,Culture,Objects",People,Eve,Genesis,3,12
+"People,Culture,Objects",People,Eve,Genesis,3,13
+"People,Culture,Objects",People,Eve,Genesis,3,16
+"People,Culture,Objects",People,Eve,Genesis,3,20
+"People,Culture,Objects",People,Eve,Genesis,3,21
+"People,Culture,Objects",People,Eve,Genesis,4,1
+"People,Culture,Objects",People,Eve,Genesis,4,2
+"========== PEOPLE ==========", , , , ,
+"========== FATHER ==========", , , , ,
+"People,Culture,Objects",People,Father,Genesis,2,24
+"========== PEOPLE ==========", , , , ,
+"========== FUGITIVE RUNAWAY ==========", , , , ,
+"People,Culture,Objects",People,"Fugitive, Runaway",Genesis,4,10
+"People,Culture,Objects",People,"Fugitive, Runaway",Genesis,4,11
+"People,Culture,Objects",People,"Fugitive, Runaway",Genesis,4,12
+"People,Culture,Objects",People,"Fugitive, Runaway",Genesis,4,13
+"People,Culture,Objects",People,"Fugitive, Runaway",Genesis,4,14
+"========== PEOPLE ==========", , , , ,
+"========== HUSBAND ==========", , , , ,
+"People,Culture,Objects",People,Husband,Genesis,3,6
+"People,Culture,Objects",People,Husband,Genesis,3,7
+"People,Culture,Objects",People,Husband,Genesis,3,16
 
 
 

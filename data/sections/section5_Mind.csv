@@ -192,8 +192,17 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Body,Food,Genesis,3,18
 "Mind,Body,Spirit",Body,Food,Genesis,3,19
 "Mind,Body,Spirit",Body,Food,Genesis,3,22
-
-
+"========== BODY ==========", , , , ,
+"========== IMAGE ==========", , , , ,
+"Mind,Body,Spirit",Body,Image,Genesis,1,26
+"Mind,Body,Spirit",Body,Image,Genesis,1,27
+"========== BODY ==========", , , , ,
+"========== LIFE ==========", , , , ,
+"Mind,Body,Spirit",Body,Life,Genesis,2,7
+"Mind,Body,Spirit",Body,Life,Genesis,3,17
+"========== BODY ==========", , , , ,
+"========== LIMBS ==========", , , , ,
+"Mind,Body,Spirit",Body,Limbs,Genesis,3,15
 
 
 

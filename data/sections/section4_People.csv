@@ -81,9 +81,62 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "People,Culture,Objects",People,Husband,Genesis,3,6
 "People,Culture,Objects",People,Husband,Genesis,3,7
 "People,Culture,Objects",People,Husband,Genesis,3,16
-
-
-
+"========== PEOPLE ==========", , , , ,
+"========== MAN ==========", , , , ,
+"People,Culture,Objects",People,Man,Genesis,1,26
+"People,Culture,Objects",People,Man,Genesis,1,27
+"People,Culture,Objects",People,Man,Genesis,2,5
+"People,Culture,Objects",People,Man,Genesis,2,6
+"People,Culture,Objects",People,Man,Genesis,2,7
+"People,Culture,Objects",People,Man,Genesis,2,8
+"People,Culture,Objects",People,Man,Genesis,2,15
+"People,Culture,Objects",People,Man,Genesis,2,16
+"People,Culture,Objects",People,Man,Genesis,2,17
+"People,Culture,Objects",People,Man,Genesis,2,18
+"People,Culture,Objects",People,Man,Genesis,2,19
+"People,Culture,Objects",People,Man,Genesis,2,20
+"People,Culture,Objects",People,Man,Genesis,2,21
+"People,Culture,Objects",People,Man,Genesis,2,22
+"People,Culture,Objects",People,Man,Genesis,2,23
+"People,Culture,Objects",People,Man,Genesis,2,24
+"People,Culture,Objects",People,Man,Genesis,2,25
+"People,Culture,Objects",People,Man,Genesis,3,8
+"People,Culture,Objects",People,Man,Genesis,3,9
+"People,Culture,Objects",People,Man,Genesis,3,10
+"People,Culture,Objects",People,Man,Genesis,3,22
+"People,Culture,Objects",People,Man,Genesis,3,24
+"People,Culture,Objects",People,Man,Genesis,4,1
+"========== PEOPLE ==========", , , , ,
+"========== MOTHER ==========", , , , ,
+"People,Culture,Objects",People,Mother,Genesis,2,24
+"People,Culture,Objects",People,Mother,Genesis,3,20
+"========== PEOPLE ==========", , , , ,
+"========== WIFE ==========", , , , ,
+"People,Culture,Objects",People,Wife,Genesis,2,24
+"People,Culture,Objects",People,Wife,Genesis,2,25
+"People,Culture,Objects",People,Wife,Genesis,3,8
+"People,Culture,Objects",People,Wife,Genesis,3,17
+"People,Culture,Objects",People,Wife,Genesis,3,20
+"People,Culture,Objects",People,Wife,Genesis,3,21
+"========== PEOPLE ==========", , , , ,
+"========== WOMAN ==========", , , , ,
+"People,Culture,Objects",People,Woman,Genesis,1,27
+"People,Culture,Objects",People,Woman,Genesis,2,22
+"People,Culture,Objects",People,Woman,Genesis,2,23
+"People,Culture,Objects",People,Woman,Genesis,3,1
+"People,Culture,Objects",People,Woman,Genesis,3,2
+"People,Culture,Objects",People,Woman,Genesis,3,3
+"People,Culture,Objects",People,Woman,Genesis,3,4
+"People,Culture,Objects",People,Woman,Genesis,3,5
+"People,Culture,Objects",People,Woman,Genesis,3,6
+"People,Culture,Objects",People,Woman,Genesis,3,7
+"========== CULTURE==========", , , , ,
+"========== FIRSTBORN ==========", , , , ,
+"People,Culture,Objects",Culture,Firstborn,Genesis,4,4
+"People,Culture,Objects",Culture,Firstborn,Genesis,4,5
+"========== CULTURE==========", , , , ,
+"========== KEEPER ==========", , , , ,
+"People,Culture,Objects",Culture,Keeper,Genesis,4,9
 
 
 

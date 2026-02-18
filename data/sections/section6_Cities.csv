@@ -1,4 +1,37 @@
 Section,MainTopic,SubTopic,Book,Chapter,Verse
+"========== PLACES ==========", , , , ,
+"========== CITIES ==========", , , , ,
+"Places,Travels",Cities,Assyrias,Genesis,2,14
+"Places,Travels",Cities,Cush,Genesis,2,13
+"Places,Travels",Cities,Havilah,Genesis,2,11
+"Places,Travels",Cities,Havilah,Genesis,2,12
+
+
+
+"========== PLACES ==========", , , , ,
+"========== COUNTRIES ==========", , , , ,
+"Places,Travels",Places,Countries,Genesis,,
+"========== PLACES ==========", , , , ,
+"========== KINGDOMS ==========", , , , ,
+"Places,Travels",Places,Kingdoms,Genesis,,
+"========== PLACES ==========", , , , ,
+"========== OTHER LOCATIONS ==========", , , , ,
+"Places,Travels",Other Locations,Nod,Genesis,4,16
+
+
+"Places,Travels",Places,Other Locations,Genesis,,
+"========== PLACES ==========", , , , ,
+"========== RIVERS ==========", , , , ,
+"Places,Travels",Rivers,Euphrates,Genesis,2,14
+"Places,Travels",Rivers,Gihon,Genesis,2,13
+"Places,Travels",Rivers,Hiddekel,Genesis,2,14
+"Places,Travels",Rivers,Pishon,Genesis,2,11
+"Places,Travels",Rivers,Pishon,Genesis,2,12
+
+
+
+
+"Places,Travels",Places,Rivers,Genesis,,
 "========== TRAVELS ==========", , , , ,
 "========== TRAVELS ==========", , , , ,
 "Cities,Rivers,Other Locations,Travels",Travels,Travels,Genesis,4,16

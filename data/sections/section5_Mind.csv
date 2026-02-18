@@ -137,8 +137,16 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "========== BODY ==========", , , , ,
 "========== BLESSINGS ==========", , , , ,
 "Mind,Body,Spirit",Body,Blessings,Genesis,1,28
-
-
+"========== BODY ==========", , , , ,
+"========== BLOOD ==========", , , , ,
+"Mind,Body,Spirit",Body,Blood,Genesis,4,10
+"Mind,Body,Spirit",Body,Blood,Genesis,4,11
+"Mind,Body,Spirit",Body,Blood,Genesis,4,12
+"========== BODY ==========", , , , ,
+"========== BONES ==========", , , , ,
+"Mind,Body,Spirit",Body,Bones,Genesis,2,21
+"Mind,Body,Spirit",Body,Bones,Genesis,2,22
+"Mind,Body,Spirit",Body,Bones,Genesis,2,23
 
 
 

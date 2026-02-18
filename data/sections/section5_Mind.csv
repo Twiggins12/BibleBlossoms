@@ -203,11 +203,19 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "========== BODY ==========", , , , ,
 "========== LIMBS ==========", , , , ,
 "Mind,Body,Spirit",Body,Limbs,Genesis,3,15
-
-
-
-
-
+"========== BODY ==========", , , , ,
+"========== NAKESNESS ==========", , , , ,
+"Mind,Body,Spirit",Body,Nakedness,Genesis,2,25
+"Mind,Body,Spirit",Body,Nakedness,Genesis,3,7
+"Mind,Body,Spirit",Body,Nakedness,Genesis,3,10
+"Mind,Body,Spirit",Body,Nakedness,Genesis,3,11
+"========== BODY ==========", , , , ,
+"========== PAIN ==========", , , , ,
+"Mind,Body,Spirit",Body,Pain,Genesis,3,16
+"========== BODY ==========", , , , ,
+"========== SLEEP ==========", , , , ,
+"Mind,Body,Spirit",Body,Sleep,Genesis,2,21
+"Mind,Body,Spirit",Body,Sleep,Genesis,2,22
 
 
 

@@ -9,10 +9,10 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 
 "========== PLACES ==========", , , , ,
 "========== COUNTRIES ==========", , , , ,
-"Places,Travels",Places,Countries,Genesis,,
+"Places,Travels",Countries,Genesis,,
 "========== PLACES ==========", , , , ,
 "========== KINGDOMS ==========", , , , ,
-"Places,Travels",Places,Kingdoms,Genesis,,
+"Places,Travels",Kingdoms,Genesis,,
 
 "========== PLACES ==========", , , , ,
 "========== OTHER LOCATIONS ==========", , , , ,
@@ -36,8 +36,6 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 
 
 
-
-"Places,Travels",Places,Other Locations,Genesis,,
 "========== PLACES ==========", , , , ,
 "========== RIVERS ==========", , , , ,
 "Places,Travels",Rivers,Euphrates,Genesis,2,14
@@ -52,4 +50,4 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Places,Travels",Places,Rivers,Genesis,,
 "========== TRAVELS ==========", , , , ,
 "========== TRAVELS ==========", , , , ,
-"Cities,Rivers,Other Locations,Travels",Travels,Travels,Genesis,4,16
+"Places,Travels",Travels,Travels,Genesis,4,16

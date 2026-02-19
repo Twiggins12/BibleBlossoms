@@ -250,6 +250,10 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Body,Pain,Genesis,3,16
 
 "========== BODY ==========", , , , ,
+"========== STOMACH ==========", , , , ,
+"Mind,Body,Spirit",Body,Stomach,Genesis,3,14
+
+"========== BODY ==========", , , , ,
 "========== SLEEP ==========", , , , ,
 "Mind,Body,Spirit",Body,Sleep,Genesis,2,21
 "Mind,Body,Spirit",Body,Sleep,Genesis,2,22

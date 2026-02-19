@@ -203,25 +203,26 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Body,Flesh,Genesis,2,24
 
 "========== BODY ==========", , , , ,
-"========== FOOD ==========", , , , ,
-"Mind,Body,Spirit",Body,Food,Genesis,1,29
-"Mind,Body,Spirit",Body,Food,Genesis,2,9
-"Mind,Body,Spirit",Body,Food,Genesis,2,15
-"Mind,Body,Spirit",Body,Food,Genesis,2,16
-"Mind,Body,Spirit",Body,Food,Genesis,2,17
-"Mind,Body,Spirit",Body,Food,Genesis,3,1
-"Mind,Body,Spirit",Body,Food,Genesis,3,2
-"Mind,Body,Spirit",Body,Food,Genesis,3,3
-"Mind,Body,Spirit",Body,Food,Genesis,3,4
-"Mind,Body,Spirit",Body,Food,Genesis,3,5
-"Mind,Body,Spirit",Body,Food,Genesis,3,3
-"Mind,Body,Spirit",Body,Food,Genesis,3,11
-"Mind,Body,Spirit",Body,Food,Genesis,3,12
-"Mind,Body,Spirit",Body,Food,Genesis,3,13
-"Mind,Body,Spirit",Body,Food,Genesis,3,17
-"Mind,Body,Spirit",Body,Food,Genesis,3,18
-"Mind,Body,Spirit",Body,Food,Genesis,3,19
-"Mind,Body,Spirit",Body,Food,Genesis,3,22
+"========== FOOD EAT ==========", , , , ,
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,1,29
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,2,9
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,2,15
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,2,16
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,2,17
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,3,1
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,3,2
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,3,3
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,3,4
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,3,5
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,3,3
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,3,11
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,3,12
+"Mind,Body,Spirit",Body,F"Food, Eat",Genesis,3,13
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,3,14
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,3,17
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,3,18
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,3,19
+"Mind,Body,Spirit",Body,"Food, Eat",Genesis,3,22
 
 "========== BODY ==========", , , , ,
 "========== IMAGE ==========", , , , ,

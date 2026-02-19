@@ -1,14 +1,21 @@
 Section,MainTopic,SubTopic,Book,Chapter,Verse
+
 "========== FATHER ==========", , , , ,
 "========== ACCEPTANCE FROM GOD ==========", , , , ,
 "Father, Son, Holy Spirit",Father,Acceptance from God,Genesis,4,4
 "Father, Son, Holy Spirit",Father,Acceptance from God,Genesis,4,5
 "Father, Son, Holy Spirit",Father,Acceptance from God,Genesis,4,6
 "Father, Son, Holy Spirit",Father,Acceptance from God,Genesis,4,7
+
+"========== FATHER ==========", , , , ,
+"========== ACCUSATIONS ==========", , , , ,
+"Father, Son, Holy Spirit",Father,Accusations,Genesis,3,13
+
 "========== FATHER ==========", , , , ,
 "========== COMMANDS COMMANDMENTS ==========", , , , ,
 "Father, Son, Holy Spirit",Father,Commands - Commandments,Genesis,3,11
 "Father, Son, Holy Spirit",Father,Commands - Commandments,Genesis,3,17
+
 "========== FATHER ==========", , , , ,
 "========== CREATOR ==========", , , , ,
 "Father, Son, Holy Spirit",Father,Creator,Genesis,1,1

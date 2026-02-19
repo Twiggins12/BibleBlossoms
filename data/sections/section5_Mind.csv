@@ -1,4 +1,5 @@
 Section,MainTopic,SubTopic,Book,Chapter,Verse
+
 "========== MIND ==========", , , , ,
 "========== ABANDONMENT ==========", , , , ,
 "Mind,Body,Spirit",Mind,Abandonment,Leviticus,26,12
@@ -29,6 +30,7 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Mind,Abandonment,2 Corinthians,4,9
 "Mind,Body,Spirit",Mind,Abandonment,Hebrews,13,5
 "Mind,Body,Spirit",Mind,Abandonment,Hebrews,13,6
+
 "========== MIND ==========", , , , ,
 "========== ABIDING IN CHRIST ==========", , , , ,
 "Mind,Body,Spirit",Mind,"Abiding in Christ",John,8,31
@@ -51,6 +53,7 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Mind,"Abiding in Christ",1 John,4,15
 "Mind,Body,Spirit",Mind,"Abiding in Christ",1 John,4,16
 "Mind,Body,Spirit",Mind,"Abiding in Christ",2 John,1,9
+
 "========== MIND ==========", , , , ,
 "========== ACCEPTANCE BY GOD ==========", , , , ,
 "Mind,Body,Spirit",Mind,"Acceptance by God",Genesis,4,6
@@ -69,6 +72,7 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Mind,"Acceptance by God",Ephesians,1,4
 "Mind,Body,Spirit",Mind,"Acceptance by God",Ephesians,1,5
 "Mind,Body,Spirit",Mind,"Acceptance by God",Ephesians,1,6
+
 "========== MIND ==========", , , , ,
 "========== ACCEPTANCE OF OTHERS ==========", , , , ,
 "Mind,Body,Spirit",Mind,"Acceptance of Others",Luke,15,22
@@ -80,6 +84,7 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Mind,"Acceptance of Others",2 John,1,9
 "Mind,Body,Spirit",Mind,"Acceptance of Others",2 John,1,10
 "Mind,Body,Spirit",Mind,"Acceptance of Others",2 John,1,11
+
 "========== MIND ==========", , , , ,
 "========== ANGER ==========", , , , ,
 "Mind,Body,Spirit",Mind,Anger,Genesis,4,4
@@ -87,14 +92,17 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Mind,Anger,Genesis,4,6
 "Mind,Body,Spirit",Mind,Anger,Genesis,4,7
 "Mind,Body,Spirit",Mind,Anger,Genesis,4,8
+
 "========== MIND ==========", , , , ,
 "========== CONTROL, TAKE CAPTIVE, RULE OVER ==========", , , , ,
 "Mind,Body,Spirit",Mind,"Control, Take Captive, Rule Over",Genesis,4,6
 "Mind,Body,Spirit",Mind,"Control, Take Captive, Rule Over",Genesis,4,7
+
 "========== MIND ==========", , , , ,
 "========== DESIRES ==========", , , , ,
 "Mind,Body,Spirit",Mind,Desires,Genesis,3,6
 "Mind,Body,Spirit",Mind,Desires,Genesis,3,16
+
 "========== MIND ==========", , , , ,
 "========== DESPONDENCY ==========", , , , ,
 "Mind,Body,Spirit",Mind,Despondency,Genesis,4,4
@@ -103,9 +111,15 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Mind,Despondency,Genesis,4,7
 "Mind,Body,Spirit",Mind,Despondency,Genesis,4,13
 "Mind,Body,Spirit",Mind,Despondency,Genesis,4,14
+
+"========== MIND ==========", , , , ,
+"========== EXCUSES ==========", , , , ,
+"Mind,Body,Spirit",Mind,Excuses,Genesis,3,12
+
 "========== MIND ==========", , , , ,
 "========== FEAR ==========", , , , ,
 "Mind,Body,Spirit",Mind,Fear,Genesis,3,10
+
 "========== MIND ==========", , , , ,
 "========== KNOWLEDGE ==========", , , , ,
 "Mind,Body,Spirit",Mind,Knowledge,Genesis,2,9
@@ -114,47 +128,59 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Mind,Knowledge,Genesis,3,4
 "Mind,Body,Spirit",Mind,Knowledge,Genesis,3,5
 "Mind,Body,Spirit",Mind,Knowledge,Genesis,3,22
+
 "========== MIND ==========", , , , ,
 "========== LONELINESS ==========", , , , ,
 "Mind,Body,Spirit",Mind,Loneliness,Genesis,2,18
+
 "========== MIND ==========", , , , ,
 "========== LOVE FROM GOD ==========", , , , ,
 "Mind,Body,Spirit",Mind,"Love from God",Genesis,2,18
+
 "========== MIND ==========", , , , ,
 "========== SHAME ==========", , , , ,
 "Mind,Body,Spirit",Mind,Shame,Genesis,2,7
+
 "========== MIND ==========", , , , ,
 "========== WISDOM ==========", , , , ,
 "Mind,Body,Spirit",Mind,"Wisdom, Wise, Eyes Opened",Genesis,2,18
+
 "========== BODY ==========", , , , ,
 "========== ATTACK ==========", , , , ,
 "Mind,Body,Spirit",Body,"Attack, Strike",Genesis,4,15
+
 "========== BODY ==========", , , , ,
 "========== BIRTH CHILDBIRTH ==========", , , , ,
 "Mind,Body,Spirit",Body,"Birth, Childbirth",Genesis,3,16
 "Mind,Body,Spirit",Body,"Birth, Childbirth",Genesis,4,1
 "Mind,Body,Spirit",Body,"Birth, Childbirth",Genesis,4,2
+
 "========== BODY ==========", , , , ,
 "========== BLESSINGS ==========", , , , ,
 "Mind,Body,Spirit",Body,Blessings,Genesis,1,28
+
 "========== BODY ==========", , , , ,
 "========== BLOOD ==========", , , , ,
 "Mind,Body,Spirit",Body,Blood,Genesis,4,10
 "Mind,Body,Spirit",Body,Blood,Genesis,4,11
 "Mind,Body,Spirit",Body,Blood,Genesis,4,12
+
 "========== BODY ==========", , , , ,
 "========== BONES ==========", , , , ,
 "Mind,Body,Spirit",Body,Bones,Genesis,2,21
 "Mind,Body,Spirit",Body,Bones,Genesis,2,22
 "Mind,Body,Spirit",Body,Bones,Genesis,2,23
+
 "========== BODY ==========", , , , ,
 "========== CLOTHING COVERINGS ==========", , , , ,
 "Mind,Body,Spirit",Body,"Clothing, Coverings",Genesis,3,7
 "Mind,Body,Spirit",Body,"Clothing, Coverings",Genesis,3,21
+
 "========== BODY ==========", , , , ,
 "========== CREATED IN GOD'S LIKENESS ==========", , , , ,
 "Mind,Body,Spirit",Body,"Created in God's Likeness",Genesis,1,26
 "Mind,Body,Spirit",Body,"Created in God's Likeness",Genesis,1,27
+
 "========== BODY ==========", , , , ,
 "========== DEATH ==========", , , , ,
 "Mind,Body,Spirit",Body,Death,Genesis,2,15
@@ -163,15 +189,18 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Body,Death,Genesis,3,5
 "Mind,Body,Spirit",Body,Death,Genesis,3,19
 "Mind,Body,Spirit",Body,Death,Genesis,4,8
+
 "========== BODY ==========", , , , ,
 "========== EYES ==========", , , , ,
 "Mind,Body,Spirit",Body,Eyes,Genesis,3,6
+
 "========== BODY ==========", , , , ,
 "========== FLESH ==========", , , , ,
 "Mind,Body,Spirit",Body,Flesh,Genesis,2,21
 "Mind,Body,Spirit",Body,Flesh,Genesis,2,22
 "Mind,Body,Spirit",Body,Flesh,Genesis,2,23
 "Mind,Body,Spirit",Body,Flesh,Genesis,2,24
+
 "========== BODY ==========", , , , ,
 "========== FOOD ==========", , , , ,
 "Mind,Body,Spirit",Body,Food,Genesis,1,29
@@ -192,41 +221,51 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Body,Food,Genesis,3,18
 "Mind,Body,Spirit",Body,Food,Genesis,3,19
 "Mind,Body,Spirit",Body,Food,Genesis,3,22
+
 "========== BODY ==========", , , , ,
 "========== IMAGE ==========", , , , ,
 "Mind,Body,Spirit",Body,Image,Genesis,1,26
 "Mind,Body,Spirit",Body,Image,Genesis,1,27
+
 "========== BODY ==========", , , , ,
 "========== LIFE ==========", , , , ,
 "Mind,Body,Spirit",Body,Life,Genesis,2,7
 "Mind,Body,Spirit",Body,Life,Genesis,3,17
+
 "========== BODY ==========", , , , ,
 "========== LIMBS ==========", , , , ,
 "Mind,Body,Spirit",Body,Limbs,Genesis,3,15
+
 "========== BODY ==========", , , , ,
-"========== NAKESNESS ==========", , , , ,
+"========== NAKEDNESS ==========", , , , ,
 "Mind,Body,Spirit",Body,Nakedness,Genesis,2,25
 "Mind,Body,Spirit",Body,Nakedness,Genesis,3,7
 "Mind,Body,Spirit",Body,Nakedness,Genesis,3,10
 "Mind,Body,Spirit",Body,Nakedness,Genesis,3,11
+
 "========== BODY ==========", , , , ,
 "========== PAIN ==========", , , , ,
 "Mind,Body,Spirit",Body,Pain,Genesis,3,16
+
 "========== BODY ==========", , , , ,
 "========== SLEEP ==========", , , , ,
 "Mind,Body,Spirit",Body,Sleep,Genesis,2,21
 "Mind,Body,Spirit",Body,Sleep,Genesis,2,22
+
 "========== BODY ==========", , , , ,
 "========== WORK LABOR TOIL SWEAT ==========", , , , ,
 "Mind,Body,Spirit",Body,"Word, Labor, Toil, Sweat",Genesis,3,17
 "Mind,Body,Spirit",Body,"Word, Labor, Toil, Sweat",Genesis,3,18
 "Mind,Body,Spirit",Body,"Word, Labor, Toil, Sweat",Genesis,3,19
+
 "========== SPIRIT ==========", , , , ,
 "========== DECEPTION ==========", , , , ,
 "Mind,Body,Spirit",Spirit,Deception,Genesis,3,13
+
 "========== SPIRIT ==========", , , , ,
 "========== ETERNAL LIFE ==========", , , , ,
 "Mind,Body,Spirit",Spirit,Eternal Life,Genesis,3,22
+
 "========== SPIRIT ==========", , , , ,
 "========== GOOD AND EVIL ==========", , , , ,
 "Mind,Body,Spirit",Spirit,Good and Evil,Genesis,2,9
@@ -235,10 +274,12 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Spirit,Good and Evil,Genesis,3,4
 "Mind,Body,Spirit",Spirit,Good and Evil,Genesis,3,5
 "Mind,Body,Spirit",Spirit,Good and Evil,Genesis,3,22
+
 "========== SPIRIT ==========", , , , ,
 "========== HIDING RUNNING FROM GOD ==========", , , , ,
 "Mind,Body,Spirit",Spirit,"Hiding, Running from God",Genesis,3,8
 "Mind,Body,Spirit",Spirit,"Hiding, Running from God",Genesis,3,10
+
 "========== SPIRIT ==========", , , , ,
 "========== WANDER, STRAY, FALL AWAY ==========", , , , ,
 "Mind,Body,Spirit",Spirit,"Wander, Stray, Fall Away",Genesis,4,10

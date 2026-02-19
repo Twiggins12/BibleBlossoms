@@ -10,6 +10,7 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "========== FATHER ==========", , , , ,
 "========== ACCUSATIONS ==========", , , , ,
 "Father, Son, Holy Spirit",Father,Accusations,Genesis,3,13
+"Father, Son, Holy Spirit",Father,Accusations,Genesis,3,14
 
 "========== FATHER ==========", , , , ,
 "========== COMMANDS COMMANDMENTS ==========", , , , ,
@@ -52,6 +53,7 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Father, Son, Holy Spirit",Father,Creator,Genesis,2,9
 "Father, Son, Holy Spirit",Father,Creator,Genesis,2,19
 "Father, Son, Holy Spirit",Father,Creator,Genesis,3,21
+
 "========== FATHER ==========", , , , ,
 "========== CURSES ==========", , , , ,
 "Father, Son, Holy Spirit",Father,Curses,Genesis,3,14
@@ -63,15 +65,18 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Father, Son, Holy Spirit",Father,Curses,Genesis,4,10
 "Father, Son, Holy Spirit",Father,Curses,Genesis,4,11
 "Father, Son, Holy Spirit",Father,Curses,Genesis,4,12
+
 "========== FATHER ==========", , , , ,
 "========== DESIGNATOR ==========", , , , ,
 "Father, Son, Holy Spirit",Father,Designator,Genesis,1,28
 "Father, Son, Holy Spirit",Father,Designator,Genesis,2,15
 "Father, Son, Holy Spirit",Father,Designator,Genesis,2,16
 "Father, Son, Holy Spirit",Father,Designator,Genesis,2,17
+
 "========== FATHER ==========", , , , ,
 "========== PRESENCE ON EARTH ==========", , , , ,
 "Father, Son, Holy Spirit",Father,Presence on Earth,Genesis,3,8
+
 "========== FATHER ==========", , , , ,
 "========== SPOKEN WORDS ==========", , , , ,
 "Father, Son, Holy Spirit",Father,Spoken Words,Genesis,1,3

@@ -128,11 +128,11 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 
 "========== PEOPLE ==========", , , , ,
 "========== SINNERS ==========", , , , ,
-"People,Culture,Objects",People,Sinners,Psalms1,1
+"People,Culture,Objects",People,Sinners,Psalms,1,1
 
 "========== PEOPLE ==========", , , , ,
 "========== WICKED ==========", , , , ,
-"People,Culture,Objects",People,Wicked,Psalms,1.1
+"People,Culture,Objects",People,Wicked,Psalms,1,1
 
 "========== PEOPLE ==========", , , , ,
 "========== WIFE ==========", , , , ,

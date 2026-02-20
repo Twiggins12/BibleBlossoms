@@ -118,11 +118,21 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "People,Culture,Objects",People,Man,Genesis,3,22
 "People,Culture,Objects",People,Man,Genesis,3,24
 "People,Culture,Objects",People,Man,Genesis,4,1
+"People,Culture,Objects",People,Man,Psalms,1,1
+
 
 "========== PEOPLE ==========", , , , ,
 "========== MOTHER ==========", , , , ,
 "People,Culture,Objects",People,Mother,Genesis,2,24
 "People,Culture,Objects",People,Mother,Genesis,3,20
+
+"========== PEOPLE ==========", , , , ,
+"========== SINNERS ==========", , , , ,
+"People,Culture,Objects",People,Sinners,Psalms1,1
+
+"========== PEOPLE ==========", , , , ,
+"========== WICKED ==========", , , , ,
+"People,Culture,Objects",People,Wicked,Psalms,1.1
 
 "========== PEOPLE ==========", , , , ,
 "========== WIFE ==========", , , , ,

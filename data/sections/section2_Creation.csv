@@ -194,6 +194,7 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Creation, Earth, Animals",Earth,Time,Genesis,3,8
 "Creation, Earth, Animals",Earth,Time,Genesis,3,14
 "Creation, Earth, Animals",Earth,Time,Genesis,4,3
+"Creation, Earth, Animals",Earth,Time,Psalms,1,2
 
 "========== EARTH ==========", , , , ,
 "========== WATER ==========", , , , ,
@@ -236,9 +237,6 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Creation, Earth, Animals",Animals,Creeping Things,Genesis,3,13
 "Creation, Earth, Animals",Animals,Creeping Things,Genesis,3,14
 "Creation, Earth, Animals",Animals,Creeping Things,Genesis,3,15
-
-
-
 
 "========== ANIMALS ==========", , , , ,
 "========== LAND ANIMALS ==========", , , , ,

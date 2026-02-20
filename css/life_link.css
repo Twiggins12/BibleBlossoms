@@ -32,6 +32,17 @@ p {
   padding: 0;
 }
 
+.content {
+  max-width: 800px;   /* controls width */
+  margin: 0 auto;     /* centers the block */
+  padding: 20px;      /* keeps it off the edges */
+}
+
+.content p {
+  text-align: left;   /* keeps paragraph lines aligned */
+  line-height: 1.6;   /* improves readability */
+}
+
 header h1 {
   font-family: 'Lobster', cursive;
   margin: 0;

@@ -3,13 +3,10 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "========== CITIES ==========", , , , ,
 "Places,Travels",Cities,Assyria,Genesis,2,14
 
-
-
-
-
 "========== PLACES ==========", , , , ,
 "========== COUNTRIES ==========", , , , ,
 "Places,Travels",Countries,Genesis,,
+
 "========== PLACES ==========", , , , ,
 "========== KINGDOMS ==========", , , , ,
 "Places,Travels",Kingdoms,Genesis,,
@@ -34,8 +31,6 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Places,Travels",Other Locations,Havilah,Genesis,2,12
 "Places,Travels",Other Locations,Nod,Genesis,4,16
 
-
-
 "========== PLACES ==========", , , , ,
 "========== RIVERS ==========", , , , ,
 "Places,Travels",Rivers,Euphrates,Genesis,2,14
@@ -44,10 +39,6 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Places,Travels",Rivers,Pishon,Genesis,2,11
 "Places,Travels",Rivers,Pishon,Genesis,2,12
 
-
-
-
-"Places,Travels",Places,Rivers,Genesis,,
 "========== TRAVELS ==========", , , , ,
 "========== TRAVELS ==========", , , , ,
 "Places,Travels",Travels,Travels,Genesis,4,16

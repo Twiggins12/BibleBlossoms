@@ -21,8 +21,7 @@ body {
   min-height: 100vh;      /* 👈 makes page full screen height */
 }
 p {
-  padding-left: 20px;
-  padding-right: 20px;
+  text-align: center;
 }
   .page-content {
   flex: 1;   /* 👈 pushes footer to bottom */
@@ -47,7 +46,7 @@ header h2 {
 }
 
 header h3 {
-  text align: center
+  text-align: center
   margin: 5px 0 0 0;
   font-size: 1.5em;
   color: #4b0082;

@@ -20,6 +20,10 @@ body {
   flex-direction: column; /* 👈 important */
   min-height: 100vh;      /* 👈 makes page full screen height */
 }
+p {
+  padding-left: 20px;
+  padding-right: 20px;
+}
   .page-content {
   flex: 1;   /* 👈 pushes footer to bottom */
 }

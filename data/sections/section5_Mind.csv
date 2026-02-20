@@ -86,6 +86,10 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Mind,"Acceptance of Others",2 John,1,11
 
 "========== MIND ==========", , , , ,
+"========== ADVICE COUNSEL ==========", , , , ,
+"Mind,Body,Spirit",Mind,"Advice, Counsel",Psalms,1,1
+
+"========== MIND ==========", , , , ,
 "========== ANGER ==========", , , , ,
 "Mind,Body,Spirit",Mind,Anger,Genesis,4,4
 "Mind,Body,Spirit",Mind,Anger,Genesis,4,5
@@ -104,9 +108,15 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Mind,"Control, Take Captive, Rule Over",Genesis,4,7
 
 "========== MIND ==========", , , , ,
+"========== DAILY WALK ==========", , , , ,
+"Mind,Body,Spirit",Mind,Daily Wallk,Psalms,1,1
+
+"========== MIND ==========", , , , ,
 "========== DESIRES ==========", , , , ,
 "Mind,Body,Spirit",Mind,Desires,Genesis,3,6
 "Mind,Body,Spirit",Mind,Desires,Genesis,3,16
+"Mind,Body,Spirit",Mind,Desires,Psalms,1,2
+
 
 "========== MIND ==========", , , , ,
 "========== DESPONDENCY ==========", , , , ,
@@ -142,6 +152,10 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "========== MIND ==========", , , , ,
 "========== LOVE FROM GOD ==========", , , , ,
 "Mind,Body,Spirit",Mind,"Love from God",Genesis,2,18
+
+"========== MIND ==========", , , , ,
+"========== MEDITATION ==========", , , , ,
+"Mind,Body,Spirit",Mind,Meditation,Psalms,1,2
 
 "========== MIND ==========", , , , ,
 "========== SHAME ==========", , , , ,
@@ -272,6 +286,14 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Mind,Body,Spirit",Body,"Word, Labor, Toil, Sweat",Genesis,3,19
 "Mind,Body,Spirit",Body,"Word, Labor, Toil, Sweat",Genesis,3,23
 
+"========== SPIRIT ==========", , , , ,
+"========== BLESSED BLESSINGS ==========", , , , ,
+"Mind,Body,Spirit",Spirit,"Blessed, Blessings",Psalms,1,1
+
+"========== SPIRIT ==========", , , , ,
+"========== DAILY WALK ==========", , , , ,
+"Mind,Body,Spirit",Spirit,Daily Walk,Psalms,1,1
+"Mind,Body,Spirit",Spirit,Daily Walk,Psalms,1,2
 
 "========== SPIRIT ==========", , , , ,
 "========== DECEPTION ==========", , , , ,

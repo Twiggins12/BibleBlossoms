@@ -156,5 +156,27 @@ header h3 {
 .site-footer a:hover {
   font-weight: bold;
 }
+.copyright {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  font-size: 0.95em;
+  line-height: 1.6;
+  border-top: 1px solid #ddd;
+}
 
+.copyright h3 {
+  text-align: center;
+  color: #4b0082;
+  margin-bottom: 15px;
+}
+
+.copyright a {
+  color: #4b0082;
+  text-decoration: none;
+}
+
+.copyright a:hover {
+  text-decoration: underline;
+}
   </style>

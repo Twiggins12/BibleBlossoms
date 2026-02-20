@@ -127,12 +127,24 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "People,Culture,Objects",People,Mother,Genesis,3,20
 
 "========== PEOPLE ==========", , , , ,
+"========== RIGHTEOUS ==========", , , , ,
+"People,Culture,Objects",People,Righteous,Psalms,1,5
+"People,Culture,Objects",People,Righteous,Psalms,1,6
+
+"========== PEOPLE ==========", , , , ,
 "========== SINNERS ==========", , , , ,
 "People,Culture,Objects",People,Sinners,Psalms,1,1
+"People,Culture,Objects",People,Sinners,Psalms,1,5
+
+
 
 "========== PEOPLE ==========", , , , ,
 "========== WICKED ==========", , , , ,
 "People,Culture,Objects",People,Wicked,Psalms,1,1
+"People,Culture,Objects",People,Wicked,Psalms,1,4
+"People,Culture,Objects",People,Wicked,Psalms,1,5
+"People,Culture,Objects",People,Wicked,Psalms,1,6
+
 
 "========== PEOPLE ==========", , , , ,
 "========== WIFE ==========", , , , ,

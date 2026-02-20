@@ -162,6 +162,13 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "People,Culture,Objects",Culture,Keeper,Genesis,4,9
 
 
+"========== OBJECTS==========", , , , ,
+"========== SWORD ==========", , , , ,
+"People,Culture,Objects",Objects,Sword,Genesis,3,24
+
+"========== OBJECTS==========", , , , ,
+"========== WEAPONS ==========", , , , ,
+"People,Culture,Objects",Objects,Weapons,Genesis,3,24
 
 
 

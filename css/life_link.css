@@ -90,36 +90,38 @@ header h3 {
   font-size: 1em;
 }
 
+/* Table Styling */
 .verse-table {
-  max-width: 700px;   /* reading width */
-  width: 100%;
-  border-collapse: collapse;
-  margin: 10px auto;  /* centers the verses */
+  border-collapse: separate;
+  border-spacing: 0;
 }
 
+/* Chapter row gradient and spacing */
 .chapter-row td {
  background: linear-gradient(to bottom, #ffe680, #fffacd 85%); 
   font-weight: bold;
   text-align: center;
-  padding: 5px;
+  padding: 12px 10px;
   border-radius: 4px;
+    font-size: 1.1em;
+    position: relative;
 }
 
-.chapter-row td {
-  padding: 5px 10px;
-  font-weight: bold;
-  font-size: 1.05em;
+/* Add space above chapter row only */
+.chapter-row td::before {
+   content: "";
+  display: block;
+  height: 8px;                 /* adjust gap size here */
 }
-.chapter-row {
-  height: 34px;
-}
+
 .verseText {
   font-family: 'Times New Roman', Times, serif;
   font-size: 1.2em;
 }
 
+/* Verse Rows */
 .verse-row td {
-  padding: 5px;
+  padding: 5px 10px;
   vertical-align: top;
   text-align: left;
   line-height: 1.2;   /* comfortable reading spacing */

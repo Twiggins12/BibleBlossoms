@@ -106,9 +106,10 @@ header h3 {
 }
 
 .chapter-row td {
-  padding-top: 25px;
+  padding: 20px 10px 6px 10px;
   font-weight: bold;
   background: #f4f4f4;
+  border-top: 2px solid #ccc;
 }
 
 .verseText {

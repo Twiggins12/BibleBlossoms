@@ -127,6 +127,11 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "People,Culture,Objects",People,Mother,Genesis,3,20
 
 "========== PEOPLE ==========", , , , ,
+"========== NEPHILIM ==========", , , , ,
+"People,Culture,Objects",People,People,Nephilim,Genesis,6,2
+"People,Culture,Objects",People,People,Nephilim,Numbers,13,33
+
+"========== PEOPLE ==========", , , , ,
 "========== RIGHTEOUS ==========", , , , ,
 "People,Culture,Objects",People,Righteous,Psalms,1,5
 "People,Culture,Objects",People,Righteous,Psalms,1,6

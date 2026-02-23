@@ -17,8 +17,6 @@
   <!-- Life Link Only CSS Style -->
   <link rel="stylesheet" href="css/life_link.css">
 
-  <!-- PapaParse -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
 </head>
 <body>
 
@@ -245,39 +243,6 @@ Thank you for your patience as this work unfolds.
   <a href="about.html">About</a>
   <a href="#top">Top</a>
 </footer>
-<script>
 
-Papa.parse("topics.csv", {
-  download: true,
-  header: true,
-  complete: function(results) {
-
-    results.data.forEach(row => {
-
-      const book = row.Book;
-      const chapter = row.Chapter;
-      const verse = row.Verse;
-
-      if(!book || !chapter || !verse) return;
-
-      const reference = `${book} ${chapter}:${verse}`;
-
-      fetch(`https://bible-api.com/${reference}`)
-        .then(res => res.json())
-        .then(data => {
-
-          const div = document.createElement("p");
-          div.innerHTML = `<b>${reference}</b> — ${data.text}`;
-
-          document.getElementById("verses").appendChild(div);
-
-        });
-
-    });
-
-  }
-});
-
-</script>
 </body>
 </html>

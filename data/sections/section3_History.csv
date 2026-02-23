@@ -24,6 +24,16 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "History, Laws, Sin",Laws,Sabbath,Genesis,2,3
 
 "========== SIN ==========", , , , ,
+"========== CORRUPTION ==========", , , , ,
+"History, Laws, Sin",Sin,Corruption,Genesis,6,1
+"History, Laws, Sin",Sin,Corruption,Genesis,6,2
+"History, Laws, Sin",Sin,Corruption,Genesis,6,3
+"History, Laws, Sin",Sin,Corruption,Genesis,6,11
+"History, Laws, Sin",Sin,Corruption,Genesis,6,12
+"History, Laws, Sin",Sin,Corruption,Genesis,6,13
+
+
+"========== SIN ==========", , , , ,
 "========== DISOBEY ==========", , , , ,
 "History, Laws, Sin",Sin,Disobey,Genesis,4,6
 "History, Laws, Sin",Sin,Disobey,Genesis,4,7

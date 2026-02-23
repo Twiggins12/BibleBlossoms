@@ -116,7 +116,7 @@ header h3 {
 .chapter-row::before {
    content: "";
   display: block;
-  height: 10px;                 /* adjust gap size here */
+  height: 25px;                 /* adjust gap size here */
 }
 
 .verseText {

@@ -250,25 +250,7 @@ Thank you for your patience as this work unfolds.
 
   verseTextDiv.appendChild(table);
 }
-            const trVerse = document.createElement('tr');
-            trVerse.className = 'verse-row';
-            const tdNumber = document.createElement('td');
-            tdNumber.className = 'verse-number';
-            tdNumber.innerText = row.Verse;
-            const tdText = document.createElement('td');
-            tdText.className = 'verse-text';
-            tdText.innerText = d.text;
-            trVerse.appendChild(tdNumber);
-            trVerse.appendChild(tdText);
-            table.appendChild(trVerse);
-
-          } catch(err) {
-            console.error(`Error fetching ${reference}:`, err);
-          }
-        }
-        verseTextDiv.appendChild(table);
-      }
-
+            
       displayVerses();
     });
 
@@ -276,6 +258,7 @@ Thank you for your patience as this work unfolds.
   });
 
 </script>
+    console.log("Life Link script loaded");
   </div>
   
 <footer class="site-footer">

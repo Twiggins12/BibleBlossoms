@@ -101,17 +101,22 @@ header h3 {
  background: linear-gradient(to bottom, #ffe680, #fffacd 85%); 
   font-weight: bold;
   text-align: center;
-  padding: 12px 10px;
+  padding: 5px 10px;
   border-radius: 4px;
     font-size: 1.1em;
-    position: relative;
+}
+
+/* Add white space above the chapter row without stretching the gradient */
+.chapter-row {
+  height: auto;           /* let content define height */
+  position: relative;
 }
 
 /* Add space above chapter row only */
-.chapter-row td::before {
+.chapter-row::before {
    content: "";
   display: block;
-  height: 8px;                 /* adjust gap size here */
+  height: 10px;                 /* adjust gap size here */
 }
 
 .verseText {

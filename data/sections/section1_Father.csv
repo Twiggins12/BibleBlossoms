@@ -113,6 +113,10 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Father, Son, Holy Spirit",Holy Spirit,Spirit,Genesis,1,2
 
 "========== SON ==========", , , , ,
+"========== THE LAMB OF GOD ==========", , , , ,
+"Father, Son, Holy Spirit",Son,The Lamb of God,John,1,29
+
+"========== SON ==========", , , , ,
 "========== THE LIGHT ==========", , , , ,
 "Father, Son, Holy Spirit",Son,The Light,John,1,6
 "Father, Son, Holy Spirit",Son,The Light,John,1,7
@@ -121,6 +125,18 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Father, Son, Holy Spirit",Son,The Light,John,2,19
 "Father, Son, Holy Spirit",Son,The Light,John,2,20
 "Father, Son, Holy Spirit",Son,The Light,John,2,21
+
+"========== SON ==========", , , , ,
+"========== SAVIOR ==========", , , , ,
+"Father, Son, Holy Spirit",Son,Savior,John,1,11
+"Father, Son, Holy Spirit",Son,Savior,John,1,12
+"Father, Son, Holy Spirit",Son,Savior,John,1,13
+"Father, Son, Holy Spirit",Son,Savior,John,3,13
+"Father, Son, Holy Spirit",Son,Savior,John,3,14
+"Father, Son, Holy Spirit",Son,Savior,John,3,15
+"Father, Son, Holy Spirit",Son,Savior,John,3,16
+"Father, Son, Holy Spirit",Son,Savior,John,3,17
+"Father, Son, Holy Spirit",Son,Savior,John,3,18
 
 "========== SON ==========", , , , ,
 "========== THE WORD ==========", , , , ,

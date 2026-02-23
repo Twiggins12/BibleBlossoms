@@ -106,19 +106,6 @@ header h3 {
     font-size: 1.1em;
 }
 
-/* Add white space above the chapter row without stretching the gradient */
-.chapter-row {
-  height: auto;           /* let content define height */
-  position: relative;
-}
-
-/* Add space above chapter row only */
-.chapter-row::before {
-   content: "";
-  display: block;
-  height: 25px;                 /* adjust gap size here */
-}
-
 .verseText {
   font-family: 'Times New Roman', Times, serif;
   font-size: 1.2em;
@@ -137,6 +124,20 @@ header h3 {
   font-weight: bold;
   text-align: right;
   padding-right: 10px;
+}
+
+/* Table styling */
+.verse-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+/* Spacer row above chapter */
+.spacer-row td {
+  height: 25px;         /* adjust white space above chapter here */
+  background: transparent;
+  border: none;
+  padding: 0;
 }
 
 #loading {

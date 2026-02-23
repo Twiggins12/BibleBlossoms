@@ -59,6 +59,7 @@ Thank you for your patience as this work unfolds.
   <div class="section-container"><div class="section-heading">Visions, Prophecies, End Times</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
   <div class="section-container"><div class="section-heading">Wisdom, Instructions</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
   <div class="section-container"><div class="section-heading">Promises, Covenants</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
+  <div class="section-container"><div class="section-heading">Concepts, Ideas, Principles</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
 </div>
 
 <div id="loading">Loading verses...</div>
@@ -90,18 +91,19 @@ Thank you for your patience as this work unfolds.
 </section>
 <script>
   // Each section can point to its own CSV file
- const csvFiles = [
-  'data/sections/section1_Father.csv',
-  'data/sections/section2_Creation.csv',
-  'data/sections/section3_History.csv',
-  'data/sections/section4_People.csv',
-  'data/sections/section5_Mind.csv',
-  'data/sections/section6_Places.csv',
-  'data/sections/section7_Spiritual_Beings.csv',
-  'data/sections/section8_Visions.csv',
-  'data/sections/section9_Wisdom.csv',
-  'data/sections/section10_Promises.csv'
-];
+  const csvFiles = [
+    'data/sections/section1_Father.csv',
+    'data/sections/section2_Creation.csv',
+    'data/sections/section3_History.csv',
+    'data/sections/section4_People.csv',
+    'data/sections/section5_Mind.csv',
+    'data/sections/section6_Places.csv',
+    'data/sections/section7_Spiritual_Beings.csv',
+    'data/sections/section8_Visions.csv',
+    'data/sections/section9_Wisdom.csv',
+    'data/sections/section10_Promises.csv'
+    'data/sections/section11_Concepts.csv'
+  ];
 
   const sectionContainers = document.querySelectorAll('.section-container');
 
@@ -118,16 +120,17 @@ Thank you for your patience as this work unfolds.
         const res = await fetch(csvFiles[index]);
         const csvText = await res.text();
         const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
-       masterRows = parsed.data
-  .filter(row => row.Book && row.Chapter && row.Verse)
-  .map(row => ({
-    Section: (row.Section || "").trim(),
-    MainTopic: (row.MainTopic || "").trim(),
-    SubTopic: (row.SubTopic || "").trim(),
-    Book: (row.Book || "").trim(),
-    Chapter: parseInt(row.Chapter),
-    Verse: parseInt(row.Verse)
-}));
+
+        masterRows = parsed.data
+          .filter(row => row.Book && row.Chapter && row.Verse)
+          .map(row => ({
+            Section: (row.Section || "").trim(),
+            MainTopic: (row.MainTopic || "").trim(),
+            SubTopic: (row.SubTopic || "").trim(),
+            Book: (row.Book || "").trim(),
+            Chapter: parseInt(row.Chapter),
+            Verse: parseInt(row.Verse)
+          }));
 
         const mainTopics = [...new Set(masterRows.map(r => r.MainTopic))];
         mainTopics.forEach(topic => {
@@ -146,7 +149,7 @@ Thank you for your patience as this work unfolds.
       bookSelect.innerHTML = '<option value="">Select Book</option>';
       verseTextDiv.innerHTML = '';
       const selectedTopic = mainTopicSelect.value;
-      if(!selectedTopic) return;
+      if (!selectedTopic) return;
       const subTopics = [...new Set(masterRows.filter(r => r.MainTopic === selectedTopic).map(r => r.SubTopic))];
       subTopics.forEach(sub => {
         const opt = document.createElement('option');
@@ -161,7 +164,7 @@ Thank you for your patience as this work unfolds.
       verseTextDiv.innerHTML = '';
       const selectedTopic = mainTopicSelect.value;
       const selectedSub = subTopicSelect.value;
-      if(!selectedTopic || !selectedSub) return;
+      if (!selectedTopic || !selectedSub) return;
       const books = [...new Set(masterRows.filter(r => r.MainTopic === selectedTopic && r.SubTopic === selectedSub).map(r => r.Book))];
       books.forEach(book => {
         const opt = document.createElement('option');
@@ -176,7 +179,7 @@ Thank you for your patience as this work unfolds.
       const selectedTopic = mainTopicSelect.value;
       const selectedSub = subTopicSelect.value;
       const selectedBook = bookSelect.value;
-      if(!selectedTopic || !selectedSub || !selectedBook) return;
+      if (!selectedTopic || !selectedSub || !selectedBook) return;
 
       const filteredRows = masterRows.filter(r =>
         r.MainTopic === selectedTopic &&
@@ -184,79 +187,79 @@ Thank you for your patience as this work unfolds.
         r.Book === selectedBook
       );
 
-      let currentChapter = null;
       const table = document.createElement('table');
       table.className = 'verse-table';
 
-     async function displayVerses() {
+      async function displayVerses() {
+        const chapterGroups = {};
 
-  const chapterGroups = {};
+        filteredRows.forEach(row => {
+          const key = `${row.Book}-${row.Chapter}`;
+          if (!chapterGroups[key]) chapterGroups[key] = [];
+          chapterGroups[key].push(row);
+        });
 
-  filteredRows.forEach(row => {
-    const key = `${row.Book}-${row.Chapter}`;
-    if(!chapterGroups[key]) chapterGroups[key] = [];
-    chapterGroups[key].push(row);
-  });
+        for (const key in chapterGroups) {
+          const rows = chapterGroups[key];
+          const book = rows[0].Book;
+          const chapter = rows[0].Chapter;
 
-  for(const key in chapterGroups){
+          // Spacer row to separate from previous content
+          const spacerTr = document.createElement('tr');
+          const spacerTd = document.createElement('td');
+          spacerTd.colSpan = 2;
+          spacerTd.style.height = '25px';   // adjust spacing here
+          spacerTd.style.background = 'transparent';
+          spacerTr.appendChild(spacerTd);
+          table.appendChild(spacerTr);
 
-    const rows = chapterGroups[key];
-    const book = rows[0].Book;
-    const chapter = rows[0].Chapter;
+          // Chapter row with gradient
+          const trChapter = document.createElement('tr');
+          trChapter.className = 'chapter-row';
+          const tdChapter = document.createElement('td');
+          tdChapter.colSpan = 2;
+          tdChapter.innerText = `Chapter ${chapter}`;
+          trChapter.appendChild(tdChapter);
+          table.appendChild(trChapter);
 
-    try{
+          try {
+            const res = await fetch(`https://bible-api.com/${encodeURIComponent(book + " " + chapter)}`);
+            const data = await res.json();
+            if (!data.verses) continue;
 
-      const res = await fetch(`https://bible-api.com/${encodeURIComponent(book + " " + chapter)}`);
-      const data = await res.json();
+            rows.forEach(row => {
+              const verseData = data.verses.find(v => v.verse === row.Verse);
+              if (!verseData) return;
 
-      if(!data.verses) continue;
+              const trVerse = document.createElement('tr');
+              trVerse.className = 'verse-row';
 
-      const trChapter = document.createElement('tr');
-      trChapter.className = 'chapter-row';
-      const tdChapter = document.createElement('td');
-      tdChapter.colSpan = 2;
-      tdChapter.innerText = `Chapter ${chapter}`;
-      trChapter.appendChild(tdChapter);
-      table.appendChild(trChapter);
+              const tdNumber = document.createElement('td');
+              tdNumber.className = 'verse-number';
+              tdNumber.innerText = row.Verse;
 
-      rows.forEach(row => {
+              const tdText = document.createElement('td');
+              tdText.className = 'verse-text';
+              tdText.innerText = verseData.text;
 
-        const verseData = data.verses.find(v => v.verse === row.Verse);
-        if(!verseData) return;
+              trVerse.appendChild(tdNumber);
+              trVerse.appendChild(tdText);
 
-        const trVerse = document.createElement('tr');
-        trVerse.className = 'verse-row';
+              table.appendChild(trVerse);
+            });
+          } catch (err) {
+            console.error(`Error fetching ${book} ${chapter}:`, err);
+          }
+        }
 
-        const tdNumber = document.createElement('td');
-        tdNumber.className = 'verse-number';
-        tdNumber.innerText = row.Verse;
+        verseTextDiv.appendChild(table);
+      }
 
-        const tdText = document.createElement('td');
-        tdText.className = 'verse-text';
-        tdText.innerText = verseData.text;
-
-        trVerse.appendChild(tdNumber);
-        trVerse.appendChild(tdText);
-
-        table.appendChild(trVerse);
-
-      });
-
-    }catch(err){
-      console.error(`Error fetching ${book} ${chapter}`, err);
-    }
-
-  }
-
-  verseTextDiv.appendChild(table);
-}
-            
       displayVerses();
     });
 
     loadMasterCSV();
   });
-
 </script>
     console.log("Life Link script loaded");
   </div>

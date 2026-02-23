@@ -2,83 +2,148 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 
 "========== HISTORY ==========", , , , ,
 "========== CREATION ==========", , , , ,
-"History, Laws, Sin",History,Creation,Genesis,2,4
+"History, Laws, Penalty, Punishment, Sin",History,Creation,Genesis,2,4
 
 "========== LAWS ==========", , , , ,
 "========== LAW ==========", , , , ,
-"History, Laws, Sin",Law,Psalms,1,2
+"History, Laws, Penalty, Punishment, Sin",Law,Psalms,1,2
 
 "========== LAWS ==========", , , , ,
 "========== OBEY ==========", , , , ,
-"History, Laws, Sin",Laws,Obey,Genesis,4,6
-"History, Laws, Sin",Laws,Obey,Genesis,4,7
+"History, Laws, Penalty, Punishment, Sin",Laws,Obey,Genesis,4,6
+"History, Laws, Penalty, Punishment, Sin",Laws,Obey,Genesis,4,7
 
 "========== LAWS ==========", , , , ,
 "========== OFFERINGS ==========", , , , ,
-"History, Laws, Sin",Laws,Offerings,Genesis,4,4
-"History, Laws, Sin",Laws,Offerings,Genesis,4,5
+"History, Laws, Penalty, Punishment, Sin",Laws,Offerings,Genesis,4,4
+"History, Laws, Penalty, Punishment, Sin",Laws,Offerings,Genesis,4,5
 
 "========== LAWS ==========", , , , ,
 "========== SABBATH ==========", , , , ,
-"History, Laws, Sin",Laws,Sabbath,Genesis,2,2
-"History, Laws, Sin",Laws,Sabbath,Genesis,2,3
+"History, Laws, Penalty, Punishment, Sin",Laws,Sabbath,Genesis,2,2
+"History, Laws, Penalty, Punishment, Sin",Laws,Sabbath,Genesis,2,3
+
+"========== PENALTY PUNISHMENT ==========", , , , ,
+"========== PLAGUES ==========", , , , ,
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,7,19
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,7,20
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,7,21
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,7,22
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,7,23
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,8,5
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,8,16
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,8,17
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,8,18
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,8,19
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,8,20
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,8,21
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,8,22
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,8,23
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,8,24
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,8,30
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,8,31
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,8,32
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,1
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,2
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,3
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,4
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,5
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,6
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,7
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,8
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,9
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,10
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,11
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,12
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,18
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,19
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,20
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,21
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,22
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,23
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,24
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,25
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,26
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,27
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,28
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,29
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,33
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,34
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,9,35
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,12
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,13
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,14
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,15
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,16
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,17
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,18
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,19
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,20
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,21
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,22
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,23
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,24
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,25
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,26
+"History, Laws, Penalty, Punishment, Sin","Penalty, Punishment",Plagues,Exodus,10,27
 
 "========== SIN ==========", , , , ,
 "========== CORRUPTION ==========", , , , ,
-"History, Laws, Sin",Sin,Corruption,Genesis,6,1
-"History, Laws, Sin",Sin,Corruption,Genesis,6,2
-"History, Laws, Sin",Sin,Corruption,Genesis,6,3
-"History, Laws, Sin",Sin,Corruption,Genesis,6,11
-"History, Laws, Sin",Sin,Corruption,Genesis,6,12
-"History, Laws, Sin",Sin,Corruption,Genesis,6,13
+"History, Laws, Penalty, Punishment, Sin",Sin,Corruption,Genesis,6,1
+"History, Laws, Penalty, Punishment, Sin",Sin,Corruption,Genesis,6,2
+"History, Laws, Penalty, Punishment, Sin",Sin,Corruption,Genesis,6,3
+"History, Laws, Penalty, Punishment, Sin",Sin,Corruption,Genesis,6,11
+"History, Laws, Penalty, Punishment, Sin",Sin,Corruption,Genesis,6,12
+"History, Laws, Penalty, Punishment, Sin",Sin,Corruption,Genesis,6,13
 
 
 "========== SIN ==========", , , , ,
 "========== DISOBEY ==========", , , , ,
-"History, Laws, Sin",Sin,Disobey,Genesis,4,6
-"History, Laws, Sin",Sin,Disobey,Genesis,4,7
+"History, Laws, Penalty, Punishment, Sin",Sin,Disobey,Genesis,4,6
+"History, Laws, Penalty, Punishment, Sin",Sin,Disobey,Genesis,4,7
 
 "========== SIN ==========", , , , ,
 "========== THE FALL ==========", , , , ,
-"History, Laws, Sin",Sin,The Fall,Genesis,3,1
-"History, Laws, Sin",Sin,The Fall,Genesis,3,2
-"History, Laws, Sin",Sin,The Fall,Genesis,3,3
-"History, Laws, Sin",Sin,The Fall,Genesis,3,4
-"History, Laws, Sin",Sin,The Fall,Genesis,3,5
-"History, Laws, Sin",Sin,The Fall,Genesis,3,6
-"History, Laws, Sin",Sin,The Fall,Genesis,3,7
-"History, Laws, Sin",Sin,The Fall,Genesis,3,8
-"History, Laws, Sin",Sin,The Fall,Genesis,3,9
-"History, Laws, Sin",Sin,The Fall,Genesis,3,10
-"History, Laws, Sin",Sin,The Fall,Genesis,3,11
-"History, Laws, Sin",Sin,The Fall,Genesis,3,12
-"History, Laws, Sin",Sin,The Fall,Genesis,3,13
-"History, Laws, Sin",Sin,The Fall,Genesis,3,14
-"History, Laws, Sin",Sin,The Fall,Genesis,3,15
-"History, Laws, Sin",Sin,The Fall,Genesis,3,16
-"History, Laws, Sin",Sin,The Fall,Genesis,3,17
-"History, Laws, Sin",Sin,The Fall,Genesis,3,18
-"History, Laws, Sin",Sin,The Fall,Genesis,3,19
-"History, Laws, Sin",Sin,The Fall,Genesis,3,20
-"History, Laws, Sin",Sin,The Fall,Genesis,3,21
-"History, Laws, Sin",Sin,The Fall,Genesis,3,22
-"History, Laws, Sin",Sin,The Fall,Genesis,3,23
-"History, Laws, Sin",Sin,The Fall,Genesis,3,24
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,1
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,2
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,3
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,4
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,5
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,6
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,7
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,8
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,9
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,10
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,11
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,12
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,13
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,14
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,15
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,16
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,17
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,18
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,19
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,20
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,21
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,22
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,23
+"History, Laws, Penalty, Punishment, Sin",Sin,The Fall,Genesis,3,24
 
 "========== SIN ==========", , , , ,
 "========== MURDER ==========", , , , ,
-"History, Laws, Sin",Sin,Murder,Genesis,4,8
-"History, Laws, Sin",Sin,Murder,Genesis,4,13
-"History, Laws, Sin",Sin,Murder,Genesis,4,14
-"History, Laws, Sin",Sin,Murder,Genesis,4,15
+"History, Laws, Penalty, Punishment, Sin",Sin,Murder,Genesis,4,8
+"History, Laws, Penalty, Punishment, Sin",Sin,Murder,Genesis,4,13
+"History, Laws, Penalty, Punishment, Sin",Sin,Murder,Genesis,4,14
+"History, Laws, Penalty, Punishment, Sin",Sin,Murder,Genesis,4,15
 
 "========== SIN ==========", , , , ,
 "========== SIN ==========", , , , ,
-"History, Laws, Sin",Sin,Sin,Genesis,4,6
-"History, Laws, Sin",Sin,Sin,Genesis,4,7
+"History, Laws, Penalty, Punishment, Sin",Sin,Sin,Genesis,4,6
+"History, Laws, Penalty, Punishment, Sin",Sin,Sin,Genesis,4,7
+
 "========== SIN ==========", , , , ,
 "========== VENGEANCE ==========", , , , ,
-"History, Laws, Sin",Sin,Vengeance,Genesis,4,15
+"History, Laws, Penalty, Punishment, Sin",Sin,Vengeance,Genesis,4,15
 
 
 

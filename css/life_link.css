@@ -105,6 +105,12 @@ header h3 {
   border-radius: 4px;
 }
 
+.chapter-row td {
+  padding-top: 25px;
+  font-weight: bold;
+  background: #f4f4f4;
+}
+
 .verseText {
   font-family: 'Times New Roman', Times, serif;
   font-size: 1.2em;

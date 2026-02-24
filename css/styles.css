@@ -101,6 +101,7 @@ header h2 {
   text-align: center;
   display: flex;
   flex-direction: column;
+    justify-content: space-between;  /* spreads content from top to bottom */
   align-items: center;
   width: 275px;
   padding: 20px;

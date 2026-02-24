@@ -88,6 +88,13 @@ header h2 {
   padding: 40px 20px;
 }
 
+.cards-container .card img {
+  max-height: 200px;  /* or whatever fits your design */
+  object-fit: cover;
+  display: block;
+  width: 100%;
+}
+
 .card {
   background: linear-gradient(to bottom, #e6e6fa, #f7f3ff); /* subtle gradient */
   border-radius: 15px;
@@ -150,9 +157,13 @@ header h2 {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
+
 .card-buttons {
-  margin-top: 20px;
+  margin-top: 15px;  /* space above the buttons */
+  display: flex;      /* keeps multiple buttons in a row */
+  gap: 10px;          /* space between buttons if you have more than one */
 }
+
 .pdf-preview {
   margin: 30px auto;
   max-width: 800px;

@@ -62,7 +62,9 @@ header h3 {
   font-size: 1.5em;
   color: #4b0082;
 }
-
+header h3:last-of-type {
+  margin-bottom: 20px;
+}
 .section-container {
   display: flex;
   align-items: baseline;

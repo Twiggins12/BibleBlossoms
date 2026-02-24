@@ -150,7 +150,9 @@ header h2 {
   transform: translateY(-5px);
   box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
-
+.card-buttons {
+  margin-top: 20px;
+}
 .pdf-preview {
   margin: 30px auto;
   max-width: 800px;

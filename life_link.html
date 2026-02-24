@@ -260,6 +260,20 @@ Thank you for your patience as this work unfolds.
 
     loadMasterCSV();
   });
+
+  // Smooth scroll for anchor links, works even with flex body
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const targetId = this.getAttribute('href');
+    if (targetId && targetId.startsWith('#')) {
+      e.preventDefault(); // prevent the jump
+      const target = document.querySelector(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+});
 </script>
     console.log("Life Link script loaded");
   </div>

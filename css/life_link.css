@@ -179,11 +179,11 @@ header h3 {
   font-weight: bold;
 }
 .copyright {
-  max-width: 800px;
-  margin: 40px auto;
+  max-width: 600px;
+  margin: 30px auto;
   padding: 20px;
   font-size: 0.95em;
-  line-height: 1.6;
+  line-height: 1.2;
   border-top: 1px solid #ddd;
 }
 

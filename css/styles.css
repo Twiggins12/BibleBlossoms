@@ -140,7 +140,7 @@ header h2 {
   font-size: 1.1em;  /* increase button text */
   display: inline-block;
   text-decoration: none;
-  margin-top: auto;
+  margin-top: 20px;
   color: #4b0082;
   font-weight: bold;
   padding: 8px 14px;

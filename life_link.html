@@ -43,7 +43,15 @@ Thank you for your patience as this work unfolds.
  </p>
    <p>Began February, 4, 2026</p>
       <p>Last Updated February 24, 2026</p>
-
+<div class="section-container">
+  <div class="section-heading">Select Bible Version</div>
+  <div class="dropdown-column">
+    <select id="versionSelect">
+      <option value="WEB">World English Bible</option>
+      <option value="KJV">King James Version</option>
+    </select>
+  </div>
+</div>
  </div>
   
   <div class="page-content">
@@ -97,18 +105,33 @@ Thank you for your patience as this work unfolds.
 
 let bible = [];
 
-const githubBase = "https://raw.githubusercontent.com/Twiggins/BibleBlossoms/main/bibles/";
+const versionSelect = document.getElementById("versionSelect");
 
 async function loadBible(version) {
   try {
-    const res = await fetch(githubBase + version + ".json");
-    const data = await res.json();
-    bible = data;
+    const response = await fetch(`https://raw.githubusercontent.com/Twiggins/BibleBlossoms/main/bibles/${version}.json`);
+    bible = await response.json();
     console.log(version + " loaded!");
+    // Optionally refresh currently displayed verses
+    sectionContainers.forEach((section, index) => {
+      const bookSelect = section.querySelector('.bookSelect');
+      if (bookSelect.value) {
+        // Trigger change to refresh displayed verses
+        bookSelect.dispatchEvent(new Event('change'));
+      }
+    });
   } catch (err) {
     console.error("Error loading Bible:", err);
   }
 }
+
+// Load default version
+loadBible("WEB");
+
+// Switch versions
+versionSelect.addEventListener("change", () => {
+  loadBible(versionSelect.value);
+});
 
 // Function to get a verse from the loaded JSON
 function getVerse(book, chapter, verse) {

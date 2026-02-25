@@ -135,6 +135,14 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "People,Culture,Objects",People,Man,Genesis,4,1
 "People,Culture,Objects",People,Man,Psalms,1,1
 
+"========== PEOPLE ==========", , , , ,
+"========== MATTHEW ==========", , , , ,
+"People,Culture,Objects",People,Matthew,Matthew,9,9
+"People,Culture,Objects",People,Matthew,Matthew,10,3
+"People,Culture,Objects",People,Matthew,Mark,3,18
+"People,Culture,Objects",People,Matthew,Luke,6,15
+"People,Culture,Objects",People,Matthew,Acts,1,13
+
 
 "========== PEOPLE ==========", , , , ,
 "========== MOTHER ==========", , , , ,

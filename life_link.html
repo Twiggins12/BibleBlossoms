@@ -229,7 +229,7 @@ Thank you for your patience as this work unfolds.
             if (!data.verses) continue;
 
             rows.forEach(row => {
-              const verseData = data.verses.find(v => v.verse === row.Verse);
+              const verseData = data.verses.find(v => v.verse == row.Verse);
               if (!verseData) return;
 
               const trVerse = document.createElement('tr');

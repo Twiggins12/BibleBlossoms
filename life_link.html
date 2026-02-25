@@ -224,14 +224,6 @@ Thank you for your patience as this work unfolds.
           table.appendChild(trChapter);
 
           try {
-const res = await fetch(`https://bible-api.com/${encodeURIComponent(book)}`);
-            const data = await res.json();
-            if (!data.verses) continue;
-
-            rows.forEach(row => {
-const verseData = data.verses.find(v =>
-  v.chapter === chapter && v.verse === Number(row.Verse)
-);
               if (!verseData) return;
 
               const trVerse = document.createElement('tr');

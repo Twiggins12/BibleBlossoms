@@ -99,8 +99,10 @@ Thank you for your patience as this work unfolds.
 let bible = [];
 
 // Load a Bible version (WEB or KJV)
+const githubBase = "https://raw.githubusercontent.com/Twiggins/BibleBlossoms/main/bibles/";
+
 function loadBible(version) {
-  fetch("bibles/" + version + ".json")
+  fetch(githubBase + version + ".json")
     .then(response => response.json())
     .then(data => {
       bible = data;

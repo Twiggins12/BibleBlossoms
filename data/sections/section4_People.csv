@@ -54,6 +54,12 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "People,Culture,Objects",People,"Children, Baby, Child, Offspring",Genesis,3,16
 
 "========== PEOPLE ==========", , , , ,
+"========== EMIM ==========", , , , ,
+"People,Culture,Objects",People,Emim,Genesis,14,5
+"People,Culture,Objects",People,People,Emim,Deuteronomy,2,10
+"People,Culture,Objects",People,People,Emim,Deuteronomy,2,11
+
+"========== PEOPLE ==========", , , , ,
 "========== EVE ==========", , , , ,
 "People,Culture,Objects",People,Eve,Genesis,2,21
 "People,Culture,Objects",People,Eve,Genesis,2,22
@@ -89,7 +95,11 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "========== PEOPLE ==========", , , , ,
 "========== GIANTS ==========", , , , ,
 "People,Culture,Objects",People,People,Giants,Genesis,6,2
+"People,Culture,Objects",People,People,Giants,Genesis,14,5
 "People,Culture,Objects",People,People,Giants,Numbers,13,33
+"People,Culture,Objects",People,People,Giants,Deuteronomy,2,10
+"People,Culture,Objects",People,People,Giants,Deuteronomy,2,11
+
 
 "========== PEOPLE ==========", , , , ,
 "========== HUSBAND ==========", , , , ,
@@ -135,6 +145,11 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "========== NEPHILIM ==========", , , , ,
 "People,Culture,Objects",People,People,Nephilim,Genesis,6,2
 "People,Culture,Objects",People,People,Nephilim,Numbers,13,33
+
+"========== PEOPLE ==========", , , , ,
+"========== REPHAIM ==========", , , , ,
+"People,Culture,Objects",People,Rephaim,Genesis,14,5
+"People,Culture,Objects",People,Rephaim,Genesis,15,20
 
 "========== PEOPLE ==========", , , , ,
 "========== RIGHTEOUS ==========", , , , ,

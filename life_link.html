@@ -278,14 +278,15 @@ sectionContainers.forEach((section, index) => {
     trChapter.appendChild(tdChapter);
     table.appendChild(trChapter);
 
-    // Spacer row
+    // Spacer row above chapter
     const spacerTr = document.createElement('tr');
+    spacerTr.className = 'spacer-row'; // <-- use CSS class
     const spacerTd = document.createElement('td');
     spacerTd.colSpan = 2;
-    spacerTd.style.height = '15px';
-    spacerTd.style.background = 'transparent';
     spacerTr.appendChild(spacerTd);
-    table.appendChild(spacerTr);
+    
+    table.appendChild(spacerTr);     // add spacer first
+    table.appendChild(trChapter);   // then chapter row
 
     // Add verses
     rows.forEach(row => {

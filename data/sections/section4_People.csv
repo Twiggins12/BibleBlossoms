@@ -87,6 +87,11 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "People,Culture,Objects",People,"Fugitive, Runaway",Genesis,4,14
 
 "========== PEOPLE ==========", , , , ,
+"========== GIANTS ==========", , , , ,
+"People,Culture,Objects",People,People,Giants,Genesis,6,2
+"People,Culture,Objects",People,People,Giants,Numbers,13,33
+
+"========== PEOPLE ==========", , , , ,
 "========== HUSBAND ==========", , , , ,
 "People,Culture,Objects",People,Husband,Genesis,3,6
 "People,Culture,Objects",People,Husband,Genesis,3,7

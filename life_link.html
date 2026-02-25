@@ -122,16 +122,16 @@ Thank you for your patience as this work unfolds.
         const csvText = await res.text();
         const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
 
-        masterRows = parsed.data
-          .filter(row => row.Book && row.Chapter && row.Verse)
-          .map(row => ({
-            Section: (row.Section || "").trim(),
-            MainTopic: (row.MainTopic || "").trim(),
-            SubTopic: (row.SubTopic || "").trim(),
-            Book: (row.Book || "").trim(),
-            Chapter: parseInt(row.Chapter),
-            Verse: parseInt(row.Verse)
-          }));
+       masterRows = parsed.data
+  .filter(row => row.Book && row.Chapter && row.Verse)
+  .map(row => ({
+    Section: (row.Section || "").trim(),
+    MainTopic: (row.MainTopic || "").trim(),
+    SubTopic: (row.SubTopic || "").trim(),
+    Book: (row.Book || "").trim(),
+    Chapter: parseInt(row.Chapter.trim(), 10),
+    Verse: parseInt(row.Verse.trim(), 10)
+  }));
 
         const mainTopics = [...new Set(masterRows.map(r => r.MainTopic))];
         mainTopics.forEach(topic => {

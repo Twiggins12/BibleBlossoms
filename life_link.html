@@ -235,61 +235,65 @@ function getVerse(book, chapter, verse) {
       const table = document.createElement('table');
       table.className = 'verse-table';
 
-      async function displayVerses() {
-        const chapterGroups = {};
+async function displayVerses() {
+  const chapterGroups = {};
 
-        filteredRows.forEach(row => {
-          const key = `${row.Book}-${row.Chapter}`;
-          if (!chapterGroups[key]) chapterGroups[key] = [];
-          chapterGroups[key].push(row);
-        });
+  // Group rows by book + chapter
+  filteredRows.forEach(row => {
+    const key = `${row.Book}-${row.Chapter}`;
+    if (!chapterGroups[key]) chapterGroups[key] = [];
+    chapterGroups[key].push(row);
+  });
 
-        for (const key in chapterGroups) {
-          const rows = chapterGroups[key];
-          const book = rows[0].Book;
-          const chapter = rows[0].Chapter;
-rows.forEach(row => {
-  const verseText = getVerse(row.Book, row.Chapter, row.Verse);
+  for (const key in chapterGroups) {
+    const rows = chapterGroups[key];
+    const book = rows[0].Book;
+    const chapter = rows[0].Chapter;
 
-  const trVerse = document.createElement('tr');
-  trVerse.className = 'verse-row';
+    // Chapter row with gradient first
+    const trChapter = document.createElement('tr');
+    trChapter.className = 'chapter-row';
+    const tdChapter = document.createElement('td');
+    tdChapter.colSpan = 2;
+    tdChapter.innerText = `Chapter ${chapter}`;
+    trChapter.appendChild(tdChapter);
+    table.appendChild(trChapter);
 
-  const tdNumber = document.createElement('td');
-  tdNumber.className = 'verse-number';
-  tdNumber.innerText = row.Verse;
+    // Spacer row
+    const spacerTr = document.createElement('tr');
+    const spacerTd = document.createElement('td');
+    spacerTd.colSpan = 2;
+    spacerTd.style.height = '15px';
+    spacerTd.style.background = 'transparent';
+    spacerTr.appendChild(spacerTd);
+    table.appendChild(spacerTr);
 
-  const tdText = document.createElement('td');
-  tdText.className = 'verse-text';
-  tdText.innerText = verseText;
+    // Add verses
+    rows.forEach(row => {
+      const verseText = getVerse(row.Book, row.Chapter, row.Verse);
 
-  trVerse.appendChild(tdNumber);
-  trVerse.appendChild(tdText);
+      const trVerse = document.createElement('tr');
+      trVerse.className = 'verse-row';
 
-  table.appendChild(trVerse);
-});
-          // Spacer row to separate from previous content
-          const spacerTr = document.createElement('tr');
-          const spacerTd = document.createElement('td');
-          spacerTd.colSpan = 2;
-          spacerTd.style.height = '25px';   // adjust spacing here
-          spacerTd.style.background = 'transparent';
-          spacerTr.appendChild(spacerTd);
-          table.appendChild(spacerTr);
+      const tdNumber = document.createElement('td');
+      tdNumber.className = 'verse-number';
+      tdNumber.innerText = row.Verse;
 
-          // Chapter row with gradient
-          const trChapter = document.createElement('tr');
-          trChapter.className = 'chapter-row';
-          const tdChapter = document.createElement('td');
-          tdChapter.colSpan = 2;
-          tdChapter.innerText = `Chapter ${chapter}`;
-          trChapter.appendChild(tdChapter);
-          table.appendChild(trChapter);
-        }
+      const tdText = document.createElement('td');
+      tdText.className = 'verse-text';
+      tdText.innerText = verseText;
 
-        verseTextDiv.appendChild(table);
-      }
+      trVerse.appendChild(tdNumber);
+      trVerse.appendChild(tdText);
 
-      displayVerses();
+      table.appendChild(trVerse);
+    });
+  }
+
+  verseTextDiv.appendChild(table);
+}
+
+displayVerses();
     });
 
     loadMasterCSV();

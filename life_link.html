@@ -284,29 +284,6 @@ rows.forEach(row => {
           tdChapter.innerText = `Chapter ${chapter}`;
           trChapter.appendChild(tdChapter);
           table.appendChild(trChapter);
-
-          try {
-              if (!verseData) return;
-
-              const trVerse = document.createElement('tr');
-              trVerse.className = 'verse-row';
-
-              const tdNumber = document.createElement('td');
-              tdNumber.className = 'verse-number';
-              tdNumber.innerText = row.Verse;
-
-              const tdText = document.createElement('td');
-              tdText.className = 'verse-text';
-              tdText.innerText = verseData.text;
-
-              trVerse.appendChild(tdNumber);
-              trVerse.appendChild(tdText);
-
-              table.appendChild(trVerse);
-            });
-          } catch (err) {
-            console.error(`Error fetching ${book} ${chapter}:`, err);
-          }
         }
 
         verseTextDiv.appendChild(table);

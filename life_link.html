@@ -229,6 +229,7 @@ Thank you for your patience as this work unfolds.
             if (!data.verses) continue;
 
             rows.forEach(row => {
+              console.log(book, chapter, row.Verse);
 const verseData = data.verses.find(v => v.verse === Number(row.Verse));
               if (!verseData) return;
 

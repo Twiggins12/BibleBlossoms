@@ -95,37 +95,20 @@ Thank you for your patience as this work unfolds.
  // Life Link Bible JSON
  // =====================
 
-// This will hold the currently loaded Bible
 let bible = [];
 
-// Load a Bible version (WEB or KJV)
 const githubBase = "https://raw.githubusercontent.com/Twiggins/BibleBlossoms/main/bibles/";
 
-function loadBible(version) {
-  fetch(githubBase + version + ".json")
-    .then(response => response.json())
-    .then(data => {
-      bible = data;
-      console.log(version + " loaded!");
-    })
-    .catch(err => console.error("Error loading Bible:", err));
+async function loadBible(version) {
+  try {
+    const res = await fetch(githubBase + version + ".json");
+    const data = await res.json();
+    bible = data;
+    console.log(version + " loaded!");
+  } catch (err) {
+    console.error("Error loading Bible:", err);
+  }
 }
-
-// Load default version
-loadBible("WEB");
-
-// Dropdown to switch versions
-const versionSelect = document.createElement("select");
-versionSelect.id = "versionSelect";
-versionSelect.innerHTML = `
-  <option value="WEB">World English Bible</option>
-  <option value="KJV">King James Version</option>
-`;
-document.body.insertBefore(versionSelect, document.querySelector('.content'));
-
-versionSelect.addEventListener("change", function() {
-  loadBible(this.value);
-});
 
 // Function to get a verse from the loaded JSON
 function getVerse(book, chapter, verse) {
@@ -137,128 +120,29 @@ function getVerse(book, chapter, verse) {
   );
   return result ? result.text : "[Verse not found]";
 }
-// Each section can point to its own CSV file
-const csvFiles = [
-  'data/sections/section1_Father.csv',
-  'data/sections/section2_Creation.csv',
-  'data/sections/section3_History.csv',
-  'data/sections/section4_People.csv',
-  'data/sections/section5_Mind.csv',
-  'data/sections/section6_Places.csv',
-  'data/sections/section7_Spiritual_Beings.csv',
-  'data/sections/section8_Visions.csv',
-  'data/sections/section9_Wisdom.csv',
-  'data/sections/section10_Promises.csv',
-  'data/sections/section11_Concepts.csv'
-];
 
-const sectionContainers = document.querySelectorAll('.section-container');
+// Example usage inside bookSelect change
+bookSelect.addEventListener('change', async () => {
+  verseTextDiv.innerHTML = '';
+  
+  const selectedTopic = mainTopicSelect.value;
+  const selectedSub = subTopicSelect.value;
+  const selectedBook = bookSelect.value;
+  if (!selectedTopic || !selectedSub || !selectedBook) return;
 
-sectionContainers.forEach((section, index) => {
-  const mainTopicSelect = section.querySelector('.mainTopicSelect');
-  const subTopicSelect = section.querySelector('.subTopicSelect');
-  const bookSelect = section.querySelector('.bookSelect');
-  const verseTextDiv = section.querySelector('.verseText');
+  const filteredRows = masterRows.filter(r =>
+    r.MainTopic === selectedTopic &&
+    r.SubTopic === selectedSub &&
+    r.Book === selectedBook
+  );
 
-  let masterRows = [];
+  // Make sure Bible is loaded first
+  await loadBible(versionSelect.value); // wait until JSON is loaded
 
-  // Load CSV and populate Main Topics
-  async function loadMasterCSV() {
-    try {
-      const res = await fetch(csvFiles[index]);
-      const csvText = await res.text();
-      const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
+  const table = document.createElement('table');
+  table.className = 'verse-table';
 
-       masterRows = parsed.data
-         .filter(row => row.Book && row.Chapter && row.Verse)
-         .map(row => ({
-           Section: (row.Section || "").trim(),
-           MainTopic: (row.MainTopic || "").trim(),
-           SubTopic: (row.SubTopic || "").trim(),
-           Book: (row.Book || "").trim(),
-           Chapter: parseInt(row.Chapter.trim(), 10),
-           Verse: parseInt(row.Verse.trim(), 10)
-         }));
-
-        const mainTopics = [...new Set(masterRows.map(r => r.MainTopic))];
-        mainTopics.forEach(topic => {
-          const opt = document.createElement('option');
-          opt.value = topic;
-          opt.text = topic;
-          mainTopicSelect.appendChild(opt);
-        });
-      } catch(err) {
-        console.error('Error loading CSV:', err);
-      }
-    }
-
-    // Main Topic change -> populat Sub Topics
-    mainTopicSelect.addEventListener('change', () => {
-      subTopicSelect.innerHTML = '<option value="">Select Sub-Topic</option>';
-      bookSelect.innerHTML = '<option value="">Select Book</option>';
-      verseTextDiv.innerHTML = '';
-      
-      const selectedTopic = mainTopicSelect.value;
-      if (!selectedTopic) return;
-      
-      const subTopics = [...new Set(
-        masterRows
-          .filter(r => r.MainTopic === selectedTopic)
-          .map(r => r.SubTopic)
-      )];
-      
-      subTopics.forEach(sub => {
-        const opt = document.createElement('option');
-        opt.value = sub;
-        opt.text = sub;
-        subTopicSelect.appendChild(opt);
-      });
-    });
-
-    // Sub Topic change -> populate Books
-    subTopicSelect.addEventListener('change', () => {
-      bookSelect.innerHTML = '<option value="">Select Book</option>';
-      verseTextDiv.innerHTML = '';
-      
-      const selectedTopic = mainTopicSelect.value;
-      const selectedSub = subTopicSelect.value;
-      if (!selectedTopic || !selectedSub) return;
-      
-      const books = [...new Set(
-        masterRows
-          .filter(r => r.MainTopic === selectedTopic && r.SubTopic === selectedSub)
-          .map(r => r.Book)
-      )];
-      
-      books.forEach(book => {
-        const opt = document.createElement('option');
-        opt.value = book;
-        opt.text = book;
-        bookSelect.appendChild(opt);
-      });
-    });
-
-    // Book Change -> display verses
-    bookSelect.addEventListener('change', () => {
-      verseTextDiv.innerHTML = '';
-      
-      const selectedTopic = mainTopicSelect.value;
-      const selectedSub = subTopicSelect.value;
-      const selectedBook = bookSelect.value;
-      if (!selectedTopic || !selectedSub || !selectedBook) return;
-
-      const filteredRows = masterRows.filter(r =>
-        r.MainTopic === selectedTopic &&
-        r.SubTopic === selectedSub &&
-        r.Book === selectedBook
-      );
-
-      const table = document.createElement('table');
-      table.className = 'verse-table';
-
-      // Display verses grouped by chapter
-  function displayVerses() {
-    const chapterGroups = {};
+  const chapterGroups = {};
 
   filteredRows.forEach(row => {
     const key = `${row.Book}-${row.Chapter}`;
@@ -271,7 +155,6 @@ sectionContainers.forEach((section, index) => {
     const book = rows[0].Book;
     const chapter = rows[0].Chapter;
 
-    // Chapter row with gradient first
     const trChapter = document.createElement('tr');
     trChapter.className = 'chapter-row';
     const tdChapter = document.createElement('td');
@@ -280,17 +163,6 @@ sectionContainers.forEach((section, index) => {
     trChapter.appendChild(tdChapter);
     table.appendChild(trChapter);
 
-    // Spacer row above chapter
-    const spacerTr = document.createElement('tr');
-    spacerTr.className = 'spacer-row'; // <-- use CSS class
-    const spacerTd = document.createElement('td');
-    spacerTd.colSpan = 2;
-    spacerTr.appendChild(spacerTd);
-    
-    table.appendChild(spacerTr);     // add spacer first
-    table.appendChild(trChapter);   // then chapter row
-
-    // Add verses
     rows.forEach(row => {
       const verseText = getVerse(row.Book, row.Chapter, row.Verse);
 
@@ -312,8 +184,7 @@ sectionContainers.forEach((section, index) => {
   }
 
   verseTextDiv.appendChild(table);
-}
-
+});
 displayVerses();
     });
 

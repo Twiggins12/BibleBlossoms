@@ -1,247 +1,373 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bible Blossoms | Life Link</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bible Blossoms | Life Link</title>
+
 <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png">
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 
-  <!-- Shared CSS Styles -->
-  <link rel="stylesheet" href="css/styles.css">
-
-  <!-- Life Link Only CSS Style -->
-  <link rel="stylesheet" href="css/life_link.css">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/life_link.css">
 
 </head>
+
 <body>
 
-  <!-- Header -->
 <header id="top">
-  <h1>Life Link</h1>
-  <h2>Bible Topical Reference</h2>
+<h1>Life Link</h1>
+<h2>Bible Topical Reference</h2>
 </header>
 
-    <!-- Top-left Home Link -->
 <div id="domain-top-left">
-  <a href="index.html">BibleBlossoms</a>
+<a href="index.html">BibleBlossoms</a>
 </div>
-  
-  <!-- Page Content -->
- <div class="content">
-    <h3>A Work in Progress - Growing Daily</h3>
+
+
+<div class="content">
+
+<h3>A Work in Progress - Growing Daily</h3>
+
 <p>
-  This reference tool is just beginning its journey.
+This reference tool is just beginning its journey.
 I’m building it prayerfully and carefully, adding new topics and Scripture references nearly every day.
 It may feel incomplete at times — and that’s because it is still growing.
 My desire is that, over the years, Life Link will become a rich and trusted Bible topical reference to support deeper study and understanding.
 Thank you for your patience as this work unfolds.
- </p>
-   <p>Began February, 4, 2026</p>
-      <p>Last Updated February 24, 2026</p>
+</p>
+
+<p>Began February 4, 2026</p>
+<p>Last Updated February 24, 2026</p>
+
 <div class="section-container">
-  <div class="section-heading">Select Bible Version</div>
-  <div class="dropdown-column">
-    <select id="versionSelect">
-      <option value="WEB">World English Bible</option>
-      <option value="KJV">King James Version</option>
-    </select>
-  </div>
-</div>
- </div>
-  
-  <div class="page-content">
+<div class="section-heading">Select Bible Version</div>
 
-<!-- Section Containers -->
+<div class="dropdown-column">
+<select id="versionSelect">
+<option value="WEB">World English Bible</option>
+<option value="KJV">King James Version</option>
+</select>
+</div>
+</div>
+
+</div>
+
+
+<div class="page-content">
+
 <div id="sections-container">
-  <div class="section-container"><div class="section-heading">Father, Son, Holy Spirit</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
-  <div class="section-container"><div class="section-heading">Creation, Earth, Animals</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
-  <div class="section-container"><div class="section-heading">History, Laws, Sin</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
-  <div class="section-container"><div class="section-heading">People, Culture, Objects</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
-  <div class="section-container"><div class="section-heading">Mind, Body, Spirit</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
-  <div class="section-container"><div class="section-heading">Places, Travels</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
-  <div class="section-container"><div class="section-heading">Spiritual Beings, Miracles</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
-  <div class="section-container"><div class="section-heading">Visions, Prophecies, End Times</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
-  <div class="section-container"><div class="section-heading">Wisdom, Instructions</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
-  <div class="section-container"><div class="section-heading">Promises, Covenants</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
-  <div class="section-container"><div class="section-heading">Concepts, Ideas, Principles</div><div class="dropdown-column"><select class="mainTopicSelect"><option value="">Select Main Topic</option></select><select class="subTopicSelect"><option value="">Select Sub-Topic</option></select><select class="bookSelect"><option value="">Select Book</option></select><div class="verseText"></div></div></div>
+
+<div class="section-container">
+<div class="section-heading">Father, Son, Holy Spirit</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
 </div>
 
-<div id="loading">Loading verses...</div>
-<div style="text-align:center; margin-top:40px;">
+<div class="section-container">
+<div class="section-heading">Creation, Earth, Animals</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
 </div>
-  <section class="copyright">
-  <h3>Copyright & Attribution</h3>
+</div>
 
-  <p>
-    All Scripture quotations are from the 
-    <a href="https://worldenglishbible.org/" target="_blank">
-      World English Bible (WEB)
-    </a>. It's in the public domain. You may freely 
-    share, quote, and copy them.
-  </p>
+<div class="section-container">
+<div class="section-heading">History, Laws, Sin</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
 
-  <p>
-    The Bible verses you see here are retrieved automatically using the 
-    <a href="https://bible-api.com/" target="_blank">
-      Bible API.
-    </a> This service provides public domain Bible texts for 
-    educational and non-commercial use.
-  </p>
+<div class="section-container">
+<div class="section-heading">People, Culture, Objects</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
 
-  <p>
-    Life link is lovingly created and maintained as an independent project. It isn't affiliated with 
-    or endorsed by the World English Bible organization or the Bible API project.
-  </p>
+<div class="section-container">
+<div class="section-heading">Mind, Body, Spirit</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Places, Travels</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Spiritual Beings, Miracles</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Visions, Prophecies, End Times</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Wisdom, Instructions</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Promises, Covenants</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Concepts, Ideas, Principles</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+</div>
+
+
+<section class="copyright">
+
+<h3>Copyright & Attribution</h3>
+
+<p>
+All Scripture quotations are in the public domain and may be freely quoted, copied, and shared.
+</p>
+<p>
+Life Link is an independent project and is not affiliated with
+the World English Bible organization.
+</p>
+
 </section>
+
+</div>
+
+
 <script>
- // =====================
- // Life Link Bible JSON
- // =====================
 
 let bible = [];
 
 const versionSelect = document.getElementById("versionSelect");
+const sections = document.querySelectorAll("#sections-container .section-container");
 
-async function loadBible(version) {
-  try {
-    const response = await fetch(`https://raw.githubusercontent.com/Twiggins/BibleBlossoms/main/bibles/${version}.json`);
-    bible = await response.json();
-    console.log(version + " loaded!");
-    // Optionally refresh currently displayed verses
-    sectionContainers.forEach((section, index) => {
-      const bookSelect = section.querySelector('.bookSelect');
-      if (bookSelect.value) {
-        // Trigger change to refresh displayed verses
-        bookSelect.dispatchEvent(new Event('change'));
-      }
-    });
-  } catch (err) {
-    console.error("Error loading Bible:", err);
-  }
+const csvFiles = [
+"data/sections/section1_Father.csv",
+"data/sections/section2_Creation.csv",
+"data/sections/section3_History.csv",
+"data/sections/section4_People.csv",
+"data/sections/section5_Mind.csv",
+"data/sections/section6_Places.csv",
+"data/sections/section7_SpiritualBeings.csv",
+"data/sections/section8_Visions.csv",
+"data/sections/section9_Wisdom.csv",
+"data/sections/section10_Promises.csv",
+"data/sections/section11_Concepts.csv"
+];
+
+
+async function loadBible(version){
+const res = await fetch(`https://raw.githubusercontent.com/Twiggins/BibleBlossoms/main/bibles/${version}.json`);
+bible = await res.json();
+console.log("Bible loaded:",version)
 }
 
-// Load default version
-loadBible("WEB");
 
-// Switch versions
-versionSelect.addEventListener("change", () => {
-  loadBible(versionSelect.value);
-});
+function getVerse(book,chapter,verse){
 
-// Function to get a verse from the loaded JSON
-function getVerse(book, chapter, verse) {
-  if (!bible || bible.length === 0) return "[Bible not loaded]";
-  const result = bible.find(v =>
-    (v.commonName === book || v.name === book) &&
-    v.chapter === chapter &&
-    v.verse === verse
-  );
-  return result ? result.text : "[Verse not found]";
+const found = bible.find(v =>
+(v.commonName === book || v.name === book) &&
+v.chapter === chapter &&
+v.verse === verse
+)
+
+return found ? found.text : "[Verse not found]"
+
 }
 
-// Example usage inside bookSelect change
-bookSelect.addEventListener('change', async () => {
-  verseTextDiv.innerHTML = '';
-  
-  const selectedTopic = mainTopicSelect.value;
-  const selectedSub = subTopicSelect.value;
-  const selectedBook = bookSelect.value;
-  if (!selectedTopic || !selectedSub || !selectedBook) return;
 
-  const filteredRows = masterRows.filter(r =>
-    r.MainTopic === selectedTopic &&
-    r.SubTopic === selectedSub &&
-    r.Book === selectedBook
-  );
+function buildSection(section,index){
 
-  // Make sure Bible is loaded first
-  await loadBible(versionSelect.value); // wait until JSON is loaded
+const mainSelect = section.querySelector(".mainTopicSelect")
+const subSelect = section.querySelector(".subTopicSelect")
+const bookSelect = section.querySelector(".bookSelect")
+const verseDiv = section.querySelector(".verseText")
 
-  const table = document.createElement('table');
-  table.className = 'verse-table';
+let rows = []
 
-  const chapterGroups = {};
+fetch(csvFiles[index])
+.then(r=>r.text())
+.then(csv=>{
 
-  filteredRows.forEach(row => {
-    const key = `${row.Book}-${row.Chapter}`;
-    if (!chapterGroups[key]) chapterGroups[key] = [];
-    chapterGroups[key].push(row);
-  });
+rows = Papa.parse(csv,{header:true}).data
 
-  for (const key in chapterGroups) {
-    const rows = chapterGroups[key];
-    const book = rows[0].Book;
-    const chapter = rows[0].Chapter;
+const mainTopics=[...new Set(rows.map(r=>r.MainTopic))]
 
-    const trChapter = document.createElement('tr');
-    trChapter.className = 'chapter-row';
-    const tdChapter = document.createElement('td');
-    tdChapter.colSpan = 2;
-    tdChapter.innerText = `Chapter ${chapter}`;
-    trChapter.appendChild(tdChapter);
-    table.appendChild(trChapter);
+mainTopics.forEach(t=>{
+const opt=document.createElement("option")
+opt.value=t
+opt.text=t
+mainSelect.appendChild(opt)
+})
 
-    rows.forEach(row => {
-      const verseText = getVerse(row.Book, row.Chapter, row.Verse);
+})
 
-      const trVerse = document.createElement('tr');
-      trVerse.className = 'verse-row';
 
-      const tdNumber = document.createElement('td');
-      tdNumber.className = 'verse-number';
-      tdNumber.innerText = row.Verse;
+mainSelect.addEventListener("change",()=>{
 
-      const tdText = document.createElement('td');
-      tdText.className = 'verse-text';
-      tdText.innerText = verseText;
+subSelect.innerHTML='<option value="">Select Sub-Topic</option>'
+bookSelect.innerHTML='<option value="">Select Book</option>'
+verseDiv.innerHTML=""
 
-      trVerse.appendChild(tdNumber);
-      trVerse.appendChild(tdText);
-      table.appendChild(trVerse);
-    });
-  }
+const subs=[...new Set(rows
+.filter(r=>r.MainTopic===mainSelect.value)
+.map(r=>r.SubTopic))]
 
-  verseTextDiv.appendChild(table);
-});
-displayVerses();
-    });
+subs.forEach(s=>{
+const opt=document.createElement("option")
+opt.value=s
+opt.text=s
+subSelect.appendChild(opt)
+})
 
-    loadMasterCSV();
-  });
+})
 
-  // Smooth scroll for anchor links, works even with flex body
-document.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-      const targetId = this.getAttribute('href');
-      if (targetId && targetId.startsWith('#')) {
-        e.preventDefault();
-        const target = document.querySelector(targetId);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      }
-    });
-  });
-});
-  console.log("Life Link script loaded");
+
+subSelect.addEventListener("change",()=>{
+
+bookSelect.innerHTML='<option value="">Select Book</option>'
+verseDiv.innerHTML=""
+
+const books=[...new Set(rows
+.filter(r=>r.MainTopic===mainSelect.value && r.SubTopic===subSelect.value)
+.map(r=>r.Book))]
+
+books.forEach(b=>{
+const opt=document.createElement("option")
+opt.value=b
+opt.text=b
+bookSelect.appendChild(opt)
+})
+
+})
+
+
+bookSelect.addEventListener("change",()=>{
+
+verseDiv.innerHTML=""
+
+const filtered = rows.filter(r =>
+r.MainTopic===mainSelect.value &&
+r.SubTopic===subSelect.value &&
+r.Book===bookSelect.value
+)
+
+const table=document.createElement("table")
+table.className="verse-table"
+
+filtered.forEach(row=>{
+
+const tr=document.createElement("tr")
+
+const tdNum=document.createElement("td")
+tdNum.className="verse-number"
+tdNum.textContent=row.Verse
+
+const tdText=document.createElement("td")
+tdText.textContent=getVerse(row.Book,parseInt(row.Chapter),parseInt(row.Verse))
+
+tr.appendChild(tdNum)
+tr.appendChild(tdText)
+
+table.appendChild(tr)
+
+})
+
+verseDiv.appendChild(table)
+
+})
+
+}
+
+
+sections.forEach((section,index)=>{
+
+buildSection(section,index)
+
+})
+
+
+versionSelect.addEventListener("change",()=>{
+
+loadBible(versionSelect.value)
+
+})
+
+
+loadBible("WEB")
+
 </script>
-    
+
+
 <footer class="site-footer">
-  <a href="index.html">Home</a>
-  <a href="life_link.html">Life Link</a>
-    <a href="bible_journaling.html">Bible Journaling</a>
-  <a href="wordoku.html">WORDokus</a>
-  <a href="mazes.html">Mazes</a>
-  <a href="coloring_pages.html">Coloring Pages</a>
-  <a href="bible_reading_plans.html">Bible Reading Plans</a>
-  <a href="about.html">About</a>
-  <a href="#top">Top</a>
+
+<a href="index.html">Home</a>
+<a href="life_link.html">Life Link</a>
+<a href="bible_journaling.html">Bible Journaling</a>
+<a href="wordoku.html">WORDokus</a>
+<a href="mazes.html">Mazes</a>
+<a href="coloring_pages.html">Coloring Pages</a>
+<a href="bible_reading_plans.html">Bible Reading Plans</a>
+<a href="about.html">About</a>
+<a href="#top">Top</a>
+
 </footer>
 
 </body>

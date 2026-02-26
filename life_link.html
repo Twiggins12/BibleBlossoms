@@ -241,25 +241,7 @@ async function loadBible(version, setActive = true) {
     console.error("Failed to load Bible:", err);
   }
 }
-  try {
-    const res = await fetch(`https://raw.githubusercontent.com/Twiggins12/BibleBlossoms/main/bibles/${version}.json`);
-    const data = await res.json();
 
-    if (version === "KJV") {
-      bible = convertKJVAbbrevToWebLike(data);
-    } else {
-      bible = data.books;
-    }
-
-    // Save to cache
-    biblesByVersion[version] = bible;
-
-    console.log("Bible loaded:", version, "books:", bible.length);
-
-  } catch (err) {
-    console.error("Failed to load Bible:", err);
-  }
-}
  function convertKJVAbbrevToWebLike(kjvBooks) {
   const abbrevToName = {
     gn: "Genesis",
@@ -334,17 +316,17 @@ async function loadBible(version, setActive = true) {
     jd: "Jude",
     re: "Revelation",
     // Aliases found in your KJV.json
-jud: "Judges",
-"1kgs": "1 Kings",
-"2kgs": "2 Kings",
-et: "Esther",
-job: "Job",
-prv: "Proverbs",
-act: "Acts",
-rm: "Romans",
-gl: "Galatians",
-eph: "Ephesians",
-phm: "Philemon"
+    jud: "Judges",
+    "1kgs": "1 Kings",
+    "2kgs": "2 Kings",
+    et: "Esther",
+    job: "Job",
+    prv: "Proverbs",
+    act: "Acts",
+    rm: "Romans",
+    gl: "Galatians",
+    eph: "Ephesians",
+    phm: "Philemon"
   };
 
   return kjvBooks.map((book, bookIndex) => {
@@ -563,11 +545,8 @@ versionSelect.addEventListener("change", async () => {
 // Initial load
 loadBible("WEB");
 (async () => {
-  // Load default (WEB) as active
-  await loadBible("WEB", true);
-
-  // Preload KJV WITHOUT switching active bible
-  loadBible("KJV", false);
+  await loadBible("WEB", true);   // active
+  loadBible("KJV", false);        // preload only
 })();
   
 </script>

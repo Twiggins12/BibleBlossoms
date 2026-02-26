@@ -222,13 +222,25 @@ console.log("Bible loaded:",version)
 
 function getVerse(book,chapter,verse){
 
-const found = bible.find(v =>
-(v.commonName === book || v.name === book) &&
-v.chapter === chapter &&
-v.verse === verse
+const bookData = bible.books.find(b =>
+b.name === book || b.commonName === book
 )
 
-return found ? found.text : "[Verse not found]"
+if(!bookData) return "[Book not found]"
+
+const chapterData = bookData.chapters[chapter-1]
+
+if(!chapterData) return "[Chapter not found]"
+
+const verseData = chapterData.chapter.content.find(v =>
+v.type === "verse" && v.number === verse
+)
+
+if(!verseData) return "[Verse not found]"
+
+return verseData.content
+.filter(x => typeof x === "string")
+.join(" ")
 
 }
 

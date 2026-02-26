@@ -734,7 +734,7 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "People,Culture,Objects",People,Man,Genesis,3,22
 "People,Culture,Objects",People,Man,Genesis,3,24
 "People,Culture,Objects",People,Man,Genesis,4,1
-"People,Culture,Objects",People,Man,Psalms,1,1
+"People,Culture,Objects",People,Man,Psalm,1,1
 
 "========== PEOPLE ==========", , , , ,
 "========== MATTHEW ==========", , , , ,
@@ -777,22 +777,22 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 
 "========== PEOPLE ==========", , , , ,
 "========== RIGHTEOUS ==========", , , , ,
-"People,Culture,Objects",People,Righteous,Psalms,1,5
-"People,Culture,Objects",People,Righteous,Psalms,1,6
+"People,Culture,Objects",People,Righteous,Psalm,1,5
+"People,Culture,Objects",People,Righteous,Psalm,1,6
 
 "========== PEOPLE ==========", , , , ,
 "========== SINNERS ==========", , , , ,
-"People,Culture,Objects",People,Sinners,Psalms,1,1
-"People,Culture,Objects",People,Sinners,Psalms,1,5
+"People,Culture,Objects",People,Sinners,Psalm,1,1
+"People,Culture,Objects",People,Sinners,Psalm,1,5
 
 
 
 "========== PEOPLE ==========", , , , ,
 "========== WICKED ==========", , , , ,
-"People,Culture,Objects",People,Wicked,Psalms,1,1
-"People,Culture,Objects",People,Wicked,Psalms,1,4
-"People,Culture,Objects",People,Wicked,Psalms,1,5
-"People,Culture,Objects",People,Wicked,Psalms,1,6
+"People,Culture,Objects",People,Wicked,Psalm,1,1
+"People,Culture,Objects",People,Wicked,Psalm,1,4
+"People,Culture,Objects",People,Wicked,Psalm,1,5
+"People,Culture,Objects",People,Wicked,Psalm,1,6
 
 
 "========== PEOPLE ==========", , , , ,

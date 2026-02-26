@@ -192,175 +192,190 @@ the World English Bible organization.
 
 
 <script>
-
 let bible = [];
 
 const versionSelect = document.getElementById("versionSelect");
 const sections = document.querySelectorAll("#sections-container .section-container");
 
 const csvFiles = [
-"data/sections/section1_Father.csv",
-"data/sections/section2_Creation.csv",
-"data/sections/section3_History.csv",
-"data/sections/section4_People.csv",
-"data/sections/section5_Mind.csv",
-"data/sections/section6_Places.csv",
-"data/sections/section7_Spiritual_Beings.csv",
-"data/sections/section8_Visions.csv",
-"data/sections/section9_Wisdom.csv",
-"data/sections/section10_Promises.csv",
-"data/sections/section11_Concepts.csv"
+  "data/sections/section1_Father.csv",
+  "data/sections/section2_Creation.csv",
+  "data/sections/section3_History.csv",
+  "data/sections/section4_People.csv",
+  "data/sections/section5_Mind.csv",
+  "data/sections/section6_Places.csv",
+  "data/sections/section7_Spiritual_Beings.csv",
+  "data/sections/section8_Visions.csv",
+  "data/sections/section9_Wisdom.csv",
+  "data/sections/section10_Promises.csv",
+  "data/sections/section11_Concepts.csv"
 ];
 
-
-async function loadBible(version){
-
-const res = await fetch(`https://raw.githubusercontent.com/Twiggins12/BibleBlossoms/refs/heads/main/bibles/WEB.json`);
-
-const data = await res.json()
-
-bible = data.books
-
-console.log("Bible loaded:", version)
-
+// Load Bible JSON
+async function loadBible(version) {
+  try {
+    const res = await fetch(`https://raw.githubusercontent.com/Twiggins12/BibleBlossoms/main/bibles/${version}.json`);
+    const data = await res.json();
+    bible = data.books;  // store books array
+    console.log("Bible loaded:", version);
+  } catch (err) {
+    console.error("Failed to load Bible:", err);
+  }
 }
 
+// Get verse text
 function getVerse(bookName, chapterNum, verseNum) {
-  if (!bible || !bible.books) return "[Bible not loaded]";
-  
-  const book = bible.books.find(b => b.name === bookName || b.commonName === bookName);
+  if (!bible) return "[Bible not loaded]";
+
+  const book = bible.find(b => b.name === bookName || b.commonName === bookName);
   if (!book) return "[Book not found]";
-  
+
   const chapter = book.chapters.find(c => c.number === chapterNum);
   if (!chapter) return "[Chapter not found]";
-  
+
   const verse = chapter.content.find(v => v.number === verseNum);
   if (!verse) return "[Verse not found]";
-  
-  // Combine all strings in the content array (some have notes inside)
-  return verse.content.map(c => typeof c === 'string' ? c : "").join("");
+
+  return verse.content.map(c => (typeof c === 'string' ? c : "")).join("");
 }
 
-function buildSection(section,index){
+// Build a section with dropdowns and table
+function buildSection(section, index) {
+  const mainSelect = section.querySelector(".mainTopicSelect");
+  const subSelect = section.querySelector(".subTopicSelect");
+  const bookSelect = section.querySelector(".bookSelect");
+  const verseDiv = section.querySelector(".verseText");
 
-const mainSelect = section.querySelector(".mainTopicSelect")
-const subSelect = section.querySelector(".subTopicSelect")
-const bookSelect = section.querySelector(".bookSelect")
-const verseDiv = section.querySelector(".verseText")
+  let rows = [];
 
-let rows = []
+  fetch(csvFiles[index])
+    .then(r => r.text())
+    .then(csv => {
+      rows = Papa.parse(csv, { header: true }).data;
 
-fetch(csvFiles[index])
-.then(r=>r.text())
-.then(csv=>{
+      // Populate main topics
+      const mainTopics = [...new Set(rows.map(r => r.MainTopic))];
+      mainTopics.forEach(t => {
+        const opt = document.createElement("option");
+        opt.value = t;
+        opt.text = t;
+        mainSelect.appendChild(opt);
+      });
+    });
 
-rows = Papa.parse(csv,{header:true}).data
+  mainSelect.addEventListener("change", () => {
+    subSelect.innerHTML = '<option value="">Select Sub-Topic</option>';
+    bookSelect.innerHTML = '<option value="">Select Book</option>';
+    verseDiv.innerHTML = "";
 
-const mainTopics=[...new Set(rows.map(r=>r.MainTopic))]
+    const subs = [...new Set(
+      rows.filter(r => r.MainTopic === mainSelect.value).map(r => r.SubTopic)
+    )];
 
-mainTopics.forEach(t=>{
-const opt=document.createElement("option")
-opt.value=t
-opt.text=t
-mainSelect.appendChild(opt)
-})
+    subs.forEach(s => {
+      const opt = document.createElement("option");
+      opt.value = s;
+      opt.text = s;
+      subSelect.appendChild(opt);
+    });
+  });
 
-})
+  subSelect.addEventListener("change", () => {
+    bookSelect.innerHTML = '<option value="">Select Book</option>';
+    verseDiv.innerHTML = "";
 
+    const books = [...new Set(
+      rows.filter(r => r.MainTopic === mainSelect.value && r.SubTopic === subSelect.value)
+          .map(r => r.Book)
+    )];
 
-mainSelect.addEventListener("change",()=>{
+    books.forEach(b => {
+      const opt = document.createElement("option");
+      opt.value = b;
+      opt.text = b;
+      bookSelect.appendChild(opt);
+    });
+  });
 
-subSelect.innerHTML='<option value="">Select Sub-Topic</option>'
-bookSelect.innerHTML='<option value="">Select Book</option>'
-verseDiv.innerHTML=""
+  bookSelect.addEventListener("change", async () => {
+    verseDiv.innerHTML = "";
 
-const subs=[...new Set(rows
-.filter(r=>r.MainTopic===mainSelect.value)
-.map(r=>r.SubTopic))]
+    if (!bible || bible.length === 0) {
+      await loadBible(versionSelect.value);
+    }
 
-subs.forEach(s=>{
-const opt=document.createElement("option")
-opt.value=s
-opt.text=s
-subSelect.appendChild(opt)
-})
+    const filtered = rows.filter(r =>
+      r.MainTopic === mainSelect.value &&
+      r.SubTopic === subSelect.value &&
+      r.Book === bookSelect.value
+    );
 
-})
+    const table = document.createElement("table");
+    table.className = "verse-table";
 
+    let currentChapter = null;
 
-subSelect.addEventListener("change",()=>{
+    filtered.forEach(row => {
+      const chapterNum = parseInt(row.Chapter);
+      if (chapterNum !== currentChapter) {
+        // Add a spacer row for readability
+        const spacer = document.createElement("tr");
+        spacer.className = "spacer-row";
+        const tdSpacer = document.createElement("td");
+        tdSpacer.colSpan = 2;
+        spacer.appendChild(tdSpacer);
+        table.appendChild(spacer);
 
-bookSelect.innerHTML='<option value="">Select Book</option>'
-verseDiv.innerHTML=""
+        // Add chapter row with gradient
+        const trChapter = document.createElement("tr");
+        trChapter.className = "chapter-row";
+        const tdChapter = document.createElement("td");
+        tdChapter.colSpan = 2;
+        tdChapter.textContent = `Chapter ${chapterNum}`;
+        trChapter.appendChild(tdChapter);
+        table.appendChild(trChapter);
 
-const books=[...new Set(rows
-.filter(r=>r.MainTopic===mainSelect.value && r.SubTopic===subSelect.value)
-.map(r=>r.Book))]
+        currentChapter = chapterNum;
+      }
 
-books.forEach(b=>{
-const opt=document.createElement("option")
-opt.value=b
-opt.text=b
-bookSelect.appendChild(opt)
-})
+      // Add verse row
+      const trVerse = document.createElement("tr");
+      trVerse.className = "verse-row";
 
-})
+      const tdNum = document.createElement("td");
+      tdNum.className = "verse-number";
+      tdNum.textContent = row.Verse;
 
+      const tdText = document.createElement("td");
+      tdText.textContent = getVerse(row.Book, chapterNum, parseInt(row.Verse));
 
-bookSelect.addEventListener("change",()=>{
+      trVerse.appendChild(tdNum);
+      trVerse.appendChild(tdText);
 
-verseDiv.innerHTML=""
+      table.appendChild(trVerse);
+    });
 
-const filtered = rows.filter(r =>
-r.MainTopic===mainSelect.value &&
-r.SubTopic===subSelect.value &&
-r.Book===bookSelect.value
-)
-
-const table=document.createElement("table")
-table.className="verse-table"
-
-filtered.forEach(row=>{
-
-const tr=document.createElement("tr")
-
-const tdNum=document.createElement("td")
-tdNum.className="verse-number"
-tdNum.textContent=row.Verse
-
-const tdText=document.createElement("td")
-tdText.textContent=getVerse(row.Book,parseInt(row.Chapter),parseInt(row.Verse))
-
-tr.appendChild(tdNum)
-tr.appendChild(tdText)
-
-table.appendChild(tr)
-
-})
-
-verseDiv.appendChild(table)
-
-})
-
+    verseDiv.appendChild(table);
+  });
 }
 
+// Build all sections
+sections.forEach((section, index) => buildSection(section, index));
 
-sections.forEach((section,index)=>{
+// Reload verses when Bible version changes
+versionSelect.addEventListener("change", async () => {
+  await loadBible(versionSelect.value);
 
-buildSection(section,index)
+  sections.forEach(section => {
+    const bookSelect = section.querySelector(".bookSelect");
+    if (bookSelect.value) {
+      bookSelect.dispatchEvent(new Event('change'));
+    }
+  });
+});
 
-})
-
-
-versionSelect.addEventListener("change",()=>{
-
-loadBible(versionSelect.value)
-
-})
-
-
-loadBible("WEB")
-console.log("Books:", bible)
+// Initial load
+loadBible("WEB");
 </script>
 
 

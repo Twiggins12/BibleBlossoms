@@ -41,7 +41,7 @@ Thank you for your patience as this work unfolds.
 </p>
 
 <p>Began February 4, 2026</p>
-<p>Last Updated February 24, 2026</p>
+<p>Last Updated February 26, 2026</p>
 
 <div class="section-container">
 <div class="section-heading">Select Bible Version</div>
@@ -224,59 +224,35 @@ async function loadBible(version) {
 }
 
 // Get verse text
+function normalizeBookName(name) {
+  const n = (name ?? "").toString().trim();
+
+  // map common variants → the names your WEB json uses
+  const map = {
+    "Psalm": "Psalms",
+    "Psalms": "Psalms",
+    "Song of Songs": "Song of Solomon",
+    "Song of Solomon": "Song of Solomon"
+  };
+
+  return map[n] || n;
+}
+
 function getVerse(bookName, chapterNum, verseNum) {
   if (!Array.isArray(bible) || bible.length === 0) return "[Bible not loaded]";
 
-  const norm = (s) => (s ?? "").toString().trim().toLowerCase();
+  const normalized = normalizeBookName(bookName);
 
-  // Optional alias fixes (add more if you find mismatches)
-  const bookAliases = {
-    "psalm": "psalms",
-    "psalms": "psalms",
-    "song of songs": "song of solomon",
-    "song of solomon": "song of solomon"
-  };
+  const book = bible.find(b => b.name === normalized || b.commonName === normalized);
+  if (!book) return "[Book not found]";
 
-  let targetBook = norm(bookName);
-  if (bookAliases[targetBook]) targetBook = bookAliases[targetBook];
+  const chapterObj = book.chapters.find(c => c.chapter.number === chapterNum);
+  if (!chapterObj) return "[Chapter not found]";
 
-  const book = bible.find(b => {
-    const candidates = [
-      b.name,
-      b.commonName,
-      b.abbrev,
-      b.id
-    ].map(norm);
+  const verse = chapterObj.chapter.content.find(v => v.number === verseNum);
+  if (!verse) return "[Verse not found]";
 
-    // also apply alias mapping to candidates
-    const mapped = candidates.map(x => bookAliases[x] || x);
-
-    return mapped.includes(targetBook);
-  });
-
-  if (!book) return `[Book not found: ${bookName}]`;
-
-  const chapters = Array.isArray(book.chapters) ? book.chapters : [];
-
-  const chapterObj = chapters.find(c => {
-    const n = c?.number ?? c?.chapter?.number;
-    return Number(n) === Number(chapterNum);
-  });
-
-  if (!chapterObj) return `[Chapter not found: ${bookName} ${chapterNum}]`;
-
-  const verses = chapterObj?.content ?? chapterObj?.chapter?.content;
-  if (!Array.isArray(verses)) return "[Chapter content missing]";
-
-  const verseObj = verses.find(v => Number(v?.number) === Number(verseNum));
-  if (!verseObj) return `[Verse not found: ${bookName} ${chapterNum}:${verseNum}]`;
-
-  const contentArr = Array.isArray(verseObj.content) ? verseObj.content : [verseObj.content];
-
-  return contentArr
-    .map(x => (typeof x === "string" ? x : (x?.text ?? x?.content ?? "")))
-    .join("")
-    .trim();
+  return verse.content.map(c => (typeof c === "string" ? c : "")).join("");
 }
 
 // Build a section with dropdowns and table
@@ -417,9 +393,6 @@ versionSelect.addEventListener("change", async () => {
 
 // Initial load
 loadBible("WEB");
-  console.log(getVerse("Genesis", 1, 1));
-console.log(getVerse("Mark", 1, 1));
-console.log(getVerse("Psalms", 1, 1));
 </script>
 
 

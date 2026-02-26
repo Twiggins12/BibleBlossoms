@@ -219,6 +219,7 @@ async function loadBible(version) {
 
     if (version === "KJV") {
       bible = convertKJVAbbrevToWebLike(data);
+      console.log("KJV book names:", bible.map(b => b.name));
     } else {
       bible = data.books; // WEB
     }

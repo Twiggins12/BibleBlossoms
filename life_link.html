@@ -247,6 +247,23 @@ const csvFiles = [
   "data/sections/section11_Concepts.csv"
 ];
 
+// Convert KJV format to the standard WEB-like format
+function convertKJV(kjvData) {
+  return kjvData.map((book, bookIndex) => ({
+    id: book.abbrev.toUpperCase(),
+    name: book.abbrev.toUpperCase() === "GN" ? "Genesis" : book.abbrev, // optional: map first book
+    commonName: book.abbrev.toUpperCase() === "GN" ? "Genesis" : book.abbrev,
+    order: bookIndex + 1,
+    chapters: book.chapters.map((chapterContent, chapIndex) => ({
+      number: chapIndex + 1,
+      content: chapterContent.map((verseText, verseIndex) => ({
+        number: verseIndex + 1,
+        content: [verseText]
+      }))
+    }))
+  }));
+}
+  
 // Load Bible JSON
 async function loadBible(version) {
   try {

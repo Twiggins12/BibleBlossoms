@@ -216,13 +216,107 @@ async function loadBible(version) {
   try {
     const res = await fetch(`https://raw.githubusercontent.com/Twiggins12/BibleBlossoms/main/bibles/${version}.json`);
     const data = await res.json();
-    bible = data.books;  // store books array
-    console.log("Bible loaded:", version);
+
+    if (version === "KJV") {
+      bible = convertKJVAbbrevToWebLike(data);
+    } else {
+      bible = data.books; // WEB
+    }
+
+    console.log("Bible loaded:", version, "books:", bible?.length);
   } catch (err) {
     console.error("Failed to load Bible:", err);
   }
 }
 
+  function convertKJVAbbrevToWebLike(kjvBooks) {
+  const abbrevToName = {
+    gn: "Genesis",
+    ex: "Exodus",
+    lv: "Leviticus",
+    nu: "Numbers",
+    dt: "Deuteronomy",
+    js: "Joshua",
+    jg: "Judges",
+    rt: "Ruth",
+    "1sm": "1 Samuel",
+    "2sm": "2 Samuel",
+    "1kg": "1 Kings",
+    "2kg": "2 Kings",
+    "1ch": "1 Chronicles",
+    "2ch": "2 Chronicles",
+    ezr: "Ezra",
+    ne: "Nehemiah",
+    es: "Esther",
+    jb: "Job",
+    ps: "Psalms",
+    pr: "Proverbs",
+    ec: "Ecclesiastes",
+    so: "Song of Solomon",
+    is: "Isaiah",
+    jr: "Jeremiah",
+    lm: "Lamentations",
+    ez: "Ezekiel",
+    dn: "Daniel",
+    ho: "Hosea",
+    jl: "Joel",
+    am: "Amos",
+    ob: "Obadiah",
+    jn: "Jonah",
+    mi: "Micah",
+    na: "Nahum",
+    hk: "Habakkuk",
+    zp: "Zephaniah",
+    hg: "Haggai",
+    zc: "Zechariah",
+    ml: "Malachi",
+    mt: "Matthew",
+    mk: "Mark",
+    lk: "Luke",
+    jo: "John",
+    ac: "Acts",
+    ro: "Romans",
+    "1co": "1 Corinthians",
+    "2co": "2 Corinthians",
+    ga: "Galatians",
+    ep: "Ephesians",
+    ph: "Philippians",
+    cl: "Colossians",
+    "1ts": "1 Thessalonians",
+    "2ts": "2 Thessalonians",
+    "1tm": "1 Timothy",
+    "2tm": "2 Timothy",
+    tt: "Titus",
+    pm: "Philemon",
+    hb: "Hebrews",
+    jm: "James",
+    "1pe": "1 Peter",
+    "2pe": "2 Peter",
+    "1jo": "1 John",
+    "2jo": "2 John",
+    "3jo": "3 John",
+    jd: "Jude",
+    re: "Revelation"
+  };
+
+  return kjvBooks.map((book, bookIndex) => {
+    const ab = (book.abbrev || "").toLowerCase().trim();
+    const fullName = abbrevToName[ab] || book.abbrev || `Book ${bookIndex + 1}`;
+
+    return {
+      name: fullName,
+      commonName: fullName,
+      // make chapters match the shape getVerse() can read
+      chapters: (book.chapters || []).map((chapterArr, chapIndex) => ({
+        number: chapIndex + 1,
+        content: (chapterArr || []).map((verseText, verseIndex) => ({
+          number: verseIndex + 1,
+          content: [String(verseText ?? "")]
+        }))
+      }))
+    };
+  });
+}
 // Get verse text
 function normalizeBookName(name) {
   const n = (name ?? "").toString().trim();

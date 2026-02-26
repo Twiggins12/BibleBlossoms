@@ -300,26 +300,19 @@ async function loadBible(version) {
 }
 
 // ✅ Fixed getVerse()
-function getVerse(bookName, chapterNum, verseNum) {
+function getVerse(bookName, chapterNum, verseNum) { 
   if (!bible || bible.length === 0) return "[Bible not loaded]";
-
-  const normalized = s => s.toLowerCase().trim();
-
-  const book = bible.find(b =>
-    normalized(b.name) === normalized(bookName) ||
-    normalized(b.commonName) === normalized(bookName) ||
-    normalized(b.id) === normalized(bookName.slice(0,3))
-  );
-
-  if (!book) return "[Book not found]";
-
-  const chapterObj = book.chapters.find(c => c.number === chapterNum);
-  if (!chapterObj) return "[Chapter not found]";
-
-  const verse = chapterObj.content.find(v => v.number === verseNum);
-  if (!verse) return "[Verse not found]";
-
-  return verse.content.map(c => (typeof c === 'string' ? c : "")).join("");
+  
+ const book = bible.find(b => b.name === bookName || b.commonName === bookName); 
+ if (!book) return "[Book not found]";
+  
+ const chapterObj = book.chapters.find(c => c.number === chapterNum); 
+ if (!chapterObj) return "[Chapter not found]";
+  
+ const verse = chapterObj.content.find(v => v.number === verseNum); 
+ if (!verse) return "[Verse not found]";
+  
+ return verse.content.map(c => (typeof c === 'string' ? c : "")).join(""); 
 }
 
 // --- Rest of your buildSection code remains unchanged ---

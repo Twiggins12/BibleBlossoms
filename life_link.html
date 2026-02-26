@@ -229,12 +229,18 @@ async function loadBible(version) {
   }
 }
 
-  function convertKJVAbbrevToWebLike(kjvBooks) {
+ function convertKJVAbbrevToWebLike(kjvBooks) {
   const abbrevToName = {
     gn: "Genesis",
     ex: "Exodus",
     lv: "Leviticus",
+
+    // Numbers aliases
     nu: "Numbers",
+    nm: "Numbers",
+    nb: "Numbers",
+    num: "Numbers",
+
     dt: "Deuteronomy",
     js: "Joshua",
     jg: "Judges",
@@ -288,7 +294,12 @@ async function loadBible(version) {
     "2tm": "2 Timothy",
     tt: "Titus",
     pm: "Philemon",
+
+    // Hebrews aliases
     hb: "Hebrews",
+    he: "Hebrews",
+    heb: "Hebrews",
+
     jm: "James",
     "1pe": "1 Peter",
     "2pe": "2 Peter",
@@ -301,12 +312,16 @@ async function loadBible(version) {
 
   return kjvBooks.map((book, bookIndex) => {
     const ab = (book.abbrev || "").toLowerCase().trim();
+
+    if (!abbrevToName[ab]) {
+      console.warn("Unknown KJV abbrev:", ab, "at index", bookIndex);
+    }
+
     const fullName = abbrevToName[ab] || book.abbrev || `Book ${bookIndex + 1}`;
 
     return {
       name: fullName,
       commonName: fullName,
-      // make chapters match the shape getVerse() can read
       chapters: (book.chapters || []).map((chapterArr, chapIndex) => ({
         number: chapIndex + 1,
         content: (chapterArr || []).map((verseText, verseIndex) => ({

@@ -193,7 +193,8 @@ the World English Bible organization.
 
 <script>
 let bible = [];
-
+let biblesByVersion = { WEB: null, KJV: null };
+  
 const versionSelect = document.getElementById("versionSelect");
 const sections = document.querySelectorAll("#sections-container .section-container");
 
@@ -213,23 +214,32 @@ const csvFiles = [
 
 // Load Bible JSON
 async function loadBible(version) {
+  // If already loaded, just switch instantly
+  if (biblesByVersion[version]) {
+    bible = biblesByVersion[version];
+    console.log("Bible reused from cache:", version);
+    return;
+  }
+
   try {
     const res = await fetch(`https://raw.githubusercontent.com/Twiggins12/BibleBlossoms/main/bibles/${version}.json`);
     const data = await res.json();
 
     if (version === "KJV") {
       bible = convertKJVAbbrevToWebLike(data);
-      console.log("KJV book names:", bible.map(b => b.name));
     } else {
-      bible = data.books; // WEB
+      bible = data.books;
     }
 
-    console.log("Bible loaded:", version, "books:", bible?.length);
+    // Save to cache
+    biblesByVersion[version] = bible;
+
+    console.log("Bible loaded:", version, "books:", bible.length);
+
   } catch (err) {
     console.error("Failed to load Bible:", err);
   }
 }
-
  function convertKJVAbbrevToWebLike(kjvBooks) {
   const abbrevToName = {
     gn: "Genesis",
@@ -534,12 +544,7 @@ versionSelect.addEventListener("change", async () => {
 loadBible("WEB");
 (async () => {
   await loadBible("WEB");
-  console.log("WEB Judges 1:1", getVerse("Judges", 1, 1));
-  console.log("WEB Proverbs 1:1", getVerse("Proverbs", 1, 1));
-
-  await loadBible("KJV");
-  console.log("KJV Judges 1:1", getVerse("Judges", 1, 1));
-  console.log("KJV Proverbs 1:1", getVerse("Proverbs", 1, 1));
+  await loadBible("KJV"); // preload KJV in background
 })();
 </script>
 

@@ -267,7 +267,7 @@ function buildSection(section, index) {
   fetch(csvFiles[index])
     .then(r => r.text())
     .then(csv => {
-      rows = Papa.parse(csv, { header: true, skipEmptyLines: true }).data
+    rows = Papa.parse(csv, { header: true, skipEmptyLines: true }).data
   .filter(r => r.MainTopic && r.SubTopic && r.Book && r.Chapter && r.Verse);
 
       // Populate main topics

@@ -303,7 +303,14 @@ async function loadBible(version) {
 function getVerse(bookName, chapterNum, verseNum) {
   if (!bible || bible.length === 0) return "[Bible not loaded]";
 
-  const book = bible.find(b => b.name === bookName || b.commonName === bookName);
+  const normalized = s => s.toLowerCase().trim();
+
+  const book = bible.find(b =>
+    normalized(b.name) === normalized(bookName) ||
+    normalized(b.commonName) === normalized(bookName) ||
+    normalized(b.id) === normalized(bookName.slice(0,3))
+  );
+
   if (!book) return "[Book not found]";
 
   const chapterObj = book.chapters.find(c => c.number === chapterNum);

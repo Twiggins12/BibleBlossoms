@@ -225,30 +225,21 @@ console.log("Bible loaded:", version)
 
 }
 
-function getVerse(book,chapter,verse){
-
-const bookData = bible.find(b =>
-b.name === book || b.commonName === book
-)
-
-if(!bookData) return "[Book not found]"
-
-const chapterData = bookData.chapters[chapter-1]
-
-if(!chapterData) return "[Chapter not found]"
-
-const verseData = chapterData.chapter.content.find(v =>
-v.type === "verse" && v.number === verse
-)
-
-if(!verseData) return "[Verse not found]"
-
-return verseData.content
-.filter(x => typeof x === "string")
-.join(" ")
-
+function getVerse(bookName, chapterNum, verseNum) {
+  if (!bible || !bible.books) return "[Bible not loaded]";
+  
+  const book = bible.books.find(b => b.name === bookName || b.commonName === bookName);
+  if (!book) return "[Book not found]";
+  
+  const chapter = book.chapters.find(c => c.number === chapterNum);
+  if (!chapter) return "[Chapter not found]";
+  
+  const verse = chapter.content.find(v => v.number === verseNum);
+  if (!verse) return "[Verse not found]";
+  
+  // Combine all strings in the content array (some have notes inside)
+  return verse.content.map(c => typeof c === 'string' ? c : "").join("");
 }
-
 
 function buildSection(section,index){
 

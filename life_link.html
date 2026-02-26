@@ -214,15 +214,20 @@ const csvFiles = [
 
 
 async function loadBible(version){
-const res = await fetch(`https://raw.githubusercontent.com/Twiggins/BibleBlossoms/main/bibles/${version}.json`);
-bible = await res.json();
-console.log("Bible loaded:",version)
-}
 
+const res = await fetch(`https://raw.githubusercontent.com/Twiggins/BibleBlossoms/main/bibles/${version}.json`);
+
+const data = await res.json()
+
+bible = data.books
+
+console.log("Bible loaded:", version)
+
+}
 
 function getVerse(book,chapter,verse){
 
-const bookData = bible.books.find(b =>
+const bookData = bible.find(b =>
 b.name === book || b.commonName === book
 )
 
@@ -364,7 +369,7 @@ loadBible(versionSelect.value)
 
 
 loadBible("WEB")
-
+console.log("Books:", bible)
 </script>
 
 

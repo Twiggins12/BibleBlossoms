@@ -192,43 +192,7 @@ the World English Bible organization.
 
 
 <script>
-
 let bible = [];
-
-function convertKJV(data) {
-  const bookNames = [
-    "Genesis","Exodus","Leviticus","Numbers","Deuteronomy",
-    "Joshua","Judges","Ruth","1 Samuel","2 Samuel",
-    "1 Kings","2 Kings","1 Chronicles","2 Chronicles",
-    "Ezra","Nehemiah","Esther","Job","Psalms","Proverbs",
-    "Ecclesiastes","Song of Solomon","Isaiah","Jeremiah",
-    "Lamentations","Ezekiel","Daniel","Hosea","Joel","Amos",
-    "Obadiah","Jonah","Micah","Nahum","Habakkuk","Zephaniah",
-    "Haggai","Zechariah","Malachi","Matthew","Mark","Luke",
-    "John","Acts","Romans","1 Corinthians","2 Corinthians",
-    "Galatians","Ephesians","Philippians","Colossians",
-    "1 Thessalonians","2 Thessalonians","1 Timothy","2 Timothy",
-    "Titus","Philemon","Hebrews","James","1 Peter","2 Peter",
-    "1 John","2 John","3 John","Jude","Revelation"
-  ];
-
-  const result = {};
-
-  data.forEach((book, index) => {
-    const bookName = bookNames[index];
-    result[bookName] = {};
-
-    book.chapters.forEach((chapter, cIndex) => {
-      result[bookName][cIndex + 1] = {};
-
-      chapter.forEach((verse, vIndex) => {
-        result[bookName][cIndex + 1][vIndex + 1] = verse;
-      });
-    });
-  });
-
-  return result;
-}
 
 const versionSelect = document.getElementById("versionSelect");
 const sections = document.querySelectorAll("#sections-container .section-container");
@@ -247,44 +211,18 @@ const csvFiles = [
   "data/sections/section11_Concepts.csv"
 ];
 
-// Convert KJV format to the standard WEB-like format
-function convertKJV(kjvData) {
-  return kjvData.map((book, bookIndex) => ({
-    id: book.abbrev.toUpperCase(),
-    name: book.abbrev.toUpperCase() === "GN" ? "Genesis" : book.abbrev, // optional: map first book
-    commonName: book.abbrev.toUpperCase() === "GN" ? "Genesis" : book.abbrev,
-    order: bookIndex + 1,
-    chapters: book.chapters.map((chapterContent, chapIndex) => ({
-      number: chapIndex + 1,
-      content: chapterContent.map((verseText, verseIndex) => ({
-        number: verseIndex + 1,
-        content: [verseText]
-      }))
-    }))
-  }));
-}
-  
 // Load Bible JSON
 async function loadBible(version) {
   try {
-
     const res = await fetch(`https://raw.githubusercontent.com/Twiggins12/BibleBlossoms/main/bibles/${version}.json`);
     const data = await res.json();
-
-    if (version === "KJV") {
-      bible = convertKJV(data);
-    } else {
-      bible = data.books;
-    }
-
+    bible = data.books;  // store books array
     console.log("Bible loaded:", version);
-
   } catch (err) {
     console.error("Failed to load Bible:", err);
   }
 }
 
-  
 // Get verse text
 function getVerse(bookName, chapterNum, verseNum) {
   if (!bible) return "[Bible not loaded]";
@@ -438,8 +376,7 @@ versionSelect.addEventListener("change", async () => {
 });
 
 // Initial load
-await loadBible("WEB");
-console.log(getVerse("Genesis", 1, 1));
+loadBible("WEB");
 </script>
 
 

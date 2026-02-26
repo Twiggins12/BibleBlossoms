@@ -227,7 +227,6 @@ async function loadBible(version) {
 function normalizeBookName(name) {
   const n = (name ?? "").toString().trim();
 
-  // map common variants → the names your WEB json uses
   const map = {
     "Psalm": "Psalms",
     "Psalms": "Psalms",
@@ -241,20 +240,44 @@ function normalizeBookName(name) {
 function getVerse(bookName, chapterNum, verseNum) {
   if (!Array.isArray(bible) || bible.length === 0) return "[Bible not loaded]";
 
-  const normalized = normalizeBookName(bookName);
+  const target = normalizeBookName(bookName);
 
-  const book = bible.find(b => b.name === normalized || b.commonName === normalized);
-  if (!book) return "[Book not found]";
+  const book = bible.find(b =>
+    normalizeBookName(b.name) === target ||
+    normalizeBookName(b.commonName) === target
+  );
+  if (!book) return `[Book not found: ${bookName}]`;
 
-  const chapterObj = book.chapters.find(c => c.chapter.number === chapterNum);
-  if (!chapterObj) return "[Chapter not found]";
+  const chapters = Array.isArray(book.chapters) ? book.chapters : [];
 
-  const verse = chapterObj.chapter.content.find(v => v.number === verseNum);
-  if (!verse) return "[Verse not found]";
+  // supports either {chapter:{number,content}} or {number,content}
+  const chapterObj = chapters.find(c =>
+    Number(c?.chapter?.number ?? c?.number) === Number(chapterNum)
+  );
+  if (!chapterObj) return `[Chapter not found: ${bookName} ${chapterNum}]`;
 
-  return verse.content.map(c => (typeof c === "string" ? c : "")).join("");
+  const verseList = chapterObj?.chapter?.content ?? chapterObj?.content;
+  if (!Array.isArray(verseList)) return "[Chapter content missing]";
+
+  const verse = verseList.find(v => Number(v?.number) === Number(verseNum));
+  if (!verse) return `[Verse not found: ${bookName} ${chapterNum}:${verseNum}]`;
+
+  const parts = Array.isArray(verse.content) ? verse.content : [verse.content];
+
+  // Pull text from strings OR common object shapes
+  const text = parts.map(p => {
+    if (typeof p === "string") return p;
+    if (p && typeof p === "object") {
+      // common possibilities in Bible JSONs
+      if (typeof p.text === "string") return p.text;
+      if (typeof p.content === "string") return p.content;
+      if (Array.isArray(p.content)) return p.content.filter(x => typeof x === "string").join("");
+    }
+    return "";
+  }).join("");
+
+  return text.trim();
 }
-
 // Build a section with dropdowns and table
 function buildSection(section, index) {
   const mainSelect = section.querySelector(".mainTopicSelect");

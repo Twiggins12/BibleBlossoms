@@ -438,7 +438,8 @@ versionSelect.addEventListener("change", async () => {
 });
 
 // Initial load
-loadBible("WEB");
+await loadBible("WEB");
+console.log(getVerse("Genesis", 1, 1));
 </script>
 
 

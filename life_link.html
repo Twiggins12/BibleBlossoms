@@ -230,10 +230,11 @@ function getVerse(bookName, chapterNum, verseNum) {
   const book = bible.find(b => b.name === bookName || b.commonName === bookName);
   if (!book) return "[Book not found]";
 
-  const chapter = book.chapters.find(c => c.number === chapterNum);
-  if (!chapter) return "[Chapter not found]";
+  // ✅ Use the nested chapter object
+  const chapterObj = book.chapters.find(c => c.chapter.number === chapterNum);
+  if (!chapterObj) return "[Chapter not found]";
 
-  const verse = chapter.content.find(v => v.number === verseNum);
+  const verse = chapterObj.chapter.content.find(v => v.number === verseNum);
   if (!verse) return "[Verse not found]";
 
   return verse.content.map(c => (typeof c === 'string' ? c : "")).join("");

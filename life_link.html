@@ -213,14 +213,34 @@ const csvFiles = [
 ];
 
 // Load Bible JSON
-async function loadBible(version) {
-  // If already loaded, just switch instantly
-  if (biblesByVersion[version]) {
-    bible = biblesByVersion[version];
-    console.log("Bible reused from cache:", version);
-    return;
-  }
+async function loadBible(version, setActive = true) {
+  try {
+    // If already cached, optionally set active and exit
+    if (biblesByVersion[version]) {
+      if (setActive) bible = biblesByVersion[version];
+      console.log("Bible reused from cache:", version);
+      return;
+    }
 
+    const res = await fetch(`https://raw.githubusercontent.com/Twiggins12/BibleBlossoms/main/bibles/${version}.json`);
+    const data = await res.json();
+
+    const loaded = (version === "KJV")
+      ? convertKJVAbbrevToWebLike(data)
+      : data.books;
+
+    // Save to cache
+    biblesByVersion[version] = loaded;
+
+    // Only set active if requested
+    if (setActive) bible = loaded;
+
+    console.log(setActive ? "Bible loaded:" : "Bible preloaded:", version, "books:", loaded.length);
+
+  } catch (err) {
+    console.error("Failed to load Bible:", err);
+  }
+}
   try {
     const res = await fetch(`https://raw.githubusercontent.com/Twiggins12/BibleBlossoms/main/bibles/${version}.json`);
     const data = await res.json();
@@ -543,11 +563,14 @@ versionSelect.addEventListener("change", async () => {
 // Initial load
 loadBible("WEB");
 (async () => {
-  await loadBible("WEB");
-  await loadBible("KJV"); // preload KJV in background
-})();
-</script>
+  // Load default (WEB) as active
+  await loadBible("WEB", true);
 
+  // Preload KJV WITHOUT switching active bible
+  loadBible("KJV", false);
+})();
+  
+</script>
 
 <footer class="site-footer">
 

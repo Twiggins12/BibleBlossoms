@@ -173,7 +173,7 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,17
 "Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,22
 "Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,24
-"Creation, Earth, Animals",Earth,"Plants, Trees",Psalms,1,3
+"Creation, Earth, Animals",Earth,"Plants, Trees",Psalm,1,3
 
 
 "========== EARTH ==========", , , , ,
@@ -184,7 +184,7 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,3,6
 "Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,3,12
 "Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,4,3
-"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Psalms,1,3
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Psalm,1,3
 
 "========== EARTH ==========", , , , ,
 "========== PLANTS GRASS HERBS THISTLES THORNS ==========", , , , ,
@@ -217,8 +217,8 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Creation, Earth, Animals",Earth,Time,Genesis,3,8
 "Creation, Earth, Animals",Earth,Time,Genesis,3,14
 "Creation, Earth, Animals",Earth,Time,Genesis,4,3
-"Creation, Earth, Animals",Earth,Time,Psalms,1,2
-"Creation, Earth, Animals",Earth,Time,Psalms,1,3
+"Creation, Earth, Animals",Earth,Time,Psalm,1,2
+"Creation, Earth, Animals",Earth,Time,Psalm,1,3
 
 
 "========== EARTH ==========", , , , ,
@@ -236,7 +236,9 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "Creation, Earth, Animals",Earth,Water,Genesis,2,12
 "Creation, Earth, Animals",Earth,Water,Genesis,2,13
 "Creation, Earth, Animals",Earth,Water,Genesis,2,14
-"Creation, Earth, Animals",Earth,Water,Psalms,1,3
+"Creation, Earth, Animals",Earth,Water,Psalm,1,3
+"Creation, Earth, Animals",Earth,Water,Psalm,110,7
+
 
 "========== EARTH ==========", , , , ,
 "========== WEATHER ==========", , , , ,
@@ -245,7 +247,7 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 
 "========== EARTH ==========", , , , ,
 "========== WITHER ==========", , , , ,
-"Creation, Earth, Animals",Earth,Wither,Psalms,1,3
+"Creation, Earth, Animals",Earth,Wither,Psalm,1,3
 
 "========== ANIMALS ==========", , , , ,
 "========== BIRDS ==========", , , , ,

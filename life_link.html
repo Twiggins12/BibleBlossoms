@@ -443,8 +443,8 @@ function formatVerseText(text) {
 
   // Convert YLT italics markers to <em>...</em>
   // Handles <FI>, <Fi>, <fi>, <FI >, </Fi>, </FI>, etc.
-  s = s.replace(/<\s*fi\s*>/gi, "<em>");
-  s = s.replace(/<\s*\/\s*fi\s*>/gi, "</em>");
+s = s.replace(/<\s*fi\b[^>]*>/gi, "<em>");
+s = s.replace(/<\s*\/\s*fi\b[^>]*>/gi, "</em>");
 
   // Remove any other tags but keep <em>
   s = s.replace(/<(?!\/?em\b)[^>]+>/gi, "");

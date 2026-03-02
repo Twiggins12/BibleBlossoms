@@ -48,8 +48,10 @@ Thank you for your patience as this work unfolds.
 
 <div class="dropdown-column">
 <select id="versionSelect">
-<option value="WEB">World English Bible</option>
-<option value="KJV">King James Version</option>
+  <option value="WEB">World English Bible</option>
+  <option value="KJV">King James Version</option>
+  <option value="BSB">Berean Standard Bible</option>
+  <option value="YLT">Young's Literal Translation</option>
 </select>
 </div>
 </div>
@@ -543,7 +545,6 @@ versionSelect.addEventListener("change", async () => {
 });
 
 // Initial load
-loadBible("WEB");
 (async () => {
   await loadBible("WEB", true);   // active
   loadBible("KJV", false);        // preload only

@@ -355,6 +355,19 @@ async function loadBible(version, setActive = true) {
 }
 // Get verse text
 function normalizeBookName(name) {
+  function formatVerseText(text) {
+  if (!text) return "";
+
+  return String(text)
+    // Convert YLT italic markers to HTML italics
+    .replace(/<\s*FI\s*>/gi, "<em>")
+    .replace(/<\s*\/\s*Fi\s*>/gi, "</em>")
+
+    // Remove any other unknown tags (keeps <em>)
+    .replace(/<(?!\/?em\b)[^>]+>/gi, "")
+
+    .trim();
+}
   const n = (name ?? "").toString().trim();
 
   const map = {
@@ -517,8 +530,9 @@ function buildSection(section, index) {
       tdNum.textContent = row.Verse;
 
       const tdText = document.createElement("td");
-      tdText.textContent = getVerse(row.Book, chapterNum, parseInt(row.Verse));
-
+tdText.innerHTML = formatVerseText(
+  getVerse(row.Book, chapterNum, parseInt(row.Verse))
+);
       trVerse.appendChild(tdNum);
       trVerse.appendChild(tdText);
 

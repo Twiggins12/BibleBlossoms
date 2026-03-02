@@ -439,13 +439,24 @@ const map = {
 function formatVerseText(text) {
   if (!text) return "";
 
-  return String(text)
-    // YLT italics markers -> HTML italics
-    .replace(/<\s*fi\s*>/gi, "<em>")
-    .replace(/<\s*\/\s*fi\s*>/gi, "</em>")
-    // keep ONLY <em> tags; remove any other tags
-    .replace(/<(?!\/?em\b)[^>]+>/gi, "")
-    .trim();
+  let s = String(text);
+
+  // Convert YLT italics markers to <em>...</em>
+  // Handles <FI>, <Fi>, <fi>, <FI >, </Fi>, </FI>, etc.
+  s = s.replace(/<\s*fi\s*>/gi, "<em>");
+  s = s.replace(/<\s*\/\s*fi\s*>/gi, "</em>");
+
+  // Remove any other tags but keep <em>
+  s = s.replace(/<(?!\/?em\b)[^>]+>/gi, "");
+
+  // If <em> tags are unbalanced, auto-close them
+  const opens = (s.match(/<em>/gi) || []).length;
+  const closes = (s.match(/<\/em>/gi) || []).length;
+  if (opens > closes) {
+    s += "</em>".repeat(opens - closes);
+  }
+
+  return s.trim();
 }
 function getVerse(bookName, chapterNum, verseNum) {
   if (!Array.isArray(bible) || bible.length === 0) return "[Bible not loaded]";

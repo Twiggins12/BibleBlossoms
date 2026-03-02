@@ -530,9 +530,7 @@ function buildSection(section, index) {
       tdNum.textContent = row.Verse;
 
       const tdText = document.createElement("td");
-tdText.innerHTML = formatVerseText(
-  getVerse(row.Book, chapterNum, parseInt(row.Verse))
-);
+tdText.textContent = getVerse(row.Book, chapterNum, parseInt(row.Verse));
       trVerse.appendChild(tdNum);
       trVerse.appendChild(tdText);
 

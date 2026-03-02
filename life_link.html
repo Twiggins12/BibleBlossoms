@@ -357,12 +357,82 @@ async function loadBible(version, setActive = true) {
 function normalizeBookName(name) {
   const n = (name ?? "").toString().trim();
 
-  const map = {
-    "Psalm": "Psalms",
-    "Psalms": "Psalms",
-    "Song of Songs": "Song of Solomon",
-    "Song of Solomon": "Song of Solomon"
-  };
+const map = {
+  // Existing fixes
+  "Psalm": "Psalms",
+  "Psalms": "Psalms",
+  "Song of Songs": "Song of Solomon",
+  "Song of Solomon": "Song of Solomon",
+
+  // Numbered books (common variations across datasets)
+  "1 Samuel": "1 Samuel",
+  "First Samuel": "1 Samuel",
+  "I Samuel": "1 Samuel",
+
+  "2 Samuel": "2 Samuel",
+  "Second Samuel": "2 Samuel",
+  "II Samuel": "2 Samuel",
+
+  "1 Kings": "1 Kings",
+  "First Kings": "1 Kings",
+  "I Kings": "1 Kings",
+
+  "2 Kings": "2 Kings",
+  "Second Kings": "2 Kings",
+  "II Kings": "2 Kings",
+
+  "1 Chronicles": "1 Chronicles",
+  "First Chronicles": "1 Chronicles",
+  "I Chronicles": "1 Chronicles",
+
+  "2 Chronicles": "2 Chronicles",
+  "Second Chronicles": "2 Chronicles",
+  "II Chronicles": "2 Chronicles",
+
+  "1 Corinthians": "1 Corinthians",
+  "First Corinthians": "1 Corinthians",
+  "I Corinthians": "1 Corinthians",
+
+  "2 Corinthians": "2 Corinthians",
+  "Second Corinthians": "2 Corinthians",
+  "II Corinthians": "2 Corinthians",
+
+  "1 Thessalonians": "1 Thessalonians",
+  "First Thessalonians": "1 Thessalonians",
+  "I Thessalonians": "1 Thessalonians",
+
+  "2 Thessalonians": "2 Thessalonians",
+  "Second Thessalonians": "2 Thessalonians",
+  "II Thessalonians": "2 Thessalonians",
+
+  "1 Timothy": "1 Timothy",
+  "First Timothy": "1 Timothy",
+  "I Timothy": "1 Timothy",
+
+  "2 Timothy": "2 Timothy",
+  "Second Timothy": "2 Timothy",
+  "II Timothy": "2 Timothy",
+
+  "1 Peter": "1 Peter",
+  "First Peter": "1 Peter",
+  "I Peter": "1 Peter",
+
+  "2 Peter": "2 Peter",
+  "Second Peter": "2 Peter",
+  "II Peter": "2 Peter",
+
+  "1 John": "1 John",
+  "First John": "1 John",
+  "I John": "1 John",
+
+  "2 John": "2 John",
+  "Second John": "2 John",
+  "II John": "2 John",
+
+  "3 John": "3 John",
+  "Third John": "3 John",
+  "III John": "3 John"
+};
 
   return map[n] || n;
 }

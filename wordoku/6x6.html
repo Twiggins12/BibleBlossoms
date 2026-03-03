@@ -73,7 +73,7 @@
   // Show/Hide Answer
   document.querySelectorAll('.show-answer-btn').forEach(button => {
     button.addEventListener('click', function(e) {
-      e.preventDefault(); // 👈 prevents jump to top
+      e.preventDefault();
 
       const card = this.closest('.card');
       const solution = card.querySelector('.solution');
@@ -90,40 +90,46 @@
     });
   });
 
-  // Print Image
+  // Print Image (handles popup blocking)
   document.querySelectorAll('.print-btn').forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
-alert("Print handler is running");
+
       const imageUrl = this.getAttribute('href');
+      const w = window.open('', '_blank');
 
-      const printWindow = window.open('', '_blank');
+      if (!w) {
+        alert("Popups are blocked. Allow popups for this site, then click Print again.");
+        return;
+      }
 
-      printWindow.document.write(`
+      w.document.open();
+      w.document.write(`
+        <!doctype html>
         <html>
           <head>
+            <meta charset="utf-8">
             <title>Print Puzzle</title>
             <style>
-              body {
-                margin: 0;
-                text-align: center;
-              }
-              img {
-                max-width: 100%;
-                height: auto;
-              }
+              @page { margin: 0.5in; }
+              body { margin: 0; text-align: center; }
+              img { width: 100%; height: auto; display: block; }
             </style>
           </head>
           <body>
-            <img src="${imageUrl}" onload="window.print(); window.close();" />
+            <img id="puzzle" src="${imageUrl}">
+            <script>
+              const img = document.getElementById('puzzle');
+              img.onload = () => { window.focus(); window.print(); };
+              img.onerror = () => { document.body.innerHTML = "Image failed to load for printing."; };
+            <\/script>
           </body>
         </html>
       `);
 
-      printWindow.document.close();
+      w.document.close();
     });
   });
 </script>
-
 </body>
 </html>

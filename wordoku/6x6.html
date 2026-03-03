@@ -31,8 +31,8 @@
       <img src="../images/6x6_he_is_risen.png" alt="6x6 WORDoku Puzzle 1 preview">
       <div class="card-buttons">
         <a href="../downloads/wordoku/6x6_he_is_risen.pdf" download>Download</a>
-        <a href="../images/6x6_he_is_risen.png" target="_blank">Print</a>
-  <a href="#" class="show-answer-btn">Answer</a>
+        <a href="../images/6x6_he_is_risen.png" class="print-btn">Print</a>
+        <a href="#" class="show-answer-btn">Answer</a>
       </div>
       <div class="solution" style="display:none; margin-top:10px;">
         <img src="../images/6x6_he_is_risen_solution.png" alt="Puzzle 1 solution">
@@ -45,7 +45,7 @@
       <img src="../images/6x6_truth_set_free.png" alt="6x6 WORDoku Puzzle 2 preview">
       <div class="card-buttons">
         <a href="../downloads/wordoku/6x6_truth_set_free.pdf" download>Download</a>
-        <a href="../images/6x6_truth_set_free.png" target="_blank">Print</a>
+        <a href="../images/6x6_truth_set_free.png" class="print-btn">Print</a>
   <a href="#" class="show-answer-btn">Answer</a>
       </div>
       <div class="solution" style="display:none; margin-top:10px;">
@@ -70,10 +70,14 @@
 
 <!-- JS for Show Answer Buttons -->
 <script>
+  // Show/Hide Answer
   document.querySelectorAll('.show-answer-btn').forEach(button => {
-    button.addEventListener('click', function() {
+    button.addEventListener('click', function(e) {
+      e.preventDefault(); // 👈 prevents jump to top
+
       const card = this.closest('.card');
       const solution = card.querySelector('.solution');
+
       if (solution) {
         if (solution.style.display === 'none') {
           solution.style.display = 'block';
@@ -83,6 +87,40 @@
           this.innerText = 'Answer';
         }
       }
+    });
+  });
+
+  // Print Image
+  document.querySelectorAll('.print-btn').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      const imageUrl = this.getAttribute('href');
+
+      const printWindow = window.open('', '_blank');
+
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>Print Puzzle</title>
+            <style>
+              body {
+                margin: 0;
+                text-align: center;
+              }
+              img {
+                max-width: 100%;
+                height: auto;
+              }
+            </style>
+          </head>
+          <body>
+            <img src="${imageUrl}" onload="window.print(); window.close();" />
+          </body>
+        </html>
+      `);
+
+      printWindow.document.close();
     });
   });
 </script>

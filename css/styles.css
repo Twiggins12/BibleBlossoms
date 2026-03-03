@@ -80,19 +80,18 @@ header h2 {
   font-size: 1.2rem;
   margin-top: 15px;
 }
-.cards-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;        /* space between cards */
-  padding: 40px 20px;
+.cards-container { 
+  display: flex; 
+  flex-wrap: wrap; 
+  justify-content: center; 
+  gap: 30px; /* space between cards */ 
+  padding: 40px 20px; 
 }
-
-.cards-container .card img {
-  width: 100%;
-  height: auto;       /* 👈 keeps proportions */
-  max-height: none;   /* 👈 removes restriction */
-}
+.cards-container .card img { 
+  max-height: 200px; /* or whatever fits your design */
+  object-fit: cover; 
+  display: block;
+  width: 100%; }
 
 .card {
   background: linear-gradient(to bottom, #e6e6fa, #f7f3ff); /* subtle gradient */
@@ -102,8 +101,7 @@ header h2 {
   flex-direction: column;
     justify-content: space-between;  /* spreads content from top to bottom */
   align-items: center;
-  width: 100%;
-  max-width: 700px; /* adjust with here */
+  width: 275px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   transition: transform 0.3s, box-shadow 0.3s;
 }

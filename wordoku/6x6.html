@@ -94,7 +94,7 @@
   document.querySelectorAll('.print-btn').forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
-
+alert("Print handler is running");
       const imageUrl = this.getAttribute('href');
 
       const printWindow = window.open('', '_blank');

@@ -249,14 +249,16 @@ async function loadBible(version, setActive = true) {
     }
 
     const res = await fetch(`https://raw.githubusercontent.com/Twiggins12/BibleBlossoms/main/bibles/${version}.json`);
+    if (!res.ok) throw new Error(`HTTP ${res.status} loading ${version}.json`);
+
     const data = await res.json();
 
- const loaded =
-  (version === "KJV")
-    ? convertKJVAbbrevToWebLike(data)
-    : (version === "RLT")
-      ? data
-      : data.books;
+    const loaded =
+      (version === "KJV")
+        ? convertKJVAbbrevToWebLike(data)
+        : (version === "RLT" || version === "ASV")
+          ? data
+          : data.books;
 
     // Save to cache
     biblesByVersion[version] = loaded;
@@ -264,13 +266,12 @@ async function loadBible(version, setActive = true) {
     // Only set active if requested
     if (setActive) bible = loaded;
 
-    console.log(setActive ? "Bible loaded:" : "Bible preloaded:", version, "books:", loaded.length);
+    console.log(setActive ? "Bible loaded:" : "Bible preloaded:", version, "items:", loaded.length);
 
   } catch (err) {
     console.error("Failed to load Bible:", err);
   }
 }
-
  function convertKJVAbbrevToWebLike(kjvBooks) {
   const abbrevToName = {
     gn: "Genesis",

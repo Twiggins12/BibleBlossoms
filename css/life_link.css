@@ -197,7 +197,9 @@ header h3 {
   color: #4b0082;
   text-decoration: none;
 }
-
+.copyright ul {
+  padding-left: 30px;
+}
 .copyright a:hover {
   text-decoration: underline;
 }

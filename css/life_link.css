@@ -71,7 +71,7 @@ header h3 {
 }
 
 .section-heading {
-    width: 500px;
+  width: 400px;
   margin-left: 350px;
   margin-right: 30px;   /* spacing between heading and dropdowns */
   font-size: 1.2em;

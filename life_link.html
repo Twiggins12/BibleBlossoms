@@ -237,7 +237,38 @@ const csvFiles = [
   "data/sections/section10_Promises.csv",
   "data/sections/section11_Concepts.csv"
 ];
+  
+function pickLargestArrayProperty(obj) {
+  if (!obj || typeof obj !== "object") return null;
+  let best = null;
+  let bestLen = -1;
 
+  for (const [k, v] of Object.entries(obj)) {
+    if (Array.isArray(v) && v.length > bestLen) {
+      best = v;
+      bestLen = v.length;
+    }
+  }
+  return best;
+}
+
+function normalizeBibleJson(version, data) {
+  // Already an array (ASV-style verse list or array of books)
+  if (Array.isArray(data)) return data;
+
+  // Common wrappers used by different files
+  if (data && Array.isArray(data.books)) return data.books;
+  if (data && Array.isArray(data.verses)) return data.verses;
+  if (data && Array.isArray(data.data)) return data.data;
+
+  // Last-resort: if it's an object that contains an array somewhere, use the biggest one
+  const biggest = pickLargestArrayProperty(data);
+  if (biggest) return biggest;
+
+  // If nothing fits, return null so we can throw a clear error
+  return null;
+}
+  
 // Load Bible JSON
 async function loadBible(version, setActive = true) {
   try {
@@ -257,6 +288,8 @@ async function loadBible(version, setActive = true) {
     const loaded =
       (version === "KJV")
         ? convertKJVAbbrevToWebLike(data)
+         : normalizeBibleJson(version, data);
+    if (!loaded) throw new Error(`Unrecognized JSON shape for ${version}.json`);
         : (version === "ASV")
           ? data                       // ASV = flat array of verses
           : (version === "RLT")
@@ -264,14 +297,7 @@ async function loadBible(version, setActive = true) {
             : data.books;              // WEB/BSB/YLT etc.
 
     if (!loaded) throw new Error(`Loaded data was undefined for ${version} (check JSON structure)`);
-    
-if (version === "RLT") {
-  console.log("RLT loaded typeof:", typeof loaded);
-  console.log("RLT isArray:", Array.isArray(loaded));
-  console.log("RLT keys:", loaded && typeof loaded === "object" ? Object.keys(loaded) : "(not an object)");
-  console.log("RLT sample:", loaded);
-};
-    
+        
     // Save to cache
     biblesByVersion[version] = loaded;
 
@@ -279,8 +305,7 @@ if (version === "RLT") {
     if (setActive) bible = loaded;
 
     const count = Array.isArray(loaded) ? loaded.length : (loaded?.books?.length ?? "n/a");
-    console.log(setActive ? "Bible loaded:" : "Bible preloaded:", version, "items:", count);
-
+console.log(setActive ? "Bible loaded:" : "Bible preloaded:", version, "items:", Array.isArray(loaded) ? loaded.length : "n/a");
   } catch (err) {
     console.error("Failed to load Bible:", err);
   }

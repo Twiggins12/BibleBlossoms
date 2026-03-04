@@ -70,6 +70,10 @@ header h3 {
   margin-bottom: 15px;
 }
 
+#versionSelect {
+  width: 320px;
+}
+
 .section-heading {
   width: 400px;
   margin-left: 350px;

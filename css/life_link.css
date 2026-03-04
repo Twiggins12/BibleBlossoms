@@ -198,7 +198,8 @@ header h3 {
   text-decoration: none;
 }
 .copyright ul {
-  padding-left: 30px;
+  margin-left: 40px !important;
+  padding-left: 20px !important;
 }
 .copyright a:hover {
   text-decoration: underline;

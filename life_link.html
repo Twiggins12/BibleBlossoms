@@ -52,6 +52,7 @@ Thank you for your patience as this work unfolds.
   <option value="KJV">King James Version</option>
   <option value="BSB">Berean Standard Bible</option>
   <option value="YLT">Young's Literal Translation</option>
+  <option value="RLT">Revised Literal Translation</option>
 </select>
 </div>
 </div>
@@ -194,8 +195,13 @@ the World English Bible organization.
 
 
 <script>
-let bible = [];
-let biblesByVersion = { WEB: null, KJV: null };
+let biblesByVersion = {
+  WEB: null,
+  KJV: null,
+  BSB: null,
+  YLT: null,
+  RLT: null
+};
   
 const versionSelect = document.getElementById("versionSelect");
 const sections = document.querySelectorAll("#sections-container .section-container");

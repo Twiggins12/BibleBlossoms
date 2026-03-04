@@ -1174,6 +1174,47 @@ Section,MainTopic,SubTopic,Book,Chapter,Verse
 "========== KEEPER ==========", , , , ,
 "People,Culture,Objects",Culture,Keeper,Genesis,4,9
 
+"========== OBJECTS==========", , , , ,
+"========== ALTAR ==========", , , , ,
+"People,Culture,Objects",Objects,Altar,Genesis,8,20
+"People,Culture,Objects",Objects,Altar,Genesis,12,7
+"People,Culture,Objects",Objects,Altar,Genesis,12,8
+"People,Culture,Objects",Objects,Altar,Genesis,13,4
+"People,Culture,Objects",Objects,Altar,Genesis,13,18
+"People,Culture,Objects",Objects,Altar,Genesis,22,9
+"People,Culture,Objects",Objects,Altar,Genesis,26,25
+"People,Culture,Objects",Objects,Altar,Genesis,33,20
+"People,Culture,Objects",Objects,Altar,Genesis,35,7
+"People,Culture,Objects",Objects,Altar,Exodus,17,15
+"People,Culture,Objects",Objects,Altar,Exodus,20,24
+"People,Culture,Objects",Objects,Altar,Exodus,24,4
+"People,Culture,Objects",Objects,Altar,Exodus,27,1
+"People,Culture,Objects",Objects,Altar,Exodus,27,7
+"People,Culture,Objects",Objects,Altar,Exodus,29,13
+"People,Culture,Objects",Objects,Altar,Exodus,29,36
+"People,Culture,Objects",Objects,Altar,Exodus,30,1
+"People,Culture,Objects",Objects,Altar,Exodus,30,18
+"People,Culture,Objects",Objects,Altar,Exodus,30,27
+"People,Culture,Objects",Objects,Altar,Exodus,30,28
+"People,Culture,Objects",Objects,Altar,Exodus,31,8
+"People,Culture,Objects",Objects,Altar,Exodus,31,9
+"People,Culture,Objects",Objects,Altar,Exodus,35,15
+"People,Culture,Objects",Objects,Altar,Exodus,35,16
+"People,Culture,Objects",Objects,Altar,Exodus,37,25
+"People,Culture,Objects",Objects,Altar,Exodus,38,1
+"People,Culture,Objects",Objects,Altar,Exodus,38,4
+"People,Culture,Objects",Objects,Altar,Exodus,38,30
+"People,Culture,Objects",Objects,Altar,Exodus,39,38
+"People,Culture,Objects",Objects,Altar,Exodus,39,39
+"People,Culture,Objects",Objects,Altar,Exodus,40,5
+"People,Culture,Objects",Objects,Altar,Exodus,40,6
+"People,Culture,Objects",Objects,Altar,Exodus,40,10
+"People,Culture,Objects",Objects,Altar,Exodus,40,26
+"People,Culture,Objects",Objects,Altar,Exodus,40,29
+
+
+
+
 
 "========== OBJECTS==========", , , , ,
 "========== SWORD ==========", , , , ,

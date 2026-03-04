@@ -252,13 +252,18 @@ async function loadBible(version, setActive = true) {
     if (!res.ok) throw new Error(`HTTP ${res.status} loading ${version}.json`);
 
     const data = await res.json();
+    if (!data) throw new Error(`No JSON returned for ${version}`);
 
     const loaded =
       (version === "KJV")
         ? convertKJVAbbrevToWebLike(data)
-        : (version === "RLT" || version === "ASV")
-          ? data
-          : data.books;
+        : (version === "ASV")
+          ? data                       // ASV = flat array of verses
+          : (version === "RLT")
+            ? data                     // (we'll confirm RLT shape next)
+            : data.books;              // WEB/BSB/YLT etc.
+
+    if (!loaded) throw new Error(`Loaded data was undefined for ${version} (check JSON structure)`);
 
     // Save to cache
     biblesByVersion[version] = loaded;
@@ -266,7 +271,8 @@ async function loadBible(version, setActive = true) {
     // Only set active if requested
     if (setActive) bible = loaded;
 
-    console.log(setActive ? "Bible loaded:" : "Bible preloaded:", version, "items:", loaded.length);
+    const count = Array.isArray(loaded) ? loaded.length : (loaded?.books?.length ?? "n/a");
+    console.log(setActive ? "Bible loaded:" : "Bible preloaded:", version, "items:", count);
 
   } catch (err) {
     console.error("Failed to load Bible:", err);

@@ -71,12 +71,12 @@ header h3 {
 }
 
 .section-heading {
-  width: 400px;
   margin-left: 350px;
   margin-right: 30px;   /* spacing between heading and dropdowns */
   font-size: 1.2em;
   font-weight: bold;
   color: #4b0082;
+  white-space: nowrap;
 }
 
 .dropdown-column {
@@ -178,7 +178,7 @@ header h3 {
   font-weight: bold;
 }
 .copyright {
-  max-width: 400px;
+  max-width: 500px;
   margin: 30px auto;
   padding: 20px;
   font-size: 0.95em;

@@ -264,7 +264,12 @@ async function loadBible(version, setActive = true) {
             : data.books;              // WEB/BSB/YLT etc.
 
     if (!loaded) throw new Error(`Loaded data was undefined for ${version} (check JSON structure)`);
-
+    
+console.log("RLT type check:", version, {
+  isArray: Array.isArray(loaded),
+  keys: loaded && typeof loaded === "object" ? Object.keys(loaded).slice(0, 20) : null
+});
+    
     // Save to cache
     biblesByVersion[version] = loaded;
 

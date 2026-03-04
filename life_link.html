@@ -41,7 +41,7 @@ Thank you for your patience as this work unfolds.
 </p>
 
 <p>Began February 4, 2026</p>
-<p>Last Updated March 2, 2026</p>
+<p>Last Updated March 3, 2026</p>
 
 <div class="section-container">
 <div class="section-heading">Select Bible Version</div>
@@ -646,20 +646,33 @@ sections.forEach((section, index) => buildSection(section, index));
 
 // Reload verses when Bible version changes
 versionSelect.addEventListener("change", async () => {
-  await loadBible(versionSelect.value);
+
+  const v = versionSelect.value;
+
+  // Load the version the user selected
+  await loadBible(v, true);
+
+  // Preload other Bibles quietly in the background
+  if (v !== "RLT") loadBible("RLT", false);
+  if (v !== "WEB") loadBible("WEB", false);
 
   sections.forEach(section => {
     const bookSelect = section.querySelector(".bookSelect");
     if (bookSelect.value) {
-      bookSelect.dispatchEvent(new Event('change'));
+      bookSelect.dispatchEvent(new Event("change"));
     }
   });
-});
 
+});
 // Initial load
 (async () => {
-  await loadBible("WEB", true);   // active
-  loadBible("KJV", false);        // preload only
+  const initial = versionSelect.value || "WEB";
+
+  // Start loading the selected Bible immediately (active)
+  await loadBible(initial, true);
+
+  // Optional: preload one "common" alternate in the background
+  loadBible(initial === "KJV" ? "WEB" : "KJV", false);
 })();
   
 </script>

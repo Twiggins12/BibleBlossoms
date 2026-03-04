@@ -265,10 +265,12 @@ async function loadBible(version, setActive = true) {
 
     if (!loaded) throw new Error(`Loaded data was undefined for ${version} (check JSON structure)`);
     
-console.log("RLT type check:", version, {
-  isArray: Array.isArray(loaded),
-  keys: loaded && typeof loaded === "object" ? Object.keys(loaded).slice(0, 20) : null
-});
+if (version === "RLT") {
+  console.log("RLT loaded typeof:", typeof loaded);
+  console.log("RLT isArray:", Array.isArray(loaded));
+  console.log("RLT keys:", loaded && typeof loaded === "object" ? Object.keys(loaded) : "(not an object)");
+  console.log("RLT sample:", loaded);
+};
     
     // Save to cache
     biblesByVersion[version] = loaded;

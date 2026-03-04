@@ -233,8 +233,11 @@ async function loadBible(version, setActive = true) {
     const res = await fetch(`https://raw.githubusercontent.com/Twiggins12/BibleBlossoms/main/bibles/${version}.json`);
     const data = await res.json();
 
-    const loaded = (version === "KJV")
-      ? convertKJVAbbrevToWebLike(data)
+ const loaded =
+  (version === "KJV")
+    ? convertKJVAbbrevToWebLike(data)
+    : (version === "RLT")
+      ? data
       : data.books;
 
     // Save to cache
@@ -469,6 +472,14 @@ s = s.replace(/<\s*fi\b[^>]*>/gi, "<em>");
   return s.trim();
 }
 function getVerse(bookName, chapterNum, verseNum) {
+
+    // RLT lookup-object format
+  if (!Array.isArray(bible) && typeof bible === "object") {
+    const book = normalizeBookName(bookName);
+    const text = bible?.[book]?.[String(chapterNum)]?.[String(verseNum)];
+    return text ?? `[Verse not found: ${bookName} ${chapterNum}:${verseNum}]`;
+  }
+  
   if (!Array.isArray(bible) || bible.length === 0) return "[Bible not loaded]";
 
   const target = normalizeBookName(bookName);

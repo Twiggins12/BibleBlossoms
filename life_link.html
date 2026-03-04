@@ -212,6 +212,7 @@ Life Link is an independent project and is not affiliated with the organizations
 
 
 <script>
+  console.log("LIFE_LINK SCRIPT LOADED - March 4 test");
 let biblesByVersion = {
   WEB: null,
   KJV: null,
@@ -283,29 +284,21 @@ async function loadBible(version, setActive = true) {
     if (!res.ok) throw new Error(`HTTP ${res.status} loading ${version}.json`);
 
     const data = await res.json();
-    if (!data) throw new Error(`No JSON returned for ${version}`);
+if (!data) throw new Error(`No JSON returned for ${version}`);
 
-    const loaded =
-      (version === "KJV")
-        ? convertKJVAbbrevToWebLike(data)
-         : normalizeBibleJson(version, data);
-    if (!loaded) throw new Error(`Unrecognized JSON shape for ${version}.json`);
-        : (version === "ASV")
-          ? data                       // ASV = flat array of verses
-          : (version === "RLT")
-            ? data                     // (we'll confirm RLT shape next)
-            : data.books;              // WEB/BSB/YLT etc.
+const loaded = (version === "KJV")
+  ? convertKJVAbbrevToWebLike(data)
+  : normalizeBibleJson(version, data);
 
-    if (!loaded) throw new Error(`Loaded data was undefined for ${version} (check JSON structure)`);
-        
-    // Save to cache
-    biblesByVersion[version] = loaded;
+if (!loaded) throw new Error(`Unrecognized JSON shape for ${version}.json`);
 
-    // Only set active if requested
-    if (setActive) bible = loaded;
+// Save to cache
+biblesByVersion[version] = loaded;
+if (setActive) bible = loaded;
 
-    const count = Array.isArray(loaded) ? loaded.length : (loaded?.books?.length ?? "n/a");
-console.log(setActive ? "Bible loaded:" : "Bible preloaded:", version, "items:", Array.isArray(loaded) ? loaded.length : "n/a");
+console.log(setActive ? "Bible loaded:" : "Bible preloaded:", version, "items:",
+  Array.isArray(loaded) ? loaded.length : "n/a"
+);
   } catch (err) {
     console.error("Failed to load Bible:", err);
   }

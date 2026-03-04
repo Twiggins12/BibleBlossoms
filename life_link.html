@@ -594,6 +594,7 @@ function buildSection(section, index) {
 
     const table = document.createElement("table");
     table.className = "verse-table";
+    const fragment = document.createDocumentFragment();
 
     let currentChapter = null;
 
@@ -606,7 +607,7 @@ function buildSection(section, index) {
         const tdSpacer = document.createElement("td");
         tdSpacer.colSpan = 2;
         spacer.appendChild(tdSpacer);
-        table.appendChild(spacer);
+        fragment.appendChild(spacer);
 
         // Add chapter row with gradient
         const trChapter = document.createElement("tr");
@@ -615,7 +616,7 @@ function buildSection(section, index) {
         tdChapter.colSpan = 2;
         tdChapter.textContent = `Chapter ${chapterNum}`;
         trChapter.appendChild(tdChapter);
-        table.appendChild(trChapter);
+        fragment.appendChild(trChapter);
 
         currentChapter = chapterNum;
       }
@@ -634,9 +635,10 @@ tdText.innerHTML = formatVerseText(
 );      trVerse.appendChild(tdNum);
       trVerse.appendChild(tdText);
 
-      table.appendChild(trVerse);
+      fragment.appendChild(trVerse);
     });
-
+    
+    table.appendChild(fragment);
     verseDiv.appendChild(table);
   });
 }

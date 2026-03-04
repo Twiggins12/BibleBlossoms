@@ -80,6 +80,17 @@ header h2 {
   font-size: 1.2rem;
   margin-top: 15px;
 }
+
+/* Make clickable cards not look like links */
+.cards-container a.card {
+  text-decoration: none;
+  color: inherit;
+}
+
+.cards-container a.card:hover {
+  text-decoration: none;
+}
+
 .cards-container { 
   display: flex; 
   flex-wrap: wrap; 

@@ -85,6 +85,7 @@ header h2 {
 .cards-container a.card {
   text-decoration: none;
   color: inherit;
+  display: block;
 }
 
 .cards-container a.card:hover {

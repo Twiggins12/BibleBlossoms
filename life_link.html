@@ -523,6 +523,21 @@ s = s.replace(/<\s*fi\b[^>]*>/gi, "<em>");
 }
 function getVerse(bookName, chapterNum, verseNum) {
 
+    // ASV (and any verse-list format): array of {Book, Chapter, Verse, Text}
+  if (Array.isArray(bible) && bible.length && bible[0] && typeof bible[0] === "object" && "Book" in bible[0] && "Text" in bible[0]) {
+    const book = normalizeBookName(bookName);
+    const chap = Number(chapterNum);
+    const ver = Number(verseNum);
+
+    const hit = bible.find(v =>
+      normalizeBookName(v.Book) === book &&
+      Number(v.Chapter) === chap &&
+      Number(v.Verse) === ver
+    );
+
+    return hit?.Text ?? `[Verse not found: ${bookName} ${chapterNum}:${verseNum}]`;
+  }
+  
     // RLT lookup-object format
   if (!Array.isArray(bible) && typeof bible === "object") {
     const book = normalizeBookName(bookName);

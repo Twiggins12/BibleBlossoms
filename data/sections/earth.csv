@@ -1,1 +1,170 @@
 MainTopic,SubTopic,Book,Chapter,Verse
+Earth,"Agriculture - Farming, Fields",Genesis,2,5
+Earth,"Agriculture - Farming, Fields",Genesis,2,6
+Earth,"Agriculture - Farming, Fields",Genesis,3,18
+Earth,"Agriculture - Farming, Fields",Genesis,3,23
+Earth,"Agriculture - Farming, Fields",Genesis,4,2
+Earth,"Agriculture - Farming, Fields",Genesis,4,8
+
+Earth,Darkness,Genesis,1,2
+Earth,Darkness,Genesis,1,4
+Earth,Darkness,Genesis,1,5
+
+Earth,Earth,Genesis,1,1
+Earth,Earth,Genesis,1,2
+Earth,Earth,Genesis,1,10
+Earth,Earth,Genesis,1,11
+Earth,Earth,Genesis,1,12
+Earth,Earth,Genesis,1,24
+Earth,Earth,Genesis,1,25
+Earth,Earth,Genesis,1,26
+Earth,Earth,Genesis,1,28
+Earth,Earth,Genesis,2,1
+Earth,Earth,Genesis,2,4
+Earth,Earth,Genesis,2,5
+Earth,Earth,Genesis,2,6
+Earth,Earth,Genesis,4,10
+Earth,Earth,Genesis,4,11
+Earth,Earth,Genesis,4,12
+Earth,Earth,Genesis,4,13
+Earth,Earth,Genesis,4,14
+
+Earth,"Fire - Flame, Flaming",Genesis,3,24
+
+Earth,"The Heavens",Genesis,1,1
+Earth,"The Heavens",Genesis,1,6
+Earth,"The Heavens",Genesis,1,7
+Earth,"The Heavens",Genesis,1,8
+Earth,"The Heavens",Genesis,1,9
+Earth,"The Heavens",Genesis,1,14
+Earth,"The Heavens",Genesis,1,15
+Earth,"The Heavens",Genesis,1,16
+Earth,"The Heavens",Genesis,1,17
+Earth,"The Heavens",Genesis,1,20
+Earth,"The Heavens",Genesis,2,1
+Earth,"The Heavens",Genesis,2,4
+
+Earth,Land,Genesis,1,9
+Earth,Land,Genesis,1,10
+Earth,Land,Genesis,1,25
+Earth,Land,Genesis,2,5
+Earth,Land,Genesis,2,6
+Earth,Land,Genesis,2,7
+Earth,Land,Genesis,2,9
+Earth,Land,Genesis,2,11
+Earth,Land,Genesis,2,12
+Earth,Land,Genesis,2,19
+Earth,Land,Genesis,2,20
+Earth,Land,Genesis,3,14
+Earth,Land,Genesis,3,17
+Earth,Land,Genesis,3,18
+Earth,Land,Genesis,3,19
+Earth,Land,Genesis,3,23
+Earth,Land,Genesis,4,10
+Earth,Land,Genesis,4,11
+Earth,Land,Genesis,4,12
+
+Earth,Light,Genesis,1,2
+Earth,Light,Genesis,1,3
+Earth,Light,Genesis,1,4
+Earth,Light,Genesis,1,5
+Earth,Light,Genesis,1,14
+Earth,Light,Genesis,1,15
+Earth,Light,Genesis,1,16
+Earth,Light,Genesis,1,17
+Earth,Light,Genesis,1,18
+
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,1,11
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,1,12
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,1,29
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,1,30
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,2,9
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,2,15
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,2,16
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,1
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,2
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,3
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,4
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,5
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,6
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,8
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,11
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,12
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,17
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,22
+"Creation, Earth, Animals",Earth,"Plants, Trees",Genesis,3,24
+"Creation, Earth, Animals",Earth,"Plants, Trees",Psalm,1,3
+
+
+"========== EARTH ==========", , , , ,
+"========== PLANTS FRUITS SEEDS ==========", , , , ,
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,1,11
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,1,12
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,1,29
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,3,6
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,3,12
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Genesis,4,3
+"Creation, Earth, Animals",Earth,"Plants, Fruits & Seeds",Psalm,1,3
+
+"========== EARTH ==========", , , , ,
+"========== PLANTS GRASS HERBS THISTLES THORNS ==========", , , , ,
+"Creation, Earth, Animals",Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,1,11
+"Creation, Earth, Animals",Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,1,12
+"Creation, Earth, Animals",Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,1,29
+"Creation, Earth, Animals",Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,1,30
+"Creation, Earth, Animals",Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,2,5
+"Creation, Earth, Animals",Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,2,6
+"Creation, Earth, Animals",Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,3,7
+"Creation, Earth, Animals",Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,3,18
+
+"========== EARTH ==========", , , , ,
+"========== STONE GEMS MINERALS ==========", , , , ,
+"Creation, Earth, Animals",Earth,"Stone, Gems & Minerals",Genesis,2,11
+"Creation, Earth, Animals",Earth,"Stone, Gems & Minerals",Genesis,2,12
+
+"========== EARTH ==========", , , , ,
+"========== TIME ==========", , , , ,
+"Creation, Earth, Animals",Earth,Time,Genesis,1,1
+"Creation, Earth, Animals",Earth,Time,Genesis,1,5
+"Creation, Earth, Animals",Earth,Time,Genesis,1,5
+"Creation, Earth, Animals",Earth,Time,Genesis,1,13
+"Creation, Earth, Animals",Earth,Time,Genesis,1,14
+"Creation, Earth, Animals",Earth,Time,Genesis,1,19
+"Creation, Earth, Animals",Earth,Time,Genesis,1,23
+"Creation, Earth, Animals",Earth,Time,Genesis,1,31
+"Creation, Earth, Animals",Earth,Time,Genesis,2,2
+"Creation, Earth, Animals",Earth,Time,Genesis,2,3
+"Creation, Earth, Animals",Earth,Time,Genesis,3,8
+"Creation, Earth, Animals",Earth,Time,Genesis,3,14
+"Creation, Earth, Animals",Earth,Time,Genesis,4,3
+"Creation, Earth, Animals",Earth,Time,Psalm,1,2
+"Creation, Earth, Animals",Earth,Time,Psalm,1,3
+
+
+"========== EARTH ==========", , , , ,
+"========== WATER ==========", , , , ,
+"Creation, Earth, Animals",Earth,Water,Genesis,1,2
+"Creation, Earth, Animals",Earth,Water,Genesis,1,6
+"Creation, Earth, Animals",Earth,Water,Genesis,1,7
+"Creation, Earth, Animals",Earth,Water,Genesis,1,9
+"Creation, Earth, Animals",Earth,Water,Genesis,1,10
+"Creation, Earth, Animals",Earth,Water,Genesis,1,20
+"Creation, Earth, Animals",Earth,Water,Genesis,1,21
+"Creation, Earth, Animals",Earth,Water,Genesis,1,22
+"Creation, Earth, Animals",Earth,Water,Genesis,2,10
+"Creation, Earth, Animals",Earth,Water,Genesis,2,11
+"Creation, Earth, Animals",Earth,Water,Genesis,2,12
+"Creation, Earth, Animals",Earth,Water,Genesis,2,13
+"Creation, Earth, Animals",Earth,Water,Genesis,2,14
+"Creation, Earth, Animals",Earth,Water,Psalm,1,3
+"Creation, Earth, Animals",Earth,Water,Psalm,110,7
+
+
+"========== EARTH ==========", , , , ,
+"========== WEATHER ==========", , , , ,
+"Creation, Earth, Animals",Earth,Weather,Genesis,2,5
+"Creation, Earth, Animals",Earth,Weather,Genesis,2,6
+
+"========== EARTH ==========", , , , ,
+"========== WITHER ==========", , , , ,
+"Creation, Earth, Animals",Earth,Wither,Psalm,1,3

@@ -1,1 +1,1139 @@
 MainTopic,SubTopic,Book,Chapter,Verse
+People,Abel,Genesis,4,2
+People,Abel,Genesis,4,4
+People,Abel,Genesis,4,5
+People,Abel,Genesis,4,8
+People,Abel,Genesis,4,9
+People,Abel,Matthew,23,35
+People,Abel,Luke,11,51
+People,Abel,Hebrews,11,4
+People,Abel,Hebrews,12,24
+
+People,Adam,Genesis,2,20
+People,Adam,Genesis,2,21
+People,Adam,Genesis,2,22
+People,Adam,Genesis,2,23
+People,Adam,Genesis,2,25
+People,Adam,Genesis,3,8
+People,Adam,Genesis,3,9
+People,Adam,Genesis,3,10
+People,Adam,Genesis,3,12
+People,Adam,Genesis,3,17
+People,Adam,Genesis,3,20
+People,Adam,Genesis,3,21
+People,Adam,Genesis,4,1
+
+People,Brother,Genesis,4,8
+People,Brother,Genesis,4,9
+People,Brother,Genesis,4,10
+People,Brother,Genesis,4,11
+People,Brother,Genesis,4,12
+
+People,Cain,Genesis,4,1
+People,Cain,Genesis,4,2
+People,Cain,Genesis,4,3
+People,Cain,Genesis,4,4
+People,Cain,Genesis,4,5
+People,Cain,Genesis,4,6
+People,Cain,Genesis,4,7
+People,Cain,Genesis,4,8
+People,Cain,Genesis,4,9
+People,Cain,Genesis,4,13
+People,Cain,Genesis,4,14
+People,Cain,Genesis,4,15
+People,Cain,Genesis,4,16
+
+People,"Children, Baby, Child, Offspring",Genesis,3,15
+People,"Children, Baby, Child, Offspring",Genesis,3,16
+
+People,Emim,Genesis,14,5
+People,People,Emim,Deuteronomy,2,10
+People,People,Emim,Deuteronomy,2,11
+
+People,Eve,Genesis,2,21
+People,Eve,Genesis,2,22
+People,Eve,Genesis,2,23
+People,Eve,Genesis,3,1
+People,Eve,Genesis,3,2
+People,Eve,Genesis,3,3
+People,Eve,Genesis,3,4
+People,Eve,Genesis,3,5
+People,Eve,Genesis,3,6
+People,Eve,Genesis,3,7
+People,Eve,Genesis,3,8
+People,Eve,Genesis,3,12
+People,Eve,Genesis,3,13
+People,Eve,Genesis,3,16
+People,Eve,Genesis,3,20
+People,Eve,Genesis,3,21
+People,Eve,Genesis,4,1
+People,Eve,Genesis,4,2
+
+People,Father,Genesis,2,24
+
+People,"Fugitive, Runaway",Genesis,4,10
+People,"Fugitive, Runaway",Genesis,4,11
+People,"Fugitive, Runaway",Genesis,4,12
+People,"Fugitive, Runaway",Genesis,4,13
+People,"Fugitive, Runaway",Genesis,4,14
+
+People,People,Giants,Genesis,6,2
+People,People,Giants,Genesis,14,5
+People,People,Giants,Numbers,13,33
+People,People,Giants,Deuteronomy,2,10
+People,People,Giants,Deuteronomy,2,11
+
+People,Husband,Genesis,3,6
+People,Husband,Genesis,3,7
+People,Husband,Genesis,3,16
+
+People,Jesus,Matthew,1,1
+People,Jesus,Matthew,1,16
+People,Jesus,Matthew,1,18
+People,Jesus,Matthew,1,21
+People,Jesus,Matthew,3,13
+People,Jesus,Matthew,3,15
+People,Jesus,Matthew,3,16
+People,Jesus,Matthew,4,1
+People,Jesus,Matthew,4,7
+People,Jesus,Matthew,4,10
+People,Jesus,Matthew,4,12
+People,Jesus,Matthew,4,17
+People,Jesus,Matthew,4,23
+People,Jesus,Matthew,7,28
+People,Jesus,Matthew,8,3
+People,Jesus,Matthew,8,4
+People,Jesus,Matthew,8,10
+People,Jesus,Matthew,8,13
+People,Jesus,Matthew,8,14
+People,Jesus,Matthew,8,18
+People,Jesus,Matthew,8,20
+People,Jesus,Matthew,8,22
+People,Jesus,Matthew,8,29
+People,Jesus,Matthew,8,34
+People,Jesus,Matthew,9,2
+People,Jesus,Matthew,9,4
+People,Jesus,Matthew,9,9
+People,Jesus,Matthew,9,10
+People,Jesus,Matthew,9,12
+People,Jesus,Matthew,9,15
+People,Jesus,Matthew,9,19
+People,Jesus,Matthew,9,22
+People,Jesus,Matthew,9,23
+People,Jesus,Matthew,9,27
+People,Jesus,Matthew,9,28
+People,Jesus,Matthew,9,30
+People,Jesus,Matthew,9,35
+People,Jesus,Matthew,10,5
+People,Jesus,Matthew,11,1
+People,Jesus,Matthew,11,4
+People,Jesus,Matthew,11,7
+People,Jesus,Matthew,11,25
+People,Jesus,Matthew,12,1
+People,Jesus,Matthew,12,15
+People,Jesus,Matthew,13,1
+People,Jesus,Matthew,13,34
+People,Jesus,Matthew,13,36
+People,Jesus,Matthew,13,51
+People,Jesus,Matthew,13,53
+People,Jesus,Matthew,13,57
+People,Jesus,Matthew,14,1
+People,Jesus,Matthew,14,12
+People,Jesus,Matthew,14,13
+People,Jesus,Matthew,14,14
+People,Jesus,Matthew,14,16
+People,Jesus,Matthew,14,22
+People,Jesus,Matthew,14,25
+People,Jesus,Matthew,14,27
+People,Jesus,Matthew,14,29
+People,Jesus,Matthew,14,31
+People,Jesus,Matthew,15,1
+People,Jesus,Matthew,15,16
+People,Jesus,Matthew,15,21
+People,Jesus,Matthew,15,28
+People,Jesus,Matthew,15,29
+People,Jesus,Matthew,15,32
+People,Jesus,Matthew,15,34
+People,Jesus,Matthew,16,6
+People,Jesus,Matthew,16,8
+People,Jesus,Matthew,16,13
+People,Jesus,Matthew,16,17
+People,Jesus,Matthew,16,20
+People,Jesus,Matthew,16,21
+People,Jesus,Matthew,16,24
+People,Jesus,Matthew,17,1
+People,Jesus,Matthew,17,4
+People,Jesus,Matthew,17,7
+People,Jesus,Matthew,17,8
+People,Jesus,Matthew,17,9
+People,Jesus,Matthew,17,11
+People,Jesus,Matthew,17,17
+People,Jesus,Matthew,17,18
+People,Jesus,Matthew,17,19
+People,Jesus,Matthew,17,22
+People,Jesus,Matthew,17,25
+People,Jesus,Matthew,17,26
+People,Jesus,Matthew,18,1
+People,Jesus,Matthew,18,2
+People,Jesus,Matthew,18,22
+People,Jesus,Matthew,19,1
+People,Jesus,Matthew,19,14
+People,Jesus,Matthew,19,18
+People,Jesus,Matthew,19,21
+People,Jesus,Matthew,19,23
+People,Jesus,Matthew,19,26
+People,Jesus,Matthew,19,28
+People,Jesus,Matthew,20,17
+People,Jesus,Matthew,20,22
+People,Jesus,Matthew,20,25
+People,Jesus,Matthew,20,30
+"People,Culture,Objects",People,Jesus,Matthew,20,32
+"People,Culture,Objects",People,Jesus,Matthew,20,34
+"People,Culture,Objects",People,Jesus,Matthew,21,1
+"People,Culture,Objects",People,Jesus,Matthew,21,6
+"People,Culture,Objects",People,Jesus,Matthew,21,11
+"People,Culture,Objects",People,Jesus,Matthew,21,12
+"People,Culture,Objects",People,Jesus,Matthew,21,16
+"People,Culture,Objects",People,Jesus,Matthew,21,21
+"People,Culture,Objects",People,Jesus,Matthew,21,24
+"People,Culture,Objects",People,Jesus,Matthew,21,27
+"People,Culture,Objects",People,Jesus,Matthew,21,31
+"People,Culture,Objects",People,Jesus,Matthew,21,42
+"People,Culture,Objects",People,Jesus,Matthew,22,1
+"People,Culture,Objects",People,Jesus,Matthew,22,18
+"People,Culture,Objects",People,Jesus,Matthew,22,29
+"People,Culture,Objects",People,Jesus,Matthew,22,37
+"People,Culture,Objects",People,Jesus,Matthew,22,41
+"People,Culture,Objects",People,Jesus,Matthew,23,1
+"People,Culture,Objects",People,Jesus,Matthew,24,1
+"People,Culture,Objects",People,Jesus,Matthew,24,4
+"People,Culture,Objects",People,Jesus,Matthew,26,1
+"People,Culture,Objects",People,Jesus,Matthew,26,4
+"People,Culture,Objects",People,Jesus,Matthew,26,6
+"People,Culture,Objects",People,Jesus,Matthew,26,10
+"People,Culture,Objects",People,Jesus,Matthew,26,17
+"People,Culture,Objects",People,Jesus,Matthew,26,19
+"People,Culture,Objects",People,Jesus,Matthew,26,26
+"People,Culture,Objects",People,Jesus,Matthew,26,31
+"People,Culture,Objects",People,Jesus,Matthew,26,34
+"People,Culture,Objects",People,Jesus,Matthew,26,36
+"People,Culture,Objects",People,Jesus,Matthew,26,38
+"People,Culture,Objects",People,Jesus,Matthew,26,49
+"People,Culture,Objects",People,Jesus,Matthew,26,50
+"People,Culture,Objects",People,Jesus,Matthew,26,51
+"People,Culture,Objects",People,Jesus,Matthew,26,52
+"People,Culture,Objects",People,Jesus,Matthew,26,55
+"People,Culture,Objects",People,Jesus,Matthew,26,57
+"People,Culture,Objects",People,Jesus,Matthew,26,59
+"People,Culture,Objects",People,Jesus,Matthew,26,63
+"People,Culture,Objects",People,Jesus,Matthew,26,64
+"People,Culture,Objects",People,Jesus,Matthew,26,69
+"People,Culture,Objects",People,Jesus,Matthew,26,71
+"People,Culture,Objects",People,Jesus,Matthew,26,75
+"People,Culture,Objects",People,Jesus,Matthew,27,1
+"People,Culture,Objects",People,Jesus,Matthew,27,3
+"People,Culture,Objects",People,Jesus,Matthew,27,11
+"People,Culture,Objects",People,Jesus,Matthew,27,17
+"People,Culture,Objects",People,Jesus,Matthew,27,20
+"People,Culture,Objects",People,Jesus,Matthew,27,22
+"People,Culture,Objects",People,Jesus,Matthew,27,26
+"People,Culture,Objects",People,Jesus,Matthew,27,27
+"People,Culture,Objects",People,Jesus,Matthew,27,37
+"People,Culture,Objects",People,Jesus,Matthew,27,46
+"People,Culture,Objects",People,Jesus,Matthew,27,50
+"People,Culture,Objects",People,Jesus,Matthew,27,54
+"People,Culture,Objects",People,Jesus,Matthew,27,55
+"People,Culture,Objects",People,Jesus,Matthew,27,57
+"People,Culture,Objects",People,Jesus,Matthew,27,58
+"People,Culture,Objects",People,Jesus,Matthew,28,5
+"People,Culture,Objects",People,Jesus,Matthew,28,9
+"People,Culture,Objects",People,Jesus,Matthew,28,10
+"People,Culture,Objects",People,Jesus,Matthew,28,16
+"People,Culture,Objects",People,Jesus,Matthew,28,18
+"People,Culture,Objects",People,Jesus,Mark,1,1
+"People,Culture,Objects",People,Jesus,Mark,1,9
+"People,Culture,Objects",People,Jesus,Mark,1,14
+"People,Culture,Objects",People,Jesus,Mark,1,17
+"People,Culture,Objects",People,Jesus,Mark,1,25
+"People,Culture,Objects",People,Jesus,Mark,1,45
+"People,Culture,Objects",People,Jesus,Mark,2,5
+"People,Culture,Objects",People,Jesus,Mark,2,8
+"People,Culture,Objects",People,Jesus,Mark,2,15
+"People,Culture,Objects",People,Jesus,Mark,2,17
+"People,Culture,Objects",People,Jesus,Mark,2,19
+"People,Culture,Objects",People,Jesus,Mark,3,7
+"People,Culture,Objects",People,Jesus,Mark,5,6
+"People,Culture,Objects",People,Jesus,Mark,5,7
+"People,Culture,Objects",People,Jesus,Mark,5,13
+"People,Culture,Objects",People,Jesus,Mark,5,15
+"People,Culture,Objects",People,Jesus,Mark,5,20
+"People,Culture,Objects",People,Jesus,Mark,5,21
+"People,Culture,Objects",People,Jesus,Mark,5,27
+"People,Culture,Objects",People,Jesus,Mark,5,30
+"People,Culture,Objects",People,Jesus,Mark,5,36
+"People,Culture,Objects",People,Jesus,Mark,6,4
+"People,Culture,Objects",People,Jesus,Mark,6,30
+"People,Culture,Objects",People,Jesus,Mark,6,34
+"People,Culture,Objects",People,Jesus,Mark,7,27
+"People,Culture,Objects",People,Jesus,Mark,8,1
+"People,Culture,Objects",People,Jesus,Mark,8,17
+"People,Culture,Objects",People,Jesus,Mark,8,27
+"People,Culture,Objects",People,Jesus,Mark,9,2
+"People,Culture,Objects",People,Jesus,Mark,9,4
+"People,Culture,Objects",People,Jesus,Mark,9,5
+"People,Culture,Objects",People,Jesus,Mark,9,8
+"People,Culture,Objects",People,Jesus,Mark,9,23
+"People,Culture,Objects",People,Jesus,Mark,9,25
+"People,Culture,Objects",People,Jesus,Mark,9,27
+"People,Culture,Objects",People,Jesus,Mark,9,39
+"People,Culture,Objects",People,Jesus,Mark,10,5
+"People,Culture,Objects",People,Jesus,Mark,10,14
+"People,Culture,Objects",People,Jesus,Mark,10,18
+"People,Culture,Objects",People,Jesus,Mark,10,21
+"People,Culture,Objects",People,Jesus,Mark,10,23
+"People,Culture,Objects",People,Jesus,Mark,10,24
+"People,Culture,Objects",People,Jesus,Mark,10,27
+"People,Culture,Objects",People,Jesus,Mark,10,29
+"People,Culture,Objects",People,Jesus,Mark,10,32
+"People,Culture,Objects",People,Jesus,Mark,10,38
+"People,Culture,Objects",People,Jesus,Mark,10,39
+"People,Culture,Objects",People,Jesus,Mark,10,42
+"People,Culture,Objects",People,Jesus,Mark,10,47
+"People,Culture,Objects",People,Jesus,Mark,10,49
+"People,Culture,Objects",People,Jesus,Mark,10,50
+"People,Culture,Objects",People,Jesus,Mark,10,51
+"People,Culture,Objects",People,Jesus,Mark,10,52
+"People,Culture,Objects",People,Jesus,Mark,11,6
+"People,Culture,Objects",People,Jesus,Mark,11,7
+"People,Culture,Objects",People,Jesus,Mark,11,11
+"People,Culture,Objects",People,Jesus,Mark,11,14
+"People,Culture,Objects",People,Jesus,Mark,11,15
+"People,Culture,Objects",People,Jesus,Mark,11,22
+"People,Culture,Objects",People,Jesus,Mark,11,29
+"People,Culture,Objects",People,Jesus,Mark,11,33
+"People,Culture,Objects",People,Jesus,Mark,12,17
+"People,Culture,Objects",People,Jesus,Mark,12,24
+"People,Culture,Objects",People,Jesus,Mark,12,29
+"People,Culture,Objects",People,Jesus,Mark,12,34
+"People,Culture,Objects",People,Jesus,Mark,12,35
+"People,Culture,Objects",People,Jesus,Mark,12,41
+"People,Culture,Objects",People,Jesus,Mark,13,2
+"People,Culture,Objects",People,Jesus,Mark,13,5
+"People,Culture,Objects",People,Jesus,Mark,14,6
+"People,Culture,Objects",People,Jesus,Mark,14,18
+"People,Culture,Objects",People,Jesus,Mark,14,22
+"People,Culture,Objects",People,Jesus,Mark,14,27
+"People,Culture,Objects",People,Jesus,Mark,14,30
+"People,Culture,Objects",People,Jesus,Mark,14,48
+"People,Culture,Objects",People,Jesus,Mark,14,53
+"People,Culture,Objects",People,Jesus,Mark,14,55
+"People,Culture,Objects",People,Jesus,Mark,14,60
+"People,Culture,Objects",People,Jesus,Mark,14,62
+"People,Culture,Objects",People,Jesus,Mark,14,67
+"People,Culture,Objects",People,Jesus,Mark,14,72
+"People,Culture,Objects",People,Jesus,Mark,15,1
+"People,Culture,Objects",People,Jesus,Mark,15,5
+"People,Culture,Objects",People,Jesus,Mark,15,15
+"People,Culture,Objects",People,Jesus,Mark,15,34
+"People,Culture,Objects",People,Jesus,Mark,15,37
+"People,Culture,Objects",People,Jesus,Mark,15,43
+"People,Culture,Objects",People,Jesus,Mark,16,6
+"People,Culture,Objects",People,Jesus,Luke,1,31
+"People,Culture,Objects",People,Jesus,Luke,2,21
+"People,Culture,Objects",People,Jesus,Luke,2,27
+"People,Culture,Objects",People,Jesus,Luke,2,43
+"People,Culture,Objects",People,Jesus,Luke,2,52
+"People,Culture,Objects",People,Jesus,Luke,3,21
+"People,Culture,Objects",People,Jesus,Luke,3,23
+"People,Culture,Objects",People,Jesus,Luke,4,1
+"People,Culture,Objects",People,Jesus,Luke,4,4
+"People,Culture,Objects",People,Jesus,Luke,4,8
+"People,Culture,Objects",People,Jesus,Luke,4,12
+"People,Culture,Objects",People,Jesus,Luke,4,14
+"People,Culture,Objects",People,Jesus,Luke,4,34
+"People,Culture,Objects",People,Jesus,Luke,4,35
+"People,Culture,Objects",People,Jesus,Luke,5,8
+"People,Culture,Objects",People,Jesus,Luke,5,10
+"People,Culture,Objects",People,Jesus,Luke,5,12
+"People,Culture,Objects",People,Jesus,Luke,5,18
+"People,Culture,Objects",People,Jesus,Luke,5,19
+"People,Culture,Objects",People,Jesus,Luke,5,22
+"People,Culture,Objects",People,Jesus,Luke,5,31
+"People,Culture,Objects",People,Jesus,Luke,6,3
+"People,Culture,Objects",People,Jesus,Luke,6,9
+"People,Culture,Objects",People,Jesus,Luke,6,11
+"People,Culture,Objects",People,Jesus,Luke,7,3
+"People,Culture,Objects",People,Jesus,Luke,7,4
+"People,Culture,Objects",People,Jesus,Luke,7,6
+"People,Culture,Objects",People,Jesus,Luke,7,9
+"People,Culture,Objects",People,Jesus,Luke,7,19
+"People,Culture,Objects",People,Jesus,Luke,7,22
+"People,Culture,Objects",People,Jesus,Luke,7,40
+"People,Culture,Objects",People,Jesus,Luke,8,27
+"People,Culture,Objects",People,Jesus,Luke,8,28
+"People,Culture,Objects",People,Jesus,Luke,8,29
+"People,Culture,Objects",People,Jesus,Luke,8,30
+"People,Culture,Objects",People,Jesus,Luke,8,35
+"People,Culture,Objects",People,Jesus,Luke,8,38
+"People,Culture,Objects",People,Jesus,Luke,8,39
+"People,Culture,Objects",People,Jesus,Luke,8,40
+"People,Culture,Objects",People,Jesus,Luke,8,41
+"People,Culture,Objects",People,Jesus,Luke,8,45
+"People,Culture,Objects",People,Jesus,Luke,8,46
+"People,Culture,Objects",People,Jesus,Luke,8,50
+"People,Culture,Objects",People,Jesus,Luke,9,33
+"People,Culture,Objects",People,Jesus,Luke,9,36
+"People,Culture,Objects",People,Jesus,Luke,9,41
+"People,Culture,Objects",People,Jesus,Luke,9,42
+"People,Culture,Objects",People,Jesus,Luke,9,43
+"People,Culture,Objects",People,Jesus,Luke,9,47
+"People,Culture,Objects",People,Jesus,Luke,9,50
+"People,Culture,Objects",People,Jesus,Luke,9,58
+"People,Culture,Objects",People,Jesus,Luke,9,60
+"People,Culture,Objects",People,Jesus,Luke,9,62
+"People,Culture,Objects",People,Jesus,Luke,10,21
+"People,Culture,Objects",People,Jesus,Luke,10,29
+"People,Culture,Objects",People,Jesus,Luke,10,30
+"People,Culture,Objects",People,Jesus,Luke,10,37
+"People,Culture,Objects",People,Jesus,Luke,10,39
+"People,Culture,Objects",People,Jesus,Luke,10,41
+"People,Culture,Objects",People,Jesus,Luke,13,2
+"People,Culture,Objects",People,Jesus,Luke,13,12
+"People,Culture,Objects",People,Jesus,Luke,13,14
+"People,Culture,Objects",People,Jesus,Luke,14,3
+"People,Culture,Objects",People,Jesus,Luke,17,13
+"People,Culture,Objects",People,Jesus,Luke,17,16
+"People,Culture,Objects",People,Jesus,Luke,17,17
+"People,Culture,Objects",People,Jesus,Luke,18,16
+"People,Culture,Objects",People,Jesus,Luke,18,19
+"People,Culture,Objects",People,Jesus,Luke,18,22
+"People,Culture,Objects",People,Jesus,Luke,18,24
+"People,Culture,Objects",People,Jesus,Luke,18,37
+"People,Culture,Objects",People,Jesus,Luke,18,38
+"People,Culture,Objects",People,Jesus,Luke,18,40
+"People,Culture,Objects",People,Jesus,Luke,18,42
+"People,Culture,Objects",People,Jesus,Luke,19,3
+"People,Culture,Objects",People,Jesus,Luke,19,5
+"People,Culture,Objects",People,Jesus,Luke,19,9
+"People,Culture,Objects",People,Jesus,Luke,19,35
+"People,Culture,Objects",People,Jesus,Luke,20,8
+"People,Culture,Objects",People,Jesus,Luke,20,34
+"People,Culture,Objects",People,Jesus,Luke,21,37
+"People,Culture,Objects",People,Jesus,Luke,22,8
+"People,Culture,Objects",People,Jesus,Luke,22,13
+"People,Culture,Objects",People,Jesus,Luke,22,47
+"People,Culture,Objects",People,Jesus,Luke,22,48
+"People,Culture,Objects",People,Jesus,Luke,22,51
+"People,Culture,Objects",People,Jesus,Luke,22,52
+"People,Culture,Objects",People,Jesus,Luke,22,57
+"People,Culture,Objects",People,Jesus,Luke,22,63
+"People,Culture,Objects",People,Jesus,Luke,23,8
+"People,Culture,Objects",People,Jesus,Luke,23,20
+"People,Culture,Objects",People,Jesus,Luke,23,25
+"People,Culture,Objects",People,Jesus,Luke,23,26
+"People,Culture,Objects",People,Jesus,Luke,23,28
+"People,Culture,Objects",People,Jesus,Luke,23,34
+"People,Culture,Objects",People,Jesus,Luke,23,42
+"People,Culture,Objects",People,Jesus,Luke,23,43
+"People,Culture,Objects",People,Jesus,Luke,23,46
+"People,Culture,Objects",People,Jesus,Luke,23,52
+"People,Culture,Objects",People,Jesus,Luke,24,3
+"People,Culture,Objects",People,Jesus,Luke,24,15
+"People,Culture,Objects",People,Jesus,Luke,24,19
+"People,Culture,Objects",People,Jesus,Luke,24,36
+"People,Culture,Objects",People,Jesus,John,1,17
+"People,Culture,Objects",People,Jesus,John,1,29
+"People,Culture,Objects",People,Jesus,John,1,36
+"People,Culture,Objects",People,Jesus,John,1,37
+"People,Culture,Objects",People,Jesus,John,1,38
+"People,Culture,Objects",People,Jesus,John,1,42
+"People,Culture,Objects",People,Jesus,John,1,43
+"People,Culture,Objects",People,Jesus,John,1,45
+"People,Culture,Objects",People,Jesus,John,1,47
+"People,Culture,Objects",People,Jesus,John,1,48
+"People,Culture,Objects",People,Jesus,John,1,50
+"People,Culture,Objects",People,Jesus,John,2,1
+"People,Culture,Objects",People,Jesus,John,2,2
+"People,Culture,Objects",People,Jesus,John,2,3
+"People,Culture,Objects",People,Jesus,John,2,4
+"People,Culture,Objects",People,Jesus,John,2,7
+"People,Culture,Objects",People,Jesus,John,2,11
+"People,Culture,Objects",People,Jesus,John,2,13
+"People,Culture,Objects",People,Jesus,John,2,19
+"People,Culture,Objects",People,Jesus,John,2,22
+"People,Culture,Objects",People,Jesus,John,2,24
+"People,Culture,Objects",People,Jesus,John,3,2
+"People,Culture,Objects",People,Jesus,John,3,3
+"People,Culture,Objects",People,Jesus,John,3,5
+"People,Culture,Objects",People,Jesus,John,3,10
+"People,Culture,Objects",People,Jesus,John,3,22
+"People,Culture,Objects",People,Jesus,John,4,1
+"People,Culture,Objects",People,Jesus,John,4,2
+"People,Culture,Objects",People,Jesus,John,4,6
+"People,Culture,Objects",People,Jesus,John,4,7
+"People,Culture,Objects",People,Jesus,John,4,10
+"People,Culture,Objects",People,Jesus,John,4,13
+"People,Culture,Objects",People,Jesus,John,4,16
+"People,Culture,Objects",People,Jesus,John,4,17
+"People,Culture,Objects",People,Jesus,John,4,21
+"People,Culture,Objects",People,Jesus,John,4,26
+"People,Culture,Objects",People,Jesus,John,4,34
+"People,Culture,Objects",People,Jesus,John,4,44
+"People,Culture,Objects",People,Jesus,John,4,46
+"People,Culture,Objects",People,Jesus,John,4,47
+"People,Culture,Objects",People,Jesus,John,4,48
+"People,Culture,Objects",People,Jesus,John,4,50
+"People,Culture,Objects",People,Jesus,John,4,53
+"People,Culture,Objects",People,Jesus,John,4,54
+"People,Culture,Objects",People,Jesus,John,5,1
+"People,Culture,Objects",People,Jesus,John,5,6
+"People,Culture,Objects",People,Jesus,John,5,8
+"People,Culture,Objects",People,Jesus,John,5,13
+"People,Culture,Objects",People,Jesus,John,5,14
+"People,Culture,Objects",People,Jesus,John,5,15
+"People,Culture,Objects",People,Jesus,John,5,16
+"People,Culture,Objects",People,Jesus,John,5,17
+"People,Culture,Objects",People,Jesus,John,5,19
+"People,Culture,Objects",People,Jesus,John,6,1
+"People,Culture,Objects",People,Jesus,John,6,3
+"People,Culture,Objects",People,Jesus,John,6,5
+"People,Culture,Objects",People,Jesus,John,6,10
+"People,Culture,Objects",People,Jesus,John,6,11
+"People,Culture,Objects",People,Jesus,John,6,14
+"People,Culture,Objects",People,Jesus,John,6,15
+"People,Culture,Objects",People,Jesus,John,6,17
+"People,Culture,Objects",People,Jesus,John,6,19
+"People,Culture,Objects",People,Jesus,John,6,22
+"People,Culture,Objects",People,Jesus,John,6,24
+"People,Culture,Objects",People,Jesus,John,6,26
+"People,Culture,Objects",People,Jesus,John,6,29
+"People,Culture,Objects",People,Jesus,John,6,32
+"People,Culture,Objects",People,Jesus,John,6,35
+"People,Culture,Objects",People,Jesus,John,6,42
+"People,Culture,Objects",People,Jesus,John,6,43
+"People,Culture,Objects",People,Jesus,John,6,53
+"People,Culture,Objects",People,Jesus,John,6,61
+"People,Culture,Objects",People,Jesus,John,6,64
+"People,Culture,Objects",People,Jesus,John,6,67
+"People,Culture,Objects",People,Jesus,John,6,70
+"People,Culture,Objects",People,Jesus,John,7,1
+"People,Culture,Objects",People,Jesus,John,7,6
+"People,Culture,Objects",People,Jesus,John,7,14
+"People,Culture,Objects",People,Jesus,John,7,16
+"People,Culture,Objects",People,Jesus,John,7,21
+"People,Culture,Objects",People,Jesus,John,7,28
+"People,Culture,Objects",People,Jesus,John,7,33
+"People,Culture,Objects",People,Jesus,John,7,37
+"People,Culture,Objects",People,Jesus,John,7,39
+"People,Culture,Objects",People,Jesus,John,8,1
+"People,Culture,Objects",People,Jesus,John,8,6
+"People,Culture,Objects",People,Jesus,John,8,9
+"People,Culture,Objects",People,Jesus,John,8,10
+"People,Culture,Objects",People,Jesus,John,8,11
+"People,Culture,Objects",People,Jesus,John,8,12
+"People,Culture,Objects",People,Jesus,John,8,14
+"People,Culture,Objects",People,Jesus,John,8,19
+"People,Culture,Objects",People,Jesus,John,8,20
+"People,Culture,Objects",People,Jesus,John,8,21
+"People,Culture,Objects",People,Jesus,John,8,25
+"People,Culture,Objects",People,Jesus,John,8,28
+"People,Culture,Objects",People,Jesus,John,8,31
+"People,Culture,Objects",People,Jesus,John,8,34
+"People,Culture,Objects",People,Jesus,John,8,39
+"People,Culture,Objects",People,Jesus,John,8,42
+"People,Culture,Objects",People,Jesus,John,8,49
+"People,Culture,Objects",People,Jesus,John,8,54
+"People,Culture,Objects",People,Jesus,John,8,58
+"People,Culture,Objects",People,Jesus,John,8,59
+"People,Culture,Objects",People,Jesus,John,9,3
+"People,Culture,Objects",People,Jesus,John,9,11
+"People,Culture,Objects",People,Jesus,John,9,14
+"People,Culture,Objects",People,Jesus,John,9,35
+"People,Culture,Objects",People,Jesus,John,9,37
+"People,Culture,Objects",People,Jesus,John,9,39
+"People,Culture,Objects",People,Jesus,John,9,41
+"People,Culture,Objects",People,Jesus,John,10,6
+"People,Culture,Objects",People,Jesus,John,10,7
+"People,Culture,Objects",People,Jesus,John,10,23
+"People,Culture,Objects",People,Jesus,John,10,25
+"People,Culture,Objects",People,Jesus,John,10,32
+"People,Culture,Objects",People,Jesus,John,10,34
+"People,Culture,Objects",People,Jesus,John,11,4
+"People,Culture,Objects",People,Jesus,John,11,5
+"People,Culture,Objects",People,Jesus,John,11,9
+"People,Culture,Objects",People,Jesus,John,11,13
+"People,Culture,Objects",People,Jesus,John,11,14
+"People,Culture,Objects",People,Jesus,John,11,17
+"People,Culture,Objects",People,Jesus,John,11,20
+"People,Culture,Objects",People,Jesus,John,11,21
+"People,Culture,Objects",People,Jesus,John,11,23
+"People,Culture,Objects",People,Jesus,John,11,25
+"People,Culture,Objects",People,Jesus,John,11,30
+"People,Culture,Objects",People,Jesus,John,11,32
+"People,Culture,Objects",People,Jesus,John,11,33
+"People,Culture,Objects",People,Jesus,John,11,35
+"People,Culture,Objects",People,Jesus,John,11,38
+"People,Culture,Objects",People,Jesus,John,11,39
+"People,Culture,Objects",People,Jesus,John,11,40
+"People,Culture,Objects",People,Jesus,John,11,41
+"People,Culture,Objects",People,Jesus,John,11,44
+"People,Culture,Objects",People,Jesus,John,11,45
+"People,Culture,Objects",People,Jesus,John,11,46
+"People,Culture,Objects",People,Jesus,John,11,51
+"People,Culture,Objects",People,Jesus,John,11,54
+"People,Culture,Objects",People,Jesus,John,11,56
+"People,Culture,Objects",People,Jesus,John,12,1
+"People,Culture,Objects",People,Jesus,John,12,3
+"People,Culture,Objects",People,Jesus,John,12,7
+"People,Culture,Objects",People,Jesus,John,12,9
+"People,Culture,Objects",People,Jesus,John,12,11
+"People,Culture,Objects",People,Jesus,John,12,12
+"People,Culture,Objects",People,Jesus,John,12,14
+"People,Culture,Objects",People,Jesus,John,12,16
+"People,Culture,Objects",People,Jesus,John,12,21
+"People,Culture,Objects",People,Jesus,John,12,22
+"People,Culture,Objects",People,Jesus,John,12,23
+"People,Culture,Objects",People,Jesus,John,12,30
+"People,Culture,Objects",People,Jesus,John,12,35
+"People,Culture,Objects",People,Jesus,John,12,36
+"People,Culture,Objects",People,Jesus,John,12,44
+"People,Culture,Objects",People,Jesus,John,13,1
+"People,Culture,Objects",People,Jesus,John,13,3
+"People,Culture,Objects",People,Jesus,John,13,7
+"People,Culture,Objects",People,Jesus,John,13,8
+"People,Culture,Objects",People,Jesus,John,13,10
+"People,Culture,Objects",People,Jesus,John,13,21
+"People,Culture,Objects",People,Jesus,John,13,23
+"People,Culture,Objects",People,Jesus,John,13,25
+"People,Culture,Objects",People,Jesus,John,13,26
+"People,Culture,Objects",People,Jesus,John,13,27
+"People,Culture,Objects",People,Jesus,John,13,29
+"People,Culture,Objects",People,Jesus,John,13,31
+"People,Culture,Objects",People,Jesus,John,13,36
+"People,Culture,Objects",People,Jesus,John,13,38
+"People,Culture,Objects",People,Jesus,John,14,6
+"People,Culture,Objects",People,Jesus,John,14,9
+"People,Culture,Objects",People,Jesus,John,14,23
+"People,Culture,Objects",People,Jesus,John,16,19
+"People,Culture,Objects",People,Jesus,John,16,31
+"People,Culture,Objects",People,Jesus,John,17,1
+"People,Culture,Objects",People,Jesus,John,17,3
+"People,Culture,Objects",People,Jesus,John,18,1
+"People,Culture,Objects",People,Jesus,John,18,2
+"People,Culture,Objects",People,Jesus,John,18,4
+"People,Culture,Objects",People,Jesus,John,18,5
+"People,Culture,Objects",People,Jesus,John,18,7
+"People,Culture,Objects",People,Jesus,John,18,8
+"People,Culture,Objects",People,Jesus,John,18,11
+"People,Culture,Objects",People,Jesus,John,18,12
+"People,Culture,Objects",People,Jesus,John,18,15
+"People,Culture,Objects",People,Jesus,John,18,19
+"People,Culture,Objects",People,Jesus,John,18,20
+"People,Culture,Objects",People,Jesus,John,18,22
+"People,Culture,Objects",People,Jesus,John,18,23
+"People,Culture,Objects",People,Jesus,John,18,28
+"People,Culture,Objects",People,Jesus,John,18,32
+"People,Culture,Objects",People,Jesus,John,18,33
+"People,Culture,Objects",People,Jesus,John,18,34
+"People,Culture,Objects",People,Jesus,John,18,36
+"People,Culture,Objects",People,Jesus,John,18,37
+"People,Culture,Objects",People,Jesus,John,19,1
+"People,Culture,Objects",People,Jesus,John,19,5
+"People,Culture,Objects",People,Jesus,John,19,9
+"People,Culture,Objects",People,Jesus,John,19,11
+"People,Culture,Objects",People,Jesus,John,19,13
+"People,Culture,Objects",People,Jesus,John,19,16
+"People,Culture,Objects",People,Jesus,John,19,18
+"People,Culture,Objects",People,Jesus,John,19,19
+"People,Culture,Objects",People,Jesus,John,19,20
+"People,Culture,Objects",People,Jesus,John,19,23
+"People,Culture,Objects",People,Jesus,John,19,25
+"People,Culture,Objects",People,Jesus,John,19,26
+"People,Culture,Objects",People,Jesus,John,19,28
+"People,Culture,Objects",People,Jesus,John,19,30
+"People,Culture,Objects",People,Jesus,John,19,33
+"People,Culture,Objects",People,Jesus,John,19,38
+"People,Culture,Objects",People,Jesus,John,19,39
+"People,Culture,Objects",People,Jesus,John,19,40
+"People,Culture,Objects",People,Jesus,John,19,42
+"People,Culture,Objects",People,Jesus,John,20,2
+"People,Culture,Objects",People,Jesus,John,20,12
+"People,Culture,Objects",People,Jesus,John,20,14
+"People,Culture,Objects",People,Jesus,John,20,15
+"People,Culture,Objects",People,Jesus,John,20,16
+"People,Culture,Objects",People,Jesus,John,20,17
+"People,Culture,Objects",People,Jesus,John,20,19
+"People,Culture,Objects",People,Jesus,John,20,21
+"People,Culture,Objects",People,Jesus,John,20,24
+"People,Culture,Objects",People,Jesus,John,20,26
+"People,Culture,Objects",People,Jesus,John,20,29
+"People,Culture,Objects",People,Jesus,John,20,30
+"People,Culture,Objects",People,Jesus,John,20,31
+"People,Culture,Objects",People,Jesus,John,21,1
+"People,Culture,Objects",People,Jesus,John,21,4
+"People,Culture,Objects",People,Jesus,John,21,5
+"People,Culture,Objects",People,Jesus,John,21,7
+"People,Culture,Objects",People,Jesus,John,21,10
+"People,Culture,Objects",People,Jesus,John,21,12
+"People,Culture,Objects",People,Jesus,John,21,13
+"People,Culture,Objects",People,Jesus,John,21,14
+"People,Culture,Objects",People,Jesus,John,21,15
+"People,Culture,Objects",People,Jesus,John,21,17
+"People,Culture,Objects",People,Jesus,John,21,20
+"People,Culture,Objects",People,Jesus,John,21,21
+"People,Culture,Objects",People,Jesus,John,21,22
+"People,Culture,Objects",People,Jesus,John,21,23
+"People,Culture,Objects",People,Jesus,John,21,25
+"People,Culture,Objects",People,Jesus,Acts,1,1
+"People,Culture,Objects",People,Jesus,Acts,1,11
+"People,Culture,Objects",People,Jesus,Acts,1,14
+"People,Culture,Objects",People,Jesus,Acts,1,16
+"People,Culture,Objects",People,Jesus,Acts,1,21
+"People,Culture,Objects",People,Jesus,Acts,2,22
+"People,Culture,Objects",People,Jesus,Acts,2,32
+"People,Culture,Objects",People,Jesus,Acts,2,36
+"People,Culture,Objects",People,Jesus,Acts,2,38
+"People,Culture,Objects",People,Jesus,Acts,3,6
+"People,Culture,Objects",People,Jesus,Acts,3,13
+"People,Culture,Objects",People,Jesus,Acts,3,20
+"People,Culture,Objects",People,Jesus,Acts,3,26
+"People,Culture,Objects",People,Jesus,Acts,4,2
+"People,Culture,Objects",People,Jesus,Acts,4,10
+"People,Culture,Objects",People,Jesus,Acts,4,13
+"People,Culture,Objects",People,Jesus,Acts,4,18
+"People,Culture,Objects",People,Jesus,Acts,4,27
+"People,Culture,Objects",People,Jesus,Acts,4,30
+"People,Culture,Objects",People,Jesus,Acts,4,33
+"People,Culture,Objects",People,Jesus,Acts,5,30
+"People,Culture,Objects",People,Jesus,Acts,5,40
+"People,Culture,Objects",People,Jesus,Acts,5,41
+"People,Culture,Objects",People,Jesus,Acts,5,42
+"People,Culture,Objects",People,Jesus,Acts,6,14
+"People,Culture,Objects",People,Jesus,Acts,7,55
+"People,Culture,Objects",People,Jesus,Acts,7,59
+"People,Culture,Objects",People,Jesus,Acts,8,12
+"People,Culture,Objects",People,Jesus,Acts,8,16
+"People,Culture,Objects",People,Jesus,Acts,8,35
+"People,Culture,Objects",People,Jesus,Acts,9,5
+"People,Culture,Objects",People,Jesus,Acts,9,27
+"People,Culture,Objects",People,Jesus,Acts,9,29
+"People,Culture,Objects",People,Jesus,Acts,9,34
+"People,Culture,Objects",People,Jesus,Acts,10,36
+"People,Culture,Objects",People,Jesus,Acts,10,38
+"People,Culture,Objects",People,Jesus,Acts,10,48
+"People,Culture,Objects",People,Jesus,Acts,11,17
+"People,Culture,Objects",People,Jesus,Acts,11,20
+"People,Culture,Objects",People,Jesus,Acts,13,6
+"People,Culture,Objects",People,Jesus,Acts,13,33
+"People,Culture,Objects",People,Jesus,Acts,15,11
+"People,Culture,Objects",People,Jesus,Acts,15,26
+"People,Culture,Objects",People,Jesus,Acts,16,18
+"People,Culture,Objects",People,Jesus,Acts,16,31
+"People,Culture,Objects",People,Jesus,Acts,17,3
+"People,Culture,Objects",People,Jesus,Acts,17,7
+"People,Culture,Objects",People,Jesus,Acts,17,18
+"People,Culture,Objects",People,Jesus,Acts,18,5
+"People,Culture,Objects",People,Jesus,Acts,18,25
+"People,Culture,Objects",People,Jesus,Acts,18,28
+"People,Culture,Objects",People,Jesus,Acts,19,4
+"People,Culture,Objects",People,Jesus,Acts,19,5
+"People,Culture,Objects",People,Jesus,Acts,19,10
+"People,Culture,Objects",People,Jesus,Acts,19,13
+"People,Culture,Objects",People,Jesus,Acts,19,15
+"People,Culture,Objects",People,Jesus,Acts,19,17
+"People,Culture,Objects",People,Jesus,Acts,20,21
+"People,Culture,Objects",People,Jesus,Acts,20,24
+"People,Culture,Objects",People,Jesus,Acts,20,35
+"People,Culture,Objects",People,Jesus,Acts,21,13
+"People,Culture,Objects",People,Jesus,Acts,22,8
+"People,Culture,Objects",People,Jesus,Acts,24,24
+"People,Culture,Objects",People,Jesus,Acts,25,19
+"People,Culture,Objects",People,Jesus,Acts,26,9
+"People,Culture,Objects",People,Jesus,Acts,26,15
+"People,Culture,Objects",People,Jesus,Acts,28,23
+"People,Culture,Objects",People,Jesus,Acts,28,31
+"People,Culture,Objects",People,Jesus,Romans,1,1
+"People,Culture,Objects",People,Jesus,Romans,1,4
+"People,Culture,Objects",People,Jesus,Romans,1,6
+"People,Culture,Objects",People,Jesus,Romans,1,7
+"People,Culture,Objects",People,Jesus,Romans,1,8
+"People,Culture,Objects",People,Jesus,Romans,2,16
+"People,Culture,Objects",People,Jesus,Romans,3,22
+"People,Culture,Objects",People,Jesus,Romans,3,24
+"People,Culture,Objects",People,Jesus,Romans,3,26
+"People,Culture,Objects",People,Jesus,Romans,4,24
+"People,Culture,Objects",People,Jesus,Romans,5,1
+"People,Culture,Objects",People,Jesus,Romans,5,11
+"People,Culture,Objects",People,Jesus,Romans,5,15
+"People,Culture,Objects",People,Jesus,Romans,5,17
+"People,Culture,Objects",People,Jesus,Romans,5,21
+"People,Culture,Objects",People,Jesus,Romans,6,3
+"People,Culture,Objects",People,Jesus,Romans,6,11
+"People,Culture,Objects",People,Jesus,Romans,6,23
+"People,Culture,Objects",People,Jesus,Romans,7,25
+"People,Culture,Objects",People,Jesus,Romans,8,1
+"People,Culture,Objects",People,Jesus,Romans,8,2
+"People,Culture,Objects",People,Jesus,Romans,8,11
+"People,Culture,Objects",People,Jesus,Romans,8,39
+"People,Culture,Objects",People,Jesus,Romans,10,9
+"People,Culture,Objects",People,Jesus,Romans,13,14
+"People,Culture,Objects",People,Jesus,Romans,14,14
+"People,Culture,Objects",People,Jesus,Romans,14,24
+"People,Culture,Objects",People,Jesus,Romans,14,26
+"People,Culture,Objects",People,Jesus,Romans,15,5
+"People,Culture,Objects",People,Jesus,Romans,15,6
+"People,Culture,Objects",People,Jesus,Romans,15,16
+"People,Culture,Objects",People,Jesus,Romans,15,17
+"People,Culture,Objects",People,Jesus,Romans,15,30
+"People,Culture,Objects",People,Jesus,Romans,16,3
+"People,Culture,Objects",People,Jesus,Romans,16,18
+"People,Culture,Objects",People,Jesus,Romans,16,20
+"People,Culture,Objects",People,Jesus,Romans,16,24
+"People,Culture,Objects",People,Jesus,1 Corinthians,1,1
+"People,Culture,Objects",People,Jesus,1 Corinthians,1,2
+"People,Culture,Objects",People,Jesus,1 Corinthians,1,3
+"People,Culture,Objects",People,Jesus,1 Corinthians,1,4
+"People,Culture,Objects",People,Jesus,1 Corinthians,1,7
+"People,Culture,Objects",People,Jesus,1 Corinthians,1,8
+"People,Culture,Objects",People,Jesus,1 Corinthians,1,9
+"People,Culture,Objects",People,Jesus,1 Corinthians,1,10
+"People,Culture,Objects",People,Jesus,1 Corinthians,1,30
+"People,Culture,Objects",People,Jesus,1 Corinthians,2,2
+"People,Culture,Objects",People,Jesus,1 Corinthians,3,11
+"People,Culture,Objects",People,Jesus,1 Corinthians,4,15
+"People,Culture,Objects",People,Jesus,1 Corinthians,5,4
+"People,Culture,Objects",People,Jesus,1 Corinthians,5,5
+"People,Culture,Objects",People,Jesus,1 Corinthians,6,11
+"People,Culture,Objects",People,Jesus,1 Corinthians,8,6
+"People,Culture,Objects",People,Jesus,1 Corinthians,9,1
+"People,Culture,Objects",People,Jesus,1 Corinthians,11,23
+"People,Culture,Objects",People,Jesus,1 Corinthians,12,3
+"People,Culture,Objects",People,Jesus,1 Corinthians,15,31
+"People,Culture,Objects",People,Jesus,1 Corinthians,15,57
+"People,Culture,Objects",People,Jesus,1 Corinthians,16,22
+"People,Culture,Objects",People,Jesus,1 Corinthians,16,23
+"People,Culture,Objects",People,Jesus,1 Corinthians,16,24
+"People,Culture,Objects",People,Jesus,2 Corinthians,1,1
+"People,Culture,Objects",People,Jesus,2 Corinthians,1,2
+"People,Culture,Objects",People,Jesus,2 Corinthians,1,3
+"People,Culture,Objects",People,Jesus,2 Corinthians,1,14
+"People,Culture,Objects",People,Jesus,2 Corinthians,1,19
+"People,Culture,Objects",People,Jesus,2 Corinthians,4,5
+"People,Culture,Objects",People,Jesus,2 Corinthians,4,6
+"People,Culture,Objects",People,Jesus,2 Corinthians,4,10
+"People,Culture,Objects",People,Jesus,2 Corinthians,4,11
+"People,Culture,Objects",People,Jesus,2 Corinthians,4,14
+"People,Culture,Objects",People,Jesus,2 Corinthians,5,18
+"People,Culture,Objects",People,Jesus,2 Corinthians,8,9
+"People,Culture,Objects",People,Jesus,2 Corinthians,11,4
+"People,Culture,Objects",People,Jesus,2 Corinthians,11,31
+"People,Culture,Objects",People,Jesus,2 Corinthians,13,5
+"People,Culture,Objects",People,Jesus,2 Corinthians,13,14
+"People,Culture,Objects",People,Jesus,Galatians,1,1
+"People,Culture,Objects",People,Jesus,Galatians,1,3
+"People,Culture,Objects",People,Jesus,Galatians,1,12
+"People,Culture,Objects",People,Jesus,Galatians,2,4
+"People,Culture,Objects",People,Jesus,Galatians,2,16
+"People,Culture,Objects",People,Jesus,Galatians,3,1
+"People,Culture,Objects",People,Jesus,Galatians,3,14
+"People,Culture,Objects",People,Jesus,Galatians,3,22
+"People,Culture,Objects",People,Jesus,Galatians,3,26
+"People,Culture,Objects",People,Jesus,Galatians,3,28
+"People,Culture,Objects",People,Jesus,Galatians,4,14
+"People,Culture,Objects",People,Jesus,Galatians,5,6
+"People,Culture,Objects",People,Jesus,Galatians,6,14
+"People,Culture,Objects",People,Jesus,Galatians,6,15
+"People,Culture,Objects",People,Jesus,Galatians,6,17
+"People,Culture,Objects",People,Jesus,Galatians,6,18
+"People,Culture,Objects",People,Jesus,Ephesians,1,1
+"People,Culture,Objects",People,Jesus,Ephesians,1,2
+"People,Culture,Objects",People,Jesus,Ephesians,1,3
+"People,Culture,Objects",People,Jesus,Ephesians,1,5
+"People,Culture,Objects",People,Jesus,Ephesians,1,15
+"People,Culture,Objects",People,Jesus,Ephesians,1,17
+"People,Culture,Objects",People,Jesus,Ephesians,2,6
+"People,Culture,Objects",People,Jesus,Ephesians,2,7
+"People,Culture,Objects",People,Jesus,Ephesians,2,10
+"People,Culture,Objects",People,Jesus,Ephesians,2,13
+"People,Culture,Objects",People,Jesus,Ephesians,2,20
+"People,Culture,Objects",People,Jesus,Ephesians,3,1
+"People,Culture,Objects",People,Jesus,Ephesians,3,6
+"People,Culture,Objects",People,Jesus,Ephesians,3,9
+"People,Culture,Objects",People,Jesus,Ephesians,3,11
+"People,Culture,Objects",People,Jesus,Ephesians,3,14
+"People,Culture,Objects",People,Jesus,Ephesians,3,21
+"People,Culture,Objects",People,Jesus,Ephesians,4,21
+"People,Culture,Objects",People,Jesus,Ephesians,5,20
+"People,Culture,Objects",People,Jesus,Ephesians,6,23
+"People,Culture,Objects",People,Jesus,Ephesians,6,24
+"People,Culture,Objects",People,Jesus,Philippians,1,1
+"People,Culture,Objects",People,Jesus,Philippians,1,2
+"People,Culture,Objects",People,Jesus,Philippians,1,6
+"People,Culture,Objects",People,Jesus,Philippians,1,8
+"People,Culture,Objects",People,Jesus,Philippians,1,11
+"People,Culture,Objects",People,Jesus,Philippians,1,19
+"People,Culture,Objects",People,Jesus,Philippians,1,26
+"People,Culture,Objects",People,Jesus,Philippians,2,5
+"People,Culture,Objects",People,Jesus,Philippians,2,10
+"People,Culture,Objects",People,Jesus,Philippians,2,11
+"People,Culture,Objects",People,Jesus,Philippians,2,19
+"People,Culture,Objects",People,Jesus,Philippians,2,21
+"People,Culture,Objects",People,Jesus,Philippians,3,3
+"People,Culture,Objects",People,Jesus,Philippians,3,8
+"People,Culture,Objects",People,Jesus,Philippians,3,12
+"People,Culture,Objects",People,Jesus,Philippians,3,14
+"People,Culture,Objects",People,Jesus,Philippians,3,20
+"People,Culture,Objects",People,Jesus,Philippians,4,7
+"People,Culture,Objects",People,Jesus,Philippians,4,19
+"People,Culture,Objects",People,Jesus,Philippians,4,21
+"People,Culture,Objects",People,Jesus,Philippians,4,23
+"People,Culture,Objects",People,Jesus,Colossians,1,1
+"People,Culture,Objects",People,Jesus,Colossians,1,2
+"People,Culture,Objects",People,Jesus,Colossians,1,3
+"People,Culture,Objects",People,Jesus,Colossians,1,4
+"People,Culture,Objects",People,Jesus,Colossians,1,28
+"People,Culture,Objects",People,Jesus,Colossians,2,6
+"People,Culture,Objects",People,Jesus,Colossians,3,17
+"People,Culture,Objects",People,Jesus,Colossians,4,11
+"People,Culture,Objects",People,Jesus,1 Thessalonians,1,1
+"People,Culture,Objects",People,Jesus,1 Thessalonians,1,3
+"People,Culture,Objects",People,Jesus,1 Thessalonians,1,10
+"People,Culture,Objects",People,Jesus,1 Thessalonians,2,14
+"People,Culture,Objects",People,Jesus,1 Thessalonians,2,15
+"People,Culture,Objects",People,Jesus,1 Thessalonians,2,19
+"People,Culture,Objects",People,Jesus,1 Thessalonians,3,11
+"People,Culture,Objects",People,Jesus,1 Thessalonians,3,13
+"People,Culture,Objects",People,Jesus,1 Thessalonians,4,1
+"People,Culture,Objects",People,Jesus,1 Thessalonians,4,2
+"People,Culture,Objects",People,Jesus,1 Thessalonians,4,14
+"People,Culture,Objects",People,Jesus,1 Thessalonians,5,9
+"People,Culture,Objects",People,Jesus,1 Thessalonians,5,18
+"People,Culture,Objects",People,Jesus,1 Thessalonians,5,23
+"People,Culture,Objects",People,Jesus,1 Thessalonians,5,28
+"People,Culture,Objects",People,Jesus,2 Thessalonians,1,1
+"People,Culture,Objects",People,Jesus,2 Thessalonians,1,2
+"People,Culture,Objects",People,Jesus,2 Thessalonians,1,7
+"People,Culture,Objects",People,Jesus,2 Thessalonians,1,8
+"People,Culture,Objects",People,Jesus,2 Thessalonians,1,12
+"People,Culture,Objects",People,Jesus,2 Thessalonians,2,1
+"People,Culture,Objects",People,Jesus,2 Thessalonians,2,14
+"People,Culture,Objects",People,Jesus,2 Thessalonians,2,16
+"People,Culture,Objects",People,Jesus,2 Thessalonians,3,6
+"People,Culture,Objects",People,Jesus,2 Thessalonians,3,12
+"People,Culture,Objects",People,Jesus,2 Thessalonians,3,18
+"People,Culture,Objects",People,Jesus,1 Timothy,1,1
+"People,Culture,Objects",People,Jesus,1 Timothy,1,2
+"People,Culture,Objects",People,Jesus,1 Timothy,1,12
+"People,Culture,Objects",People,Jesus,1 Timothy,1,14
+"People,Culture,Objects",People,Jesus,1 Timothy,1,15
+"People,Culture,Objects",People,Jesus,1 Timothy,1,16
+"People,Culture,Objects",People,Jesus,1 Timothy,2,5
+"People,Culture,Objects",People,Jesus,1 Timothy,3,13
+"People,Culture,Objects",People,Jesus,1 Timothy,4,6
+"People,Culture,Objects",People,Jesus,1 Timothy,5,21
+"People,Culture,Objects",People,Jesus,1 Timothy,6,3
+"People,Culture,Objects",People,Jesus,1 Timothy,6,13
+"People,Culture,Objects",People,Jesus,1 Timothy,6,14
+"People,Culture,Objects",People,Jesus,2 Timothy,1,1
+"People,Culture,Objects",People,Jesus,2 Timothy,1,2
+"People,Culture,Objects",People,Jesus,2 Timothy,1,9
+"People,Culture,Objects",People,Jesus,2 Timothy,1,10
+"People,Culture,Objects",People,Jesus,2 Timothy,1,13
+"People,Culture,Objects",People,Jesus,2 Timothy,2,1
+"People,Culture,Objects",People,Jesus,2 Timothy,2,3
+"People,Culture,Objects",People,Jesus,2 Timothy,2,8
+"People,Culture,Objects",People,Jesus,2 Timothy,2,10
+"People,Culture,Objects",People,Jesus,2 Timothy,3,12
+"People,Culture,Objects",People,Jesus,2 Timothy,3,15
+"People,Culture,Objects",People,Jesus,2 Timothy,4,1
+"People,Culture,Objects",People,Jesus,2 Timothy,4,22
+"People,Culture,Objects",People,Jesus,Titus,1,1
+"People,Culture,Objects",People,Jesus,Titus,1,4
+"People,Culture,Objects",People,Jesus,Titus,2,13
+"People,Culture,Objects",People,Jesus,Titus,3,6
+"People,Culture,Objects",People,Jesus,Philemon,1,1
+"People,Culture,Objects",People,Jesus,Philemon,1,3
+"People,Culture,Objects",People,Jesus,Philemon,1,5
+"People,Culture,Objects",People,Jesus,Philemon,1,6
+"People,Culture,Objects",People,Jesus,Philemon,1,9
+"People,Culture,Objects",People,Jesus,Philemon,1,23
+"People,Culture,Objects",People,Jesus,Philemon,1,25
+"People,Culture,Objects",People,Jesus,Hebrews,2,9
+"People,Culture,Objects",People,Jesus,Hebrews,3,1
+"People,Culture,Objects",People,Jesus,Hebrews,4,14
+"People,Culture,Objects",People,Jesus,Hebrews,6,20
+"People,Culture,Objects",People,Jesus,Hebrews,7,22
+"People,Culture,Objects",People,Jesus,Hebrews,10,10
+"People,Culture,Objects",People,Jesus,Hebrews,10,19
+"People,Culture,Objects",People,Jesus,Hebrews,12,2
+"People,Culture,Objects",People,Jesus,Hebrews,12,24
+"People,Culture,Objects",People,Jesus,Hebrews,13,8
+"People,Culture,Objects",People,Jesus,Hebrews,13,12
+"People,Culture,Objects",People,Jesus,Hebrews,13,20
+"People,Culture,Objects",People,Jesus,Hebrews,13,21
+"People,Culture,Objects",People,Jesus,James,1,1
+"People,Culture,Objects",People,Jesus,James,2,1
+"People,Culture,Objects",People,Jesus,1 Peter,1,1
+"People,Culture,Objects",People,Jesus,1 Peter,1,2
+"People,Culture,Objects",People,Jesus,1 Peter,1,3
+"People,Culture,Objects",People,Jesus,1 Peter,1,7
+"People,Culture,Objects",People,Jesus,1 Peter,1,13
+"People,Culture,Objects",People,Jesus,1 Peter,2,5
+"People,Culture,Objects",People,Jesus,1 Peter,3,21
+"People,Culture,Objects",People,Jesus,1 Peter,4,11
+"People,Culture,Objects",People,Jesus,1 Peter,5,10
+"People,Culture,Objects",People,Jesus,1 Peter,5,14
+"People,Culture,Objects",People,Jesus,2 Peter,1,1
+"People,Culture,Objects",People,Jesus,2 Peter,1,2
+"People,Culture,Objects",People,Jesus,2 Peter,1,8
+"People,Culture,Objects",People,Jesus,2 Peter,1,11
+"People,Culture,Objects",People,Jesus,2 Peter,1,14
+"People,Culture,Objects",People,Jesus,2 Peter,1,16
+"People,Culture,Objects",People,Jesus,2 Peter,2,20
+"People,Culture,Objects",People,Jesus,2 Peter,3,18
+"People,Culture,Objects",People,Jesus,1 John,1,3
+"People,Culture,Objects",People,Jesus,1 John,1,7
+"People,Culture,Objects",People,Jesus,1 John,2,1
+"People,Culture,Objects",People,Jesus,1 John,2,22
+"People,Culture,Objects",People,Jesus,1 John,3,23
+"People,Culture,Objects",People,Jesus,1 John,4,2
+"People,Culture,Objects",People,Jesus,1 John,4,3
+"People,Culture,Objects",People,Jesus,1 John,4,15
+"People,Culture,Objects",People,Jesus,1 John,5,1
+"People,Culture,Objects",People,Jesus,1 John,5,5
+"People,Culture,Objects",People,Jesus,1 John,5,6
+"People,Culture,Objects",People,Jesus,1 John,5,20
+"People,Culture,Objects",People,Jesus,2 John,1,3
+"People,Culture,Objects",People,Jesus,2 John,1,7
+"People,Culture,Objects",People,Jesus,Jude,1,1
+"People,Culture,Objects",People,Jesus,Jude,1,4
+"People,Culture,Objects",People,Jesus,Jude,1,17
+"People,Culture,Objects",People,Jesus,Jude,1,21
+"People,Culture,Objects",People,Jesus,Revelation,1,1
+"People,Culture,Objects",People,Jesus,Revelation,1,2
+"People,Culture,Objects",People,Jesus,Revelation,1,5
+"People,Culture,Objects",People,Jesus,Revelation,1,9
+"People,Culture,Objects",People,Jesus,Revelation,12,17
+"People,Culture,Objects",People,Jesus,Revelation,14,4
+"People,Culture,Objects",People,Jesus,Revelation,14,12
+"People,Culture,Objects",People,Jesus,Revelation,17,6
+"People,Culture,Objects",People,Jesus,Revelation,19,10
+"People,Culture,Objects",People,Jesus,Revelation,20,4
+"People,Culture,Objects",People,Jesus,Revelation,22,16
+"People,Culture,Objects",People,Jesus,Revelation,22,20
+"People,Culture,Objects",People,Jesus,Revelation,22,21
+
+"========== PEOPLE ==========", , , , ,
+"========== MAN ==========", , , , ,
+"People,Culture,Objects",People,Man,Genesis,1,26
+"People,Culture,Objects",People,Man,Genesis,1,27
+"People,Culture,Objects",People,Man,Genesis,2,5
+"People,Culture,Objects",People,Man,Genesis,2,6
+"People,Culture,Objects",People,Man,Genesis,2,7
+"People,Culture,Objects",People,Man,Genesis,2,8
+"People,Culture,Objects",People,Man,Genesis,2,15
+"People,Culture,Objects",People,Man,Genesis,2,16
+"People,Culture,Objects",People,Man,Genesis,2,17
+"People,Culture,Objects",People,Man,Genesis,2,18
+"People,Culture,Objects",People,Man,Genesis,2,19
+"People,Culture,Objects",People,Man,Genesis,2,20
+"People,Culture,Objects",People,Man,Genesis,2,21
+"People,Culture,Objects",People,Man,Genesis,2,22
+"People,Culture,Objects",People,Man,Genesis,2,23
+"People,Culture,Objects",People,Man,Genesis,2,24
+"People,Culture,Objects",People,Man,Genesis,2,25
+"People,Culture,Objects",People,Man,Genesis,3,8
+"People,Culture,Objects",People,Man,Genesis,3,9
+"People,Culture,Objects",People,Man,Genesis,3,10
+"People,Culture,Objects",People,Man,Genesis,3,20
+"People,Culture,Objects",People,Man,Genesis,3,22
+"People,Culture,Objects",People,Man,Genesis,3,24
+"People,Culture,Objects",People,Man,Genesis,4,1
+"People,Culture,Objects",People,Man,Psalm,1,1
+
+"========== PEOPLE ==========", , , , ,
+"========== MATTHEW ==========", , , , ,
+"People,Culture,Objects",People,Matthew,Matthew,9,9
+"People,Culture,Objects",People,Matthew,Matthew,10,3
+"People,Culture,Objects",People,Matthew,Mark,3,18
+"People,Culture,Objects",People,Matthew,Luke,6,15
+"People,Culture,Objects",People,Matthew,Acts,1,13
+
+
+"========== PEOPLE ==========", , , , ,
+"========== MOTHER ==========", , , , ,
+"People,Culture,Objects",People,Mother,Genesis,2,24
+"People,Culture,Objects",People,Mother,Genesis,3,20
+
+"========== PEOPLE ==========", , , , ,
+"========== NEPHILIM ==========", , , , ,
+"People,Culture,Objects",People,People,Nephilim,Genesis,6,2
+"People,Culture,Objects",People,People,Nephilim,Numbers,13,33
+
+"========== PEOPLE ==========", , , , ,
+"========== REPHAIM ==========", , , , ,
+"People,Culture,Objects",People,Rephaim,Genesis,14,5
+"People,Culture,Objects",People,Rephaim,Genesis,15,20
+"People,Culture,Objects",People,Rephaim,Deuteronomy,2,11
+"People,Culture,Objects",People,Rephaim,Deuteronomy,2,20
+"People,Culture,Objects",People,Rephaim,Deuteronomy,3,11
+"People,Culture,Objects",People,Rephaim,Deuteronomy,3,13
+"People,Culture,Objects",People,Rephaim,Joshua,12,4
+"People,Culture,Objects",People,Rephaim,Joshua,13,12
+"People,Culture,Objects",People,Rephaim,Joshua,15,8
+"People,Culture,Objects",People,Rephaim,Joshua,17,15
+"People,Culture,Objects",People,Rephaim,Joshua,18,16
+"People,Culture,Objects",People,Rephaim,2 Samuel,5,18
+"People,Culture,Objects",People,Rephaim,2 Samuel,5,22
+"People,Culture,Objects",People,Rephaim,1 Chronicles,11,15
+"People,Culture,Objects",People,Rephaim,1 Chronicles,14,9
+"People,Culture,Objects",People,Rephaim,Isaiah,17,5
+
+
+"========== PEOPLE ==========", , , , ,
+"========== RIGHTEOUS ==========", , , , ,
+"People,Culture,Objects",People,Righteous,Psalm,1,5
+"People,Culture,Objects",People,Righteous,Psalm,1,6
+
+"========== PEOPLE ==========", , , , ,
+"========== SINNERS ==========", , , , ,
+"People,Culture,Objects",People,Sinners,Psalm,1,1
+"People,Culture,Objects",People,Sinners,Psalm,1,5
+
+
+
+"========== PEOPLE ==========", , , , ,
+"========== WICKED ==========", , , , ,
+"People,Culture,Objects",People,Wicked,Psalm,1,1
+"People,Culture,Objects",People,Wicked,Psalm,1,4
+"People,Culture,Objects",People,Wicked,Psalm,1,5
+"People,Culture,Objects",People,Wicked,Psalm,1,6
+
+
+"========== PEOPLE ==========", , , , ,
+"========== WIFE ==========", , , , ,
+"People,Culture,Objects",People,Wife,Genesis,2,24
+"People,Culture,Objects",People,Wife,Genesis,2,25
+"People,Culture,Objects",People,Wife,Genesis,3,8
+"People,Culture,Objects",People,Wife,Genesis,3,17
+"People,Culture,Objects",People,Wife,Genesis,3,20
+"People,Culture,Objects",People,Wife,Genesis,3,21
+
+"========== PEOPLE ==========", , , , ,
+"========== WOMAN ==========", , , , ,
+"People,Culture,Objects",People,Woman,Genesis,1,27
+"People,Culture,Objects",People,Woman,Genesis,2,22
+"People,Culture,Objects",People,Woman,Genesis,2,23
+"People,Culture,Objects",People,Woman,Genesis,3,1
+"People,Culture,Objects",People,Woman,Genesis,3,2
+"People,Culture,Objects",People,Woman,Genesis,3,3
+"People,Culture,Objects",People,Woman,Genesis,3,4
+"People,Culture,Objects",People,Woman,Genesis,3,5
+"People,Culture,Objects",People,Woman,Genesis,3,6
+"People,Culture,Objects",People,Woman,Genesis,3,7
+"People,Culture,Objects",People,Woman,Genesis,3,8
+"People,Culture,Objects",People,Woman,Genesis,3,12
+"People,Culture,Objects",People,Woman,Genesis,3,13
+"People,Culture,Objects",People,Woman,Genesis,3,14
+"People,Culture,Objects",People,Woman,Genesis,3,15
+"People,Culture,Objects",People,Woman,Genesis,3,16

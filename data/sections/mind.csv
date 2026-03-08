@@ -109,58 +109,44 @@ Mind,Excuses,Genesis,3,13
 
 Mind,Fear,Genesis,3,10
 
-"Mind,Body,Spirit",Mind,Knowledge,Genesis,2,9
-"Mind,Body,Spirit",Mind,Knowledge,Genesis,2,15
-"Mind,Body,Spirit",Mind,Knowledge,Genesis,2,16
-"Mind,Body,Spirit",Mind,Knowledge,Genesis,3,4
-"Mind,Body,Spirit",Mind,Knowledge,Genesis,3,5
-"Mind,Body,Spirit",Mind,Knowledge,Genesis,3,22
-"Mind,Body,Spirit",Mind,Knowledge,Proverbs,1,1
-"Mind,Body,Spirit",Mind,Knowledge,Proverbs,1,2
-"Mind,Body,Spirit",Mind,Knowledge,Proverbs,1,3
-"Mind,Body,Spirit",Mind,Knowledge,Proverbs,1,4
-"Mind,Body,Spirit",Mind,Knowledge,Proverbs,1,5
-"Mind,Body,Spirit",Mind,Knowledge,Proverbs,1,6
-"Mind,Body,Spirit",Mind,Knowledge,Proverbs,1,7
+Mind,Knowledge,Genesis,2,9
+Mind,Knowledge,Genesis,2,15
+Mind,Knowledge,Genesis,2,16
+Mind,Knowledge,Genesis,3,4
+Mind,Knowledge,Genesis,3,5
+Mind,Knowledge,Genesis,3,22
+Mind,Knowledge,Proverbs,1,1
+Mind,Knowledge,Proverbs,1,2
+Mind,Knowledge,Proverbs,1,3
+Mind,Knowledge,Proverbs,1,4
+Mind,Knowledge,Proverbs,1,5
+Mind,Knowledge,Proverbs,1,6
+Mind,Knowledge,Proverbs,1,7
 
-"========== MIND ==========", , , , ,
-"========== LAMENTATIONS ==========", , , , ,
-"Mind,Body,Spirit",Mind,Lamentations,Exodus,2,23
-"Mind,Body,Spirit",Mind,Lamentations,Exodus,2,24
-"Mind,Body,Spirit",Mind,Lamentations,Exodus,2,25
+Mind,Lamentations,Exodus,2,23
+Mind,Lamentations,Exodus,2,24
+Mind,Lamentations,Exodus,2,25
 
-"========== MIND ==========", , , , ,
-"========== LONELINESS ==========", , , , ,
-"Mind,Body,Spirit",Mind,Loneliness,Genesis,2,18
+Mind,Loneliness,Genesis,2,18
 
-"========== MIND ==========", , , , ,
-"========== LOVE FROM GOD ==========", , , , ,
-"Mind,Body,Spirit",Mind,"Love from God",Genesis,2,18
+Mind,"Love from God",Genesis,2,18
 
-"========== MIND ==========", , , , ,
-"========== MEDITATION ==========", , , , ,
-"Mind,Body,Spirit",Mind,Meditation,Psalm,1,2
+Mind,Meditation,Psalm,1,2
 
-"========== MIND ==========", , , , ,
-"========== SHAME ==========", , , , ,
-"Mind,Body,Spirit",Mind,Shame,Genesis,2,7
+Mind,Shame,Genesis,2,7
 
-"========== MIND ==========", , , , ,
-"========== TEMPTATION ==========", , , , ,
-"Mind,Body,Spirit",Mind,Temptation,Proverbs,1,8
-"Mind,Body,Spirit",Mind,Temptation,Proverbs,1,9
-"Mind,Body,Spirit",Mind,Temptation,Proverbs,1,10
-"Mind,Body,Spirit",Mind,Temptation,Proverbs,1,11
-"Mind,Body,Spirit",Mind,Temptation,Proverbs,1,12
-"Mind,Body,Spirit",Mind,Temptation,Proverbs,1,13
-"Mind,Body,Spirit",Mind,Temptation,Proverbs,1,14
-"Mind,Body,Spirit",Mind,Temptation,Proverbs,1,15
-"Mind,Body,Spirit",Mind,Temptation,Proverbs,1,16
-"Mind,Body,Spirit",Mind,Temptation,Proverbs,1,17
-"Mind,Body,Spirit",Mind,Temptation,Proverbs,1,18
-"Mind,Body,Spirit",Mind,Temptation,Proverbs,1,19
+Mind,Temptation,Proverbs,1,8
+Mind,Temptation,Proverbs,1,9
+Mind,Temptation,Proverbs,1,10
+Mind,Temptation,Proverbs,1,11
+Mind,Temptation,Proverbs,1,12
+Mind,Temptation,Proverbs,1,13
+Mind,Temptation,Proverbs,1,14
+Mind,Temptation,Proverbs,1,15
+Mind,Temptation,Proverbs,1,16
+Mind,Temptation,Proverbs,1,17
+Mind,Temptation,Proverbs,1,18
+Mind,Temptation,Proverbs,1,19
 
-"========== MIND ==========", , , , ,
-"========== WISDOM WISE EYES OPENED ==========", , , , ,
-"Mind,Body,Spirit",Mind,"Wisdom, Wise, Eyes Opened",Genesis,2,18
-"Mind,Body,Spirit",Mind,"Wisdom, Wise, Eyes Opened",Genesis,3,22
+Mind,"Wisdom, Wise, Eyes Opened",Genesis,2,18
+Mind,"Wisdom, Wise, Eyes Opened",Genesis,3,22

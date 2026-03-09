@@ -1,1 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Bible Blossoms | Life Link</title>
+
+    <!-- Google Analytics -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MC5GEG8KX7"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-MC5GEG8KX7');
+</script>
+  
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/life_link.css">
+
+</head>
+
+<body>
+
+<header id="top">
+<h1>Life Link</h1>
+<h2>Bible Topical Reference</h2>
+</header>
+
+<div id="domain-top-left">
+<a href="index.html">BibleBlossoms</a>
+</div>
+
+
+<div class="content">
+
+<h3>A Work in Progress - Growing Daily</h3>
+
+<p>
+This reference tool is just beginning its journey.
+I’m building it prayerfully and carefully, adding new topics and Scripture references nearly every day.
+It may feel incomplete at times — and that’s because it is still growing.
+My desire is that, over the years, Life Link will become a rich and trusted Bible topical reference to support deeper study and understanding.
+Thank you for your patience as this work unfolds.
+</p>
+
+<p>Began February 4, 2026</p>
+<p>Last Updated March 4, 2026</p>
+
+<div class="section-container">
+  
+<div class="section-heading" style="margin-left:0; text-align:center;">
+Select Bible Version
+</div>
+  
+<div class="dropdown-column">
+<select id="versionSelect">
+  <option value="KJV">KJV — King James Version</option>
+  <option value="ASV">ASV — American Standard Version</option>
+  <option value="WEB">WEB — World English Bible</option>
+  <option value="BSB">BSB — Berean Standard Bible</option>
+  <option value="YLT">YLT — Young's Literal Translation</option>
+  <option value="RLT">RLT — Revised Literal Translation</option>
+</select>
+</div>
+</div>
+
+</div>
+
+
+<div class="page-content">
+
+<div id="sections-container">
+
+<div class="section-container">
+<div class="section-heading">Father, Son, Holy Spirit</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Creation, Earth, Animals</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">History, Laws, Sin</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">People, Culture, Objects</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Mind, Body, Spirit</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Places, Travels</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Spiritual Beings, Miracles</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Visions, Prophecies, End Times</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Wisdom, Instructions</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Promises, Covenants</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+<div class="section-container">
+<div class="section-heading">Concepts, Ideas, Principles</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+<div class="verseText"></div>
+</div>
+</div>
+
+</div>
+
+
+<section class="copyright">
+
+<h3>Copyright & Attribution</h3>
+
+<p>
+All Scripture quotations on this site are from public domain Bible translations and may be freely quoted, copied, and shared.
+</p>
+
+<p>
+Bible translations currently used in Life Link include:
+</p>
+
+<ul>
+<li>World English Bible (WEB)</li>
+<li>King James Version (KJV)</li>
+<li>American Standard Version (ASV)</li>
+<li>Berean Standard Bible (BSB)</li>
+<li>Young’s Literal Translation (YLT)</li>
+<li>Revised Literal Translation (RLT)</li>
+</ul>
+
+<p>
+Life Link is an independent project and is not affiliated with the organizations associated with these Bible translations.
+</p>
+
+</section>
+
+</div>
+
+
+<script>
+console.log("LIFE_LINK INLINE SCRIPT STARTED");
+let biblesByVersion = {
+  WEB: null,
+  KJV: null,
+  ASV: null,
+  BSB: null,
+  YLT: null,
+  RLT: null
+};
+  
+const versionSelect = document.getElementById("versionSelect");
+const sections = document.querySelectorAll("#sections-container .section-container");
+
+const csvFiles = [
+  "data/sections/section1_Father.csv",
+  "data/sections/section2_Creation.csv",
+  "data/sections/section3_History.csv",
+  "data/sections/section4_People.csv",
+  "data/sections/section5_Mind.csv",
+  "data/sections/wilderness.csv",
+  "data/sections/section7_Spiritual_Beings.csv",
+  "data/sections/section8_Visions.csv",
+  "data/sections/section9_Wisdom.csv",
+  "data/sections/section10_Promises.csv",
+  "data/sections/section11_Concepts.csv"
+];
+  
+function pickLargestArrayProperty(obj) {
+  if (!obj || typeof obj !== "object") return null;
+  let best = null;
+  let bestLen = -1;
+
+  for (const [k, v] of Object.entries(obj)) {
+    if (Array.isArray(v) && v.length > bestLen) {
+      best = v;
+      bestLen = v.length;
+    }
+  }
+  return best;
+}
+
+function normalizeBibleJson(version, data) {
+  // Already an array (ASV-style verse list or array of books)
+  if (Array.isArray(data)) return data;
+
+  // Common wrappers used by different files
+  if (data && Array.isArray(data.books)) return data.books;
+  if (data && Array.isArray(data.verses)) return data.verses;
+  if (data && Array.isArray(data.data)) return data.data;
+
+  // Last-resort: if it's an object that contains an array somewhere, use the biggest one
+  const biggest = pickLargestArrayProperty(data);
+  if (biggest) return biggest;
+
+  // If nothing fits, return null so we can throw a clear error
+  return null;
+}
+  
+// Load Bible JSON
+async function loadBible(version, setActive = true) {
+  try {
+    // If already cached, optionally set active and exit
+    if (biblesByVersion[version]) {
+      if (setActive) bible = biblesByVersion[version];
+      console.log("Bible reused from cache:", version);
+      return;
+    }
+
+    const res = await fetch(`https://raw.githubusercontent.com/Twiggins12/BibleBlossoms/main/bibles/${version}.json`);
+    if (!res.ok) throw new Error(`HTTP ${res.status} loading ${version}.json`);
+
+    const data = await res.json();
+if (!data) throw new Error(`No JSON returned for ${version}`);
+
+const loaded = (version === "KJV")
+  ? convertKJVAbbrevToWebLike(data)
+  : normalizeBibleJson(version, data);
+
+if (!loaded) throw new Error(`Unrecognized JSON shape for ${version}.json`);
+
+// Save to cache
+biblesByVersion[version] = loaded;
+if (setActive) bible = loaded;
+
+console.log(setActive ? "Bible loaded:" : "Bible preloaded:", version, "items:",
+  Array.isArray(loaded) ? loaded.length : "n/a"
+);
+  } catch (err) {
+    console.error("Failed to load Bible:", err);
+  }
+}
+ function convertKJVAbbrevToWebLike(kjvBooks) {
+  const abbrevToName = {
+    gn: "Genesis",
+    ex: "Exodus",
+    lv: "Leviticus",
+    nu: "Numbers",
+    nm: "Numbers",
+    nb: "Numbers",
+    num: "Numbers",
+    dt: "Deuteronomy",
+    js: "Joshua",
+    jg: "Judges",
+    rt: "Ruth",
+    "1sm": "1 Samuel",
+    "2sm": "2 Samuel",
+    "1kg": "1 Kings",
+    "2kg": "2 Kings",
+    "1ch": "1 Chronicles",
+    "2ch": "2 Chronicles",
+    ezr: "Ezra",
+    ne: "Nehemiah",
+    es: "Esther",
+    jb: "Job",
+    ps: "Psalms",
+    pr: "Proverbs",
+    ec: "Ecclesiastes",
+    so: "Song of Solomon",
+    is: "Isaiah",
+    jr: "Jeremiah",
+    lm: "Lamentations",
+    ez: "Ezekiel",
+    dn: "Daniel",
+    ho: "Hosea",
+    jl: "Joel",
+    am: "Amos",
+    ob: "Obadiah",
+    jn: "Jonah",
+    mi: "Micah",
+    na: "Nahum",
+    hk: "Habakkuk",
+    zp: "Zephaniah",
+    hg: "Haggai",
+    zc: "Zechariah",
+    ml: "Malachi",
+    mt: "Matthew",
+    mk: "Mark",
+    lk: "Luke",
+    jo: "John",
+    ac: "Acts",
+    ro: "Romans",
+    "1co": "1 Corinthians",
+    "2co": "2 Corinthians",
+    ga: "Galatians",
+    ep: "Ephesians",
+    ph: "Philippians",
+    cl: "Colossians",
+    "1ts": "1 Thessalonians",
+    "2ts": "2 Thessalonians",
+    "1tm": "1 Timothy",
+    "2tm": "2 Timothy",
+    tt: "Titus",
+    pm: "Philemon",
+    hb: "Hebrews",
+    he: "Hebrews",
+    heb: "Hebrews",
+    jm: "James",
+    "1pe": "1 Peter",
+    "2pe": "2 Peter",
+    "1jo": "1 John",
+    "2jo": "2 John",
+    "3jo": "3 John",
+    jd: "Jude",
+    re: "Revelation",
+    // Aliases found in your KJV.json
+    jud: "Judges",
+    "1kgs": "1 Kings",
+    "2kgs": "2 Kings",
+    et: "Esther",
+    job: "Job",
+    prv: "Proverbs",
+    act: "Acts",
+    rm: "Romans",
+    gl: "Galatians",
+    eph: "Ephesians",
+    phm: "Philemon"
+  };
+
+  return kjvBooks.map((book, bookIndex) => {
+    const ab = (book.abbrev || "").toLowerCase().trim();
+
+    if (!abbrevToName[ab]) {
+      console.warn("Unknown KJV abbrev:", ab, "at index", bookIndex);
+    }
+
+    const fullName = abbrevToName[ab] || book.abbrev || `Book ${bookIndex + 1}`;
+
+    return {
+      name: fullName,
+      commonName: fullName,
+      chapters: (book.chapters || []).map((chapterArr, chapIndex) => ({
+        number: chapIndex + 1,
+        content: (chapterArr || []).map((verseText, verseIndex) => ({
+          number: verseIndex + 1,
+          content: [String(verseText ?? "")]
+        }))
+      }))
+    };
+  });
+}
+// Get verse text
+function normalizeBookName(name) {
+  const n = (name ?? "").toString().trim();
+
+const map = {
+  // Existing fixes
+  "Psalm": "Psalms",
+  "Psalms": "Psalms",
+  "Song of Songs": "Song of Solomon",
+  "Song of Solomon": "Song of Solomon",
+
+  // Numbered books (common variations across datasets)
+  "1 Samuel": "1 Samuel",
+  "First Samuel": "1 Samuel",
+  "I Samuel": "1 Samuel",
+
+  "2 Samuel": "2 Samuel",
+  "Second Samuel": "2 Samuel",
+  "II Samuel": "2 Samuel",
+
+  "1 Kings": "1 Kings",
+  "First Kings": "1 Kings",
+  "I Kings": "1 Kings",
+
+  "2 Kings": "2 Kings",
+  "Second Kings": "2 Kings",
+  "II Kings": "2 Kings",
+
+  "1 Chronicles": "1 Chronicles",
+  "First Chronicles": "1 Chronicles",
+  "I Chronicles": "1 Chronicles",
+
+  "2 Chronicles": "2 Chronicles",
+  "Second Chronicles": "2 Chronicles",
+  "II Chronicles": "2 Chronicles",
+
+  "1 Corinthians": "1 Corinthians",
+  "First Corinthians": "1 Corinthians",
+  "I Corinthians": "1 Corinthians",
+
+  "2 Corinthians": "2 Corinthians",
+  "Second Corinthians": "2 Corinthians",
+  "II Corinthians": "2 Corinthians",
+
+  "1 Thessalonians": "1 Thessalonians",
+  "First Thessalonians": "1 Thessalonians",
+  "I Thessalonians": "1 Thessalonians",
+
+  "2 Thessalonians": "2 Thessalonians",
+  "Second Thessalonians": "2 Thessalonians",
+  "II Thessalonians": "2 Thessalonians",
+
+  "1 Timothy": "1 Timothy",
+  "First Timothy": "1 Timothy",
+  "I Timothy": "1 Timothy",
+
+  "2 Timothy": "2 Timothy",
+  "Second Timothy": "2 Timothy",
+  "II Timothy": "2 Timothy",
+
+  "1 Peter": "1 Peter",
+  "First Peter": "1 Peter",
+  "I Peter": "1 Peter",
+
+  "2 Peter": "2 Peter",
+  "Second Peter": "2 Peter",
+  "II Peter": "2 Peter",
+
+  "1 John": "1 John",
+  "First John": "1 John",
+  "I John": "1 John",
+
+  "2 John": "2 John",
+  "Second John": "2 John",
+  "II John": "2 John",
+
+  "3 John": "3 John",
+  "Third John": "3 John",
+  "III John": "3 John"
+};
+
+  return map[n] || n;
+}
+function formatVerseText(text) {
+  if (!text) return "";
+
+  let s = String(text);
+
+  // Convert YLT italics markers to <em>...</em>
+  // Handles <FI>, <Fi>, <fi>, <FI >, </Fi>, </FI>, etc.
+// YLT: <FI> opens italics, <Fi> closes italics (often no slash!)
+s = s.replace(/<\s*FI\b[^>]*>/g, "<em>");
+s = s.replace(/<\s*Fi\b[^>]*>/g, "</em>");
+
+// Also handle slash variants if they appear anywhere
+s = s.replace(/<\s*\/\s*fi\b[^>]*>/gi, "</em>");
+s = s.replace(/<\s*fi\b[^>]*>/gi, "<em>");
+  // Remove any other tags but keep <em>
+  s = s.replace(/<(?!\/?em\b)[^>]+>/gi, "");
+
+  // If <em> tags are unbalanced, auto-close them
+  const opens = (s.match(/<em>/gi) || []).length;
+  const closes = (s.match(/<\/em>/gi) || []).length;
+  if (opens > closes) {
+    s += "</em>".repeat(opens - closes);
+  }
+
+  return s.trim();
+}
+function getVerse(bookName, chapterNum, verseNum) {
+
+    // ASV (and any verse-list format): array of {Book, Chapter, Verse, Text}
+  if (Array.isArray(bible) && bible.length && bible[0] && typeof bible[0] === "object" && "Book" in bible[0] && "Text" in bible[0]) {
+    const book = normalizeBookName(bookName);
+    const chap = Number(chapterNum);
+    const ver = Number(verseNum);
+
+    const hit = bible.find(v =>
+      normalizeBookName(v.Book) === book &&
+      Number(v.Chapter) === chap &&
+      Number(v.Verse) === ver
+    );
+
+    return hit?.Text ?? `[Verse not found: ${bookName} ${chapterNum}:${verseNum}]`;
+  }
+  
+    // RLT lookup-object format
+  if (!Array.isArray(bible) && typeof bible === "object") {
+    const book = normalizeBookName(bookName);
+    const text = bible?.[book]?.[String(chapterNum)]?.[String(verseNum)];
+    return text ?? `[Verse not found: ${bookName} ${chapterNum}:${verseNum}]`;
+  }
+  
+  if (!Array.isArray(bible) || bible.length === 0) return "[Bible not loaded]";
+
+  const target = normalizeBookName(bookName);
+
+  const book = bible.find(b =>
+    normalizeBookName(b.name) === target ||
+    normalizeBookName(b.commonName) === target
+  );
+  if (!book) return `[Book not found: ${bookName}]`;
+
+  const chapters = Array.isArray(book.chapters) ? book.chapters : [];
+
+  // supports either {chapter:{number,content}} or {number,content}
+  const chapterObj = chapters.find(c =>
+    Number(c?.chapter?.number ?? c?.number) === Number(chapterNum)
+  );
+  if (!chapterObj) return `[Chapter not found: ${bookName} ${chapterNum}]`;
+
+  const verseList = chapterObj?.chapter?.content ?? chapterObj?.content;
+  if (!Array.isArray(verseList)) return "[Chapter content missing]";
+
+  const verse = verseList.find(v => Number(v?.number) === Number(verseNum));
+  if (!verse) return `[Verse not found: ${bookName} ${chapterNum}:${verseNum}]`;
+
+  const parts = Array.isArray(verse.content) ? verse.content : [verse.content];
+
+  // Pull text from strings OR common object shapes
+  const text = parts.map(p => {
+    if (typeof p === "string") return p;
+    if (p && typeof p === "object") {
+      // common possibilities in Bible JSONs
+      if (typeof p.text === "string") return p.text;
+      if (typeof p.content === "string") return p.content;
+      if (Array.isArray(p.content)) return p.content.filter(x => typeof x === "string").join("");
+    }
+    return "";
+  }).join("");
+
+  return text.trim();
+}
+// Build a section with dropdowns and table
+function buildSection(section, index) {
+  const mainSelect = section.querySelector(".mainTopicSelect");
+  const subSelect = section.querySelector(".subTopicSelect");
+  const bookSelect = section.querySelector(".bookSelect");
+  const verseDiv = section.querySelector(".verseText");
+
+  let rows = [];
+
+  fetch(csvFiles[index])
+    .then(r => r.text())
+    .then(csv => {
+    rows = Papa.parse(csv, { header: true, skipEmptyLines: true }).data
+  .filter(r => r.MainTopic && r.SubTopic && r.Book && r.Chapter && r.Verse);
+
+      // Populate main topics
+      const mainTopics = [...new Set(rows.map(r => r.MainTopic))];
+      mainTopics.forEach(t => {
+        const opt = document.createElement("option");
+        opt.value = t;
+        opt.text = t;
+        mainSelect.appendChild(opt);
+      });
+    });
+
+  mainSelect.addEventListener("change", () => {
+    subSelect.innerHTML = '<option value="">Select Sub-Topic</option>';
+    bookSelect.innerHTML = '<option value="">Select Book</option>';
+    verseDiv.innerHTML = "";
+
+    const subs = [...new Set(
+      rows.filter(r => r.MainTopic === mainSelect.value).map(r => r.SubTopic)
+    )];
+
+    subs.forEach(s => {
+      const opt = document.createElement("option");
+      opt.value = s;
+      opt.text = s;
+      subSelect.appendChild(opt);
+    });
+  });
+
+  subSelect.addEventListener("change", () => {
+    bookSelect.innerHTML = '<option value="">Select Book</option>';
+    verseDiv.innerHTML = "";
+
+    const books = [...new Set(
+      rows.filter(r => r.MainTopic === mainSelect.value && r.SubTopic === subSelect.value)
+          .map(r => r.Book)
+    )];
+
+    books.forEach(b => {
+      const opt = document.createElement("option");
+      opt.value = b;
+      opt.text = b;
+      bookSelect.appendChild(opt);
+    });
+  });
+
+  bookSelect.addEventListener("change", async () => {
+    verseDiv.innerHTML = "";
+
+    if (!bible || bible.length === 0) {
+      await loadBible(versionSelect.value);
+    }
+
+    const filtered = rows.filter(r =>
+      r.MainTopic === mainSelect.value &&
+      r.SubTopic === subSelect.value &&
+      r.Book === bookSelect.value
+    );
+
+    const table = document.createElement("table");
+    table.className = "verse-table";
+    const fragment = document.createDocumentFragment();
+
+    let currentChapter = null;
+
+    filtered.forEach(row => {
+      const chapterNum = parseInt(row.Chapter);
+      if (chapterNum !== currentChapter) {
+        // Add a spacer row for readability
+        const spacer = document.createElement("tr");
+        spacer.className = "spacer-row";
+        const tdSpacer = document.createElement("td");
+        tdSpacer.colSpan = 2;
+        spacer.appendChild(tdSpacer);
+        fragment.appendChild(spacer);
+
+        // Add chapter row with gradient
+        const trChapter = document.createElement("tr");
+        trChapter.className = "chapter-row";
+        const tdChapter = document.createElement("td");
+        tdChapter.colSpan = 2;
+        tdChapter.textContent = `Chapter ${chapterNum}`;
+        trChapter.appendChild(tdChapter);
+        fragment.appendChild(trChapter);
+
+        currentChapter = chapterNum;
+      }
+
+      // Add verse row
+      const trVerse = document.createElement("tr");
+      trVerse.className = "verse-row";
+
+      const tdNum = document.createElement("td");
+      tdNum.className = "verse-number";
+      tdNum.textContent = row.Verse;
+
+      const tdText = document.createElement("td");
+tdText.innerHTML = formatVerseText(
+  getVerse(row.Book, chapterNum, parseInt(row.Verse))
+);      trVerse.appendChild(tdNum);
+      trVerse.appendChild(tdText);
+
+      fragment.appendChild(trVerse);
+    });
+    
+    table.appendChild(fragment);
+    verseDiv.appendChild(table);
+  });
+}
+
+// Build all sections
+sections.forEach((section, index) => buildSection(section, index));
+
+// Reload verses when Bible version changes
+versionSelect.addEventListener("change", async () => {
+
+  const v = versionSelect.value;
+
+  // Load the version the user selected
+  await loadBible(v, true);
+
+  // Preload other Bibles quietly in the background
+  if (v !== "RLT") loadBible("RLT", false);
+  if (v !== "WEB") loadBible("WEB", false);
+
+  sections.forEach(section => {
+    const bookSelect = section.querySelector(".bookSelect");
+    if (bookSelect.value) {
+      bookSelect.dispatchEvent(new Event("change"));
+    }
+  });
+
+});
+// Initial load
+(async () => {
+  const initial = versionSelect.value || "WEB";
+
+  // Start loading the selected Bible immediately (active)
+  await loadBible(initial, true);
+
+  // Optional: preload one "common" alternate in the background
+  loadBible(initial === "KJV" ? "WEB" : "KJV", false);
+})();
+  
+</script>
+
+<footer class="site-footer">
+
+<a href="index.html">Home</a>
+<a href="life_link.html">Life Link</a>
+<a href="bible_journaling.html">Bible Journaling</a>
+<a href="wordoku.html">WORDokus</a>
+<a href="mazes.html">Mazes</a>
+<a href="coloring_pages.html">Coloring Pages</a>
+<a href="bible_reading_plans.html">Bible Reading Plans</a>
+<a href="about.html">About</a>
+<a href="#top">Top</a>
+
+</footer>
+
+</body>
+</html>

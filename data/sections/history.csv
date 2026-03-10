@@ -1,3 +1,3 @@
-MainTopic,SubTopic,Book,Chapter,Verse
+MainTopic,SubTopic,Book,Chapter,Verse,Verses
 
-History,Creation,Genesis,2,4
+History,Creation,Genesis,,,"2:4"

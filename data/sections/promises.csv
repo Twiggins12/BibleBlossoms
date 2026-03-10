@@ -1,59 +1,24 @@
-MainTopic,SubTopic,Book,Chapter,Verse
-Promises,Deliverance,Exodus,6,1
-Promises,Deliverance,Exodus,6,2
-Promises,Deliverance,Exodus,6,3
-Promises,Deliverance,Exodus,6,4
-Promises,Deliverance,Exodus,6,5
-Promises,Deliverance,Exodus,6,6
-Promises,Deliverance,Exodus,6,7
-Promises,Deliverance,Exodus,6,8
+MainTopic,SubTopic,Book,Chapter,Verse,Verses
 
-Promises,Isaac,Genesis,26,1
-Promises,Isaac,Genesis,26,2
-Promises,Isaac,Genesis,26,3
-Promises,Isaac,Genesis,26,4
-Promises,Isaac,Genesis,26,5
+Promises,Deliverance,Exodus,,,"6:1-8"
 
-Promises,Prosper,Genesis,24,40
-Promises,Prosper,Genesis,24,42
-Promises,Prosper,Genesis,39,3
-Promises,Prosper,Genesis,39,23
-Promises,Prosper,Numbers,14,41
-Promises,Prosper,Deuteronomy,28,29
-Promises,Prosper,Deuteronomy,29,9
-Promises,Prosper,1 Kings,2,3
-Promises,Prosper,1 Kings,22,12
-Promises,Prosper,1 Kings,22,15
-Promises,Prosper,1 Chronicles,22,11
-Promises,Prosper,1 Chronicles,22,13
-Promises,Prosper,2 Chronicles,13,12
-Promises,Prosper,2 Chronicles,18,11
-Promises,Prosper,2 Chronicles,18,14
-Promises,Prosper,2 Chronicles,20,20
-Promises,Prosper,2 Chronicles,24,20
-Promises,Prosper,2 Chronicles,26,5
-Promises,Prosper,Nehemiah,1,11
-Promises,Prosper,Nehemiah,2,20
-Promises,Prosper,Job,12,6
-Promises,Prosper,Psalm,1,3
-Promises,Prosper,Psalm,122,6
-Promises,Prosper,Proverbs,28,13
-Promises,Prosper,Proverbs,28,25
-Promises,Prosper,Ecclesiastes,11,6
-Promises,Prosper,Isaiah,53,10
-Promises,Prosper,Isaiah,55,11
-Promises,Prosper,Jeremiah,2,37
-Promises,Prosper,Jeremiah,5,28
-Promises,Prosper,Jeremiah,12,1
-Promises,Prosper,Jeremiah,22,30
-Promises,Prosper,Jeremiah,32,5
-Promises,Prosper,Lamentations,1,5
-Promises,Prosper,Ezekiel,17,9
-Promises,Prosper,Ezekiel,17,10
-Promises,Prosper,Ezekiel,17,15
-Promises,Prosper,Daniel,8,24
-Promises,Prosper,Daniel,8,25
-Promises,Prosper,Daniel,11,27
-Promises,Prosper,Daniel,11,36
-Promises,Prosper,1 Corinthians,16,2
-Promises,Prosper,3 John,1,2
+Promises,Isaac,Genesis,,,"26:1-5"
+
+Promises,Prosper,Genesis,,,"24:40; 24:42; 39:3; 39:23"
+Promises,Prosper,Numbers,,,"14:41"
+Promises,Prosper,Deuteronomy,,,"28:29; 29:9"
+Promises,Prosper,1 Kings,,,"2:3; 22:12; 22:15"
+Promises,Prosper,1 Chronicles,,,"22:11; 22:13"
+Promises,Prosper,2 Chronicles,,,"13:12; 18:11; 18:14; 20:20; 24:20; 26:5"
+Promises,Prosper,Nehemiah,,,"1:11; 2:20"
+Promises,Prosper,Job,,,"12:6"
+Promises,Prosper,Psalm,,,"1:3; 122:6"
+Promises,Prosper,Proverbs,,,"28:13; 28:25"
+Promises,Prosper,Ecclesiastes,,,"11:6"
+Promises,Prosper,Isaiah,,,"53:10; 55:11"
+Promises,Prosper,Jeremiah,,,"2:37; 5:28; 12:1; 22:30; 32:5"
+Promises,Prosper,Lamentations,,,"1:5"
+Promises,Prosper,Ezekiel,,,"17:9-10; 17:15"
+Promises,Prosper,Daniel,,,"8:24-25; 11:27; 11:36"
+Promises,Prosper,1 Corinthians,,,"16:2"
+Promises,Prosper,3 John,,,"1:2"

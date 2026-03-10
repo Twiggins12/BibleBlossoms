@@ -1,152 +1,73 @@
-MainTopic,SubTopic,Book,Chapter,Verse
+MainTopic,SubTopic,Book,Chapter,Verse,Verses
 
-Mind,Abandonment,Leviticus,26,12
-Mind,Abandonment,Deuteronomy,31,6
-Mind,Abandonment,Deuteronomy,31,8
-Mind,Abandonment,Joshua,1,5
-Mind,Abandonment,Joshua,1,9
-Mind,Abandonment,Psalm,9,10
-Mind,Abandonment,Psalm,22,1
-Mind,Abandonment,Psalm,23,4
-Mind,Abandonment,Psalm,27,10
-Mind,Abandonment,Psalm,37,28
-Mind,Abandonment,Psalm,38,21
-Mind,Abandonment,Psalm,51,11
-Mind,Abandonment,Psalm,71,9
-Mind,Abandonment,Psalm,94,14
-Mind,Abandonment,Isaiah,41,17
-Mind,Abandonment,Isaiah,49,15
-Mind,Abandonment,Isaiah,49,16
-Mind,Abandonment,Matthew,28,20
-Mind,Abandonment,Mark,15,34
-Mind,Abandonment,John,14,18
-Mind,Abandonment,Romans,8,35
-Mind,Abandonment,Romans,8,36
-Mind,Abandonment,Romans,8,37
-Mind,Abandonment,Romans,8,38
-Mind,Abandonment,Romans,8,39
-Mind,Abandonment,2 Corinthians,4,9
-Mind,Abandonment,Hebrews,13,5
-Mind,Abandonment,Hebrews,13,6
+MainTopic,SubTopic,Book,Chapter,Verse,Verses
 
-Mind,"Abiding in Christ",John,8,31
-Mind,"Abiding in Christ",John,15,4
-Mind,"Abiding in Christ",John,15,5
-Mind,"Abiding in Christ",John,15,6
-Mind,"Abiding in Christ",John,15,7
-Mind,"Abiding in Christ",John,15,9
-Mind,"Abiding in Christ",John,15,10
-Mind,"Abiding in Christ",1 John,2,6
-Mind,"Abiding in Christ",1 John,2,10
-Mind,"Abiding in Christ",1 John,2,24
-Mind,"Abiding in Christ",1 John,2,27
-Mind,"Abiding in Christ",1 John,2,28
-Mind,"Abiding in Christ",1 John,3,6
-Mind,"Abiding in Christ",1 John,3,24
-Mind,"Abiding in Christ",1 John,4,12
-Mind,"Abiding in Christ",1 John,4,13
-Mind,"Abiding in Christ",1 John,4,14
-Mind,"Abiding in Christ",1 John,4,15
-Mind,"Abiding in Christ",1 John,4,16
-Mind,"Abiding in Christ",2 John,1,9
+Mind,Abandonment,Leviticus,,,"26:12"
+Mind,Abandonment,Deuteronomy,,,"31:6; 31:8"
+Mind,Abandonment,Joshua,,,"1:5; 1:9"
+Mind,Abandonment,Psalm,,,"9:10; 22:1; 23:4; 27:10; 37:28; 38:21; 51:11; 71:9; 94:14"
+Mind,Abandonment,Isaiah,,,"41:17; 49:15-16"
+Mind,Abandonment,Matthew,,,"28:20"
+Mind,Abandonment,Mark,,,"15:34"
+Mind,Abandonment,John,,,"14:18"
+Mind,Abandonment,Romans,,,"8:35-39"
+Mind,Abandonment,2 Corinthians,,,"4:9"
+Mind,Abandonment,Hebrews,,,"13:5-6"
 
-Mind,"Acceptance by God",Genesis,4,6
-Mind,"Acceptance by God",Genesis,4,7
-Mind,"Acceptance by God",Exodus,28,38
-Mind,"Acceptance by God",2 Samuel,24,23
-Mind,"Acceptance by God",Job,42,9
-Mind,"Acceptance by God",Psalm,6,9
-Mind,"Acceptance by God",Ezekiel,20,40
-Mind,"Acceptance by God",Ezekiel,43,27
-Mind,"Acceptance by God",John,6,37
-Mind,"Acceptance by God",Acts,10,35
-Mind,"Acceptance by God",Romans,14,18
-Mind,"Acceptance by God",2 Corinthians,5,9
-Mind,"Acceptance by God",2 Corinthians, 6,17
-Mind,"Acceptance by God",Ephesians,1,4
-Mind,"Acceptance by God",Ephesians,1,5
-Mind,"Acceptance by God",Ephesians,1,6
+Mind,"Abiding in Christ",John,,,"8:31; 15:4-7; 15:9-10"
+Mind,"Abiding in Christ",1 John,,,"2:6; 2:10; 2:24; 2:27-28; 3:6; 3:24; 4:12-16"
+Mind,"Abiding in Christ",2 John,,,"1:9"
 
-Mind,"Acceptance of Others",Luke,15,22
-Mind,"Acceptance of Others",Luke,15,23
-Mind,"Acceptance of Others",Luke,15,24
-Mind,"Acceptance of Others",Romans,15,7
-Mind,"Acceptance of Others",1 Corinthians,5,11
-Mind,"Acceptance of Others",Galatians,3,28
-Mind,"Acceptance of Others",2 John,1,9
-Mind,"Acceptance of Others",2 John,1,10
-Mind,"Acceptance of Others",2 John,1,11
+Mind,"Acceptance by God",Genesis,,,"4:6-7"
+Mind,"Acceptance by God",Exodus,,,"28:38"
+Mind,"Acceptance by God",2 Samuel,,,"24:23"
+Mind,"Acceptance by God",Job,,,"42:9"
+Mind,"Acceptance by God",Psalm,,,"6:9"
+Mind,"Acceptance by God",Ezekiel,,,"20:40; 43:27"
+Mind,"Acceptance by God",John,,,"6:37"
+Mind,"Acceptance by God",Acts,,,"10:35"
+Mind,"Acceptance by God",Romans,,,"14:18"
+Mind,"Acceptance by God",2 Corinthians,,,"5:9; 6:17"
+Mind,"Acceptance by God",Ephesians,,,"1:4-6"
 
-Mind,"Advice, Counsel",Psalms,1,1
+Mind,"Acceptance of Others",Luke,,,"15:22-24"
+Mind,"Acceptance of Others",Romans,,,"15:7"
+Mind,"Acceptance of Others",1 Corinthians,,,"5:11"
+Mind,"Acceptance of Others",Galatians,,,"3:28"
+Mind,"Acceptance of Others",2 John,,,"1:9-11"
 
-Mind,Anger,Genesis,4,4
-Mind,Anger,Genesis,4,5
-Mind,Anger,Genesis,4,6
-Mind,Anger,Genesis,4,7
-Mind,Anger,Genesis,4,8
+Mind,"Advice, Counsel",Psalms,,,"1:1"
 
-Mind,"Conflict, Enmity, Hostility",Genesis,3,615
+Mind,Anger,Genesis,,,"4:4-8"
 
-Mind,"Control, Take Captive, Rule Over",Genesis,3,16
-Mind,"Control, Take Captive, Rule Over",Genesis,4,6
-Mind,"Control, Take Captive, Rule Over",Genesis,4,7
+Mind,"Conflict, Enmity, Hostility",Genesis,,,"3:15"
 
-Mind,Daily Wallk,Psalm,1,1
+Mind,"Control, Take Captive, Rule Over",Genesis,,,"3:16; 4:6-7"
 
-Mind,Desires,Genesis,3,6
-Mind,Desires,Genesis,3,16
-Mind,Desires,Psalm,1,2
+Mind,"Daily Walk",Psalm,,,"1:1"
 
-Mind,Despondency,Genesis,4,4
-Mind,Despondency,Genesis,4,5
-Mind,Despondency,Genesis,4,6
-Mind,Despondency,Genesis,4,7
-Mind,Despondency,Genesis,4,13
-Mind,Despondency,Genesis,4,14
+Mind,Desires,Genesis,,,"3:6; 3:16"
+Mind,Desires,Psalm,,,"1:2"
 
-Mind,Excuses,Genesis,3,12
-Mind,Excuses,Genesis,3,13
+Mind,Despondency,Genesis,,,"4:4-7; 4:13-14"
 
-Mind,Fear,Genesis,3,10
+Mind,Excuses,Genesis,,,"3:12-13"
 
-Mind,Knowledge,Genesis,2,9
-Mind,Knowledge,Genesis,2,15
-Mind,Knowledge,Genesis,2,16
-Mind,Knowledge,Genesis,3,4
-Mind,Knowledge,Genesis,3,5
-Mind,Knowledge,Genesis,3,22
-Mind,Knowledge,Proverbs,1,1
-Mind,Knowledge,Proverbs,1,2
-Mind,Knowledge,Proverbs,1,3
-Mind,Knowledge,Proverbs,1,4
-Mind,Knowledge,Proverbs,1,5
-Mind,Knowledge,Proverbs,1,6
-Mind,Knowledge,Proverbs,1,7
+Mind,Fear,Genesis,,,"3:10"
 
-Mind,Lamentations,Exodus,2,23
-Mind,Lamentations,Exodus,2,24
-Mind,Lamentations,Exodus,2,25
+Mind,Knowledge,Genesis,,,"2:9; 2:15-16; 3:4-5; 3:22"
+Mind,Knowledge,Proverbs,,,"1:1-7"
 
-Mind,Loneliness,Genesis,2,18
+Mind,Lamentations,Exodus,,,"2:23-25"
 
-Mind,"Love from God",Genesis,2,18
+Mind,Loneliness,Genesis,,,"2:18"
 
-Mind,Meditation,Psalm,1,2
+Mind,"Love from God",Genesis,,,"2:18"
 
-Mind,Shame,Genesis,2,7
+Mind,Meditation,Psalm,,,"1:2"
 
-Mind,Temptation,Proverbs,1,8
-Mind,Temptation,Proverbs,1,9
-Mind,Temptation,Proverbs,1,10
-Mind,Temptation,Proverbs,1,11
-Mind,Temptation,Proverbs,1,12
-Mind,Temptation,Proverbs,1,13
-Mind,Temptation,Proverbs,1,14
-Mind,Temptation,Proverbs,1,15
-Mind,Temptation,Proverbs,1,16
-Mind,Temptation,Proverbs,1,17
-Mind,Temptation,Proverbs,1,18
-Mind,Temptation,Proverbs,1,19
+Mind,Shame,Genesis,,,"2:7"
 
-Mind,"Wisdom, Wise, Eyes Opened",Genesis,2,18
-Mind,"Wisdom, Wise, Eyes Opened",Genesis,3,22
+Mind,Temptation,Proverbs,,,"1:8-19"
+
+Mind,"Wisdom, Wise, Eyes Opened",Genesis,,,"2:18; 3:22"

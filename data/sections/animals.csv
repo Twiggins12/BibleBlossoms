@@ -1,10 +1,5 @@
 MainTopic,SubTopic,Book,Chapter,Verse
-Animals,Birds,Genesis,1,20
-Animals,Birds,Genesis,1,21
-Animals,Birds,Genesis,1,22
-Animals,Birds,Genesis,1,26
-Animals,Birds,Genesis,2,19
-Animals,Birds,Genesis,2,20
+Animals,Birds,Genesis,"1:20; 1:21; 1:22; 1:26; 2:19; 2:20"
 
 Animals,Creeping Things,Genesis,1,24
 Animals,Creeping Things,Genesis,1,25

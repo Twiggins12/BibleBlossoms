@@ -1,0 +1,45 @@
+{
+  "Animals": [
+    "Birds"
+    "Creeping Things"
+    "Fish & Sea Creatures",
+    "Land Animals",
+    "Serpent"
+  ],
+  "Body": [
+    "Attack, Strike",
+    "Birth, Childbirth",
+    "Blessings",
+    "Blood",
+    "Bones",
+    "Clothing, Coverings",
+    "Created in God's Likeness",
+    "Death",
+    "Eyes",
+    "Flesh",
+    "Food, Eat",
+    "Image",
+    "Life",
+    "Limbs",
+    "Nakedness",
+    "Pain",
+    "Stomach",
+    "Sleep",
+    "Work, Labor, Toil, Sweat"
+  ],
+  "Mind": [
+    "Abandonment",
+    "Abiding in Christ",
+    "Acceptance by God",
+    "Acceptance of Others",
+    "Advice, Counsel"
+
+  ],
+  "Sin": [
+    "Corruption",
+    "Disobey",
+    "The Fall",
+    "Murder",
+    "Vengeance"
+  ]
+}

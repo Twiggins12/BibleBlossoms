@@ -1,5 +1,4 @@
-MainTopic,SubTopic,Book,Chapter,Verse
-Culture,Firstborn,Genesis,4,4
-Culture,Firstborn,Genesis,4,5
+MainTopic,SubTopic,Book,Chapter,Verse,Verses
+Culture,Firstborn,Genesis,,,"4:4-5"
 
-Culture,Keeper,Genesis,4,9
+Culture,Keeper,Genesis,,,"4:9"

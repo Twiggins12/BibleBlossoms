@@ -1,14 +1,10 @@
-MainTopic,SubTopic,Book,Chapter,Verse
+MainTopic,SubTopic,Book,Chapter,Verse,Verses
 
-Spiritual Beings,Angels,Genesis,3,24
+Spiritual Beings,Angels,Genesis,,,"3:24"
 
-Spiritual Beings,Cherubim,Genesis,3,24
+Spiritual Beings,Cherubim,Genesis,,,"3:24"
 
-Spiritual Beings,Nephilim,Genesis,6,2
-Spiritual Beings,Nephilim,Numbers,13,33
+Spiritual Beings,Nephilim,Genesis,,,"6:2"
+Spiritual Beings,Nephilim,Numbers,,,"13:33"
 
-Spiritual Beings,Satan,Genesis,3,1
-Spiritual Beings,Satan,Genesis,3,2
-Spiritual Beings,Satan,Genesis,3,3
-Spiritual Beings,Satan,Genesis,3,4
-Spiritual Beings,Satan,Genesis,3,5
+Spiritual Beings,Satan,Genesis,,,"3:1-5"

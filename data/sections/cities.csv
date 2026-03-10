@@ -1,3 +1,3 @@
-MainTopic,SubTopic,Book,Chapter,Verse
+MainTopic,SubTopic,Book,Chapter,Verse,Verses
 
-Cities,Assyria,Genesis,2,14
+Cities,Assyria,Genesis,,,"2:14"

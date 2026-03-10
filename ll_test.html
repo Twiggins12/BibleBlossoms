@@ -659,54 +659,58 @@ Promise.all(
         return r.text();
       })
       .then(csv =>
-        Papa.parse(csv, { header: true, skipEmptyLines: true }).data
-          .flatMap(r => {
+Papa.parse(csv, { header: true, skipEmptyLines: true }).data
+  .flatMap(r => {
 
-            // New grouped format: MainTopic,SubTopic,Book,Verses
-            if (r.Verses) {
-              return r.Verses.split(";").flatMap(ref => {
-                const trimmed = ref.trim();
-                if (!trimmed) return [];
+    // New grouped format
+    if (r.Verses) {
+      return r.Verses.split(";").flatMap(ref => {
+        const trimmed = ref.trim();
+        if (!trimmed) return [];
 
-                const [chapter, versePart] = trimmed.split(":");
-                if (!chapter || !versePart) return [];
+        const [chapter, versePart] = trimmed.split(":");
+        if (!chapter || !versePart) return [];
 
-                // range like 20-25
-                if (versePart.includes("-")) {
-                  const [start, end] = versePart.split("-").map(Number);
-                  const rows = [];
+        if (versePart.includes("-")) {
+          const [start, end] = versePart.split("-").map(Number);
+          const rows = [];
 
-                  for (let v = start; v <= end; v++) {
-                    rows.push({
-                      MainTopic: r.MainTopic,
-                      SubTopic: r.SubTopic,
-                      Book: r.Book,
-                      Chapter: chapter.trim(),
-                      Verse: v
-                    });
-                  }
+          for (let v = start; v <= end; v++) {
+            rows.push({
+              MainTopic: r.MainTopic,
+              SubTopic: r.SubTopic,
+              Book: r.Book,
+              Chapter: chapter.trim(),
+              Verse: String(v)
+            });
+          }
 
-                  return rows;
-                }
+          return rows;
+        }
 
-                // single verse
-                return [{
-                  MainTopic: r.MainTopic,
-                  SubTopic: r.SubTopic,
-                  Book: r.Book,
-                  Chapter: chapter.trim(),
-                  Verse: versePart.trim()
-                }];
-              });
-            }
+        return [{
+          MainTopic: r.MainTopic,
+          SubTopic: r.SubTopic,
+          Book: r.Book,
+          Chapter: chapter.trim(),
+          Verse: versePart.trim()
+        }];
+      });
+    }
 
-            // Old format: MainTopic,SubTopic,Book,Chapter,Verse
-            if (r.MainTopic && r.SubTopic && r.Book && r.Chapter && r.Verse) {
-              return [r];
-            }
+    // Old format
+    if (r.MainTopic && r.SubTopic && r.Book && r.Chapter && r.Verse) {
+      return [{
+        MainTopic: r.MainTopic,
+        SubTopic: r.SubTopic,
+        Book: r.Book,
+        Chapter: r.Chapter,
+        Verse: r.Verse
+      }];
+    }
 
-            return [];
-          })
+    return [];
+  })
       )
   )
 )

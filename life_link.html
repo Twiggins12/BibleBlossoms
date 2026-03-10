@@ -52,7 +52,7 @@ Thank you for your patience as this work unfolds.
 </p>
 
 <p>Began February 4, 2026</p>
-<p>Last Updated March 9, 2026</p>
+<p>Last Updated March 10, 2026</p>
 
 <div class="section-container">
   
@@ -85,7 +85,11 @@ Select Bible Version
 <select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
 <select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
 <select class="bookSelect"><option value="">Select Book</option></select>
-<div class="verseText"></div>
+
+<details class="versePanel" style="display:none;">
+  <summary>Show / Hide Verses</summary>
+  <div class="verseText"></div>
+</details>
 </div>
 </div>
 
@@ -95,7 +99,11 @@ Select Bible Version
 <select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
 <select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
 <select class="bookSelect"><option value="">Select Book</option></select>
-<div class="verseText"></div>
+
+<details class="versePanel" style="display:none;">
+  <summary>Show / Hide Verses</summary>
+  <div class="verseText"></div>
+</details>
 </div>
 </div>
 
@@ -105,7 +113,11 @@ Select Bible Version
 <select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
 <select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
 <select class="bookSelect"><option value="">Select Book</option></select>
-<div class="verseText"></div>
+
+<details class="versePanel" style="display:none;">
+  <summary>Show / Hide Verses</summary>
+  <div class="verseText"></div>
+</details>
 </div>
 </div>
 
@@ -115,7 +127,11 @@ Select Bible Version
 <select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
 <select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
 <select class="bookSelect"><option value="">Select Book</option></select>
-<div class="verseText"></div>
+
+<details class="versePanel" style="display:none;">
+  <summary>Show / Hide Verses</summary>
+  <div class="verseText"></div>
+</details>
 </div>
 </div>
 
@@ -125,7 +141,11 @@ Select Bible Version
 <select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
 <select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
 <select class="bookSelect"><option value="">Select Book</option></select>
-<div class="verseText"></div>
+
+<details class="versePanel" style="display:none;">
+  <summary>Show / Hide Verses</summary>
+  <div class="verseText"></div>
+</details>
 </div>
 </div>
 
@@ -135,7 +155,11 @@ Select Bible Version
 <select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
 <select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
 <select class="bookSelect"><option value="">Select Book</option></select>
-<div class="verseText"></div>
+
+<details class="versePanel" style="display:none;">
+  <summary>Show / Hide Verses</summary>
+  <div class="verseText"></div>
+</details>
 </div>
 </div>
 
@@ -145,7 +169,11 @@ Select Bible Version
 <select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
 <select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
 <select class="bookSelect"><option value="">Select Book</option></select>
-<div class="verseText"></div>
+
+<details class="versePanel" style="display:none;">
+  <summary>Show / Hide Verses</summary>
+  <div class="verseText"></div>
+</details>
 </div>
 </div>
 
@@ -155,7 +183,11 @@ Select Bible Version
 <select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
 <select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
 <select class="bookSelect"><option value="">Select Book</option></select>
-<div class="verseText"></div>
+
+<details class="versePanel" style="display:none;">
+  <summary>Show / Hide Verses</summary>
+  <div class="verseText"></div>
+</details>
 </div>
 </div>
 
@@ -165,7 +197,11 @@ Select Bible Version
 <select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
 <select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
 <select class="bookSelect"><option value="">Select Book</option></select>
-<div class="verseText"></div>
+
+<details class="versePanel" style="display:none;">
+  <summary>Show / Hide Verses</summary>
+  <div class="verseText"></div>
+</details>
 </div>
 </div>
 
@@ -175,17 +211,25 @@ Select Bible Version
 <select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
 <select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
 <select class="bookSelect"><option value="">Select Book</option></select>
-<div class="verseText"></div>
+
+<details class="versePanel" style="display:none;">
+  <summary>Show / Hide Verses</summary>
+  <div class="verseText"></div>
+</details>
 </div>
 </div>
 
 <div class="section-container">
-<div class="section-heading">Concepts, Ideas, Principles</div>
+<div class="section-heading">Concepts, Principles</div>
 <div class="dropdown-column">
 <select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
 <select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
 <select class="bookSelect"><option value="">Select Book</option></select>
-<div class="verseText"></div>
+
+<details class="versePanel" style="display:none;">
+  <summary>Show / Hide Verses</summary>
+  <div class="verseText"></div>
+</details>
 </div>
 </div>
 
@@ -237,17 +281,62 @@ const versionSelect = document.getElementById("versionSelect");
 const sections = document.querySelectorAll("#sections-container .section-container");
 
 const csvFiles = [
-  "data/sections/section1_Father.csv",
-  "data/sections/section2_Creation.csv",
-  "data/sections/section3_History.csv",
-  "data/sections/section4_People.csv",
-  "data/sections/section5_Mind.csv",
-  "data/sections/section6_Places.csv",
-  "data/sections/section7_Spiritual_Beings.csv",
-  "data/sections/section8_Visions.csv",
-  "data/sections/section9_Wisdom.csv",
-  "data/sections/section10_Promises.csv",
-  "data/sections/section11_Concepts.csv"
+  [
+    "data/sections/father.csv",
+    "data/sections/son.csv",
+    "data/sections/holy_spirit.csv"
+  ],
+  [
+    "data/sections/creation.csv",
+    "data/sections/earth.csv",
+    "data/sections/animals.csv"
+  ],
+  [
+    "data/sections/history.csv",
+    "data/sections/laws.csv",
+    "data/sections/sin.csv",
+    "data/sections/penalty_punishment.csv"
+  ],
+  [
+    "data/sections/people.csv",
+    "data/sections/culture.csv",
+    "data/sections/objects.csv"
+  ],
+  [
+    "data/sections/mind.csv",
+    "data/sections/body.csv",
+    "data/sections/spirit_soul.csv"
+  ],
+   [
+    "data/sections/kingdoms.csv",
+    "data/sections/countries.csv",
+    "data/sections/cities.csv",
+    "data/sections/rivers.csv",
+    "data/sections/other_locations.csv",
+    "data/sections/travels.csv",
+    "data/sections/wilderness.csv"
+  ],
+  [
+    "data/sections/spiritual_beings.csv",
+    "data/sections/miracles.csv"
+  ],
+  [
+    "data/sections/visions.csv",
+    "data/sections/prophecies.csv",
+    "data/sections/end_times.csv"
+  ],
+  [
+    "data/sections/wisdom.csv",
+    "data/sections/instructions.csv"
+  ],
+  [
+    "data/sections/promises.csv",
+    "data/sections/covenants.csv"
+  ],
+  [
+    "data/sections/concepts.csv",
+    "data/sections/principles.csv"
+  ],
 ];
   
 function pickLargestArrayProperty(obj) {
@@ -602,29 +691,99 @@ function buildSection(section, index) {
   const subSelect = section.querySelector(".subTopicSelect");
   const bookSelect = section.querySelector(".bookSelect");
   const verseDiv = section.querySelector(".verseText");
+  const versePanel = section.querySelector(".versePanel");
 
   let rows = [];
 
-  fetch(csvFiles[index])
-    .then(r => r.text())
-    .then(csv => {
-    rows = Papa.parse(csv, { header: true, skipEmptyLines: true }).data
-  .filter(r => r.MainTopic && r.SubTopic && r.Book && r.Chapter && r.Verse);
+// CSV Loader
+Promise.all(
+  csvFiles[index].map(file =>
+    fetch(file)
+      .then(r => {
+        if (!r.ok) throw new Error(`Failed to load ${file} (${r.status})`);
+        return r.text();
+      })
+      .then(csv =>
+Papa.parse(csv, { header: true, skipEmptyLines: true }).data
+  .flatMap(r => {
 
-      // Populate main topics
-      const mainTopics = [...new Set(rows.map(r => r.MainTopic))];
-      mainTopics.forEach(t => {
-        const opt = document.createElement("option");
-        opt.value = t;
-        opt.text = t;
-        mainSelect.appendChild(opt);
+    // New grouped format
+    if (r.Verses) {
+      return r.Verses.split(";").flatMap(ref => {
+        const trimmed = ref.trim();
+        if (!trimmed) return [];
+
+const parts = trimmed.split(":");
+if (parts.length !== 2) return [];
+
+const chapter = parts[0].trim();
+const versePart = parts[1].trim();
+if (!chapter || !versePart) return [];
+
+        if (versePart.includes("-")) {
+          const [start, end] = versePart.split("-").map(Number);
+          const rows = [];
+
+          for (let v = start; v <= end; v++) {
+            rows.push({
+              MainTopic: r.MainTopic,
+              SubTopic: r.SubTopic,
+              Book: r.Book,
+              Chapter: chapter.trim(),
+              Verse: String(v)
+            });
+          }
+
+          return rows;
+        }
+
+        return [{
+          MainTopic: r.MainTopic,
+          SubTopic: r.SubTopic,
+          Book: r.Book,
+          Chapter: chapter.trim(),
+          Verse: versePart.trim()
+        }];
       });
-    });
+    }
+
+    // Old format
+    if (r.MainTopic && r.SubTopic && r.Book && r.Chapter && r.Verse) {
+      return [{
+        MainTopic: r.MainTopic,
+        SubTopic: r.SubTopic,
+        Book: r.Book,
+        Chapter: r.Chapter,
+        Verse: r.Verse
+      }];
+    }
+
+    return [];
+  })
+      )
+  )
+)
+.then(results => {
+  rows = results.flat();
+
+  const mainTopics = [...new Set(rows.map(r => r.MainTopic))];
+  mainTopics.forEach(t => {
+    const opt = document.createElement("option");
+    opt.value = t;
+    opt.text = t;
+    mainSelect.appendChild(opt);
+  });
+})
+.catch(err => {
+  console.error("Error loading CSV files for section", index, csvFiles[index], err);
+});
 
   mainSelect.addEventListener("change", () => {
     subSelect.innerHTML = '<option value="">Select Sub-Topic</option>';
     bookSelect.innerHTML = '<option value="">Select Book</option>';
     verseDiv.innerHTML = "";
+    versePanel.style.display = "none";
+    versePanel.open = false;
 
     const subs = [...new Set(
       rows.filter(r => r.MainTopic === mainSelect.value).map(r => r.SubTopic)
@@ -641,6 +800,8 @@ function buildSection(section, index) {
   subSelect.addEventListener("change", () => {
     bookSelect.innerHTML = '<option value="">Select Book</option>';
     verseDiv.innerHTML = "";
+    versePanel.style.display = "none";
+    versePanel.open = false;
 
     const books = [...new Set(
       rows.filter(r => r.MainTopic === mainSelect.value && r.SubTopic === subSelect.value)
@@ -716,6 +877,8 @@ tdText.innerHTML = formatVerseText(
     
     table.appendChild(fragment);
     verseDiv.appendChild(table);
+    versePanel.style.display = "block";
+    versePanel.open = true;
   });
 }
 

@@ -1,153 +1,34 @@
-MainTopic,SubTopic,Book,Chapter,Verse
-Earth,"Agriculture - Farming, Fields",Genesis,2,5
-Earth,"Agriculture - Farming, Fields",Genesis,2,6
-Earth,"Agriculture - Farming, Fields",Genesis,3,18
-Earth,"Agriculture - Farming, Fields",Genesis,3,23
-Earth,"Agriculture - Farming, Fields",Genesis,4,2
-Earth,"Agriculture - Farming, Fields",Genesis,4,8
+MainTopic,SubTopic,Book,Chapter,Verse,Verses
+Earth,"Agriculture - Farming, Fields",Genesis,,,"2:5-6; 3:18; 3:23; 4:2; 4:8"
 
-Earth,Darkness,Genesis,1,2
-Earth,Darkness,Genesis,1,4
-Earth,Darkness,Genesis,1,5
+Earth,Darkness,Genesis,,,"1:2; 1:4-5"
 
-Earth,Earth,Genesis,1,1
-Earth,Earth,Genesis,1,2
-Earth,Earth,Genesis,1,10
-Earth,Earth,Genesis,1,11
-Earth,Earth,Genesis,1,12
-Earth,Earth,Genesis,1,24
-Earth,Earth,Genesis,1,25
-Earth,Earth,Genesis,1,26
-Earth,Earth,Genesis,1,28
-Earth,Earth,Genesis,2,1
-Earth,Earth,Genesis,2,4
-Earth,Earth,Genesis,2,5
-Earth,Earth,Genesis,2,6
-Earth,Earth,Genesis,4,10
-Earth,Earth,Genesis,4,11
-Earth,Earth,Genesis,4,12
-Earth,Earth,Genesis,4,13
-Earth,Earth,Genesis,4,14
+Earth,Earth,Genesis,,,"1:1-2; 1:10-12; 1:24-26; 1:28; 2:1; 2:4-6; 4:10-14"
 
-Earth,"Fire - Flame, Flaming",Genesis,3,24
+Earth,"Fire - Flame, Flaming",Genesis,,,"3:24"
 
-Earth,"The Heavens",Genesis,1,1
-Earth,"The Heavens",Genesis,1,6
-Earth,"The Heavens",Genesis,1,7
-Earth,"The Heavens",Genesis,1,8
-Earth,"The Heavens",Genesis,1,9
-Earth,"The Heavens",Genesis,1,14
-Earth,"The Heavens",Genesis,1,15
-Earth,"The Heavens",Genesis,1,16
-Earth,"The Heavens",Genesis,1,17
-Earth,"The Heavens",Genesis,1,20
-Earth,"The Heavens",Genesis,2,1
-Earth,"The Heavens",Genesis,2,4
+Earth,"The Heavens",Genesis,,,"1:1; 1:6-9; 1:14-17; 1:20; 2:1; 2:4"
 
-Earth,Land,Genesis,1,9
-Earth,Land,Genesis,1,10
-Earth,Land,Genesis,1,25
-Earth,Land,Genesis,2,5
-Earth,Land,Genesis,2,6
-Earth,Land,Genesis,2,7
-Earth,Land,Genesis,2,9
-Earth,Land,Genesis,2,11
-Earth,Land,Genesis,2,12
-Earth,Land,Genesis,2,19
-Earth,Land,Genesis,2,20
-Earth,Land,Genesis,3,14
-Earth,Land,Genesis,3,17
-Earth,Land,Genesis,3,18
-Earth,Land,Genesis,3,19
-Earth,Land,Genesis,3,23
-Earth,Land,Genesis,4,10
-Earth,Land,Genesis,4,11
-Earth,Land,Genesis,4,12
+Earth,Land,Genesis,,,"1:9-10; 1:25; 2:5-7; 2:9; 2:11-12; 2:19-20; 3:14; 3:17-19; 3:23; 4:10-12"
 
-Earth,Light,Genesis,1,2
-Earth,Light,Genesis,1,3
-Earth,Light,Genesis,1,4
-Earth,Light,Genesis,1,5
-Earth,Light,Genesis,1,14
-Earth,Light,Genesis,1,15
-Earth,Light,Genesis,1,16
-Earth,Light,Genesis,1,17
-Earth,Light,Genesis,1,18
+Earth,Light,Genesis,,,"1:2-5; 1:14-18"
 
-Earth,"Plants, Trees",Genesis,1,11
-Earth,"Plants, Trees",Genesis,1,12
-Earth,"Plants, Trees",Genesis,1,29
-Earth,"Plants, Trees",Genesis,1,30
-Earth,"Plants, Trees",Genesis,2,9
-Earth,"Plants, Trees",Genesis,2,15
-Earth,"Plants, Trees",Genesis,2,16
-Earth,"Plants, Trees",Genesis,3,1
-Earth,"Plants, Trees",Genesis,3,2
-Earth,"Plants, Trees",Genesis,3,3
-Earth,"Plants, Trees",Genesis,3,4
-Earth,"Plants, Trees",Genesis,3,5
-Earth,"Plants, Trees",Genesis,3,6
-Earth,"Plants, Trees",Genesis,3,8
-Earth,"Plants, Trees",Genesis,3,11
-Earth,"Plants, Trees",Genesis,3,12
-Earth,"Plants, Trees",Genesis,3,17
-Earth,"Plants, Trees",Genesis,3,22
-Earth,"Plants, Trees",Genesis,3,24
-Earth,"Plants, Trees",Psalm,1,3
+Earth,"Plants, Trees",Genesis,,,"1:11-12; 1:29-30; 2:9; 2:15-16; 3:1-6; 3:8; 3:11-12; 3:17; 3:22; 3:24"
+Earth,"Plants, Trees",Psalms,,,"1:3"
 
-Earth,"Plants, Fruits & Seeds",Genesis,1,11
-Earth,"Plants, Fruits & Seeds",Genesis,1,12
-Earth,"Plants, Fruits & Seeds",Genesis,1,29
-Earth,"Plants, Fruits & Seeds",Genesis,3,6
-Earth,"Plants, Fruits & Seeds",Genesis,3,12
-Earth,"Plants, Fruits & Seeds",Genesis,4,3
-Earth,"Plants, Fruits & Seeds",Psalm,1,3
+Earth,"Plants, Fruits & Seeds",Genesis,,,"1:11-12; 1:29; 3:6; 3:12; 4:3"
+Earth,"Plants, Fruits & Seeds",Psalms,,,"1:3"
 
-Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,1,11
-Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,1,12
-Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,1,29
-Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,1,30
-Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,2,5
-Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,2,6
-Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,3,7
-Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,3,18
+Earth,"Plants, Grass, Herbs, Thistles & Thorns",Genesis,,,"1:11-12; 1:29-30; 2:5-6; 3:7; 3:18"
 
-Earth,"Stone, Gems & Minerals",Genesis,2,11
-Earth,"Stone, Gems & Minerals",Genesis,2,12
+Earth,"Stone, Gems & Minerals",Genesis,,,"2:11-12"
 
-Earth,Time,Genesis,1,1
-Earth,Time,Genesis,1,5
-Earth,Time,Genesis,1,5
-Earth,Time,Genesis,1,13
-Earth,Time,Genesis,1,14
-Earth,Time,Genesis,1,19
-Earth,Time,Genesis,1,23
-Earth,Time,Genesis,1,31
-Earth,Time,Genesis,2,2
-Earth,Time,Genesis,2,3
-Earth,Time,Genesis,3,8
-Earth,Time,Genesis,3,14
-Earth,Time,Genesis,4,3
-Earth,Time,Psalm,1,2
-Earth,Time,Psalm,1,3
+Earth,Time,Genesis,,,"1:1; 1:5; 1:13-14; 1:19; 1:23; 1:31; 2:2-3; 3:8; 3:14; 4:3"
+Earth,Time,Psalms,,,"1:2-3"
 
-Earth,Water,Genesis,1,2
-Earth,Water,Genesis,1,6
-Earth,Water,Genesis,1,7
-Earth,Water,Genesis,1,9
-Earth,Water,Genesis,1,10
-Earth,Water,Genesis,1,20
-Earth,Water,Genesis,1,21
-Earth,Water,Genesis,1,22
-Earth,Water,Genesis,2,10
-Earth,Water,Genesis,2,11
-Earth,Water,Genesis,2,12
-Earth,Water,Genesis,2,13
-Earth,Water,Genesis,2,14
-Earth,Water,Psalm,1,3
-Earth,Water,Psalm,110,7
+Earth,Water,Genesis,,,"1:2; 1:6-7; 1:9-10; 1:20-22; 2:10-14"
+Earth,Water,Psalms,,,"1:3; 110:7"
 
-Earth,Weather,Genesis,2,5
-Earth,Weather,Genesis,2,6
+Earth,Weather,Genesis,,,"2:5-6"
 
-Earth,Wither,Psalm,1,3
+Earth,Wither,Psalms,,,"1:3"

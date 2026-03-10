@@ -1,12 +1,9 @@
-MainTopic,SubTopic,Book,Chapter,Verse
+MainTopic,SubTopic,Book,Chapter,Verse,Verses
 
-Laws,Law,Psalms,1,2
+Laws,Law,Psalms,,,"1:2"
 
-Laws,Obey,Genesis,4,6
-Laws,Obey,Genesis,4,7
+Laws,Obey,Genesis,,,"4:6-7"
 
-Laws,Offerings,Genesis,4,4
-Laws,Offerings,Genesis,4,5
+Laws,Offerings,Genesis,,,"4:4-5"
 
-Laws,Sabbath,Genesis,2,2
-Laws,Sabbath,Genesis,2,3
+Laws,Sabbath,Genesis,,,"2:2-3"

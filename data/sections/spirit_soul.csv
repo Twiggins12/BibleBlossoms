@@ -1,26 +1,15 @@
-MainTopic,SubTopic,Book,Chapter,Verse
+MainTopic,SubTopic,Book,Chapter,Verse,Verses
 
-"Mind,Body,Spirit/Soul",Spirit,"Blessed, Blessings",Psalm,1,1
+"Mind,Body,Spirit/Soul","Blessed, Blessings",Psalm,,,"1:1"
 
-Spirit/Soul,Daily Walk,Psalm,1,1
-Spirit/Soul,Daily Walk,Psalm,1,2
+Spirit/Soul,"Daily Walk",Psalm,,,"1:1-2"
 
-Spirit/Soul,Deception,Genesis,3,13
+Spirit/Soul,Deception,Genesis,,,"3:13"
 
-Spirit/Soul,Eternal Life,Genesis,3,22
+Spirit/Soul,"Eternal Life",Genesis,,,"3:22"
 
-Spirit/Soul,Good and Evil,Genesis,2,9
-Spirit/Soul,Good and Evil,Genesis,2,15
-Spirit/Soul,Good and Evil,Genesis,2,16
-Spirit/Soul,Good and Evil,Genesis,3,4
-Spirit/Soul,Good and Evil,Genesis,3,5
-Spirit/Soul,Good and Evil,Genesis,3,22
+Spirit/Soul,"Good and Evil",Genesis,,,"2:9; 2:15-16; 3:4-5; 3:22"
 
-Spirit/Soul,"Hiding, Running from God",Genesis,3,8
-Spirit/Soul,"Hiding, Running from God",Genesis,3,10
+Spirit/Soul,"Hiding, Running from God",Genesis,,,"3:8; 3:10"
 
-Spirit/Soul,"Wander, Stray, Fall Away",Genesis,4,10
-Spirit/Soul,"Wander, Stray, Fall Away",Genesis,4,11
-Spirit/Soul,"Wander, Stray, Fall Away",Genesis,4,12
-Spirit/Soul,"Wander, Stray, Fall Away",Genesis,4,13
-Spirit/Soul,"Wander, Stray, Fall Away",Genesis,4,14
+Spirit/Soul,"Wander, Stray, Fall Away",Genesis,,,"4:10-14"

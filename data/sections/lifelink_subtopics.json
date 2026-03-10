@@ -53,7 +53,23 @@
     "Firstborn",
     "Keeper"
   ],
-  
+   "Earth": [
+    "Agriculture,Farming,Fields",
+    "Darkness",
+     "Earth",
+     "Fire, Flame, Flaming",
+     "The Heavens",
+     "Land",
+     "Light",
+     "Plants, Trees",
+     "Plants, Fruit & Seeds",
+     "Plants, Grass, Herbs, Thistles & Thorns",
+     "Stone, Gems & Minerals",
+     "Time",
+     "Water",
+     "Weather",
+     "Wither"
+  ], 
 
 
 

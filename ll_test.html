@@ -650,72 +650,80 @@ function buildSection(section, index) {
 
   let rows = [];
 
-    // CSV Loader
-  Promise.all(
+// CSV Loader
+Promise.all(
   csvFiles[index].map(file =>
     fetch(file)
-      .then(r => r.text())
+      .then(r => {
+        if (!r.ok) throw new Error(`Failed to load ${file} (${r.status})`);
+        return r.text();
+      })
       .then(csv =>
-    Papa.parse(csv, { header: true, skipEmptyLines: true }).data
-.flatMap(r => {
+        Papa.parse(csv, { header: true, skipEmptyLines: true }).data
+          .flatMap(r => {
 
-  if (r.Verses) {
-    return r.Verses.split(";").flatMap(ref => {
+            // New grouped format: MainTopic,SubTopic,Book,Verses
+            if (r.Verses) {
+              return r.Verses.split(";").flatMap(ref => {
+                const trimmed = ref.trim();
+                if (!trimmed) return [];
 
-      const [chapter, versePart] = ref.trim().split(":");
+                const [chapter, versePart] = trimmed.split(":");
+                if (!chapter || !versePart) return [];
 
-      // range like 20-25
-      if (versePart.includes("-")) {
-        const [start, end] = versePart.split("-").map(Number);
-        const rows = [];
+                // range like 20-25
+                if (versePart.includes("-")) {
+                  const [start, end] = versePart.split("-").map(Number);
+                  const rows = [];
 
-        for (let v = start; v <= end; v++) {
-          rows.push({
-            MainTopic: r.MainTopic,
-            SubTopic: r.SubTopic,
-            Book: r.Book,
-            Chapter: chapter,
-            Verse: v
-          });
-        }
+                  for (let v = start; v <= end; v++) {
+                    rows.push({
+                      MainTopic: r.MainTopic,
+                      SubTopic: r.SubTopic,
+                      Book: r.Book,
+                      Chapter: chapter.trim(),
+                      Verse: v
+                    });
+                  }
 
-        return rows;
-      }
+                  return rows;
+                }
 
-      // single verse
-      return [{
-        MainTopic: r.MainTopic,
-        SubTopic: r.SubTopic,
-        Book: r.Book,
-        Chapter: chapter,
-        Verse: versePart
-      }];
+                // single verse
+                return [{
+                  MainTopic: r.MainTopic,
+                  SubTopic: r.SubTopic,
+                  Book: r.Book,
+                  Chapter: chapter.trim(),
+                  Verse: versePart.trim()
+                }];
+              });
+            }
 
-    });
-  }
+            // Old format: MainTopic,SubTopic,Book,Chapter,Verse
+            if (r.MainTopic && r.SubTopic && r.Book && r.Chapter && r.Verse) {
+              return [r];
+            }
 
-  if (r.Chapter && r.Verse) return [r];
-
-  return [];
-})
+            return [];
+          })
       )
   )
 )
-  .then(results => {
-    rows = results.flat();
+.then(results => {
+  rows = results.flat();
 
-    const mainTopics = [...new Set(rows.map(r => r.MainTopic))];
-    mainTopics.forEach(t => {
-      const opt = document.createElement("option");
-      opt.value = t;
-      opt.text = t;
-      mainSelect.appendChild(opt);
-    });
-  })
-      
-  .catch(err => {
-    console.error("Error loading CSV files for section", index, err);
+  const mainTopics = [...new Set(rows.map(r => r.MainTopic))];
+  mainTopics.forEach(t => {
+    const opt = document.createElement("option");
+    opt.value = t;
+    opt.text = t;
+    mainSelect.appendChild(opt);
   });
+})
+.catch(err => {
+  console.error("Error loading CSV files for section", index, csvFiles[index], err);
+});
 
   mainSelect.addEventListener("change", () => {
     subSelect.innerHTML = '<option value="">Select Sub-Topic</option>';

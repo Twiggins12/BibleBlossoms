@@ -668,8 +668,12 @@ Papa.parse(csv, { header: true, skipEmptyLines: true }).data
         const trimmed = ref.trim();
         if (!trimmed) return [];
 
-        const [chapter, versePart] = trimmed.split(":");
-        if (!chapter || !versePart) return [];
+const parts = trimmed.split(":");
+if (parts.length !== 2) return [];
+
+const chapter = parts[0].trim();
+const versePart = parts[1].trim();
+if (!chapter || !versePart) return [];
 
         if (versePart.includes("-")) {
           const [start, end] = versePart.split("-").map(Number);

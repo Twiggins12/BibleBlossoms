@@ -81,6 +81,20 @@ Select Bible Version
 <div id="sections-container">
 
 <div class="section-container">
+<div class="section-heading">Salvation</div>
+<div class="dropdown-column">
+<select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
+<select class="subTopicSelect"><option value="">Select Sub-Topic</option></select>
+<select class="bookSelect"><option value="">Select Book</option></select>
+
+<details class="versePanel" style="display:none;">
+  <summary>Verses</summary>
+  <div class="verseText"></div>
+</details>
+</div>
+</div>
+
+<div class="section-container">
 <div class="section-heading">Father, Son, Holy Spirit</div>
 <div class="dropdown-column">
 <select class="mainTopicSelect"><option value="">Select Main Topic</option></select>
@@ -284,7 +298,10 @@ const versionSelect = document.getElementById("versionSelect");
 const sections = document.querySelectorAll("#sections-container .section-container");
 
 const csvFiles = [
-  [
+    [
+    "data/sections/salvation.csv"
+  ],
+    [
     "data/sections/father.csv",
     "data/sections/son.csv",
     "data/sections/holy_spirit.csv"

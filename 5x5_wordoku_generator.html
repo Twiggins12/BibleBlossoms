@@ -97,13 +97,13 @@
   }
 
   .cell, .spacer {
-    width: 48px;
-    height: 48px;
+    width: 46px;
+    height: 46px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: bold;
     border-radius: 6px;
   }
@@ -193,7 +193,7 @@
   </div>
 
   <div class="note">
-    Rule: No repeats within the same color block or row, except row 3.
+    Rule: No repeats within the same color block or row, except row 4.
   </div>
 
   <div class="error" id="errorBox"></div>
@@ -217,40 +217,38 @@
 
 <script>
 /*
-  5x5 shaped layout:
+  25-cell diamond layout:
 
-  R1: -YGY-
-  R2: BWPBW
-  R3: -KPK-
-  R4: BWPBW
-  R5: -YGY-
+  R1: ---A---
+  R2: --BCD--
+  R3: -CDEAB-
+  R4: DEABCDE   <-- exempt row
+  R5: -BCDEA-
+  R6: --EAB--
+  R7: ---C---
 
-  This gives 25 cells.
-  We use 5 block labels instead of 7 symbols:
-  Y, G, B, W, P
-  But to keep 5 blocks of 5 cells each, actual group IDs are assigned separately.
+  Each group A-E appears exactly 5 times.
 */
 
 const layout = [
-  "-ABA-",
-  "CDECD",
-  "-EBA-",
-  "CDECD",
-  "-ABE-"
+  "---A---",
+  "--BCD--",
+  "-CDEAB-",
+  "DEABCDE",
+  "-BCDEA-",
+  "--EAB--",
+  "---C---"
 ];
 
-// 5 groups, each appears 5 times:
-// A, B, C, D, E
-
 const colorStyles = {
-  A: "#f5e663",
-  B: "#8fd18f",
-  C: "#8fc5ff",
-  D: "#ffffff",
-  E: "#ffb6d9"
+  A: "#f5e663", // yellow
+  B: "#8fd18f", // green
+  C: "#8fc5ff", // blue
+  D: "#ffffff", // white
+  E: "#ffb6d9"  // pink
 };
 
-const rowConstraintApplies = rowIndex => rowIndex !== 2; // row 3 exempt
+const rowConstraintApplies = rowIndex => rowIndex !== 3; // row 4 exempt
 
 const puzzleBoardEl = document.getElementById("puzzleBoard");
 const solutionBoardEl = document.getElementById("solutionBoard");
@@ -272,7 +270,7 @@ function buildStructure() {
   groupsByColor = {};
   groupsByRow = layout.map(() => []);
 
-  const colorKeys = ["A","B","C","D","E"];
+  const colorKeys = ["A", "B", "C", "D", "E"];
   colorKeys.forEach(c => groupsByColor[c] = []);
 
   let index = 0;
@@ -442,7 +440,7 @@ function generatePuzzleFromSolution(solution, symbols, cluesToKeep) {
 function renderBoard(boardEl, board, hideNulls = false) {
   boardEl.innerHTML = "";
 
-  let positionLookup = {};
+  const positionLookup = {};
   positions.forEach(pos => {
     positionLookup[`${pos.row}_${pos.col}`] = pos.index;
   });

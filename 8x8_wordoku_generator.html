@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8x8 Word Sudoku Generator</title>
+  <style>
+    :root {
+      --bg: #f7f7fb;
+      --card: #ffffff;
+      --text: #222;
+      --muted: #666;
+      --line: #222;
+      --thin: #bbb;
+      --accent: #3b5bdb;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    h1 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 2rem;
+    }
+
+    p {
+      line-height: 1.45;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+      margin-bottom: 18px;
+    }
+
+    .controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      align-items: end;
+    }
+
+    label {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 1px solid #cfcfe3;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-weight: 700;
+    }
+
+    button.secondary {
+      background: #5c677d;
+    }
+
+    button.print {
+      background: #2b8a3e;
+    }
+
+    .button-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .status {
+      margin-top: 12px;
+      min-height: 24px;
+      font-weight: 700;
+    }
+
+    .status.error { color: #c92a2a; }
+    .status.ok { color: #2b8a3e; }
+
+    .grids {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 18px;
+    }
+
+    .grid-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    table.sudoku {
+      border-collapse: collapse;
+      margin: 0;
+      table-layout: fixed;
+      width: 100%;
+      max-width: 420px;
+      background: white;
+    }
+
+    table.sudoku td {
+      width: 12.5%;
+      aspect-ratio: 1 / 1;
+      text-align: center;
+      vertical-align: middle;
+      border: 1px solid var(--thin);
+      font-size: 1.25rem;
+      font-weight: 700;
+      padding: 0;
+    }
+
+    table.sudoku td.thick-right { border-right: 3px solid var(--line); }
+    table.sudoku td.thick-left  { border-left: 3px solid var(--line); }
+    table.sudoku td.thick-top   { border-top: 3px solid var(--line); }
+    table.sudoku td.thick-bottom{ border-bottom: 3px solid var(--line); }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 10px;
+    }
+
+    .legend {
+      font-family: Consolas, Monaco, monospace;
+      white-space: pre-wrap;
+      background: #f1f3f5;
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .no-print {
+        display: none !important;
+      }
+
+      .wrap {
+        max-width: none;
+        padding: 0;
+      }
+
+      .card {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        margin-bottom: 16px;
+      }
+
+      .grids {
+        grid-template-columns: 1fr 1fr;
+        gap: 22px;
+      }
+
+      table.sudoku {
+        max-width: none;
+        width: 100%;
+      }
+
+      table.sudoku td {
+        font-size: 18pt;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card no-print">
+      <h1>8×8 Word Sudoku Generator</h1>
+      <p>
+        Enter an 8-letter word with 8 different letters. The word will be placed in row 4,
+        then the program will generate a full 8×8 solution using 4×2 boxes and create a puzzle.
+      </p>
+
+      <div class="controls">
+        <div>
+          <label for="wordInput">8-letter word</label>
+          <input id="wordInput" type="text" maxlength="8" placeholder="KINGDOMS" value="KINGDOMS" />
+        </div>
+
+        <div>
+          <label for="clueCount">How many clues to leave</label>
+          <select id="clueCount">
+            <option value="36">36 clues (easy)</option>
+            <option value="32" selected>32 clues (medium)</option>
+            <option value="28">28 clues (harder)</option>
+            <option value="24">24 clues (hard)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button id="generateBtn">Generate Solution + Puzzle</button>
+        <button id="newPuzzleBtn" class="secondary">Make New Puzzle From Same Solution</button>
+        <button id="printBtn" class="print">Print</button>
+      </div>
+
+      <div id="status" class="status"></div>
+    </div>
+
+    <div class="card">
+      <div class="grids">
+        <div>
+          <div class="grid-title">Puzzle</div>
+          <div id="puzzleGrid"></div>
+          <div class="note">Blank cells are for the solver to fill in.</div>
+        </div>
+
+        <div>
+          <div class="grid-title">Solution</div>
+          <div id="solutionGrid"></div>
+          <div class="note">Row 4 is the word you entered.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="grid-title">Letter Key</div>
+      <div id="legend" class="legend"></div>
+    </div>
+  </div>
+
+  <script>
+    const SIZE = 8;
+    const BOX_ROWS = 2;
+    const BOX_COLS = 4;
+
+    let currentSolution = null;
+    let currentPuzzle = null;
+    let currentSymbols = null;
+
+    const wordInput = document.getElementById('wordInput');
+    const clueCount = document.getElementById('clueCount');
+    const statusEl = document.getElementById('status');
+    const puzzleGridEl = document.getElementById('puzzleGrid');
+    const solutionGridEl = document.getElementById('solutionGrid');
+    const legendEl = document.getElementById('legend');
+
+    document.getElementById('generateBtn').addEventListener('click', generateAll);
+    document.getElementById('newPuzzleBtn').addEventListener('click', remakePuzzle);
+    document.getElementById('printBtn').addEventListener('click', () => window.print());
+
+    function setStatus(message, ok = true) {
+      statusEl.textContent = message;
+      statusEl.className = 'status ' + (ok ? 'ok' : 'error');
+    }
+
+    function cleanWord(raw) {
+      return raw.toUpperCase().replace(/[^A-Z]/g, '');
+    }
+
+    function validateWord(word) {
+      if (word.length !== 8) {
+        return 'Your entry must be exactly 8 letters.';
+      }
+      const unique = new Set(word.split(''));
+      if (unique.size !== 8) {
+        return 'All 8 letters must be different.';
+      }
+      return null;
+    }
+
+    function makeEmptyGrid() {
+      return Array.from({ length: SIZE }, () => Array(SIZE).fill(null));
+    }
+
+    function cloneGrid(grid) {
+      return grid.map(row => row.slice());
+    }
+
+    function shuffle(array) {
+      const arr = array.slice();
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function isValid(grid, row, col, value) {
+      for (let c = 0; c < SIZE; c++) {
+        if (grid[row][c] === value) return false;
+      }
+
+      for (let r = 0; r < SIZE; r++) {
+        if (grid[r][col] === value) return false;
+      }
+
+      const startRow = Math.floor(row / BOX_ROWS) * BOX_ROWS;
+      const startCol = Math.floor(col / BOX_COLS) * BOX_COLS;
+      for (let r = startRow; r < startRow + BOX_ROWS; r++) {
+        for (let c = startCol; c < startCol + BOX_COLS; c++) {
+          if (grid[r][c] === value) return false;
+        }
+      }
+
+      return true;
+    }
+
+    function findBestEmptyCell(grid) {
+      let best = null;
+      let bestChoices = null;
+
+      for (let r = 0; r < SIZE; r++) {
+        for (let c = 0; c < SIZE; c++) {
+          if (grid[r][c] !== null) continue;
+
+          const choices = [];
+          for (let n = 0; n < SIZE; n++) {
+            if (isValid(grid, r, c, n)) choices.push(n);
+          }
+
+          if (choices.length === 0) return { row: r, col: c, choices: [] };
+          if (!best || choices.length < bestChoices.length) {
+            best = { row: r, col: c };
+            bestChoices = choices;
+            if (choices.length === 1) {
+              return { row: r, col: c, choices };
+            }
+          }
+        }
+      }
+
+      if (!best) return null;
+      return { row: best.row, col: best.col, choices: bestChoices };
+    }
+
+    function fillGrid(grid) {
+      const next = findBestEmptyCell(grid);
+      if (!next) return true;
+      if (next.choices.length === 0) return false;
+
+      for (const value of shuffle(next.choices)) {
+        grid[next.row][next.col] = value;
+        if (fillGrid(grid)) return true;
+        grid[next.row][next.col] = null;
+      }
+
+      return false;
+    }
+
+    function countSolutions(grid, limit = 2) {
+      const work = cloneGrid(grid);
+      let count = 0;
+
+      function solveCount() {
+        if (count >= limit) return;
+        const next = findBestEmptyCell(work);
+        if (!next) {
+          count++;
+          return;
+        }
+        if (next.choices.length === 0) return;
+
+        for (const value of next.choices) {
+          work[next.row][next.col] = value;
+          solveCount();
+          work[next.row][next.col] = null;
+          if (count >= limit) return;
+        }
+      }
+
+      solveCount();
+      return count;
+    }
+
+    function generateSolution(symbols) {
+      const grid = makeEmptyGrid();
+
+      // Fix row 4 (index 3) to the entered word.
+      for (let c = 0; c < SIZE; c++) {
+        grid[3][c] = c;
+      }
+
+      // Randomize a little more by optionally seeding a few cells in other rows when valid.
+      // This is not required, but it helps produce less visibly patterned completions.
+      const seedPositions = shuffle([
+        [0, 0], [0, 7], [1, 2], [1, 5], [2, 1], [2, 6],
+        [4, 3], [4, 4], [5, 0], [5, 7], [6, 2], [6, 5], [7, 1], [7, 6]
+      ]);
+
+      for (const [r, c] of seedPositions.slice(0, 4)) {
+        const options = shuffle([...Array(SIZE).keys()].filter(v => isValid(grid, r, c, v)));
+        if (options.length) grid[r][c] = options[0];
+      }
+
+      if (!fillGrid(grid)) {
+        throw new Error('Could not generate a solution. Please try again.');
+      }
+
+      return grid;
+    }
+
+    function makePuzzleFromSolution(solution, cluesToLeave) {
+      const puzzle = cloneGrid(solution);
+      const cells = [];
+      for (let r = 0; r < SIZE; r++) {
+        for (let c = 0; c < SIZE; c++) {
+          // Keep the word row more visible for theme if desired? No: treat all cells equally.
+          cells.push([r, c]);
+        }
+      }
+
+      const targetBlanks = SIZE * SIZE - cluesToLeave;
+      let blanksMade = 0;
+
+      for (const [r, c] of shuffle(cells)) {
+        if (blanksMade >= targetBlanks) break;
+
+        const saved = puzzle[r][c];
+        puzzle[r][c] = null;
+
+        const solutionCount = countSolutions(puzzle, 2);
+        if (solutionCount !== 1) {
+          puzzle[r][c] = saved;
+        } else {
+          blanksMade++;
+        }
+      }
+
+      return puzzle;
+    }
+
+    function cellClasses(r, c) {
+      const classes = [];
+      if (c === 0) classes.push('thick-left');
+      if (c === SIZE - 1) classes.push('thick-right');
+      if (r === 0) classes.push('thick-top');
+      if (r === SIZE - 1) classes.push('thick-bottom');
+      if ((c + 1) % BOX_COLS === 0) classes.push('thick-right');
+      if (c % BOX_COLS === 0) classes.push('thick-left');
+      if ((r + 1) % BOX_ROWS === 0) classes.push('thick-bottom');
+      if (r % BOX_ROWS === 0) classes.push('thick-top');
+      return classes.join(' ');
+    }
+
+    function renderGrid(container, grid, symbols, showBlanks = true) {
+      const table = document.createElement('table');
+      table.className = 'sudoku';
+
+      for (let r = 0; r < SIZE; r++) {
+        const tr = document.createElement('tr');
+        for (let c = 0; c < SIZE; c++) {
+          const td = document.createElement('td');
+          td.className = cellClasses(r, c);
+          const value = grid[r][c];
+          td.textContent = value === null ? (showBlanks ? '' : '·') : symbols[value];
+          tr.appendChild(td);
+        }
+        table.appendChild(tr);
+      }
+
+      container.innerHTML = '';
+      container.appendChild(table);
+    }
+
+    function renderLegend(symbols) {
+      const lines = symbols.map((ch, i) => `${i + 1} = ${ch}`);
+      legendEl.textContent = lines.join('\n');
+    }
+
+    function generateAll() {
+      try {
+        const word = cleanWord(wordInput.value);
+        wordInput.value = word;
+        const error = validateWord(word);
+        if (error) {
+          setStatus(error, false);
+          return;
+        }
+
+        currentSymbols = word.split('');
+        currentSolution = generateSolution(currentSymbols);
+        currentPuzzle = makePuzzleFromSolution(currentSolution, Number(clueCount.value));
+
+        renderGrid(solutionGridEl, currentSolution, currentSymbols, true);
+        renderGrid(puzzleGridEl, currentPuzzle, currentSymbols, true);
+        renderLegend(currentSymbols);
+        setStatus('Generated a new solution and puzzle.', true);
+      } catch (err) {
+        setStatus(err.message || 'Something went wrong.', false);
+      }
+    }
+
+    function remakePuzzle() {
+      if (!currentSolution || !currentSymbols) {
+        setStatus('Generate a solution first.', false);
+        return;
+      }
+
+      currentPuzzle = makePuzzleFromSolution(currentSolution, Number(clueCount.value));
+      renderGrid(puzzleGridEl, currentPuzzle, currentSymbols, true);
+      setStatus('Made a new puzzle from the same solution.', true);
+    }
+
+    generateAll();
+  </script>
+</body>
+</html>

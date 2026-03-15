@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>5-Symbol Shaped Wordoku Generator</title>
+<title>5-Symbol Pyramid Wordoku Generator</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -18,7 +18,7 @@
   }
 
   .controls {
-    max-width: 900px;
+    max-width: 950px;
     margin: 0 auto 20px auto;
     background: white;
     padding: 16px;
@@ -74,7 +74,7 @@
     padding: 16px;
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    min-width: 320px;
+    min-width: 360px;
   }
 
   .board-title {
@@ -86,7 +86,7 @@
   .shape-board {
     display: inline-flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
     align-items: center;
   }
 
@@ -97,15 +97,15 @@
   }
 
   .cell, .spacer {
-    width: 46px;
-    height: 46px;
+    width: 42px;
+    height: 42px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
     font-size: 24px;
     font-weight: bold;
-    border-radius: 6px;
+    border-radius: 4px;
   }
 
   .cell {
@@ -115,10 +115,6 @@
 
   .spacer {
     visibility: hidden;
-  }
-
-  .given {
-    color: #111;
   }
 
   .blank {
@@ -173,16 +169,16 @@
 </head>
 <body>
 
-<h1>5-Symbol Shaped Wordoku Generator</h1>
+<h1>5-Symbol Pyramid Wordoku Generator</h1>
 
 <div class="controls">
   <div>
     <input id="symbolInput" type="text" maxlength="5" placeholder="Enter 5 unique letters/numbers" />
     <select id="difficulty">
-      <option value="16">Easy (16 clues)</option>
-      <option value="13" selected>Medium (13 clues)</option>
-      <option value="10">Hard (10 clues)</option>
-      <option value="8">Very Hard (8 clues)</option>
+      <option value="17">Easy (17 clues)</option>
+      <option value="14" selected>Medium (14 clues)</option>
+      <option value="11">Hard (11 clues)</option>
+      <option value="9">Very Hard (9 clues)</option>
     </select>
     <button id="generateBtn">Generate Puzzle</button>
     <button id="solutionBtn">Generate New Solution Only</button>
@@ -193,7 +189,7 @@
   </div>
 
   <div class="note">
-    Rule: No repeats within the same color block or row, except row 4.
+    Rule: No repeats within the same section or row, except row 5.
   </div>
 
   <div class="error" id="errorBox"></div>
@@ -217,27 +213,37 @@
 
 <script>
 /*
-  25-cell diamond layout:
+  5 sections, 5 cells each, arranged 2 / 1 / 2
 
-  R1: ---A---
-  R2: --BCD--
-  R3: -CDEAB-
-  R4: DEABCDE   <-- exempt row
-  R5: -BCDEA-
-  R6: --EAB--
-  R7: ---C---
+  Each section shape:
+  ##
+   #
+  ##
 
-  Each group A-E appears exactly 5 times.
+  Layout rows:
+  R1: AA---BB
+  R2: -A---B-
+  R3: AA---BB
+
+  R4: ---CC---
+  R5: ----C----   <-- exempt row
+  R6: ---CC---
+
+  R7: DD---EE
+  R8: -D---E-
+  R9: DD---EE
 */
 
 const layout = [
-  "---A---",
-  "--BCD--",
-  "-CDEAB-",
-  "DEABCDE",
-  "-BCDEA-",
-  "--EAB--",
-  "---C---"
+  "AA---BB",
+  "-A---B-",
+  "AA---BB",
+  "---CC---",
+  "----C----",
+  "---CC---",
+  "DD---EE",
+  "-D---E-",
+  "DD---EE"
 ];
 
 const colorStyles = {
@@ -248,7 +254,7 @@ const colorStyles = {
   E: "#ffb6d9"  // pink
 };
 
-const rowConstraintApplies = rowIndex => rowIndex !== 3; // row 4 exempt
+const rowConstraintApplies = rowIndex => rowIndex !== 4; // row 5 exempt
 
 const puzzleBoardEl = document.getElementById("puzzleBoard");
 const solutionBoardEl = document.getElementById("solutionBoard");
@@ -261,17 +267,14 @@ const errorBox = document.getElementById("errorBox");
 let positions = [];
 let groupsByColor = {};
 let groupsByRow = [];
-let lastSolution = null;
-let lastPuzzle = null;
-let lastSymbols = null;
 
 function buildStructure() {
   positions = [];
   groupsByColor = {};
   groupsByRow = layout.map(() => []);
 
-  const colorKeys = ["A", "B", "C", "D", "E"];
-  colorKeys.forEach(c => groupsByColor[c] = []);
+  const sectionKeys = ["A", "B", "C", "D", "E"];
+  sectionKeys.forEach(k => groupsByColor[k] = []);
 
   let index = 0;
 
@@ -279,13 +282,7 @@ function buildStructure() {
     for (let c = 0; c < rowStr.length; c++) {
       const ch = rowStr[c];
       if (ch !== "-") {
-        const pos = {
-          index,
-          row: r,
-          col: c,
-          color: ch
-        };
-        positions.push(pos);
+        positions.push({ index, row: r, col: c, color: ch });
         groupsByColor[ch].push(index);
         groupsByRow[r].push(index);
         index++;
@@ -311,8 +308,7 @@ function validateSymbols(raw) {
     return { ok: false, message: "Please enter exactly 5 symbols." };
   }
   const chars = cleaned.split("");
-  const unique = new Set(chars);
-  if (unique.size !== 5) {
+  if (new Set(chars).size !== 5) {
     return { ok: false, message: "All 5 symbols must be different." };
   }
   if (!/^[A-Z0-9]+$/.test(cleaned)) {
@@ -372,7 +368,6 @@ function generateSolution(symbols) {
 
   function backtrack() {
     const { index, options } = chooseUnfilledCell(board, symbols);
-
     if (index === -1) return true;
     if (options.length === 0) return false;
 
@@ -381,12 +376,10 @@ function generateSolution(symbols) {
       if (backtrack()) return true;
       board[index] = null;
     }
-
     return false;
   }
 
-  const ok = backtrack();
-  return ok ? board.slice() : null;
+  return backtrack() ? board.slice() : null;
 }
 
 function countSolutions(puzzle, symbols, limit = 2) {
@@ -397,12 +390,10 @@ function countSolutions(puzzle, symbols, limit = 2) {
     if (count >= limit) return;
 
     const { index, options } = chooseUnfilledCell(board, symbols);
-
     if (index === -1) {
       count++;
       return;
     }
-
     if (options.length === 0) return;
 
     for (const sym of options) {
@@ -425,13 +416,11 @@ function generatePuzzleFromSolution(solution, symbols, cluesToKeep) {
     const backup = puzzle[index];
     puzzle[index] = null;
 
-    const solutions = countSolutions(puzzle, symbols, 2);
-    if (solutions !== 1) {
+    if (countSolutions(puzzle, symbols, 2) !== 1) {
       puzzle[index] = backup;
     }
 
-    const currentClues = puzzle.filter(v => v !== null).length;
-    if (currentClues <= cluesToKeep) break;
+    if (puzzle.filter(v => v !== null).length <= cluesToKeep) break;
   }
 
   return puzzle;
@@ -440,9 +429,9 @@ function generatePuzzleFromSolution(solution, symbols, cluesToKeep) {
 function renderBoard(boardEl, board, hideNulls = false) {
   boardEl.innerHTML = "";
 
-  const positionLookup = {};
+  const lookup = {};
   positions.forEach(pos => {
-    positionLookup[`${pos.row}_${pos.col}`] = pos.index;
+    lookup[`${pos.row}_${pos.col}`] = pos.index;
   });
 
   layout.forEach((rowStr, r) => {
@@ -457,7 +446,7 @@ function renderBoard(boardEl, board, hideNulls = false) {
         spacer.className = "spacer";
         rowEl.appendChild(spacer);
       } else {
-        const index = positionLookup[`${r}_${c}`];
+        const index = lookup[`${r}_${c}`];
         const val = board ? board[index] : null;
 
         const cell = document.createElement("div");
@@ -467,9 +456,6 @@ function renderBoard(boardEl, board, hideNulls = false) {
 
         if (val === null && hideNulls) {
           cell.classList.add("blank");
-          cell.textContent = "";
-        } else {
-          cell.classList.add("given");
         }
 
         rowEl.appendChild(cell);
@@ -497,7 +483,6 @@ function doGenerate(makePuzzleToo = true) {
   const cluesToKeep = parseInt(difficultySelect.value, 10);
 
   let solution = null;
-
   for (let tries = 0; tries < 50; tries++) {
     solution = generateSolution(symbols);
     if (solution) break;
@@ -508,29 +493,12 @@ function doGenerate(makePuzzleToo = true) {
     return;
   }
 
-  lastSolution = solution.slice();
-  lastSymbols = symbols.slice();
-
-  renderBoard(solutionBoardEl, lastSolution, false);
+  renderBoard(solutionBoardEl, solution, false);
 
   if (makePuzzleToo) {
-    let puzzle = null;
-
-    for (let tries = 0; tries < 10; tries++) {
-      puzzle = generatePuzzleFromSolution(lastSolution, lastSymbols, cluesToKeep);
-      if (puzzle) break;
-    }
-
-    if (!puzzle) {
-      showError("Could not generate a puzzle from that solution.");
-      renderBoard(puzzleBoardEl, lastSolution, false);
-      return;
-    }
-
-    lastPuzzle = puzzle.slice();
-    renderBoard(puzzleBoardEl, lastPuzzle, true);
+    const puzzle = generatePuzzleFromSolution(solution, symbols, cluesToKeep);
+    renderBoard(puzzleBoardEl, puzzle, true);
   } else {
-    lastPuzzle = null;
     renderBoard(puzzleBoardEl, Array(positions.length).fill(null), true);
   }
 }

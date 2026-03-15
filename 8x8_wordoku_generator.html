@@ -133,6 +133,10 @@
       padding: 0;
     }
 
+    table.sudoku td.highlight-line {
+      background: #fff3bf;
+    }
+
     table.sudoku td.thick-right { border-right: 3px solid var(--line); }
     table.sudoku td.thick-left  { border-left: 3px solid var(--line); }
     table.sudoku td.thick-top   { border-top: 3px solid var(--line); }
@@ -474,7 +478,7 @@
       return classes.join(' ');
     }
 
-    function renderGrid(container, grid, symbols, showBlanks = true) {
+    function renderGrid(container, grid, symbols, showBlanks = true, highlightPlacement = false) {
       const table = document.createElement('table');
       table.className = 'sudoku';
 
@@ -482,7 +486,17 @@
         const tr = document.createElement('tr');
         for (let c = 0; c < SIZE; c++) {
           const td = document.createElement('td');
-          td.className = cellClasses(r, c);
+          const classes = [cellClasses(r, c)];
+
+          if (highlightPlacement && currentPlacement) {
+            const inHighlightedRow = currentPlacement.type === 'row' && r === currentPlacement.index;
+            const inHighlightedCol = currentPlacement.type === 'col' && c === currentPlacement.index;
+            if (inHighlightedRow || inHighlightedCol) {
+              classes.push('highlight-line');
+            }
+          }
+
+          td.className = classes.join(' ');
           const value = grid[r][c];
           td.textContent = value === null ? (showBlanks ? '' : '·') : symbols[value];
           tr.appendChild(td);
@@ -527,8 +541,8 @@
         };
         currentPuzzle = makePuzzleFromSolution(currentSolution, Number(clueCount.value));
 
-        renderGrid(solutionGridEl, currentSolution, currentSymbols, true);
-        renderGrid(puzzleGridEl, currentPuzzle, currentSymbols, true);
+        renderGrid(solutionGridEl, currentSolution, currentSymbols, true, true);
+        renderGrid(puzzleGridEl, currentPuzzle, currentSymbols, true, false);
         renderLegend(currentSymbols);
         const lineName = currentPlacement.type === 'row'
           ? `row ${currentPlacement.index + 1}`
@@ -546,7 +560,7 @@
       }
 
       currentPuzzle = makePuzzleFromSolution(currentSolution, Number(clueCount.value));
-      renderGrid(puzzleGridEl, currentPuzzle, currentSymbols, true);
+      renderGrid(puzzleGridEl, currentPuzzle, currentSymbols, true, false);
       const lineName = currentPlacement.type === 'row'
         ? `row ${currentPlacement.index + 1}`
         : `column ${currentPlacement.index + 1}`;

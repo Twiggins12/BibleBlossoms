@@ -16,30 +16,23 @@
     }
 
     * { box-sizing: border-box; }
-
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
       background: var(--bg);
       color: var(--text);
     }
-
     .wrap {
       max-width: 1100px;
       margin: 0 auto;
       padding: 24px;
     }
-
     h1 {
       margin-top: 0;
       margin-bottom: 8px;
       font-size: 2rem;
     }
-
-    p {
-      line-height: 1.45;
-    }
-
+    p { line-height: 1.45; }
     .card {
       background: var(--card);
       border-radius: 14px;
@@ -47,20 +40,17 @@
       box-shadow: 0 4px 18px rgba(0,0,0,0.08);
       margin-bottom: 18px;
     }
-
     .controls {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 14px;
       align-items: end;
     }
-
     label {
       display: block;
       font-weight: 700;
       margin-bottom: 6px;
     }
-
     input, select, button {
       width: 100%;
       padding: 10px 12px;
@@ -68,7 +58,6 @@
       border-radius: 10px;
       border: 1px solid #cfcfe3;
     }
-
     button {
       cursor: pointer;
       border: none;
@@ -76,52 +65,38 @@
       color: white;
       font-weight: 700;
     }
-
-    button.secondary {
-      background: #5c677d;
-    }
-
-    button.print {
-      background: #2b8a3e;
-    }
-
+    button.secondary { background: #5c677d; }
+    button.print { background: #2b8a3e; }
     .button-row {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 12px;
       margin-top: 14px;
     }
-
     .status {
       margin-top: 12px;
       min-height: 24px;
       font-weight: 700;
     }
-
     .status.error { color: #c92a2a; }
     .status.ok { color: #2b8a3e; }
-
     .grids {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 18px;
     }
-
     .grid-title {
       font-size: 1.15rem;
       font-weight: 700;
       margin-bottom: 10px;
     }
-
     table.sudoku {
       border-collapse: collapse;
-      margin: 0;
       table-layout: fixed;
       width: 100%;
       max-width: 420px;
       background: white;
     }
-
     table.sudoku td {
       width: 12.5%;
       aspect-ratio: 1 / 1;
@@ -132,22 +107,16 @@
       font-weight: 700;
       padding: 0;
     }
-
-    table.sudoku td.highlight-line {
-      background: #fff3bf;
-    }
-
     table.sudoku td.thick-right { border-right: 3px solid var(--line); }
     table.sudoku td.thick-left  { border-left: 3px solid var(--line); }
     table.sudoku td.thick-top   { border-top: 3px solid var(--line); }
     table.sudoku td.thick-bottom{ border-bottom: 3px solid var(--line); }
-
+    table.sudoku td.highlight-line { background: #fff3bf; }
     .note {
       color: var(--muted);
       font-size: 0.95rem;
       margin-top: 10px;
     }
-
     .legend {
       font-family: Consolas, Monaco, monospace;
       white-space: pre-wrap;
@@ -155,41 +124,22 @@
       border-radius: 10px;
       padding: 12px;
     }
-
     @media print {
-      body {
-        background: white;
-      }
-
-      .no-print {
-        display: none !important;
-      }
-
-      .wrap {
-        max-width: none;
-        padding: 0;
-      }
-
+      body { background: white; }
+      .no-print { display: none !important; }
+      .wrap { max-width: none; padding: 0; }
       .card {
         box-shadow: none;
         border: none;
         padding: 0;
         margin-bottom: 16px;
       }
-
       .grids {
         grid-template-columns: 1fr 1fr;
         gap: 22px;
       }
-
-      table.sudoku {
-        max-width: none;
-        width: 100%;
-      }
-
-      table.sudoku td {
-        font-size: 18pt;
-      }
+      table.sudoku { max-width: none; width: 100%; }
+      table.sudoku td { font-size: 18pt; }
     }
   </style>
 </head>
@@ -220,9 +170,9 @@
       </div>
 
       <div class="button-row">
-        <button id="generateBtn">Generate Solution + Puzzle</button>
-        <button id="newPuzzleBtn" class="secondary">Make New Puzzle From Same Solution</button>
-        <button id="printBtn" class="print">Print</button>
+        <button id="generateBtn" type="button">Generate Solution + Puzzle</button>
+        <button id="newPuzzleBtn" class="secondary" type="button">Make New Puzzle From Same Solution</button>
+        <button id="printBtn" class="print" type="button">Print</button>
       </div>
 
       <div id="status" class="status"></div>
@@ -252,283 +202,320 @@
   </div>
 
   <script>
-    const SIZE = 8;
-    const BOX_ROWS = 2;
-    const BOX_COLS = 4;
+    (function () {
+      const SIZE = 8;
+      const BOX_ROWS = 2;
+      const BOX_COLS = 4;
 
-    let currentSolution = null;
-    let currentPuzzle = null;
-    let currentSymbols = null;
-    let currentPlacement = null;
+      let currentSolution = null;
+      let currentPuzzle = null;
+      let currentSymbols = null;
+      let currentPlacement = null;
 
-    const wordInput = document.getElementById('wordInput');
-    const clueCount = document.getElementById('clueCount');
-    const statusEl = document.getElementById('status');
-    const puzzleGridEl = document.getElementById('puzzleGrid');
-    const solutionGridEl = document.getElementById('solutionGrid');
-    const legendEl = document.getElementById('legend');
-    const placementNoteEl = document.getElementById('placementNote');
+      const wordInput = document.getElementById('wordInput');
+      const clueCount = document.getElementById('clueCount');
+      const statusEl = document.getElementById('status');
+      const puzzleGridEl = document.getElementById('puzzleGrid');
+      const solutionGridEl = document.getElementById('solutionGrid');
+      const legendEl = document.getElementById('legend');
+      const placementNoteEl = document.getElementById('placementNote');
+      const generateBtn = document.getElementById('generateBtn');
+      const newPuzzleBtn = document.getElementById('newPuzzleBtn');
+      const printBtn = document.getElementById('printBtn');
 
-    document.getElementById('generateBtn').addEventListener('click', generateAll);
-    document.getElementById('newPuzzleBtn').addEventListener('click', remakePuzzle);
-    document.getElementById('printBtn').addEventListener('click', () => window.print());
-
-    function setStatus(message, ok = true) {
-      statusEl.textContent = message;
-      statusEl.className = 'status ' + (ok ? 'ok' : 'error');
-    }
-
-    function cleanWord(raw) {
-      return raw.toUpperCase().replace(/[^A-Z0-9]/g, '');
-    }
-
-    function validateWord(word) {
-      if (word.length !== 8) return 'Your entry must be exactly 8 characters.';
-      if (new Set(word.split('')).size !== 8) return 'All 8 characters must be different.';
-      return null;
-    }
-
-    function makeEmptyGrid() {
-      return Array.from({ length: SIZE }, () => Array(SIZE).fill(null));
-    }
-
-    function cloneGrid(grid) {
-      return grid.map(row => row.slice());
-    }
-
-    function shuffle(array) {
-      const arr = array.slice();
-      for (let i = arr.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [arr[i], arr[j]] = [arr[j], arr[i]];
-      }
-      return arr;
-    }
-
-    function isValid(grid, row, col, value) {
-      for (let c = 0; c < SIZE; c++) {
-        if (c !== col && grid[row][c] === value) return false;
+      function setStatus(message, ok) {
+        statusEl.textContent = message;
+        statusEl.className = 'status ' + (ok ? 'ok' : 'error');
       }
 
-      for (let r = 0; r < SIZE; r++) {
-        if (r !== row && grid[r][col] === value) return false;
+      function cleanEntry(raw) {
+        return raw.toUpperCase().replace(/[^A-Z0-9]/g, '');
       }
 
-      const startRow = Math.floor(row / BOX_ROWS) * BOX_ROWS;
-      const startCol = Math.floor(col / BOX_COLS) * BOX_COLS;
-      for (let r = startRow; r < startRow + BOX_ROWS; r++) {
-        for (let c = startCol; c < startCol + BOX_COLS; c++) {
-          if ((r !== row || c !== col) && grid[r][c] === value) return false;
+      function validateEntry(text) {
+        if (text.length !== 8) return 'Your entry must be exactly 8 characters.';
+        if (new Set(text.split('')).size !== 8) return 'All 8 characters must be different.';
+        return null;
+      }
+
+      function makeEmptyGrid() {
+        return Array.from({ length: SIZE }, () => Array(SIZE).fill(null));
+      }
+
+      function cloneGrid(grid) {
+        return grid.map(row => row.slice());
+      }
+
+      function shuffle(array) {
+        const arr = array.slice();
+        for (let i = arr.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const tmp = arr[i];
+          arr[i] = arr[j];
+          arr[j] = tmp;
         }
+        return arr;
       }
 
-      return true;
-    }
-
-    function getChoices(grid, row, col) {
-      const choices = [];
-      for (let v = 0; v < SIZE; v++) {
-        if (isValid(grid, row, col, v)) choices.push(v);
-      }
-      return choices;
-    }
-
-    function findBestEmptyCell(grid) {
-      let best = null;
-      let bestChoices = null;
-
-      for (let r = 0; r < SIZE; r++) {
+      function isValid(grid, row, col, value) {
         for (let c = 0; c < SIZE; c++) {
-          if (grid[r][c] !== null) continue;
-          const choices = getChoices(grid, r, c);
-          if (choices.length === 0) return { row: r, col: c, choices: [] };
-          if (!best || choices.length < bestChoices.length) {
-            best = { row: r, col: c };
-            bestChoices = choices;
-            if (choices.length === 1) return { row: r, col: c, choices };
+          if (c !== col && grid[row][c] === value) return false;
+        }
+
+        for (let r = 0; r < SIZE; r++) {
+          if (r !== row && grid[r][col] === value) return false;
+        }
+
+        const startRow = Math.floor(row / BOX_ROWS) * BOX_ROWS;
+        const startCol = Math.floor(col / BOX_COLS) * BOX_COLS;
+        for (let r = startRow; r < startRow + BOX_ROWS; r++) {
+          for (let c = startCol; c < startCol + BOX_COLS; c++) {
+            if ((r !== row || c !== col) && grid[r][c] === value) return false;
           }
         }
+
+        return true;
       }
 
-      if (!best) return null;
-      return { row: best.row, col: best.col, choices: bestChoices };
-    }
-
-    function fillGrid(grid) {
-      const next = findBestEmptyCell(grid);
-      if (!next) return true;
-      if (next.choices.length === 0) return false;
-
-      for (const value of shuffle(next.choices)) {
-        grid[next.row][next.col] = value;
-        if (fillGrid(grid)) return true;
-        grid[next.row][next.col] = null;
+      function getChoices(grid, row, col) {
+        const out = [];
+        for (let v = 0; v < SIZE; v++) {
+          if (isValid(grid, row, col, v)) out.push(v);
+        }
+        return out;
       }
-      return false;
-    }
 
-    function countSolutions(grid, limit = 2) {
-      const work = cloneGrid(grid);
-      let count = 0;
+      function findBestEmptyCell(grid) {
+        let best = null;
+        let bestChoices = null;
 
-      function solve() {
-        if (count >= limit) return;
-        const next = findBestEmptyCell(work);
-        if (!next) {
-          count++;
+        for (let r = 0; r < SIZE; r++) {
+          for (let c = 0; c < SIZE; c++) {
+            if (grid[r][c] !== null) continue;
+            const choices = getChoices(grid, r, c);
+            if (choices.length === 0) return { row: r, col: c, choices: [] };
+            if (best === null || choices.length < bestChoices.length) {
+              best = { row: r, col: c };
+              bestChoices = choices;
+              if (choices.length === 1) {
+                return { row: r, col: c, choices: choices };
+              }
+            }
+          }
+        }
+
+        if (best === null) return null;
+        return { row: best.row, col: best.col, choices: bestChoices };
+      }
+
+      function fillGrid(grid) {
+        const next = findBestEmptyCell(grid);
+        if (next === null) return true;
+        if (next.choices.length === 0) return false;
+
+        const tryValues = shuffle(next.choices);
+        for (let i = 0; i < tryValues.length; i++) {
+          const value = tryValues[i];
+          grid[next.row][next.col] = value;
+          if (fillGrid(grid)) return true;
+          grid[next.row][next.col] = null;
+        }
+        return false;
+      }
+
+      function countSolutions(grid, limit) {
+        const work = cloneGrid(grid);
+        let count = 0;
+
+        function solve() {
+          if (count >= limit) return;
+          const next = findBestEmptyCell(work);
+          if (next === null) {
+            count++;
+            return;
+          }
+          if (next.choices.length === 0) return;
+
+          for (let i = 0; i < next.choices.length; i++) {
+            const value = next.choices[i];
+            work[next.row][next.col] = value;
+            solve();
+            work[next.row][next.col] = null;
+            if (count >= limit) return;
+          }
+        }
+
+        solve();
+        return count;
+      }
+
+      function generateSolution(symbols) {
+        const grid = makeEmptyGrid();
+        const placementType = Math.random() < 0.5 ? 'row' : 'col';
+        const placementIndex = Math.floor(Math.random() * SIZE);
+
+        if (placementType === 'row') {
+          for (let c = 0; c < SIZE; c++) {
+            grid[placementIndex][c] = c;
+          }
+        } else {
+          for (let r = 0; r < SIZE; r++) {
+            grid[r][placementIndex] = r;
+          }
+        }
+
+        if (!fillGrid(grid)) {
+          throw new Error('Could not generate a solution. Please try again.');
+        }
+
+        return {
+          grid: grid,
+          placementType: placementType,
+          placementIndex: placementIndex
+        };
+      }
+
+      function makePuzzleFromSolution(solution, cluesToLeave) {
+        const puzzle = cloneGrid(solution);
+        const cells = [];
+
+        for (let r = 0; r < SIZE; r++) {
+          for (let c = 0; c < SIZE; c++) {
+            cells.push([r, c]);
+          }
+        }
+
+        const targetBlanks = SIZE * SIZE - cluesToLeave;
+        let blanksMade = 0;
+        const order = shuffle(cells);
+
+        for (let i = 0; i < order.length; i++) {
+          if (blanksMade >= targetBlanks) break;
+          const r = order[i][0];
+          const c = order[i][1];
+          const saved = puzzle[r][c];
+          puzzle[r][c] = null;
+
+          if (countSolutions(puzzle, 2) === 1) {
+            blanksMade++;
+          } else {
+            puzzle[r][c] = saved;
+          }
+        }
+
+        return puzzle;
+      }
+
+      function getCellClassList(r, c) {
+        const classes = [];
+        if (c === 0) classes.push('thick-left');
+        if (c === SIZE - 1) classes.push('thick-right');
+        if (r === 0) classes.push('thick-top');
+        if (r === SIZE - 1) classes.push('thick-bottom');
+        if ((c + 1) % BOX_COLS === 0) classes.push('thick-right');
+        if (c % BOX_COLS === 0) classes.push('thick-left');
+        if ((r + 1) % BOX_ROWS === 0) classes.push('thick-bottom');
+        if (r % BOX_ROWS === 0) classes.push('thick-top');
+        return classes;
+      }
+
+      function renderGrid(container, grid, symbols, highlightPlacement) {
+        const table = document.createElement('table');
+        table.className = 'sudoku';
+
+        for (let r = 0; r < SIZE; r++) {
+          const tr = document.createElement('tr');
+          for (let c = 0; c < SIZE; c++) {
+            const td = document.createElement('td');
+            const classes = getCellClassList(r, c);
+
+            if (highlightPlacement && currentPlacement) {
+              const matchRow = currentPlacement.type === 'row' && r === currentPlacement.index;
+              const matchCol = currentPlacement.type === 'col' && c === currentPlacement.index;
+              if (matchRow || matchCol) classes.push('highlight-line');
+            }
+
+            td.className = classes.join(' ');
+            td.textContent = grid[r][c] === null ? '' : symbols[grid[r][c]];
+            tr.appendChild(td);
+          }
+          table.appendChild(tr);
+        }
+
+        container.innerHTML = '';
+        container.appendChild(table);
+      }
+
+      function renderLegend(symbols) {
+        const lines = [];
+        for (let i = 0; i < symbols.length; i++) {
+          lines.push((i + 1) + ' = ' + symbols[i]);
+        }
+        legendEl.textContent = lines.join('\n');
+
+        if (!currentPlacement) {
+          placementNoteEl.textContent = '';
           return;
         }
-        if (next.choices.length === 0) return;
 
-        for (const value of next.choices) {
-          work[next.row][next.col] = value;
-          solve();
-          work[next.row][next.col] = null;
-          if (count >= limit) return;
-        }
+        placementNoteEl.textContent = currentPlacement.type === 'row'
+          ? 'Character set location: row ' + (currentPlacement.index + 1)
+          : 'Character set location: column ' + (currentPlacement.index + 1);
       }
 
-      solve();
-      return count;
-    }
-
-    function generateSolution(symbols) {
-      const grid = makeEmptyGrid();
-      const placementType = Math.random() < 0.5 ? 'row' : 'col';
-      const placementIndex = Math.floor(Math.random() * SIZE);
-
-      if (placementType === 'row') {
-        for (let c = 0; c < SIZE; c++) grid[placementIndex][c] = c;
-      } else {
-        for (let r = 0; r < SIZE; r++) grid[r][placementIndex] = r;
-      }
-
-      if (!fillGrid(grid)) {
-        throw new Error('Could not generate a solution. Please try again.');
-      }
-
-      return { grid, placementType, placementIndex };
-    }
-
-    function makePuzzleFromSolution(solution, cluesToLeave) {
-      const puzzle = cloneGrid(solution);
-      const cells = [];
-      for (let r = 0; r < SIZE; r++) {
-        for (let c = 0; c < SIZE; c++) cells.push([r, c]);
-      }
-
-      const targetBlanks = SIZE * SIZE - cluesToLeave;
-      let blanksMade = 0;
-
-      for (const [r, c] of shuffle(cells)) {
-        if (blanksMade >= targetBlanks) break;
-        const saved = puzzle[r][c];
-        puzzle[r][c] = null;
-        if (countSolutions(puzzle, 2) !== 1) {
-          puzzle[r][c] = saved;
-        } else {
-          blanksMade++;
-        }
-      }
-
-      return puzzle;
-    }
-
-    function cellClasses(r, c) {
-      const classes = [];
-      if (c === 0) classes.push('thick-left');
-      if (c === SIZE - 1) classes.push('thick-right');
-      if (r === 0) classes.push('thick-top');
-      if (r === SIZE - 1) classes.push('thick-bottom');
-      if ((c + 1) % BOX_COLS === 0) classes.push('thick-right');
-      if (c % BOX_COLS === 0) classes.push('thick-left');
-      if ((r + 1) % BOX_ROWS === 0) classes.push('thick-bottom');
-      if (r % BOX_ROWS === 0) classes.push('thick-top');
-      return classes;
-    }
-
-    function renderGrid(container, grid, symbols, highlightPlacement = false) {
-      const table = document.createElement('table');
-      table.className = 'sudoku';
-
-      for (let r = 0; r < SIZE; r++) {
-        const tr = document.createElement('tr');
-        for (let c = 0; c < SIZE; c++) {
-          const td = document.createElement('td');
-          const classes = cellClasses(r, c);
-
-          if (highlightPlacement && currentPlacement) {
-            const matchRow = currentPlacement.type === 'row' && r === currentPlacement.index;
-            const matchCol = currentPlacement.type === 'col' && c === currentPlacement.index;
-            if (matchRow || matchCol) classes.push('highlight-line');
-          }
-
-          td.className = classes.join(' ');
-          td.textContent = grid[r][c] === null ? '' : symbols[grid[r][c]];
-          tr.appendChild(td);
-        }
-        table.appendChild(tr);
-      }
-
-      container.innerHTML = '';
-      container.appendChild(table);
-    }
-
-    function renderLegend(symbols) {
-      legendEl.textContent = symbols.map((ch, i) => `${i + 1} = ${ch}`).join('
-');
-      if (!currentPlacement) {
-        placementNoteEl.textContent = '';
-        return;
-      }
-      placementNoteEl.textContent = currentPlacement.type === 'row'
-        ? `Character set location: row ${currentPlacement.index + 1}`
-        : `Character set location: column ${currentPlacement.index + 1}`;
-    }
-
-    function generateAll() {
-      try {
-        const word = cleanWord(wordInput.value);
-        wordInput.value = word;
-        const error = validateWord(word);
+      function generateAll() {
+        const entry = cleanEntry(wordInput.value);
+        wordInput.value = entry;
+        const error = validateEntry(entry);
         if (error) {
           setStatus(error, false);
           return;
         }
 
-        currentSymbols = word.split('');
-        const generated = generateSolution(currentSymbols);
-        currentSolution = generated.grid;
-        currentPlacement = { type: generated.placementType, index: generated.placementIndex };
-        currentPuzzle = makePuzzleFromSolution(currentSolution, Number(clueCount.value));
+        try {
+          currentSymbols = entry.split('');
+          const generated = generateSolution(currentSymbols);
+          currentSolution = generated.grid;
+          currentPlacement = {
+            type: generated.placementType,
+            index: generated.placementIndex
+          };
+          currentPuzzle = makePuzzleFromSolution(currentSolution, Number(clueCount.value));
 
-        renderGrid(solutionGridEl, currentSolution, currentSymbols, true);
+          renderGrid(solutionGridEl, currentSolution, currentSymbols, true);
+          renderGrid(puzzleGridEl, currentPuzzle, currentSymbols, false);
+          renderLegend(currentSymbols);
+
+          const lineName = currentPlacement.type === 'row'
+            ? 'row ' + (currentPlacement.index + 1)
+            : 'column ' + (currentPlacement.index + 1);
+          setStatus('Generated a new solution and puzzle. Your characters were placed in ' + lineName + '.', true);
+        } catch (err) {
+          setStatus(err && err.message ? err.message : 'Something went wrong.', false);
+        }
+      }
+
+      function remakePuzzle() {
+        if (!currentSolution || !currentSymbols) {
+          setStatus('Generate a solution first.', false);
+          return;
+        }
+
+        currentPuzzle = makePuzzleFromSolution(currentSolution, Number(clueCount.value));
         renderGrid(puzzleGridEl, currentPuzzle, currentSymbols, false);
-        renderLegend(currentSymbols);
 
         const lineName = currentPlacement.type === 'row'
-          ? `row ${currentPlacement.index + 1}`
-          : `column ${currentPlacement.index + 1}`;
-        setStatus(`Generated a new solution and puzzle. Your characters were placed in ${lineName}.`, true);
-      } catch (err) {
-        setStatus(err.message || 'Something went wrong.', false);
+          ? 'row ' + (currentPlacement.index + 1)
+          : 'column ' + (currentPlacement.index + 1);
+        setStatus('Made a new puzzle from the same solution. Your characters remain in ' + lineName + '.', true);
       }
-    }
 
-    function remakePuzzle() {
-      if (!currentSolution || !currentSymbols) {
-        setStatus('Generate a solution first.', false);
-        return;
-      }
-      currentPuzzle = makePuzzleFromSolution(currentSolution, Number(clueCount.value));
-      renderGrid(puzzleGridEl, currentPuzzle, currentSymbols, false);
-      const lineName = currentPlacement.type === 'row'
-        ? `row ${currentPlacement.index + 1}`
-        : `column ${currentPlacement.index + 1}`;
-      setStatus(`Made a new puzzle from the same solution. Your characters remain in ${lineName}.`, true);
-    }
+      generateBtn.addEventListener('click', generateAll);
+      newPuzzleBtn.addEventListener('click', remakePuzzle);
+      printBtn.addEventListener('click', function () { window.print(); });
 
-    generateAll();
+      generateAll();
+    })();
   </script>
 </body>
 </html>

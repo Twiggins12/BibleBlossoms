@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jonah Story Maze Generator</title>
+  <style>
+    :root {
+      --bg: #f7f4ee;
+      --panel: #fffdf8;
+      --ink: #1f2937;
+      --soft: #6b7280;
+      --line: #111827;
+      --accent: #0f766e;
+      --accent2: #92400e;
+      --border: #d6d3d1;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 2rem;
+    }
+
+    .sub {
+      color: var(--soft);
+      margin-bottom: 18px;
+      line-height: 1.45;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+    }
+
+    .controls label {
+      display: block;
+      font-weight: 700;
+      margin: 12px 0 6px;
+    }
+
+    .controls select,
+    .controls input,
+    .controls button {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+    }
+
+    .controls button {
+      cursor: pointer;
+      border: none;
+      font-weight: 700;
+      margin-top: 12px;
+      background: var(--accent);
+      color: white;
+    }
+
+    .controls button.secondary {
+      background: var(--accent2);
+    }
+
+    .help {
+      margin-top: 14px;
+      color: var(--soft);
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .canvasPanel {
+      overflow: auto;
+      text-align: center;
+    }
+
+    svg {
+      background: white;
+      border: 1px solid var(--border);
+      max-width: 100%;
+      height: auto;
+    }
+
+    .legend {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 14px;
+      text-align: left;
+      font-size: 0.95rem;
+      color: var(--soft);
+    }
+
+    @media (max-width: 900px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Jonah Story Maze Generator</h1>
+    <div class="sub">
+      This version makes a story-path maze in the shape of a great fish. The main route is forced through Jonah story checkpoints in order:
+      <strong>Ship → Sea → Fish → Shore → Nineveh</strong>.
+    </div>
+
+    <div class="layout">
+      <div class="panel controls">
+        <label for="difficulty">Difficulty</label>
+        <select id="difficulty">
+          <option value="easy">Easy</option>
+          <option value="medium" selected>Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+
+        <label for="cellSize">Cell Size</label>
+        <select id="cellSize">
+          <option value="28">Large</option>
+          <option value="22" selected>Medium</option>
+          <option value="18">Small</option>
+        </select>
+
+        <label for="showSolution">Solution</label>
+        <select id="showSolution">
+          <option value="no" selected>Hide Solution</option>
+          <option value="yes">Show Solution</option>
+        </select>
+
+        <button id="generateBtn">Generate New Jonah Maze</button>
+        <button id="printBtn" class="secondary">Print Maze</button>
+        <button id="saveBtn" class="secondary">Save SVG</button>
+
+        <div class="help">
+          The outer shape is a fish silhouette. The maze path is not fully random: it is guided through story checkpoints so it feels like an actual Jonah journey instead of a generic maze.
+        </div>
+      </div>
+
+      <div class="panel canvasPanel">
+        <div id="svgHolder"></div>
+        <div class="legend">
+          <div><strong>Start:</strong> Jonah boards the ship</div>
+          <div><strong>Finish:</strong> Jonah reaches Nineveh</div>
+          <div><strong>Main route:</strong> passes the stormy sea and great fish</div>
+          <div><strong>Dead ends:</strong> added automatically for maze difficulty</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const DIFFICULTY = {
+      easy:   { cols: 19, rows: 13, extraBranches: 0.18, decoys: 8 },
+      medium: { cols: 23, rows: 15, extraBranches: 0.32, decoys: 16 },
+      hard:   { cols: 27, rows: 17, extraBranches: 0.46, decoys: 28 }
+    };
+
+    const svgHolder = document.getElementById('svgHolder');
+    const difficultySelect = document.getElementById('difficulty');
+    const cellSizeSelect = document.getElementById('cellSize');
+    const showSolutionSelect = document.getElementById('showSolution');
+    const generateBtn = document.getElementById('generateBtn');
+    const printBtn = document.getElementById('printBtn');
+    const saveBtn = document.getElementById('saveBtn');
+
+    let currentSvg = '';
+
+    function randInt(n) {
+      return Math.floor(Math.random() * n);
+    }
+
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = randInt(i + 1);
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function key(x, y) {
+      return `${x},${y}`;
+    }
+
+    function createFishMask(cols, rows) {
+      const mask = Array.from({ length: rows }, () => Array(cols).fill(false));
+      const cx = cols * 0.47;
+      const cy = rows * 0.52;
+      const rx = cols * 0.34;
+      const ry = rows * 0.34;
+
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          const dx = (x - cx) / rx;
+          const dy = (y - cy) / ry;
+          const body = dx * dx + dy * dy <= 1;
+
+          const tail = x >= cols * 0.72 && x <= cols * 0.96 && Math.abs(y - cy) <= (rows * 0.18) * (1 - ((x - cols * 0.72) / (cols * 0.24)));
+          const upperFin = x > cols * 0.38 && x < cols * 0.58 && y < cy && y >= cy - rows * 0.22 + Math.abs(x - cols * 0.48) * 0.55;
+          const lowerFin = x > cols * 0.35 && x < cols * 0.56 && y > cy && y <= cy + rows * 0.22 - Math.abs(x - cols * 0.46) * 0.55;
+          const mouthCut = x < cols * 0.16 && Math.abs(y - cy) < rows * 0.08;
+
+          mask[y][x] = (body || tail || upperFin || lowerFin) && !mouthCut;
+        }
+      }
+
+      // Clean thin stray cells.
+      for (let y = 1; y < rows - 1; y++) {
+        for (let x = 1; x < cols - 1; x++) {
+          if (!mask[y][x]) continue;
+          let count = 0;
+          [[1,0],[-1,0],[0,1],[0,-1]].forEach(([dx,dy]) => {
+            if (mask[y + dy][x + dx]) count++;
+          });
+          if (count === 0) mask[y][x] = false;
+        }
+      }
+
+      return mask;
+    }
+
+    function makeCells(mask) {
+      const rows = mask.length;
+      const cols = mask[0].length;
+      const cells = new Map();
+
+      for (let y = 0; y < rows; y++) {
+        for (let x = 0; x < cols; x++) {
+          if (!mask[y][x]) continue;
+          cells.set(key(x, y), {
+            x, y,
+            walls: { top: true, right: true, bottom: true, left: true },
+            neighbors: []
+          });
+        }
+      }
+
+      for (const cell of cells.values()) {
+        const dirs = [
+          [0, -1, 'top', 'bottom'],
+          [1, 0, 'right', 'left'],
+          [0, 1, 'bottom', 'top'],
+          [-1, 0, 'left', 'right']
+        ];
+        for (const [dx, dy] of dirs) {
+          const n = cells.get(key(cell.x + dx, cell.y + dy));
+          if (n) cell.neighbors.push(n);
+        }
+      }
+
+      return cells;
+    }
+
+    function removeWallBetween(a, b) {
+      const dx = b.x - a.x;
+      const dy = b.y - a.y;
+      if (dx === 1) { a.walls.right = false; b.walls.left = false; }
+      else if (dx === -1) { a.walls.left = false; b.walls.right = false; }
+      else if (dy === 1) { a.walls.bottom = false; b.walls.top = false; }
+      else if (dy === -1) { a.walls.top = false; b.walls.bottom = false; }
+    }
+
+    function bfsPath(cells, start, end, forbidden = new Set()) {
+      const queue = [start];
+      const prev = new Map();
+      const seen = new Set([key(start.x, start.y)]);
+
+      while (queue.length) {
+        const cur = queue.shift();
+        if (cur === end) break;
+        const nexts = shuffle([...cur.neighbors]);
+        for (const n of nexts) {
+          const k = key(n.x, n.y);
+          if (seen.has(k)) continue;
+          if (forbidden.has(k) && n !== end) continue;
+          seen.add(k);
+          prev.set(k, cur);
+          queue.push(n);
+        }
+      }
+
+      if (!seen.has(key(end.x, end.y))) return null;
+      const path = [];
+      let cur = end;
+      while (cur) {
+        path.push(cur);
+        if (cur === start) break;
+        cur = prev.get(key(cur.x, cur.y));
+      }
+      path.reverse();
+      return path;
+    }
+
+    function findNearestValid(cells, targetX, targetY) {
+      let best = null;
+      let bestDist = Infinity;
+      for (const cell of cells.values()) {
+        const d = Math.hypot(cell.x - targetX, cell.y - targetY);
+        if (d < bestDist) {
+          bestDist = d;
+          best = cell;
+        }
+      }
+      return best;
+    }
+
+    function buildStoryPath(cells, cols, rows) {
+      const checkpoints = [
+        { label: 'Ship',    x: Math.round(cols * 0.12), y: Math.round(rows * 0.52) },
+        { label: 'Sea',     x: Math.round(cols * 0.25), y: Math.round(rows * 0.24) },
+        { label: 'Fish',    x: Math.round(cols * 0.48), y: Math.round(rows * 0.52) },
+        { label: 'Shore',   x: Math.round(cols * 0.66), y: Math.round(rows * 0.68) },
+        { label: 'Nineveh', x: Math.round(cols * 0.88), y: Math.round(rows * 0.52) }
+      ].map(p => ({ ...p, cell: findNearestValid(cells, p.x, p.y) }));
+
+      const used = new Set();
+      const fullPath = [];
+
+      for (let i = 0; i < checkpoints.length - 1; i++) {
+        const start = checkpoints[i].cell;
+        const end = checkpoints[i + 1].cell;
+        const partial = bfsPath(cells, start, end, used);
+        if (!partial) return null;
+
+        for (let j = 0; j < partial.length; j++) {
+          const c = partial[j];
+          if (fullPath.length === 0 || c !== fullPath[fullPath.length - 1]) {
+            fullPath.push(c);
+          }
+          used.add(key(c.x, c.y));
+        }
+      }
+
+      return { fullPath, checkpoints };
+    }
+
+    function carvePath(path) {
+      for (let i = 0; i < path.length - 1; i++) {
+        removeWallBetween(path[i], path[i + 1]);
+      }
+    }
+
+    function growBranches(cells, mainPath, extraChance) {
+      const inMaze = new Set(mainPath.map(c => key(c.x, c.y)));
+      const frontier = [...mainPath];
+
+      while (frontier.length) {
+        const cur = frontier.shift();
+        const neighbors = shuffle([...cur.neighbors]);
+        for (const n of neighbors) {
+          const nk = key(n.x, n.y);
+          if (inMaze.has(nk)) continue;
+          if (Math.random() <= extraChance) {
+            removeWallBetween(cur, n);
+            inMaze.add(nk);
+            frontier.push(n);
+          }
+        }
+      }
+
+      return inMaze;
+    }
+
+    function addDecoys(cells, carvedSet, count) {
+      const carved = [...carvedSet].map(k => cells.get(k)).filter(Boolean);
+      for (let i = 0; i < count; i++) {
+        const start = carved[randInt(carved.length)];
+        if (!start) continue;
+
+        let current = start;
+        let steps = 1 + randInt(4);
+        while (steps-- > 0) {
+          const options = shuffle([...current.neighbors]).filter(n => {
+            const nk = key(n.x, n.y);
+            return !carvedSet.has(nk);
+          });
+          if (!options.length) break;
+          const next = options[0];
+          removeWallBetween(current, next);
+          carvedSet.add(key(next.x, next.y));
+          current = next;
+        }
+      }
+    }
+
+    function openEntranceExit(checkpoints) {
+      const start = checkpoints[0].cell;
+      const finish = checkpoints[checkpoints.length - 1].cell;
+      start.walls.left = false;
+      finish.walls.right = false;
+      return { start, finish };
+    }
+
+    function cellCenter(cell, size, pad) {
+      return {
+        x: pad + cell.x * size + size / 2,
+        y: pad + cell.y * size + size / 2
+      };
+    }
+
+    function renderSvg(mask, cells, checkpoints, solutionPath, cellSize, showSolution) {
+      const rows = mask.length;
+      const cols = mask[0].length;
+      const pad = 28;
+      const w = cols * cellSize + pad * 2;
+      const h = rows * cellSize + pad * 2;
+
+      let out = '';
+      out += `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">`;
+      out += `<rect width="100%" height="100%" fill="white"/>`;
+      out += `<text x="${w/2}" y="18" text-anchor="middle" font-family="Arial" font-size="16" font-weight="700">Jonah Maze</text>`;
+
+      for (const cell of cells.values()) {
+        const x = pad + cell.x * cellSize;
+        const y = pad + cell.y * cellSize;
+        if (cell.walls.top) out += `<line x1="${x}" y1="${y}" x2="${x + cellSize}" y2="${y}" stroke="#111827" stroke-width="2.4"/>`;
+        if (cell.walls.right) out += `<line x1="${x + cellSize}" y1="${y}" x2="${x + cellSize}" y2="${y + cellSize}" stroke="#111827" stroke-width="2.4"/>`;
+        if (cell.walls.bottom) out += `<line x1="${x + cellSize}" y1="${y + cellSize}" x2="${x}" y2="${y + cellSize}" stroke="#111827" stroke-width="2.4"/>`;
+        if (cell.walls.left) out += `<line x1="${x}" y1="${y + cellSize}" x2="${x}" y2="${y}" stroke="#111827" stroke-width="2.4"/>`;
+      }
+
+      if (showSolution) {
+        const pts = solutionPath.map(c => {
+          const p = cellCenter(c, cellSize, pad);
+          return `${p.x},${p.y}`;
+        }).join(' ');
+        out += `<polyline points="${pts}" fill="none" stroke="#0f766e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>`;
+      }
+
+      for (const point of checkpoints) {
+        const p = cellCenter(point.cell, cellSize, pad);
+        out += `<circle cx="${p.x}" cy="${p.y}" r="4.5" fill="#92400e"/>`;
+        out += `<text x="${p.x}" y="${p.y - 10}" text-anchor="middle" font-family="Arial" font-size="12" font-weight="700" fill="#374151">${point.label}</text>`;
+      }
+
+      const startPt = cellCenter(checkpoints[0].cell, cellSize, pad);
+      const finishPt = cellCenter(checkpoints[checkpoints.length - 1].cell, cellSize, pad);
+      out += `<text x="${startPt.x - cellSize * 1.25}" y="${startPt.y + 4}" text-anchor="end" font-family="Arial" font-size="13" font-weight="700">START</text>`;
+      out += `<text x="${finishPt.x + cellSize * 1.25}" y="${finishPt.y + 4}" text-anchor="start" font-family="Arial" font-size="13" font-weight="700">FINISH</text>`;
+
+      out += `</svg>`;
+      return out;
+    }
+
+    function generate() {
+      const difficulty = DIFFICULTY[difficultySelect.value];
+      const cellSize = Number(cellSizeSelect.value);
+      const showSolution = showSolutionSelect.value === 'yes';
+
+      let tries = 0;
+      while (tries < 20) {
+        tries++;
+        const mask = createFishMask(difficulty.cols, difficulty.rows);
+        const cells = makeCells(mask);
+        const story = buildStoryPath(cells, difficulty.cols, difficulty.rows);
+        if (!story) continue;
+
+        carvePath(story.fullPath);
+        const carvedSet = growBranches(cells, story.fullPath, difficulty.extraBranches);
+        addDecoys(cells, carvedSet, difficulty.decoys);
+        openEntranceExit(story.checkpoints);
+
+        currentSvg = renderSvg(mask, cells, story.checkpoints, story.fullPath, cellSize, showSolution);
+        svgHolder.innerHTML = currentSvg;
+        return;
+      }
+
+      svgHolder.innerHTML = '<p>Could not generate a maze this time. Please click again.</p>';
+    }
+
+    function saveSvg() {
+      if (!currentSvg) return;
+      const blob = new Blob([currentSvg], { type: 'image/svg+xml;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'jonah-maze.svg';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function printMaze() {
+      if (!currentSvg) return;
+      const win = window.open('', '_blank');
+      win.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>Print Jonah Maze</title>
+          <style>
+            body { margin: 0; padding: 20px; text-align: center; font-family: Arial, sans-serif; }
+            svg { max-width: 100%; height: auto; }
+          </style>
+        </head>
+        <body>${currentSvg}</body>
+        </html>
+      `);
+      win.document.close();
+      win.focus();
+      win.print();
+    }
+
+    generateBtn.addEventListener('click', generate);
+    saveBtn.addEventListener('click', saveSvg);
+    printBtn.addEventListener('click', printMaze);
+
+    generate();
+  </script>
+</body>
+</html>

@@ -86,14 +86,15 @@
   .shape-board {
     display: inline-flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
     align-items: center;
   }
 
   .shape-row {
     display: flex;
-    gap: 4px;
+    gap: 0;
     justify-content: center;
+    align-items: center;
   }
 
   .cell, .spacer {
@@ -105,22 +106,28 @@
     box-sizing: border-box;
     font-size: 24px;
     font-weight: bold;
-    border-radius: 4px;
+    user-select: none;
   }
 
   .cell {
     border: 1px solid #444;
-    user-select: none;
+  }
+
+  .wide {
+    width: 84px;
   }
 
   .spacer {
     visibility: hidden;
   }
 
+  .spacer.w1 { width: 42px; }
+  .spacer.w2 { width: 84px; }
+
   .blank {
     color: transparent;
     background: #fff !important;
-    border: 2px dashed #999;
+    border: 2px dashed #999 !important;
   }
 
   .print-buttons {
@@ -215,301 +222,62 @@
 /*
   5 sections, 5 cells each, arranged 2 / 1 / 2
 
-  Each section shape:
-  ##
-   #
-  ##
+  Section shape:
+  top:    2 normal cells
+  middle: 1 wide cell
+  bottom: 2 normal cells
 
-  Layout rows:
-  R1: AA---BB
-  R2: -A---B-
-  R3: AA---BB
+  Logical layout:
+  R1: AABB
+  R2: AB
+  R3: AABB
 
-  R4: ---CC---
-  R5: ----C----   <-- exempt row
-  R6: ---CC---
+  R4: CC
+  R5: C   <-- exempt row
+  R6: CC
 
-  R7: DD---EE
-  R8: -D---E-
-  R9: DD---EE
+  R7: DDEE
+  R8: DE
+  R9: DDEE
 */
 
-const layout = [
-  "AA---BB",
-  "-A---B-",
-  "AA---BB",
-  "---CC---",
-  "----C----",
-  "---CC---",
-  "DD---EE",
-  "-D---E-",
-  "DD---EE"
+const logicalRows = [
+  ["A","A","B","B"],
+  ["A","B"],
+  ["A","A","B","B"],
+  ["C","C"],
+  ["C"],
+  ["C","C"],
+  ["D","D","E","E"],
+  ["D","E"],
+  ["D","D","E","E"]
+];
+
+// visual rows with centering + wide middle cells
+const visualRows = [
+  [ {type:"cell", color:"A"}, {type:"cell", color:"A"}, {type:"cell", color:"B"}, {type:"cell", color:"B"} ],
+  [ {type:"spacer", width:1}, {type:"cell", color:"A", wide:true}, {type:"cell", color:"B", wide:true}, {type:"spacer", width:1} ],
+  [ {type:"cell", color:"A"}, {type:"cell", color:"A"}, {type:"cell", color:"B"}, {type:"cell", color:"B"} ],
+
+  [ {type:"spacer", width:1}, {type:"cell", color:"C"}, {type:"cell", color:"C"}, {type:"spacer", width:1} ],
+  [ {type:"spacer", width:2}, {type:"cell", color:"C", wide:true}, {type:"spacer", width:2} ],
+  [ {type:"spacer", width:1}, {type:"cell", color:"C"}, {type:"cell", color:"C"}, {type:"spacer", width:1} ],
+
+  [ {type:"cell", color:"D"}, {type:"cell", color:"D"}, {type:"cell", color:"E"}, {type:"cell", color:"E"} ],
+  [ {type:"spacer", width:1}, {type:"cell", color:"D", wide:true}, {type:"cell", color:"E", wide:true}, {type:"spacer", width:1} ],
+  [ {type:"cell", color:"D"}, {type:"cell", color:"D"}, {type:"cell", color:"E"}, {type:"cell", color:"E"} ]
 ];
 
 const colorStyles = {
-  A: "#f5e663", // yellow
-  B: "#8fd18f", // green
-  C: "#8fc5ff", // blue
-  D: "#ffffff", // white
-  E: "#ffb6d9"  // pink
+  A: "#f5e663",
+  B: "#8fd18f",
+  C: "#8fc5ff",
+  D: "#ffffff",
+  E: "#ffb6d9"
 };
 
 const rowConstraintApplies = rowIndex => rowIndex !== 4; // row 5 exempt
 
 const puzzleBoardEl = document.getElementById("puzzleBoard");
 const solutionBoardEl = document.getElementById("solutionBoard");
-const generateBtn = document.getElementById("generateBtn");
-const solutionBtn = document.getElementById("solutionBtn");
-const symbolInput = document.getElementById("symbolInput");
-const difficultySelect = document.getElementById("difficulty");
-const errorBox = document.getElementById("errorBox");
-
-let positions = [];
-let groupsByColor = {};
-let groupsByRow = [];
-
-function buildStructure() {
-  positions = [];
-  groupsByColor = {};
-  groupsByRow = layout.map(() => []);
-
-  const sectionKeys = ["A", "B", "C", "D", "E"];
-  sectionKeys.forEach(k => groupsByColor[k] = []);
-
-  let index = 0;
-
-  layout.forEach((rowStr, r) => {
-    for (let c = 0; c < rowStr.length; c++) {
-      const ch = rowStr[c];
-      if (ch !== "-") {
-        positions.push({ index, row: r, col: c, color: ch });
-        groupsByColor[ch].push(index);
-        groupsByRow[r].push(index);
-        index++;
-      }
-    }
-  });
-}
-
-buildStructure();
-
-function shuffle(arr) {
-  const a = arr.slice();
-  for (let i = a.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [a[i], a[j]] = [a[j], a[i]];
-  }
-  return a;
-}
-
-function validateSymbols(raw) {
-  const cleaned = raw.trim().toUpperCase().replace(/\s+/g, "");
-  if (cleaned.length !== 5) {
-    return { ok: false, message: "Please enter exactly 5 symbols." };
-  }
-  const chars = cleaned.split("");
-  if (new Set(chars).size !== 5) {
-    return { ok: false, message: "All 5 symbols must be different." };
-  }
-  if (!/^[A-Z0-9]+$/.test(cleaned)) {
-    return { ok: false, message: "Use letters and/or numbers only." };
-  }
-  return { ok: true, symbols: chars };
-}
-
-function getPeers(index) {
-  const pos = positions[index];
-  const peers = new Set();
-
-  for (const i of groupsByColor[pos.color]) {
-    if (i !== index) peers.add(i);
-  }
-
-  if (rowConstraintApplies(pos.row)) {
-    for (const i of groupsByRow[pos.row]) {
-      if (i !== index) peers.add(i);
-    }
-  }
-
-  return [...peers];
-}
-
-const peerMap = positions.map((_, i) => getPeers(i));
-
-function getAllowedSymbols(board, index, symbols) {
-  const used = new Set();
-  for (const p of peerMap[index]) {
-    if (board[p] !== null) used.add(board[p]);
-  }
-  return symbols.filter(s => !used.has(s));
-}
-
-function chooseUnfilledCell(board, symbols) {
-  let bestIndex = -1;
-  let bestOptions = null;
-
-  for (let i = 0; i < board.length; i++) {
-    if (board[i] === null) {
-      const options = getAllowedSymbols(board, i, symbols);
-      if (options.length === 0) return { index: i, options: [] };
-      if (bestOptions === null || options.length < bestOptions.length) {
-        bestIndex = i;
-        bestOptions = options;
-        if (options.length === 1) break;
-      }
-    }
-  }
-
-  return { index: bestIndex, options: bestOptions || [] };
-}
-
-function generateSolution(symbols) {
-  const board = Array(positions.length).fill(null);
-
-  function backtrack() {
-    const { index, options } = chooseUnfilledCell(board, symbols);
-    if (index === -1) return true;
-    if (options.length === 0) return false;
-
-    for (const sym of shuffle(options)) {
-      board[index] = sym;
-      if (backtrack()) return true;
-      board[index] = null;
-    }
-    return false;
-  }
-
-  return backtrack() ? board.slice() : null;
-}
-
-function countSolutions(puzzle, symbols, limit = 2) {
-  const board = puzzle.slice();
-  let count = 0;
-
-  function solve() {
-    if (count >= limit) return;
-
-    const { index, options } = chooseUnfilledCell(board, symbols);
-    if (index === -1) {
-      count++;
-      return;
-    }
-    if (options.length === 0) return;
-
-    for (const sym of options) {
-      board[index] = sym;
-      solve();
-      board[index] = null;
-      if (count >= limit) return;
-    }
-  }
-
-  solve();
-  return count;
-}
-
-function generatePuzzleFromSolution(solution, symbols, cluesToKeep) {
-  const puzzle = solution.slice();
-  const cellOrder = shuffle([...Array(solution.length).keys()]);
-
-  for (const index of cellOrder) {
-    const backup = puzzle[index];
-    puzzle[index] = null;
-
-    if (countSolutions(puzzle, symbols, 2) !== 1) {
-      puzzle[index] = backup;
-    }
-
-    if (puzzle.filter(v => v !== null).length <= cluesToKeep) break;
-  }
-
-  return puzzle;
-}
-
-function renderBoard(boardEl, board, hideNulls = false) {
-  boardEl.innerHTML = "";
-
-  const lookup = {};
-  positions.forEach(pos => {
-    lookup[`${pos.row}_${pos.col}`] = pos.index;
-  });
-
-  layout.forEach((rowStr, r) => {
-    const rowEl = document.createElement("div");
-    rowEl.className = "shape-row";
-
-    for (let c = 0; c < rowStr.length; c++) {
-      const ch = rowStr[c];
-
-      if (ch === "-") {
-        const spacer = document.createElement("div");
-        spacer.className = "spacer";
-        rowEl.appendChild(spacer);
-      } else {
-        const index = lookup[`${r}_${c}`];
-        const val = board ? board[index] : null;
-
-        const cell = document.createElement("div");
-        cell.className = "cell";
-        cell.style.background = colorStyles[ch];
-        cell.textContent = val === null ? "" : val;
-
-        if (val === null && hideNulls) {
-          cell.classList.add("blank");
-        }
-
-        rowEl.appendChild(cell);
-      }
-    }
-
-    boardEl.appendChild(rowEl);
-  });
-}
-
-function showError(msg) {
-  errorBox.textContent = msg || "";
-}
-
-function doGenerate(makePuzzleToo = true) {
-  showError("");
-
-  const valid = validateSymbols(symbolInput.value);
-  if (!valid.ok) {
-    showError(valid.message);
-    return;
-  }
-
-  const symbols = valid.symbols;
-  const cluesToKeep = parseInt(difficultySelect.value, 10);
-
-  let solution = null;
-  for (let tries = 0; tries < 50; tries++) {
-    solution = generateSolution(symbols);
-    if (solution) break;
-  }
-
-  if (!solution) {
-    showError("Could not generate a valid solution. Try again.");
-    return;
-  }
-
-  renderBoard(solutionBoardEl, solution, false);
-
-  if (makePuzzleToo) {
-    const puzzle = generatePuzzleFromSolution(solution, symbols, cluesToKeep);
-    renderBoard(puzzleBoardEl, puzzle, true);
-  } else {
-    renderBoard(puzzleBoardEl, Array(positions.length).fill(null), true);
-  }
-}
-
-generateBtn.addEventListener("click", () => doGenerate(true));
-solutionBtn.addEventListener("click", () => doGenerate(false));
-
-symbolInput.value = "ABCDE";
-renderBoard(puzzleBoardEl, Array(positions.length).fill(null), true);
-renderBoard(solutionBoardEl, Array(positions.length).fill(null), true);
-</script>
-
-</body>
-</html>
+const generateBtn = document.getElementByI

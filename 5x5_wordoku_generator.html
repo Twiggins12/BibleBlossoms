@@ -197,7 +197,7 @@
   </div>
 
   <div class="note">
-    Rule: No repeats within the same section or row, except row 5.
+    Rule: No repeats within the same section or row.
   </div>
 
   <div class="error" id="errorBox"></div>
@@ -324,7 +324,7 @@ const colorStyles = {
   E: "#ffb6d9"
 };
 
-const rowConstraintApplies = rowIndex => rowIndex !== 4; // row 5 exempt
+const rowConstraintApplies = rowIndex => true;
 
 const puzzleBoardEl = document.getElementById("puzzleBoard");
 const solutionBoardEl = document.getElementById("solutionBoard");

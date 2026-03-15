@@ -194,14 +194,14 @@
     <div class="card no-print">
       <h1>8×8 Word Sudoku Generator</h1>
       <p>
-        Enter an 8-letter word with 8 different letters. The word will be placed in row 4,
-        then the program will generate a full 8×8 solution using 4×2 boxes and create a puzzle.
+        Enter any 8-character set using letters, numbers, or a mix, as long as all 8 characters are different.
+        The program will place that set randomly in either a row or a column, then generate a full 8×8 solution using 4×2 boxes and create a puzzle.
       </p>
 
       <div class="controls">
         <div>
-          <label for="wordInput">8-letter word</label>
-          <input id="wordInput" type="text" maxlength="8" placeholder="KINGDOMS" value="KINGDOMS" />
+          <label for="wordInput">8 unique characters</label>
+          <input id="wordInput" type="text" maxlength="8" placeholder="A1B2C3D4" value="KINGDOMS" />
         </div>
 
         <div>
@@ -235,7 +235,7 @@
         <div>
           <div class="grid-title">Solution</div>
           <div id="solutionGrid"></div>
-          <div class="note">Row 4 is the word you entered.</div>
+          <div class="note">Your character set is placed randomly in one row or one column.</div>
         </div>
       </div>
     </div>
@@ -243,6 +243,7 @@
     <div class="card">
       <div class="grid-title">Letter Key</div>
       <div id="legend" class="legend"></div>
+      <div id="placementNote" class="note" style="margin-top:10px;"></div>
     </div>
   </div>
 
@@ -254,6 +255,7 @@
     let currentSolution = null;
     let currentPuzzle = null;
     let currentSymbols = null;
+    let currentPlacement = null;
 
     const wordInput = document.getElementById('wordInput');
     const clueCount = document.getElementById('clueCount');
@@ -261,6 +263,7 @@
     const puzzleGridEl = document.getElementById('puzzleGrid');
     const solutionGridEl = document.getElementById('solutionGrid');
     const legendEl = document.getElementById('legend');
+    const placementNoteEl = document.getElementById('placementNote');
 
     document.getElementById('generateBtn').addEventListener('click', generateAll);
     document.getElementById('newPuzzleBtn').addEventListener('click', remakePuzzle);
@@ -272,16 +275,16 @@
     }
 
     function cleanWord(raw) {
-      return raw.toUpperCase().replace(/[^A-Z]/g, '');
+      return raw.toUpperCase().replace(/[^A-Z0-9]/g, '');
     }
 
     function validateWord(word) {
       if (word.length !== 8) {
-        return 'Your entry must be exactly 8 letters.';
+        return 'Your entry must be exactly 8 characters.';
       }
       const unique = new Set(word.split(''));
       if (unique.size !== 8) {
-        return 'All 8 letters must be different.';
+        return 'All 8 characters must be different.';
       }
       return null;
     }
@@ -393,19 +396,26 @@
     function generateSolution(symbols) {
       const grid = makeEmptyGrid();
 
-      // Fix row 4 (index 3) to the entered word.
-      for (let c = 0; c < SIZE; c++) {
-        grid[3][c] = c;
+      const placementType = Math.random() < 0.5 ? 'row' : 'col';
+      const placementIndex = Math.floor(Math.random() * SIZE);
+
+      if (placementType === 'row') {
+        for (let c = 0; c < SIZE; c++) {
+          grid[placementIndex][c] = c;
+        }
+      } else {
+        for (let r = 0; r < SIZE; r++) {
+          grid[r][placementIndex] = r;
+        }
       }
 
-      // Randomize a little more by optionally seeding a few cells in other rows when valid.
-      // This is not required, but it helps produce less visibly patterned completions.
       const seedPositions = shuffle([
         [0, 0], [0, 7], [1, 2], [1, 5], [2, 1], [2, 6],
         [4, 3], [4, 4], [5, 0], [5, 7], [6, 2], [6, 5], [7, 1], [7, 6]
       ]);
 
       for (const [r, c] of seedPositions.slice(0, 4)) {
+        if (grid[r][c] !== null) continue;
         const options = shuffle([...Array(SIZE).keys()].filter(v => isValid(grid, r, c, v)));
         if (options.length) grid[r][c] = options[0];
       }
@@ -414,7 +424,11 @@
         throw new Error('Could not generate a solution. Please try again.');
       }
 
-      return grid;
+      return {
+        grid,
+        placementType,
+        placementIndex
+      };
     }
 
     function makePuzzleFromSolution(solution, cluesToLeave) {
@@ -482,7 +496,16 @@
 
     function renderLegend(symbols) {
       const lines = symbols.map((ch, i) => `${i + 1} = ${ch}`);
-      legendEl.textContent = lines.join('\n');
+      legendEl.textContent = lines.join('
+');
+
+      if (currentPlacement) {
+        placementNoteEl.textContent = currentPlacement.type === 'row'
+          ? `Character set location: row ${currentPlacement.index + 1}`
+          : `Character set location: column ${currentPlacement.index + 1}`;
+      } else {
+        placementNoteEl.textContent = '';
+      }
     }
 
     function generateAll() {
@@ -496,13 +519,21 @@
         }
 
         currentSymbols = word.split('');
-        currentSolution = generateSolution(currentSymbols);
+        const generated = generateSolution(currentSymbols);
+        currentSolution = generated.grid;
+        currentPlacement = {
+          type: generated.placementType,
+          index: generated.placementIndex
+        };
         currentPuzzle = makePuzzleFromSolution(currentSolution, Number(clueCount.value));
 
         renderGrid(solutionGridEl, currentSolution, currentSymbols, true);
         renderGrid(puzzleGridEl, currentPuzzle, currentSymbols, true);
         renderLegend(currentSymbols);
-        setStatus('Generated a new solution and puzzle.', true);
+        const lineName = currentPlacement.type === 'row'
+          ? `row ${currentPlacement.index + 1}`
+          : `column ${currentPlacement.index + 1}`;
+        setStatus(`Generated a new solution and puzzle. Your characters were placed in ${lineName}.`, true);
       } catch (err) {
         setStatus(err.message || 'Something went wrong.', false);
       }
@@ -516,7 +547,10 @@
 
       currentPuzzle = makePuzzleFromSolution(currentSolution, Number(clueCount.value));
       renderGrid(puzzleGridEl, currentPuzzle, currentSymbols, true);
-      setStatus('Made a new puzzle from the same solution.', true);
+      const lineName = currentPlacement.type === 'row'
+        ? `row ${currentPlacement.index + 1}`
+        : `column ${currentPlacement.index + 1}`;
+      setStatus(`Made a new puzzle from the same solution. Your characters remain in ${lineName}.`, true);
     }
 
     generateAll();

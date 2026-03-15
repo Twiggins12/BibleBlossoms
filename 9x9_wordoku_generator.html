@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>9x9 Wordoku Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f7f7f7;
+    color: #222;
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: 10px;
+  }
+
+  .controls {
+    max-width: 950px;
+    margin: 0 auto 20px auto;
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+
+  .controls input,
+  .controls select,
+  .controls button {
+    margin: 6px;
+    padding: 10px 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+  }
+
+  .controls button {
+    cursor: pointer;
+    background: #2f6fed;
+    color: white;
+    border: none;
+  }
+
+  .controls button:hover {
+    background: #2458bc;
+  }
+
+  .note {
+    margin-top: 8px;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .error {
+    color: #b30000;
+    font-weight: bold;
+    margin-top: 10px;
+    min-height: 24px;
+  }
+
+  .boards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+  }
+
+  .board-wrap {
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    min-width: 360px;
+  }
+
+  .board-title {
+    font-size: 22px;
+    margin-bottom: 12px;
+    font-weight: bold;
+  }
+
+  .sudoku-board {
+    display: inline-grid;
+    grid-template-columns: repeat(9, 44px);
+    grid-template-rows: repeat(9, 44px);
+    gap: 0;
+    border: 3px solid #222;
+    background: #222;
+  }
+
+  .cell {
+    width: 44px;
+    height: 44px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    box-sizing: border-box;
+    border: 1px solid #999;
+    user-select: none;
+  }
+
+  .blank {
+    color: transparent;
+    background: #fff !important;
+    border: 1px solid #999;
+  }
+
+  .thick-right {
+    border-right: 3px solid #222 !important;
+  }
+
+  .thick-bottom {
+    border-bottom: 3px solid #222 !important;
+  }
+
+  .print-buttons {
+    margin-top: 16px;
+  }
+
+  .print-buttons button {
+    margin: 6px;
+    padding: 10px 12px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: none;
+    background: #666;
+    color: white;
+    cursor: pointer;
+  }
+
+  .print-buttons button:hover {
+    background: #444;
+  }
+
+  @media print {
+    .controls,
+    .error,
+    .print-buttons {
+      display: none !important;
+    }
+
+    body {
+      background: white;
+      margin: 10px;
+    }
+
+    .boards {
+      display: block;
+    }
+
+    .board-wrap {
+      box-shadow: none;
+      border: 1px solid #ccc;
+      margin: 0 auto 20px auto;
+      page-break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>9x9 Wordoku Generator</h1>
+
+<div class="controls">
+  <div>
+    <input id="symbolInput" type="text" maxlength="9" placeholder="Enter 9 unique letters/numbers" />
+    <select id="difficulty">
+      <option value="40">Easy (40 clues)</option>
+      <option value="32" selected>Medium (32 clues)</option>
+      <option value="26">Hard (26 clues)</option>
+      <option value="22">Very Hard (22 clues)</option>
+    </select>
+    <button id="generateBtn">Generate Puzzle</button>
+    <button id="solutionBtn">Generate New Solution Only</button>
+  </div>
+
+  <div class="note">
+    Use exactly 9 unique symbols, such as <b>ABCDEFGHI</b>, <b>123456789</b>, or <b>A1B2C3D4E</b>.
+  </div>
+
+  <div class="note">
+    Rule: No repeats within the same row, column, or 3x3 section.
+  </div>
+
+  <div class="error" id="errorBox"></div>
+</div>
+
+<div class="boards">
+  <div class="board-wrap">
+    <div class="board-title">Puzzle</div>
+    <div id="puzzleBoard" class="sudoku-board"></div>
+  </div>
+
+  <div class="board-wrap">
+    <div class="board-title">Solution</div>
+    <div id="solutionBoard" class="sudoku-board"></div>
+  </div>
+</div>
+
+<div class="print-buttons">
+  <button onclick="window.print()">Print / Save as PDF</button>
+</div>
+
+<script>
+const SIZE = 9;
+const BOX = 3;
+
+const puzzleBoardEl = document.getElementById("puzzleBoard");
+const solutionBoardEl = document.getElementById("solutionBoard");
+const generateBtn = document.getElementById("generateBtn");
+const solutionBtn = document.getElementById("solutionBtn");
+const symbolInput = document.getElementById("symbolInput");
+const difficultySelect = document.getElementById("difficulty");
+const errorBox = document.getElementById("errorBox");
+
+function indexToRowCol(index) {
+  return {
+    row: Math.floor(index / SIZE),
+    col: index % SIZE
+  };
+}
+
+function rowColToIndex(row, col) {
+  return row * SIZE + col;
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = a[i];
+    a[i] = a[j];
+    a[j] = temp;
+  }
+  return a;
+}
+
+function validateSymbols(raw) {
+  const cleaned = raw.trim().toUpperCase().replace(/\s+/g, "");
+  if (cleaned.length !== 9) {
+    return { ok: false, message: "Please enter exactly 9 symbols." };
+  }
+  const chars = cleaned.split("");
+  if (new Set(chars).size !== 9) {
+    return { ok: false, message: "All 9 symbols must be different." };
+  }
+  if (!/^[A-Z0-9]+$/.test(cleaned)) {
+    return { ok: false, message: "Use letters and/or numbers only." };
+  }
+  return { ok: true, symbols: chars };
+}
+
+function getPeers(index) {
+  const { row, col } = indexToRowCol(index);
+  const peers = new Set();
+
+  for (let c = 0; c < SIZE; c++) {
+    if (c !== col) peers.add(rowColToIndex(row, c));
+  }
+
+  for (let r = 0; r < SIZE; r++) {
+    if (r !== row) peers.add(rowColToIndex(r, col));
+  }
+
+  const boxRowStart = Math.floor(row / BOX) * BOX;
+  const boxColStart = Math.floor(col / BOX) * BOX;
+
+  for (let r = boxRowStart; r < boxRowStart + BOX; r++) {
+    for (let c = boxColStart; c < boxColStart + BOX; c++) {
+      const idx = rowColToIndex(r, c);
+      if (idx !== index) peers.add(idx);
+    }
+  }
+
+  return [...peers];
+}
+
+const peerMap = Array.from({ length: SIZE * SIZE }, (_, i) => getPeers(i));
+
+function getAllowedSymbols(board, index, symbols) {
+  const used = new Set();
+  peerMap[index].forEach(p => {
+    if (board[p] !== null) used.add(board[p]);
+  });
+  return symbols.filter(s => !used.has(s));
+}
+
+function chooseUnfilledCell(board, symbols) {
+  let bestIndex = -1;
+  let bestOptions = null;
+
+  for (let i = 0; i < board.length; i++) {
+    if (board[i] === null) {
+      const options = getAllowedSymbols(board, i, symbols);
+
+      if (options.length === 0) {
+        return { index: i, options: [] };
+      }
+
+      if (bestOptions === null || options.length < bestOptions.length) {
+        bestIndex = i;
+        bestOptions = options;
+        if (options.length === 1) break;
+      }
+    }
+  }
+
+  return { index: bestIndex, options: bestOptions || [] };
+}
+
+function generateSolution(symbols) {
+  const board = Array(SIZE * SIZE).fill(null);
+
+  function backtrack() {
+    const pick = chooseUnfilledCell(board, symbols);
+    const index = pick.index;
+    const options = pick.options;
+
+    if (index === -1) return true;
+    if (options.length === 0) return false;
+
+    const shuffled = shuffle(options);
+
+    for (const sym of shuffled) {
+      board[index] = sym;
+      if (backtrack()) return true;
+      board[index] = null;
+    }
+
+    return false;
+  }
+
+  return backtrack() ? board.slice() : null;
+}
+
+function countSolutions(puzzle, symbols, limit = 2) {
+  const board = puzzle.slice();
+  let count = 0;
+
+  function solve() {
+    if (count >= limit) return;
+
+    const pick = chooseUnfilledCell(board, symbols);
+    const index = pick.index;
+    const options = pick.options;
+
+    if (index === -1) {
+      count++;
+      return;
+    }
+
+    if (options.length === 0) return;
+
+    for (const sym of options) {
+      board[index] = sym;
+      solve();
+      board[index] = null;
+      if (count >= limit) return;
+    }
+  }
+
+  solve();
+  return count;
+}
+
+function generatePuzzleFromSolution(solution, symbols, cluesToKeep) {
+  const puzzle = solution.slice();
+  const order = shuffle([...Array(solution.length).keys()]);
+
+  for (const index of order) {
+    const backup = puzzle[index];
+    puzzle[index] = null;
+
+    if (countSolutions(puzzle, symbols, 2) !== 1) {
+      puzzle[index] = backup;
+    }
+
+    const currentClues = puzzle.filter(v => v !== null).length;
+    if (currentClues <= cluesToKeep) break;
+  }
+
+  return puzzle;
+}
+
+function renderBoard(boardEl, board, hideNulls) {
+  boardEl.innerHTML = "";
+
+  for (let i = 0; i < SIZE * SIZE; i++) {
+    const { row, col } = indexToRowCol(i);
+    const val = board ? board[i] : null;
+
+    const cell = document.createElement("div");
+    cell.className = "cell";
+    cell.textContent = val === null ? "" : val;
+
+    if (val === null && hideNulls) {
+      cell.classList.add("blank");
+    }
+
+    if (col === 2 || col === 5) {
+      cell.classList.add("thick-right");
+    }
+
+    if (row === 2 || row === 5) {
+      cell.classList.add("thick-bottom");
+    }
+
+    boardEl.appendChild(cell);
+  }
+}
+
+function showError(msg) {
+  errorBox.textContent = msg || "";
+}
+
+function doGenerate(makePuzzleToo) {
+  showError("");
+
+  const valid = validateSymbols(symbolInput.value);
+  if (!valid.ok) {
+    showError(valid.message);
+    return;
+  }
+
+  const symbols = valid.symbols;
+  const cluesToKeep = parseInt(difficultySelect.value, 10);
+
+  let solution = null;
+  for (let tries = 0; tries < 50; tries++) {
+    solution = generateSolution(symbols);
+    if (solution) break;
+  }
+
+  if (!solution) {
+    showError("Could not generate a valid solution. Try again.");
+    return;
+  }
+
+  renderBoard(solutionBoardEl, solution, false);
+
+  if (makePuzzleToo) {
+    const puzzle = generatePuzzleFromSolution(solution, symbols, cluesToKeep);
+    renderBoard(puzzleBoardEl, puzzle, true);
+  } else {
+    renderBoard(puzzleBoardEl, Array(SIZE * SIZE).fill(null), true);
+  }
+}
+
+generateBtn.addEventListener("click", function () {
+  doGenerate(true);
+});
+
+solutionBtn.addEventListener("click", function () {
+  doGenerate(false);
+});
+
+symbolInput.value = "ABCDEFGHI";
+renderBoard(puzzleBoardEl, Array(SIZE * SIZE).fill(null), true);
+renderBoard(solutionBoardEl, Array(SIZE * SIZE).fill(null), true);
+</script>
+
+</body>
+</html>

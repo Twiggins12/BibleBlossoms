@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>7-Symbol Shaped Wordoku Generator</title>
+<title>7x7 Wordoku Generator</title>
 <style>
   body {
     font-family: Arial, sans-serif;
@@ -92,7 +92,7 @@
 
   .shape-row {
     display: flex;
-    gap: 4px;
+    gap: 0;
     justify-content: center;
   }
 
@@ -107,9 +107,11 @@
     font-weight: bold;
     border-radius: 6px;
   }
-.wide-2of3 {
-  width: 66px;
-}
+
+  .wide-2of3 {
+    width: 66px;
+  }
+
   .cell {
     border: 1px solid #444;
     user-select: none;
@@ -127,13 +129,6 @@
     color: transparent;
     background: #fff !important;
     border: 2px dashed #999;
-  }
-
-  .legend {
-    margin-top: 16px;
-    font-size: 14px;
-    color: #444;
-    line-height: 1.5;
   }
 
   .print-buttons {
@@ -182,7 +177,7 @@
 </head>
 <body>
 
-<h1>7-Symbol Shaped Wordoku Generator</h1>
+<h1>7x7 Wordoku Generator</h1>
 
 <div class="controls">
   <div>
@@ -225,31 +220,6 @@
 </div>
 
 <script>
-/*
-  Layout supplied by user:
-
-  R1: -YGYG-
-  R2: BWPBWP
-  R3: -KOKO-
-
-  R4: -YGYGYG-
-  R5: BWPBWPBWP
-  R6: -KOKOKO-
-
-  R7: -YGYG-
-  R8: BWPBWP
-  R9: -KOKO-
-
-  Color keys:
-  Y = yellow
-  G = green
-  B = blue
-  W = white
-  P = purple
-  K = pink
-  O = orange
-*/
-
 const layout = [
   "-YGYG-",
   "BWPBWP",
@@ -263,16 +233,16 @@ const layout = [
 ];
 
 const colorStyles = {
-  Y: "#f5e663", // yellow
-  G: "#8fd18f", // green
-  B: "#8fc5ff", // blue
-  W: "#ffffff", // white
-  P: "#c8a2ff", // purple
-  K: "#ffb6d9", // pink
-  O: "#ffbf80"  // orange
+  Y: "#f5e663",
+  G: "#8fd18f",
+  B: "#8fc5ff",
+  W: "#ffffff",
+  P: "#c8a2ff",
+  K: "#ffb6d9",
+  O: "#ffbf80"
 };
 
-const rowConstraintApplies = rowIndex => rowIndex !== 4; // row 5 exempt (0-based index 4)
+const rowConstraintApplies = rowIndex => rowIndex !== 4;
 
 const puzzleBoardEl = document.getElementById("puzzleBoard");
 const solutionBoardEl = document.getElementById("solutionBoard");
@@ -294,7 +264,7 @@ function buildStructure() {
   groupsByColor = {};
   groupsByRow = layout.map(() => []);
 
-  const colorKeys = ["Y","G","B","W","P","K","O"];
+  const colorKeys = ["Y", "G", "B", "W", "P", "K", "O"];
   colorKeys.forEach(c => groupsByColor[c] = []);
 
   let index = 0;
@@ -464,7 +434,7 @@ function generatePuzzleFromSolution(solution, symbols, cluesToKeep) {
 function renderBoard(boardEl, board, hideNulls = false) {
   boardEl.innerHTML = "";
 
-  let positionLookup = {};
+  const positionLookup = {};
   positions.forEach(pos => {
     positionLookup[`${pos.row}_${pos.col}`] = pos.index;
   });
@@ -473,9 +443,6 @@ function renderBoard(boardEl, board, hideNulls = false) {
     const rowEl = document.createElement("div");
     rowEl.className = "shape-row";
 
-    // Rows with 2 cells per section should be widened:
-    // R1, R3, R4, R6, R7, R9 in human counting
-    // which are 0, 2, 3, 5, 6, 8 in JS
     const isWideRow =
       r === 0 || r === 2 ||
       r === 3 || r === 5 ||
@@ -522,46 +489,6 @@ function renderBoard(boardEl, board, hideNulls = false) {
   });
 }
 
-  let positionLookup = {};
-  positions.forEach(pos => {
-    positionLookup[`${pos.row}_${pos.col}`] = pos.index;
-  });
-
-  layout.forEach((rowStr, r) => {
-    const rowEl = document.createElement("div");
-    rowEl.className = "shape-row";
-
-    for (let c = 0; c < rowStr.length; c++) {
-      const ch = rowStr[c];
-
-      if (ch === "-") {
-        const spacer = document.createElement("div");
-        spacer.className = "spacer";
-        rowEl.appendChild(spacer);
-      } else {
-        const index = positionLookup[`${r}_${c}`];
-        const val = board ? board[index] : null;
-
-        const cell = document.createElement("div");
-        cell.className = "cell";
-        cell.style.background = colorStyles[ch];
-        cell.textContent = val === null ? "" : val;
-
-        if (val === null && hideNulls) {
-          cell.classList.add("blank");
-          cell.textContent = "";
-        } else {
-          cell.classList.add("given");
-        }
-
-        rowEl.appendChild(cell);
-      }
-    }
-
-    boardEl.appendChild(rowEl);
-  });
-}
-
 function showError(msg) {
   errorBox.textContent = msg || "";
 }
@@ -580,7 +507,6 @@ function doGenerate(makePuzzleToo = true) {
 
   let solution = null;
 
-  // Give it multiple tries in case a random branch gets stuck.
   for (let tries = 0; tries < 50; tries++) {
     solution = generateSolution(symbols);
     if (solution) break;
@@ -621,7 +547,6 @@ function doGenerate(makePuzzleToo = true) {
 generateBtn.addEventListener("click", () => doGenerate(true));
 solutionBtn.addEventListener("click", () => doGenerate(false));
 
-// Optional starter example
 symbolInput.value = "ABCDEFG";
 renderBoard(puzzleBoardEl, Array(positions.length).fill(null), true);
 renderBoard(solutionBoardEl, Array(positions.length).fill(null), true);

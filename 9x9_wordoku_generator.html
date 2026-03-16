@@ -120,6 +120,10 @@
     border-bottom: 3px solid #222 !important;
   }
 
+  .highlight {
+    background: #fff3bf !important;
+  }
+
   .print-buttons {
     margin-top: 16px;
   }
@@ -171,6 +175,12 @@
 <div class="controls">
   <div>
     <input id="symbolInput" type="text" maxlength="9" placeholder="Enter 9 unique letters/numbers" />
+    <select id="revealStyle">
+      <option value="any" selected>Random row, column, or scatter</option>
+      <option value="row">Random row reveal</option>
+      <option value="col">Random column reveal</option>
+      <option value="scatter">Random scatter reveal</option>
+    </select>
     <select id="difficulty">
       <option value="40">Easy (40 clues)</option>
       <option value="32" selected>Medium (32 clues)</option>
@@ -186,7 +196,7 @@
   </div>
 
   <div class="note">
-    Rule: No repeats within the same row, column, or 3x3 section.
+    Reveal types: highlighted <b>row</b>, highlighted <b>column</b>, or <b>scattered cells</b> that spell the word left to right.
   </div>
 
   <div class="error" id="errorBox"></div>
@@ -218,7 +228,11 @@ const generateBtn = document.getElementById("generateBtn");
 const solutionBtn = document.getElementById("solutionBtn");
 const symbolInput = document.getElementById("symbolInput");
 const difficultySelect = document.getElementById("difficulty");
+const revealStyleSelect = document.getElementById("revealStyle");
 const errorBox = document.getElementById("errorBox");
+
+let currentReveal = null;
+let currentSolution = null;
 
 function indexToRowCol(index) {
   return {
@@ -315,29 +329,94 @@ function chooseUnfilledCell(board, symbols) {
   return { index: bestIndex, options: bestOptions || [] };
 }
 
-function generateSolution(symbols) {
-  const board = Array(SIZE * SIZE).fill(null);
+function buildReveal() {
+  const modeSetting = revealStyleSelect.value;
+  let mode = modeSetting;
 
-  function backtrack() {
-    const pick = chooseUnfilledCell(board, symbols);
-    const index = pick.index;
-    const options = pick.options;
-
-    if (index === -1) return true;
-    if (options.length === 0) return false;
-
-    const shuffled = shuffle(options);
-
-    for (const sym of shuffled) {
-      board[index] = sym;
-      if (backtrack()) return true;
-      board[index] = null;
-    }
-
-    return false;
+  if (modeSetting === "any") {
+    mode = ["row", "col", "scatter"][Math.floor(Math.random() * 3)];
   }
 
-  return backtrack() ? board.slice() : null;
+  if (mode === "row") {
+    return {
+      type: "row",
+      index: Math.floor(Math.random() * SIZE)
+    };
+  }
+
+  if (mode === "col") {
+    return {
+      type: "col",
+      index: Math.floor(Math.random() * SIZE)
+    };
+  }
+
+  return {
+    type: "scatter",
+    rowsByColumn: shuffle([...Array(SIZE).keys()])
+  };
+}
+
+function applyReveal(board, symbols, reveal) {
+  if (reveal.type === "row") {
+    for (let col = 0; col < SIZE; col++) {
+      const index = rowColToIndex(reveal.index, col);
+      board[index] = symbols[col];
+    }
+    return true;
+  }
+
+  if (reveal.type === "col") {
+    for (let row = 0; row < SIZE; row++) {
+      const index = rowColToIndex(row, reveal.index);
+      board[index] = symbols[row];
+    }
+    return true;
+  }
+
+  if (reveal.type === "scatter") {
+    for (let col = 0; col < SIZE; col++) {
+      const row = reveal.rowsByColumn[col];
+      const index = rowColToIndex(row, col);
+      board[index] = symbols[col];
+    }
+    return true;
+  }
+
+  return false;
+}
+
+function generateSolution(symbols) {
+  for (let attempt = 0; attempt < 150; attempt++) {
+    const board = Array(SIZE * SIZE).fill(null);
+    const reveal = buildReveal();
+    applyReveal(board, symbols, reveal);
+
+    function backtrack() {
+      const pick = chooseUnfilledCell(board, symbols);
+      const index = pick.index;
+      const options = pick.options;
+
+      if (index === -1) return true;
+      if (options.length === 0) return false;
+
+      const shuffled = shuffle(options);
+
+      for (const sym of shuffled) {
+        board[index] = sym;
+        if (backtrack()) return true;
+        board[index] = null;
+      }
+
+      return false;
+    }
+
+    if (backtrack()) {
+      return { board: board.slice(), reveal };
+    }
+  }
+
+  return null;
 }
 
 function countSolutions(puzzle, symbols, limit = 2) {
@@ -389,7 +468,26 @@ function generatePuzzleFromSolution(solution, symbols, cluesToKeep) {
   return puzzle;
 }
 
-function renderBoard(boardEl, board, hideNulls) {
+function isHighlighted(index) {
+  if (!currentReveal) return false;
+  const { row, col } = indexToRowCol(index);
+
+  if (currentReveal.type === "row") {
+    return row === currentReveal.index;
+  }
+
+  if (currentReveal.type === "col") {
+    return col === currentReveal.index;
+  }
+
+  if (currentReveal.type === "scatter") {
+    return currentReveal.rowsByColumn[col] === row;
+  }
+
+  return false;
+}
+
+function renderBoard(boardEl, board, hideNulls, showHighlights) {
   boardEl.innerHTML = "";
 
   for (let i = 0; i < SIZE * SIZE; i++) {
@@ -402,6 +500,10 @@ function renderBoard(boardEl, board, hideNulls) {
 
     if (val === null && hideNulls) {
       cell.classList.add("blank");
+    }
+
+    if (showHighlights && isHighlighted(i)) {
+      cell.classList.add("highlight");
     }
 
     if (col === 2 || col === 5) {
@@ -432,24 +534,23 @@ function doGenerate(makePuzzleToo) {
   const symbols = valid.symbols;
   const cluesToKeep = parseInt(difficultySelect.value, 10);
 
-  let solution = null;
-  for (let tries = 0; tries < 50; tries++) {
-    solution = generateSolution(symbols);
-    if (solution) break;
-  }
+  const generated = generateSolution(symbols);
 
-  if (!solution) {
+  if (!generated) {
     showError("Could not generate a valid solution. Try again.");
     return;
   }
 
-  renderBoard(solutionBoardEl, solution, false);
+  currentSolution = generated.board;
+  currentReveal = generated.reveal;
+
+  renderBoard(solutionBoardEl, currentSolution, false, true);
 
   if (makePuzzleToo) {
-    const puzzle = generatePuzzleFromSolution(solution, symbols, cluesToKeep);
-    renderBoard(puzzleBoardEl, puzzle, true);
+    const puzzle = generatePuzzleFromSolution(currentSolution, symbols, cluesToKeep);
+    renderBoard(puzzleBoardEl, puzzle, true, false);
   } else {
-    renderBoard(puzzleBoardEl, Array(SIZE * SIZE).fill(null), true);
+    renderBoard(puzzleBoardEl, Array(SIZE * SIZE).fill(null), true, false);
   }
 }
 
@@ -462,8 +563,8 @@ solutionBtn.addEventListener("click", function () {
 });
 
 symbolInput.value = "ABCDEFGHI";
-renderBoard(puzzleBoardEl, Array(SIZE * SIZE).fill(null), true);
-renderBoard(solutionBoardEl, Array(SIZE * SIZE).fill(null), true);
+renderBoard(puzzleBoardEl, Array(SIZE * SIZE).fill(null), true, false);
+renderBoard(solutionBoardEl, Array(SIZE * SIZE).fill(null), true, false);
 </script>
 
 </body>

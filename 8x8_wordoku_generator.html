@@ -149,13 +149,23 @@
       <h1>8×8 Word Sudoku Generator</h1>
       <p>
         Enter any 8-character set using letters, numbers, or a mix, as long as all 8 characters are different.
-        The program will place that set randomly in either a row or a column, then generate a full 8×8 solution using 4×2 boxes and create a puzzle.
+        The program will reveal that set as either a highlighted row, a highlighted column, or scattered highlighted cells spelling the word left to right.
       </p>
 
       <div class="controls">
         <div>
           <label for="wordInput">8 unique characters</label>
           <input id="wordInput" type="text" maxlength="8" placeholder="A1B2C3D4" value="KINGDOMS" />
+        </div>
+
+        <div>
+          <label for="revealStyle">Reveal style</label>
+          <select id="revealStyle">
+            <option value="any" selected>Random row, column, or scatter</option>
+            <option value="row">Random row reveal</option>
+            <option value="col">Random column reveal</option>
+            <option value="scatter">Random scatter reveal</option>
+          </select>
         </div>
 
         <div>
@@ -189,7 +199,7 @@
         <div>
           <div class="grid-title">Solution</div>
           <div id="solutionGrid"></div>
-          <div class="note">Your character set is placed randomly in one row or one column.</div>
+          <div class="note">Yellow = highlighted reveal.</div>
         </div>
       </div>
     </div>
@@ -210,10 +220,11 @@
       let currentSolution = null;
       let currentPuzzle = null;
       let currentSymbols = null;
-      let currentPlacement = null;
+      let currentReveal = null;
 
       const wordInput = document.getElementById('wordInput');
       const clueCount = document.getElementById('clueCount');
+      const revealStyleSelect = document.getElementById('revealStyle');
       const statusEl = document.getElementById('status');
       const puzzleGridEl = document.getElementById('puzzleGrid');
       const solutionGridEl = document.getElementById('solutionGrid');
@@ -349,30 +360,78 @@
         return count;
       }
 
-      function generateSolution(symbols) {
-        const grid = makeEmptyGrid();
-        const placementType = Math.random() < 0.5 ? 'row' : 'col';
-        const placementIndex = Math.floor(Math.random() * SIZE);
+      function placeFixed(grid, row, col, value) {
+        if (grid[row][col] !== null && grid[row][col] !== value) return false;
+        grid[row][col] = value;
+        return isValid(grid, row, col, value);
+      }
 
-        if (placementType === 'row') {
-          for (let c = 0; c < SIZE; c++) {
-            grid[placementIndex][c] = c;
-          }
-        } else {
-          for (let r = 0; r < SIZE; r++) {
-            grid[r][placementIndex] = r;
-          }
+      function buildReveal() {
+        const modeSetting = revealStyleSelect.value;
+        let mode = modeSetting;
+
+        if (modeSetting === 'any') {
+          mode = ['row', 'col', 'scatter'][Math.floor(Math.random() * 3)];
         }
 
-        if (!fillGrid(grid)) {
-          throw new Error('Could not generate a solution. Please try again.');
+        if (mode === 'row') {
+          return {
+            type: 'row',
+            index: Math.floor(Math.random() * SIZE)
+          };
+        }
+
+        if (mode === 'col') {
+          return {
+            type: 'col',
+            index: Math.floor(Math.random() * SIZE)
+          };
         }
 
         return {
-          grid: grid,
-          placementType: placementType,
-          placementIndex: placementIndex
+          type: 'scatter',
+          rowsByColumn: shuffle([...Array(SIZE).keys()])
         };
+      }
+
+      function applyReveal(grid, reveal) {
+        if (reveal.type === 'row') {
+          for (let c = 0; c < SIZE; c++) {
+            if (!placeFixed(grid, reveal.index, c, c)) return false;
+          }
+          return true;
+        }
+
+        if (reveal.type === 'col') {
+          for (let r = 0; r < SIZE; r++) {
+            if (!placeFixed(grid, r, reveal.index, r)) return false;
+          }
+          return true;
+        }
+
+        if (reveal.type === 'scatter') {
+          for (let c = 0; c < SIZE; c++) {
+            const r = reveal.rowsByColumn[c];
+            if (!placeFixed(grid, r, c, c)) return false;
+          }
+          return true;
+        }
+
+        return false;
+      }
+
+      function generateSolution() {
+        for (let attempt = 0; attempt < 150; attempt++) {
+          const grid = makeEmptyGrid();
+          const reveal = buildReveal();
+
+          if (!applyReveal(grid, reveal)) continue;
+          if (fillGrid(grid)) {
+            return { grid, reveal };
+          }
+        }
+
+        throw new Error('Could not generate a solution. Please try again.');
       }
 
       function makePuzzleFromSolution(solution, cluesToLeave) {
@@ -419,7 +478,25 @@
         return classes;
       }
 
-      function renderGrid(container, grid, symbols, highlightPlacement) {
+      function isHighlighted(r, c) {
+        if (!currentReveal) return false;
+
+        if (currentReveal.type === 'row') {
+          return r === currentReveal.index;
+        }
+
+        if (currentReveal.type === 'col') {
+          return c === currentReveal.index;
+        }
+
+        if (currentReveal.type === 'scatter') {
+          return currentReveal.rowsByColumn[c] === r;
+        }
+
+        return false;
+      }
+
+      function renderGrid(container, grid, symbols, showHighlights) {
         const table = document.createElement('table');
         table.className = 'sudoku';
 
@@ -429,10 +506,8 @@
             const td = document.createElement('td');
             const classes = getCellClassList(r, c);
 
-            if (highlightPlacement && currentPlacement) {
-              const matchRow = currentPlacement.type === 'row' && r === currentPlacement.index;
-              const matchCol = currentPlacement.type === 'col' && c === currentPlacement.index;
-              if (matchRow || matchCol) classes.push('highlight-line');
+            if (showHighlights && isHighlighted(r, c)) {
+              classes.push('highlight-line');
             }
 
             td.className = classes.join(' ');
@@ -453,14 +528,22 @@
         }
         legendEl.textContent = lines.join('\n');
 
-        if (!currentPlacement) {
+        if (!currentReveal) {
           placementNoteEl.textContent = '';
           return;
         }
 
-        placementNoteEl.textContent = currentPlacement.type === 'row'
-          ? 'Character set location: row ' + (currentPlacement.index + 1)
-          : 'Character set location: column ' + (currentPlacement.index + 1);
+        if (currentReveal.type === 'row') {
+          placementNoteEl.textContent = 'Reveal: row ' + (currentReveal.index + 1);
+          return;
+        }
+
+        if (currentReveal.type === 'col') {
+          placementNoteEl.textContent = 'Reveal: column ' + (currentReveal.index + 1);
+          return;
+        }
+
+        placementNoteEl.textContent = 'Reveal: scattered, one highlighted cell in each column, spelling the word left to right';
       }
 
       function generateAll() {
@@ -474,22 +557,15 @@
 
         try {
           currentSymbols = entry.split('');
-          const generated = generateSolution(currentSymbols);
+          const generated = generateSolution();
           currentSolution = generated.grid;
-          currentPlacement = {
-            type: generated.placementType,
-            index: generated.placementIndex
-          };
+          currentReveal = generated.reveal;
           currentPuzzle = makePuzzleFromSolution(currentSolution, Number(clueCount.value));
 
           renderGrid(solutionGridEl, currentSolution, currentSymbols, true);
           renderGrid(puzzleGridEl, currentPuzzle, currentSymbols, false);
           renderLegend(currentSymbols);
-
-          const lineName = currentPlacement.type === 'row'
-            ? 'row ' + (currentPlacement.index + 1)
-            : 'column ' + (currentPlacement.index + 1);
-          setStatus('Generated a new solution and puzzle. Your characters were placed in ' + lineName + '.', true);
+          setStatus('Generated a new solution and puzzle.', true);
         } catch (err) {
           setStatus(err && err.message ? err.message : 'Something went wrong.', false);
         }
@@ -503,11 +579,7 @@
 
         currentPuzzle = makePuzzleFromSolution(currentSolution, Number(clueCount.value));
         renderGrid(puzzleGridEl, currentPuzzle, currentSymbols, false);
-
-        const lineName = currentPlacement.type === 'row'
-          ? 'row ' + (currentPlacement.index + 1)
-          : 'column ' + (currentPlacement.index + 1);
-        setStatus('Made a new puzzle from the same solution. Your characters remain in ' + lineName + '.', true);
+        setStatus('Made a new puzzle from the same solution.', true);
       }
 
       generateBtn.addEventListener('click', generateAll);

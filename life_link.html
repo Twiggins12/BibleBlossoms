@@ -425,20 +425,26 @@ if (
 }
     
   // RLT lookup-object format
-  if (!Array.isArray(bible) && typeof bible === "object") {
-    const target = normalizeBookName(bookName);
-
-    const actualBookKey = Object.keys(bible).find(
-      k => normalizeBookName(k) === target
-    );
-
-    if (!actualBookKey) {
-      return `[Book not found: ${bookName}]`;
-    }
-
-    const text = bible?.[actualBookKey]?.[String(chapterNum)]?.[String(verseNum)];
-    return text ?? `[Verse not found: ${bookName} ${chapterNum}:${verseNum}]`;
+  if (
+    version === "RLT" &&
+    data &&
+    typeof data === "object" &&
+    !Array.isArray(data)
+  ) {
+    return data;
   }
+
+  if (Array.isArray(data)) return data;
+
+  if (data && Array.isArray(data.books)) return data.books;
+  if (data && Array.isArray(data.verses)) return data.verses;
+  if (data && Array.isArray(data.data)) return data.data;
+
+  const biggest = pickLargestArrayProperty(data);
+  if (biggest) return biggest;
+
+  return null;
+}
     
   // Already an array (ASV-style verse list or array of books)
   if (Array.isArray(data)) return data;

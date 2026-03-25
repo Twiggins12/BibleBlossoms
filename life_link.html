@@ -404,26 +404,26 @@ function normalizeBibleJson(version, data) {
     }));
   }
 
-    // BBE format (books → chapters → verses → text)
-if (
-  version === "BBE" &&
-  data &&
-  Array.isArray(data.books) &&
-  data.books[0]?.chapters?.[0]?.verses
-) {
-  return data.books.map(book => ({
-    name: book.name,
-    commonName: book.name,
-    chapters: (book.chapters || []).map((ch, chapIndex) => ({
-      number: Number(ch.chapter) || (chapIndex + 1),
-      content: (ch.verses || []).map((v, verseIndex) => ({
-        number: Number(v.verse) || (verseIndex + 1),
-        content: [String(v.text || "")]
+  // BBE format (books → chapters → verses → text)
+  if (
+    version === "BBE" &&
+    data &&
+    Array.isArray(data.books) &&
+    data.books[0]?.chapters?.[0]?.verses
+  ) {
+    return data.books.map(book => ({
+      name: book.name,
+      commonName: book.name,
+      chapters: (book.chapters || []).map((ch, chapIndex) => ({
+        number: Number(ch.chapter) || (chapIndex + 1),
+        content: (ch.verses || []).map((v, verseIndex) => ({
+          number: Number(v.verse) || (verseIndex + 1),
+          content: [String(v.text || "")]
+        }))
       }))
-    }))
-  }));
-}
-    
+    }));
+  }
+
   // RLT lookup-object format
   if (
     version === "RLT" &&
@@ -434,8 +434,10 @@ if (
     return data;
   }
 
+  // Already an array (ASV-style verse list or array of books)
   if (Array.isArray(data)) return data;
 
+  // Common wrappers used by different files
   if (data && Array.isArray(data.books)) return data.books;
   if (data && Array.isArray(data.verses)) return data.verses;
   if (data && Array.isArray(data.data)) return data.data;

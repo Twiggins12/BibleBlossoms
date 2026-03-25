@@ -448,22 +448,6 @@ function normalizeBibleJson(version, data) {
   return null;
 }
     
-  // Already an array (ASV-style verse list or array of books)
-  if (Array.isArray(data)) return data;
-
-  // Common wrappers used by different files
-  if (data && Array.isArray(data.books)) return data.books;
-  if (data && Array.isArray(data.verses)) return data.verses;
-  if (data && Array.isArray(data.data)) return data.data;
-
-  // Last-resort: if it's an object that contains an array somewhere, use the biggest one
-  const biggest = pickLargestArrayProperty(data);
-  if (biggest) return biggest;
-
-  // If nothing fits, return null so we can throw a clear error
-  return null;
-}
-  
 // Load Bible JSON
 async function loadBible(version, setActive = true) {
   try {

@@ -424,22 +424,20 @@ if (
   }));
 }
     
-      // RLT lookup-object format
-  if (
-    version === "RLT" &&
-    data &&
-    typeof data === "object" &&
-    !Array.isArray(data)
-  ) {
-    return data;
-  }  // RLT lookup-object format
-  if (
-    version === "RLT" &&
-    data &&
-    typeof data === "object" &&
-    !Array.isArray(data)
-  ) {
-    return data;
+  // RLT lookup-object format
+  if (!Array.isArray(bible) && typeof bible === "object") {
+    const target = normalizeBookName(bookName);
+
+    const actualBookKey = Object.keys(bible).find(
+      k => normalizeBookName(k) === target
+    );
+
+    if (!actualBookKey) {
+      return `[Book not found: ${bookName}]`;
+    }
+
+    const text = bible?.[actualBookKey]?.[String(chapterNum)]?.[String(verseNum)];
+    return text ?? `[Verse not found: ${bookName} ${chapterNum}:${verseNum}]`;
   }
     
   // Already an array (ASV-style verse list or array of books)
@@ -610,6 +608,8 @@ const map = {
   "Psalms": "Psalms",
   "Song of Songs": "Song of Solomon",
   "Song of Solomon": "Song of Solomon",
+  "Revelation": "Revelation",
+  "Revelation of John": "Revelation",
 
   // Numbered books (common variations across datasets)
   "1 Samuel": "1 Samuel",

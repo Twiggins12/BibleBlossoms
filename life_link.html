@@ -424,6 +424,24 @@ if (
   }));
 }
     
+      // RLT lookup-object format
+  if (
+    version === "RLT" &&
+    data &&
+    typeof data === "object" &&
+    !Array.isArray(data)
+  ) {
+    return data;
+  }  // RLT lookup-object format
+  if (
+    version === "RLT" &&
+    data &&
+    typeof data === "object" &&
+    !Array.isArray(data)
+  ) {
+    return data;
+  }
+    
   // Already an array (ASV-style verse list or array of books)
   if (Array.isArray(data)) return data;
 

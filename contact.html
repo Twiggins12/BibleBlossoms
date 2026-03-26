@@ -79,24 +79,45 @@
   <div class="contact-container">
     <h2>Contact</h2>
 
-    <form action="https://formspree.io/f/your-form-id" method="POST">
+    <div class="contact-form-container">
+  <p>Please use the form below to contact Bible Blossoms.</p>
 
-      <label>First Name (optional)</label>
-      <input type="text" name="firstName">
+  <form id="contact-form">
+    <label for="first_name">First Name (optional)</label>
+    <input type="text" id="first_name" name="first_name">
 
-      <label>Email Address <span class="required">*</span></label>
-      <input type="email" name="email" required>
+    <label for="reply_to">Email Address <span class="required">*</span></label>
+    <input type="email" id="reply_to" name="reply_to" required>
 
-      <label>Message <span class="required">*</span></label>
-      <textarea name="message" required></textarea>
+    <label for="message">Message <span class="required">*</span></label>
+    <textarea id="message" name="message" required></textarea>
 
-      <button type="submit">Send Message</button>
+    <button type="submit">Send Message</button>
+  </form>
 
-    </form>
-
+  <p id="status-message" style="margin-top:15px;"></p>
+</div>
   </div>
 
 </div>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
+<script>
+(function(){
+  emailjs.init("5nGnc1xrfuRMwghbt");
+})();
+
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  emailjs.sendForm("service_1xyb6ys", "template_7df9icd", this)
+    .then(function() {
+      document.getElementById("status-message").innerText = "Message sent successfully!";
+    }, function(error) {
+      document.getElementById("status-message").innerText = "Failed to send message.";
+      console.error("EmailJS Error:", error);
+    });
+});
+</script>
 </body>
 </html>

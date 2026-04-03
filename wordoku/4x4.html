@@ -51,6 +51,45 @@
   <a href="../about.html">About</a>
   <a href="#top">Top</a>
 </footer>
+<script>
+  // Show/hide answer
+  document.querySelectorAll('.show-answer-btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const card = this.closest('.card');
+      const solution = card.querySelector('.solution');
 
+      if (solution.style.display === 'none' || solution.style.display === '') {
+        solution.style.display = 'block';
+      } else {
+        solution.style.display = 'none';
+      }
+    });
+  });
+
+  // Print image
+  document.querySelectorAll('.print-btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      const imageUrl = this.getAttribute('href');
+      const printWindow = window.open('', '_blank');
+
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>Print Puzzle</title>
+          </head>
+          <body style="margin:0; text-align:center;">
+            <img src="${imageUrl}" style="max-width:100%; height:auto;">
+          </body>
+        </html>
+      `);
+
+      printWindow.document.close();
+      printWindow.focus();
+      printWindow.print();
+    });
+  });
+</script>
 </body>
 </html>

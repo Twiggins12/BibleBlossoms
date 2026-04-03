@@ -52,42 +52,66 @@
   <a href="#top">Top</a>
 </footer>
 <script>
-  // Show/hide answer
+  <!-- JS for Show Answer Buttons -->
+<script>
+  // Show/Hide Answer
   document.querySelectorAll('.show-answer-btn').forEach(button => {
     button.addEventListener('click', function(e) {
       e.preventDefault();
+
       const card = this.closest('.card');
       const solution = card.querySelector('.solution');
 
-      if (solution.style.display === 'none' || solution.style.display === '') {
-        solution.style.display = 'block';
-      } else {
-        solution.style.display = 'none';
+      if (solution) {
+        if (solution.style.display === 'none') {
+          solution.style.display = 'block';
+          this.innerText = 'Hide';
+        } else {
+          solution.style.display = 'none';
+          this.innerText = 'Answer';
+        }
       }
     });
   });
 
-  // Print image
-  document.querySelectorAll('.print-btn').forEach(button => {
-    button.addEventListener('click', function(e) {
+  // Print Image (handles popup blocking)
+  document.querySelectorAll('.print-btn').forEach(link => {
+    link.addEventListener('click', function(e) {
       e.preventDefault();
-      const imageUrl = this.getAttribute('href');
-      const printWindow = window.open('', '_blank');
 
-      printWindow.document.write(`
+      const imageUrl = this.getAttribute('href');
+      const w = window.open('', '_blank');
+
+      if (!w) {
+        alert("Popups are blocked. Allow popups for this site, then click Print again.");
+        return;
+      }
+
+      w.document.open();
+      w.document.write(`
+        <!doctype html>
         <html>
           <head>
+            <meta charset="utf-8">
             <title>Print Puzzle</title>
+            <style>
+              @page { margin: 0.5in; }
+              body { margin: 0; text-align: center; }
+              img { width: 100%; height: auto; display: block; }
+            </style>
           </head>
-          <body style="margin:0; text-align:center;">
-            <img src="${imageUrl}" style="max-width:100%; height:auto;">
+          <body>
+            <img id="puzzle" src="${imageUrl}">
+            <script>
+              const img = document.getElementById('puzzle');
+              img.onload = () => { window.focus(); window.print(); };
+              img.onerror = () => { document.body.innerHTML = "Image failed to load for printing."; };
+            <\/script>
           </body>
         </html>
       `);
 
-      printWindow.document.close();
-      printWindow.focus();
-      printWindow.print();
+      w.document.close();
     });
   });
 </script>

@@ -25,7 +25,7 @@
 
   <div class="cards-container">
 
-        <!-- Puzzle 1 -->
+    <!-- Puzzle 1 -->
     <div class="card">
       <h3>Puzzle 1</h3>
       <img src="../images/4x4_book_life.png" alt="4x4 WORDoku Puzzle 1 preview">
@@ -38,7 +38,7 @@
         <img src="../images/4x4_book_life_solution.png" alt="Puzzle 1 solution">
       </div>
     </div>
-    
+
   </div>
 </div>
 
@@ -51,8 +51,8 @@
   <a href="../about.html">About</a>
   <a href="#top">Top</a>
 </footer>
-<script>
-  <!-- JS for Show Answer Buttons -->
+
+<!-- JS for Show Answer Buttons -->
 <script>
   // Show/Hide Answer
   document.querySelectorAll('.show-answer-btn').forEach(button => {
@@ -63,7 +63,7 @@
       const solution = card.querySelector('.solution');
 
       if (solution) {
-        if (solution.style.display === 'none') {
+        if (solution.style.display === 'none' || solution.style.display === '') {
           solution.style.display = 'block';
           this.innerText = 'Hide';
         } else {
@@ -74,7 +74,7 @@
     });
   });
 
-  // Print Image (handles popup blocking)
+  // Print Image
   document.querySelectorAll('.print-btn').forEach(link => {
     link.addEventListener('click', function(e) {
       e.preventDefault();
@@ -115,5 +115,6 @@
     });
   });
 </script>
+
 </body>
 </html>

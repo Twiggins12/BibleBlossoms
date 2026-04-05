@@ -22,8 +22,12 @@ Animals,Calf,Luke,,,"15:23; 15:27; 15:30"
 Animals,Calf,Acts,,,"7:41"
 Animals,Calf,Revelation,,,"4:7"
 
+Animals,Chameleon,Leviticus,,,"11:30"
+
 Animals,Crane,Isaiah,,,"38:14"
 Animals,Crane,Jeremiah,,,"8:7"
+
+Animals,Gecko,Leviticus,,,"11:30"
 
 Animals,Goat,Genesis,,,"15:9; 27:9; 27:16; 30:32-33; 30:35; 31:10; 31:12; 31:38; 32:14; 37:31; 38:17; 38:20; 38:23"
 Animals,Goat,Exodus,,,"12:5; 23:19; 25:4; 26:7; 34:26; 35:6; 35:23; 35:26; 36:14"
@@ -64,6 +68,9 @@ Animals,Leviathan,Job,,,"3:8; 41:1"
 Animals,Leviathan,Psalms,,,"74:14; 104:26"
 Animals,Leviathan,Isaiah,,,"27:1"
 
+Animals,Lizard,Leviticus,,,"11:29-30"
+Animals,Lizard,Proverbs,,,"30:28"
+
 Animals,Pelican,Deuteronomy,,,"14:17"
 Animals,Pelican,Psalms,,,"102:6"
 Animals,Pelican,Isaiah,,,"34:11"
@@ -75,6 +82,8 @@ Animals,Rat,Leviticus,,,"11:29"
 
 Animals,Serpent,Genesis,,,"3:1-2; 3:4; 3:13-15"
 Animals,Serpent,Isaiah,,,"27:1"
+
+Animals,Skink,Leviticus,,,"11:30"
 
 Animals,Stork,Leviticus,,,"11:19"
 Animals,Stork,Deuteronomy,,,"14:18"
@@ -91,3 +100,5 @@ Animals,Turtledove,Genesis,,,"15:9"
 Animals,Turtledove,Leviticus,,,"12:6"
 Animals,Turtledove,Song of Songs,,,"2:12"
 Animals,Turtledove,Jeremiah,,,"8:7"
+
+Animals,Weasel,Leviticus,,,"11:29"

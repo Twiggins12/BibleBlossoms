@@ -1,5 +1,8 @@
 MainTopic,SubTopic,Book,Chapter,Verse,Verses
 
+Animals,Antelope,Deuteronomy,,,"14:5"
+Animals,Antelope,Isaiah,,,"51:20"
+
 Animals,Bat,Leviticus,,,"11:19"
 Animals,Bat,Deuteronomy,,,"14:18"
 
@@ -69,6 +72,8 @@ Animals,heron,Deuteronomy,,,"14:18"
 Animals,hoopoe,Leviticus,,,"11:19"
 Animals,hoopoe,Deuteronomy,,,"14:18"
 
+Animals,Ibex,Deuteronomy,,,"14:5"
+
 Animals,Leopard,Isaiah,,,"11:6"
 Animals,Leopard,Jeremiah,,,"5:6; 13:23"
 Animals,Leopard,Daniel,,,"7:6"
@@ -97,6 +102,8 @@ Animals,Raven,Deuteronomy,,,"14:14"
 Animals,Raven,Job,,,"38:41"
 Animals,Raven,Song of Songs,,,"5:11"
 Animals,Raven,Isaiah,,,"34:11"
+
+Animals,Roebuck,Deuteronomy,,,"14:5"
 
 Animals,Serpent,Genesis,,,"3:1-2; 3:4; 3:13-15"
 Animals,Serpent,Isaiah,,,"27:1"

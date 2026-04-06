@@ -76,13 +76,16 @@ Animals,Goat,Matthew,,,"25:32-33; 25:33"
 Animals,Goat,Luke,,,"15:29"
 Animals,Goat,Hebrews,,,"9:12-13; 9:19; 10:4; 11:37"
 
-Animals,heron,Leviticus,,,"11:19"
-Animals,heron,Deuteronomy,,,"14:18"
+Animals,Heron,Leviticus,,,"11:19"
+Animals,Heron,Deuteronomy,,,"14:18"
 
-Animals,hoopoe,Leviticus,,,"11:19"
-Animals,hoopoe,Deuteronomy,,,"14:18"
+Animals,Hoopoe,Leviticus,,,"11:19"
+Animals,Hoopoe,Deuteronomy,,,"14:18"
 
 Animals,Ibex,Deuteronomy,,,"14:5"
+
+Animals,Kite,Leviticus,,,"11:14"
+Animals,Kite,Deuteronomy,,,"14:13"
 
 Animals,Leopard,Isaiah,,,"11:6"
 Animals,Leopard,Jeremiah,,,"5:6; 13:23"
@@ -104,6 +107,9 @@ Animals,Pelican,Deuteronomy,,,"14:17"
 Animals,Pelican,Psalms,,,"102:6"
 Animals,Pelican,Isaiah,,,"34:11"
 Animals,Pelican,Zephaniah,,,"2:14"
+
+Animals,Pigeon,Genesis,,,"15:9"
+Animals,Pigeon,Leviticus,,,"12:6"
 
 Animals,Quail,Exodus,,,"16:13"
 

@@ -1,5 +1,8 @@
 MainTopic,SubTopic,Book,Chapter,Verse,Verses
 
+Animals,Adder,Genesis,,,"49:17"
+Animals,Adder,Isaiah,,,"14:29"
+
 Animals,Antelope,Deuteronomy,,,"14:5"
 Animals,Antelope,Isaiah,,,"51:20"
 
@@ -44,6 +47,9 @@ Animals,Dove,Matthew,,,"3:16"
 Animals,Dove,Mark,,,"1:10"
 Animals,Dove,Luke,,,"3:22"
 Animals,Dove,John,,,"1:32"
+
+Animals,Falcon,Deuteronomy,,,"14:13"
+
 
 Animals,Gazelle,Deuteronomy,,,"12:15; 12:22; 14:5; 15:22"
 Animals,Gazelle,2 Samuel,,,"2:18"

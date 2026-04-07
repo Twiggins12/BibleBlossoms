@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10x10 Shaped Wordoku Generator</title>
+  <style>
+    :root{
+      --bg:#f7f7fb;
+      --card:#ffffff;
+      --text:#222;
+      --muted:#666;
+      --line:#222;
+      --thin:#bbb;
+      --blank:#ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .wrap{
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .card{
+      background: var(--card);
+      border-radius: 16px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    h1{
+      margin: 0 0 10px 0;
+      font-size: 2rem;
+    }
+
+    p{
+      margin: 8px 0;
+      line-height: 1.45;
+    }
+
+    .controls{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      align-items:center;
+      margin-top: 14px;
+    }
+
+    .controls input,
+    .controls button{
+      font-size: 16px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    .controls button{
+      cursor:pointer;
+      background:#f2f2f7;
+    }
+
+    .controls button:hover{
+      background:#e8e8ef;
+    }
+
+    .note{
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .board-wrap{
+      overflow:auto;
+      padding: 10px 0;
+    }
+
+    .board{
+      width: max-content;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .block-row{
+      display:flex;
+      gap:24px;
+      justify-content:center;
+      align-items:flex-start;
+    }
+
+    .block{
+      display:grid;
+      grid-template-columns: repeat(4, 60px);
+      grid-template-rows: 60px 60px 60px;
+      gap:0;
+      border: 3px solid var(--line);
+      background:#fff;
+    }
+
+    .cell{
+      width:60px;
+      height:60px;
+      border:1px solid var(--thin);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size: 28px;
+      font-weight: bold;
+      user-select:none;
+    }
+
+    .wide{
+      width:auto;
+      grid-column: span 2;
+    }
+
+    .blank{
+      background: var(--blank);
+      color: transparent;
+    }
+
+    .hidden-symbol{
+      color: transparent;
+    }
+
+    .legend{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 10px;
+    }
+
+    .legend-item{
+      display:flex;
+      align-items:center;
+      gap:8px;
+      font-size: 14px;
+      background:#fafafa;
+      border:1px solid #ddd;
+      border-radius:999px;
+      padding:6px 10px;
+    }
+
+    .swatch{
+      width:18px;
+      height:18px;
+      border-radius:4px;
+      border:1px solid rgba(0,0,0,0.25);
+      flex:none;
+    }
+
+    .footer-actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:14px;
+    }
+
+    @media print {
+      body{
+        background:#fff;
+      }
+      .no-print{
+        display:none !important;
+      }
+      .card{
+        box-shadow:none;
+        border:none;
+        padding:0;
+      }
+      .wrap{
+        max-width:none;
+        padding:0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card no-print">
+      <h1>10x10 Shaped Wordoku Generator</h1>
+      <p>
+        This generator makes a 10-symbol shaped puzzle with 10 colored blocks.
+        Each block contains all 10 symbols once, and each puzzle row-set also contains all 10 symbols once.
+      </p>
+      <p class="note">
+        Enter exactly 10 different symbols. You can use letters, numbers, or a mix.
+      </p>
+
+      <div class="controls">
+        <label>
+          Symbols:
+          <input id="symbolsInput" type="text" value="ABCDEFGHIJ" size="14" />
+        </label>
+
+        <label>
+          Clues:
+          <input id="cluesInput" type="number" min="10" max="100" value="46" />
+        </label>
+
+        <button id="newSolutionBtn">New Solution + Puzzle</button>
+        <button id="sameSolutionBtn">New Puzzle Same Solution</button>
+        <button id="toggleSolutionBtn">Show Solution</button>
+        <button id="printBtn">Print</button>
+      </div>
+
+      <div class="legend" id="legend"></div>
+    </div>
+
+    <div class="card">
+      <div class="board-wrap">
+        <div class="board" id="board"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const BLOCK_COLORS = [
+      "#fff3b0", // yellow
+      "#c8f7c5", // green
+      "#ffd6a5", // peach
+      "#d0ebff", // light blue
+      "#f8c8dc", // pink
+      "#e9d5ff", // lavender
+      "#c7f9cc", // mint
+      "#fde2e4", // rose
+      "#bee1e6", // aqua
+      "#e2ece9"  // pale sage
+    ];
+
+    // There are 10 blocks total:
+    // top row:    0,1,2,3
+    // middle row: 4,5
+    // bottom row: 6,7,8,9
+    //
+    // Each block has 10 positions:
+    // 0 1 2 3
+    // 4   5   (wide cells, each spans 2 columns)
+    // 6 7 8 9
+    //
+    // The underlying solution is a 10x10 Latin square:
+    // row-set x block
+    // so each block gets all 10 symbols once,
+    // and each row-set gets all 10 symbols once.
+
+    let currentSolution = null;
+    let currentPuzzle = null;
+    let showingSolution = false;
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function getSymbols() {
+      const raw = document.getElementById("symbolsInput").value.trim();
+      const chars = [...raw];
+
+      if (chars.length !== 10) {
+        alert("Please enter exactly 10 symbols.");
+        return null;
+      }
+
+      const unique = new Set(chars);
+      if (unique.size !== 10) {
+        alert("All 10 symbols must be different.");
+        return null;
+      }
+
+      return chars;
+    }
+
+    function clampClues(n) {
+      if (isNaN(n)) return 46;
+      return Math.max(10, Math.min(100, n));
+    }
+
+    function buildRandomLatinSquare(symbols) {
+      const n = 10;
+
+      const rowPerm = shuffle([...Array(n).keys()]);
+      const colPerm = shuffle([...Array(n).keys()]);
+      const symPerm = shuffle([...Array(n).keys()]);
+
+      const grid = Array.from({ length: n }, (_, r) =>
+        Array.from({ length: n }, (_, c) => {
+          const baseIndex = (rowPerm[r] + colPerm[c]) % n;
+          return symbols[symPerm[baseIndex]];
+        })
+      );
+
+      return grid;
+    }
+
+    function makeSolution(symbols) {
+      // solution[rowSet][blockIndex]
+      const latin = buildRandomLatinSquare(symbols);
+
+      // convert to blocks, where each block holds 10 positions
+      // position 0..9 corresponds to rowSet 0..9
+      const blocks = Array.from({ length: 10 }, (_, blockIndex) => {
+        return Array.from({ length: 10 }, (_, pos) => latin[pos][blockIndex]);
+      });
+
+      return {
+        symbols,
+        latin,
+        blocks
+      };
+    }
+
+    function makePuzzleFromSolution(solution, clues) {
+      const totalCells = 100;
+      clues = clampClues(clues);
+
+      // Copy blocks
+      const puzzleBlocks = solution.blocks.map(block => [...block]);
+
+      const allCoords = [];
+      for (let b = 0; b < 10; b++) {
+        for (let p = 0; p < 10; p++) {
+          allCoords.push({ b, p });
+        }
+      }
+
+      const shuffled = shuffle(allCoords);
+      const toHide = totalCells - clues;
+
+      for (let i = 0; i < toHide; i++) {
+        const { b, p } = shuffled[i];
+        puzzleBlocks[b][p] = "";
+      }
+
+      return {
+        symbols: solution.symbols,
+        blocks: puzzleBlocks
+      };
+    }
+
+    function buildLegend() {
+      const legend = document.getElementById("legend");
+      legend.innerHTML = "";
+
+      for (let i = 0; i < 10; i++) {
+        const item = document.createElement("div");
+        item.className = "legend-item";
+
+        const swatch = document.createElement("div");
+        swatch.className = "swatch";
+        swatch.style.background = BLOCK_COLORS[i];
+
+        const text = document.createElement("span");
+        text.textContent = `Block ${i + 1}`;
+
+        item.appendChild(swatch);
+        item.appendChild(text);
+        legend.appendChild(item);
+      }
+    }
+
+    function createCell(text, bg, extraClass = "") {
+      const div = document.createElement("div");
+      div.className = `cell ${extraClass}`.trim();
+      div.textContent = text || "";
+      div.style.background = bg;
+      return div;
+    }
+
+    function renderBlock(blockValues, blockIndex) {
+      const block = document.createElement("div");
+      block.className = "block";
+
+      const bg = BLOCK_COLORS[blockIndex];
+
+      // positions 0 1 2 3
+      for (let i = 0; i < 4; i++) {
+        const val = blockValues[i] || "";
+        const cell = createCell(val, bg, val ? "" : "hidden-symbol");
+        block.appendChild(cell);
+      }
+
+      // positions 4 and 5 are wide
+      for (let i = 4; i <= 5; i++) {
+        const val = blockValues[i] || "";
+        const cell = createCell(val, bg, `wide ${val ? "" : "hidden-symbol"}`);
+        block.appendChild(cell);
+      }
+
+      // positions 6 7 8 9
+      for (let i = 6; i < 10; i++) {
+        const val = blockValues[i] || "";
+        const cell = createCell(val, bg, val ? "" : "hidden-symbol");
+        block.appendChild(cell);
+      }
+
+      return block;
+    }
+
+    function renderBoard() {
+      const board = document.getElementById("board");
+      board.innerHTML = "";
+
+      const data = showingSolution ? currentSolution : currentPuzzle;
+      if (!data) return;
+
+      const row1 = document.createElement("div");
+      row1.className = "block-row";
+      [0,1,2,3].forEach(b => row1.appendChild(renderBlock(data.blocks[b], b)));
+
+      const row2 = document.createElement("div");
+      row2.className = "block-row";
+      [4,5].forEach(b => row2.appendChild(renderBlock(data.blocks[b], b)));
+
+      const row3 = document.createElement("div");
+      row3.className = "block-row";
+      [6,7,8,9].forEach(b => row3.appendChild(renderBlock(data.blocks[b], b)));
+
+      board.appendChild(row1);
+      board.appendChild(row2);
+      board.appendChild(row3);
+    }
+
+    function generateNewSolutionAndPuzzle() {
+      const symbols = getSymbols();
+      if (!symbols) return;
+
+      const clues = clampClues(parseInt(document.getElementById("cluesInput").value, 10));
+      document.getElementById("cluesInput").value = clues;
+
+      currentSolution = makeSolution(symbols);
+      currentPuzzle = makePuzzleFromSolution(currentSolution, clues);
+      showingSolution = false;
+      document.getElementById("toggleSolutionBtn").textContent = "Show Solution";
+      renderBoard();
+    }
+
+    function generateNewPuzzleSameSolution() {
+      if (!currentSolution) {
+        generateNewSolutionAndPuzzle();
+        return;
+      }
+
+      const clues = clampClues(parseInt(document.getElementById("cluesInput").value, 10));
+      document.getElementById("cluesInput").value = clues;
+
+      currentPuzzle = makePuzzleFromSolution(currentSolution, clues);
+      showingSolution = false;
+      document.getElementById("toggleSolutionBtn").textContent = "Show Solution";
+      renderBoard();
+    }
+
+    function toggleSolution() {
+      if (!currentSolution) return;
+
+      showingSolution = !showingSolution;
+      document.getElementById("toggleSolutionBtn").textContent =
+        showingSolution ? "Show Puzzle" : "Show Solution";
+      renderBoard();
+    }
+
+    document.getElementById("newSolutionBtn").addEventListener("click", generateNewSolutionAndPuzzle);
+    document.getElementById("sameSolutionBtn").addEventListener("click", generateNewPuzzleSameSolution);
+    document.getElementById("toggleSolutionBtn").addEventListener("click", toggleSolution);
+    document.getElementById("printBtn").addEventListener("click", () => window.print());
+
+    buildLegend();
+    generateNewSolutionAndPuzzle();
+  </script>
+</body>
+</html>

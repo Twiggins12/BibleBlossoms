@@ -9,14 +9,12 @@
       --bg:#f6f6fb;
       --card:#ffffff;
       --text:#222;
-      --line:#222;
-      --thin:#999;
-      --cell:56px;
+      --muted:#666;
       --block-gap:24px;
-      --row-gap:26px;
+      --row-gap:28px;
     }
 
-    *{ box-sizing:border-box; }
+    * { box-sizing:border-box; }
 
     body{
       margin:0;
@@ -26,7 +24,7 @@
     }
 
     .wrap{
-      max-width:1500px;
+      max-width:1600px;
       margin:0 auto;
       padding:24px;
     }
@@ -47,6 +45,10 @@
     p{
       margin:8px 0;
       line-height:1.45;
+    }
+
+    .muted{
+      color:var(--muted);
     }
 
     .controls{
@@ -114,9 +116,16 @@
         "b0 b1 b2 b3"
         ".  b4 b5 ."
         "b6 b7 b8 b9";
-      gap:var(--row-gap) var(--block-gap);
+      column-gap:var(--block-gap);
+      row-gap:var(--row-gap);
       align-items:start;
       justify-items:center;
+    }
+
+    .block-holder{
+      display:flex;
+      justify-content:center;
+      align-items:center;
     }
 
     .block-0{ grid-area:b0; }
@@ -130,62 +139,8 @@
     .block-8{ grid-area:b8; }
     .block-9{ grid-area:b9; }
 
-    .block{
-      display:flex;
-      flex-direction:column;
-      gap:0;
-    }
-
-    .block-row{
-      display:flex;
-      gap:0;
-      justify-content:flex-start;
-    }
-
-    .block-row.top,
-    .block-row.bottom{
-      width:calc(var(--cell) * 4);
-    }
-
-    .block-row.middle{
-      width:calc(var(--cell) * 4);
-    }
-
-    .cell{
-      width:var(--cell);
-      height:var(--cell);
-      border:1px solid var(--thin);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:28px;
-      font-weight:bold;
-      user-select:none;
-    }
-
-    .wide{
-      width:calc(var(--cell) * 2);
-    }
-
-    /* outer border for each block */
-    .block-row.top .cell{
-      border-top:3px solid var(--line);
-    }
-
-    .block-row.bottom .cell{
-      border-bottom:3px solid var(--line);
-    }
-
-    .block-row .cell:first-child{
-      border-left:3px solid var(--line);
-    }
-
-    .block-row .cell:last-child{
-      border-right:3px solid var(--line);
-    }
-
-    .hidden{
-      color:transparent;
+    svg{
+      display:block;
     }
 
     @media print{
@@ -200,8 +155,16 @@
   <div class="wrap">
     <div class="card no-print">
       <h1>10-Symbol Shaped Wordoku Generator</h1>
-      <p>Layout: 4 blocks / 2 centered blocks / 4 blocks.</p>
-      <p>Each block has 3 rows: 4 cells, 2 wide cells, 4 cells.</p>
+      <p>
+        Block shape: 4 cells / 2 wide cells / 4 cells.
+      </p>
+      <p>
+        Puzzle layout: 4 blocks on top, 2 centered in the middle, 4 on bottom.
+      </p>
+      <p class="muted">
+        Each block contains all 10 symbols once. The generator also avoids repeats
+        across the 10 matching positions from block to block.
+      </p>
 
       <div class="controls">
         <label>
@@ -243,6 +206,13 @@
       "#bee1e6",
       "#e2ece9"
     ];
+
+    const CELL = 54;
+    const WIDE = CELL * 2;
+    const BLOCK_W = CELL * 4;
+    const BLOCK_H = CELL * 3;
+    const STROKE = 2;
+    const OUTER = 4;
 
     let currentSolution = null;
     let currentPuzzle = null;
@@ -294,7 +264,6 @@
     function makeSolution(symbols){
       const latin = buildLatin(symbols);
 
-      // 10 blocks, each with 10 positions
       const blocks = Array.from({length:10}, (_, blockIndex) =>
         Array.from({length:10}, (_, posIndex) => latin[posIndex][blockIndex])
       );
@@ -312,9 +281,8 @@
         }
       }
 
-      const total = 100;
-      const hideCount = total - clues;
       const shuffled = shuffle(coords);
+      const hideCount = 100 - clues;
 
       for(let i = 0; i < hideCount; i++){
         const {b, p} = shuffled[i];
@@ -345,42 +313,77 @@
       });
     }
 
-    function makeCell(value, color, extraClass = ""){
-      const div = document.createElement("div");
-      div.className = `cell ${extraClass}`.trim();
-      div.style.background = color;
-      div.textContent = value || "";
-      if(!value) div.classList.add("hidden");
-      return div;
+    function svgEl(name, attrs = {}){
+      const el = document.createElementNS("http://www.w3.org/2000/svg", name);
+      for(const [k, v] of Object.entries(attrs)){
+        el.setAttribute(k, v);
+      }
+      return el;
+    }
+
+    function addRect(svg, x, y, w, h, fill, strokeWidth = STROKE){
+      const r = svgEl("rect", {
+        x, y, width:w, height:h,
+        fill,
+        stroke:"#222",
+        "stroke-width":strokeWidth
+      });
+      svg.appendChild(r);
+    }
+
+    function addText(svg, x, y, text, hidden = false){
+      const t = svgEl("text", {
+        x, y,
+        "text-anchor":"middle",
+        "dominant-baseline":"middle",
+        "font-family":"Arial, Helvetica, sans-serif",
+        "font-size":"28",
+        "font-weight":"700",
+        fill: hidden ? "transparent" : "#222"
+      });
+      t.textContent = text || "";
+      svg.appendChild(t);
     }
 
     function renderBlock(values, blockIndex){
       const color = COLORS[blockIndex];
-      const block = document.createElement("div");
-      block.className = `block block-${blockIndex}`;
+      const holder = document.createElement("div");
+      holder.className = `block-holder block-${blockIndex}`;
 
-      const top = document.createElement("div");
-      top.className = "block-row top";
+      const svg = svgEl("svg", {
+        width: BLOCK_W,
+        height: BLOCK_H,
+        viewBox: `0 0 ${BLOCK_W} ${BLOCK_H}`
+      });
+
+      // outer border
+      addRect(svg, 0, 0, BLOCK_W, BLOCK_H, "white", OUTER);
+
+      // top row: positions 0,1,2,3
       for(let i = 0; i < 4; i++){
-        top.appendChild(makeCell(values[i], color));
+        const x = i * CELL;
+        const y = 0;
+        addRect(svg, x, y, CELL, CELL, color);
+        addText(svg, x + CELL / 2, y + CELL / 2, values[i], !values[i]);
       }
 
-      const middle = document.createElement("div");
-      middle.className = "block-row middle";
-      middle.appendChild(makeCell(values[4], color, "wide"));
-      middle.appendChild(makeCell(values[5], color, "wide"));
+      // middle row: positions 4,5 as 2 wide cells
+      addRect(svg, 0, CELL, WIDE, CELL, color);
+      addText(svg, WIDE / 2, CELL + CELL / 2, values[4], !values[4]);
 
-      const bottom = document.createElement("div");
-      bottom.className = "block-row bottom";
-      for(let i = 6; i < 10; i++){
-        bottom.appendChild(makeCell(values[i], color));
+      addRect(svg, WIDE, CELL, WIDE, CELL, color);
+      addText(svg, WIDE + WIDE / 2, CELL + CELL / 2, values[5], !values[5]);
+
+      // bottom row: positions 6,7,8,9
+      for(let i = 0; i < 4; i++){
+        const x = i * CELL;
+        const y = CELL * 2;
+        addRect(svg, x, y, CELL, CELL, color);
+        addText(svg, x + CELL / 2, y + CELL / 2, values[i + 6], !values[i + 6]);
       }
 
-      block.appendChild(top);
-      block.appendChild(middle);
-      block.appendChild(bottom);
-
-      return block;
+      holder.appendChild(svg);
+      return holder;
     }
 
     function render(){

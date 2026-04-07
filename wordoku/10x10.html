@@ -6,16 +6,14 @@
   <title>10-Symbol Shaped Wordoku Generator</title>
   <style>
     :root{
-      --bg:#f7f7fb;
+      --bg:#f6f6fb;
       --card:#ffffff;
       --text:#222;
-      --muted:#666;
       --line:#222;
-      --thin:#b9b9c5;
-
-      --cell:58px;
-      --block-gap:20px;
-      --row-gap:20px;
+      --thin:#999;
+      --cell:56px;
+      --block-gap:24px;
+      --row-gap:26px;
     }
 
     *{ box-sizing:border-box; }
@@ -28,7 +26,7 @@
     }
 
     .wrap{
-      max-width:1400px;
+      max-width:1500px;
       margin:0 auto;
       padding:24px;
     }
@@ -47,12 +45,8 @@
     }
 
     p{
-      line-height:1.45;
       margin:8px 0;
-    }
-
-    .muted{
-      color:var(--muted);
+      line-height:1.45;
     }
 
     .controls{
@@ -78,70 +72,6 @@
 
     .controls button:hover{
       background:#e8e8ef;
-    }
-
-    .board-wrap{
-      overflow:auto;
-      padding:10px 0;
-    }
-
-    /* Main layout:
-       4 blocks on top
-       2 blocks in middle centered under top blocks 2 and 3
-       4 blocks on bottom
-    */
-    .puzzle{
-      width:max-content;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:
-        auto auto auto auto;
-      grid-template-areas:
-        "b0 b1 b2 b3"
-        ".  b4 b5 ."
-        "b6 b7 b8 b9";
-      column-gap:var(--block-gap);
-      row-gap:var(--row-gap);
-      align-items:start;
-      justify-items:center;
-    }
-
-    .block{
-      width:calc(var(--cell) * 4);
-      display:grid;
-      grid-template-columns:repeat(4, var(--cell));
-      grid-template-rows:var(--cell) var(--cell) var(--cell);
-      border:3px solid var(--line);
-      background:#fff;
-    }
-
-    .block-0{ grid-area:b0; }
-    .block-1{ grid-area:b1; }
-    .block-2{ grid-area:b2; }
-    .block-3{ grid-area:b3; }
-    .block-4{ grid-area:b4; }
-    .block-5{ grid-area:b5; }
-    .block-6{ grid-area:b6; }
-    .block-7{ grid-area:b7; }
-    .block-8{ grid-area:b8; }
-    .block-9{ grid-area:b9; }
-
-    .cell{
-      border:1px solid var(--thin);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:28px;
-      font-weight:bold;
-      user-select:none;
-    }
-
-    .wide{
-      grid-column:span 2;
-    }
-
-    .hidden{
-      color:transparent;
     }
 
     .legend{
@@ -170,6 +100,94 @@
       flex:none;
     }
 
+    .board-wrap{
+      overflow:auto;
+      padding:10px 0;
+    }
+
+    .puzzle{
+      width:max-content;
+      margin:0 auto;
+      display:grid;
+      grid-template-columns:repeat(4, auto);
+      grid-template-areas:
+        "b0 b1 b2 b3"
+        ".  b4 b5 ."
+        "b6 b7 b8 b9";
+      gap:var(--row-gap) var(--block-gap);
+      align-items:start;
+      justify-items:center;
+    }
+
+    .block-0{ grid-area:b0; }
+    .block-1{ grid-area:b1; }
+    .block-2{ grid-area:b2; }
+    .block-3{ grid-area:b3; }
+    .block-4{ grid-area:b4; }
+    .block-5{ grid-area:b5; }
+    .block-6{ grid-area:b6; }
+    .block-7{ grid-area:b7; }
+    .block-8{ grid-area:b8; }
+    .block-9{ grid-area:b9; }
+
+    .block{
+      display:flex;
+      flex-direction:column;
+      gap:0;
+    }
+
+    .block-row{
+      display:flex;
+      gap:0;
+      justify-content:flex-start;
+    }
+
+    .block-row.top,
+    .block-row.bottom{
+      width:calc(var(--cell) * 4);
+    }
+
+    .block-row.middle{
+      width:calc(var(--cell) * 4);
+    }
+
+    .cell{
+      width:var(--cell);
+      height:var(--cell);
+      border:1px solid var(--thin);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:28px;
+      font-weight:bold;
+      user-select:none;
+    }
+
+    .wide{
+      width:calc(var(--cell) * 2);
+    }
+
+    /* outer border for each block */
+    .block-row.top .cell{
+      border-top:3px solid var(--line);
+    }
+
+    .block-row.bottom .cell{
+      border-bottom:3px solid var(--line);
+    }
+
+    .block-row .cell:first-child{
+      border-left:3px solid var(--line);
+    }
+
+    .block-row .cell:last-child{
+      border-right:3px solid var(--line);
+    }
+
+    .hidden{
+      color:transparent;
+    }
+
     @media print{
       body{ background:#fff; }
       .no-print{ display:none !important; }
@@ -182,14 +200,8 @@
   <div class="wrap">
     <div class="card no-print">
       <h1>10-Symbol Shaped Wordoku Generator</h1>
-      <p>
-        Enter exactly 10 different symbols. This makes a puzzle with
-        10 colored blocks arranged as 4 / 2 / 4.
-      </p>
-      <p class="muted">
-        Each block contains all 10 symbols once. The row rule is enforced across
-        matching positions in all 10 blocks.
-      </p>
+      <p>Layout: 4 blocks / 2 centered blocks / 4 blocks.</p>
+      <p>Each block has 3 rows: 4 cells, 2 wide cells, 4 cells.</p>
 
       <div class="controls">
         <label>
@@ -220,16 +232,16 @@
 
   <script>
     const COLORS = [
-      "#fff3b0", // yellow
-      "#c8f7c5", // green
-      "#ffd6a5", // peach
-      "#d0ebff", // blue
-      "#f8c8dc", // pink
-      "#e9d5ff", // lavender
-      "#c7f9cc", // mint
-      "#fde2e4", // rose
-      "#bee1e6", // aqua
-      "#e2ece9"  // sage
+      "#fff3b0",
+      "#c8f7c5",
+      "#ffd6a5",
+      "#d0ebff",
+      "#f8c8dc",
+      "#e9d5ff",
+      "#c7f9cc",
+      "#fde2e4",
+      "#bee1e6",
+      "#e2ece9"
     ];
 
     let currentSolution = null;
@@ -253,12 +265,10 @@
         alert("Please enter exactly 10 symbols.");
         return null;
       }
-
       if(new Set(chars).size !== 10){
         alert("All 10 symbols must be different.");
         return null;
       }
-
       return chars;
     }
 
@@ -267,29 +277,24 @@
       return Math.max(10, Math.min(100, n));
     }
 
-    // Build a 10x10 Latin square with random row/column/symbol permutations
-    // Rows = local positions 0..9 inside a block
-    // Cols = block index 0..9
     function buildLatin(symbols){
       const n = 10;
       const rowPerm = shuffle([...Array(n).keys()]);
       const colPerm = shuffle([...Array(n).keys()]);
       const symPerm = shuffle([...Array(n).keys()]);
 
-      const grid = Array.from({length:n}, (_, r) =>
+      return Array.from({length:n}, (_, r) =>
         Array.from({length:n}, (_, c) => {
           const base = (rowPerm[r] + colPerm[c]) % n;
           return symbols[symPerm[base]];
         })
       );
-
-      return grid;
     }
 
     function makeSolution(symbols){
       const latin = buildLatin(symbols);
 
-      // Convert into 10 blocks, each block has 10 positions
+      // 10 blocks, each with 10 positions
       const blocks = Array.from({length:10}, (_, blockIndex) =>
         Array.from({length:10}, (_, posIndex) => latin[posIndex][blockIndex])
       );
@@ -299,17 +304,18 @@
 
     function makePuzzle(solution, clues){
       const blocks = solution.blocks.map(block => [...block]);
-      const total = 100;
-      const hideCount = total - clues;
-
       const coords = [];
+
       for(let b = 0; b < 10; b++){
         for(let p = 0; p < 10; p++){
           coords.push({b, p});
         }
       }
 
+      const total = 100;
+      const hideCount = total - clues;
       const shuffled = shuffle(coords);
+
       for(let i = 0; i < hideCount; i++){
         const {b, p} = shuffled[i];
         blocks[b][p] = "";
@@ -339,46 +345,53 @@
       });
     }
 
-    function cell(text, bg, extraClass = ""){
+    function makeCell(value, color, extraClass = ""){
       const div = document.createElement("div");
       div.className = `cell ${extraClass}`.trim();
-      div.style.background = bg;
-      div.textContent = text || "";
-      if(!text) div.classList.add("hidden");
+      div.style.background = color;
+      div.textContent = value || "";
+      if(!value) div.classList.add("hidden");
       return div;
     }
 
     function renderBlock(values, blockIndex){
-      const bg = COLORS[blockIndex];
+      const color = COLORS[blockIndex];
       const block = document.createElement("div");
       block.className = `block block-${blockIndex}`;
 
-      // row 1: 4 cells (positions 0..3)
+      const top = document.createElement("div");
+      top.className = "block-row top";
       for(let i = 0; i < 4; i++){
-        block.appendChild(cell(values[i], bg));
+        top.appendChild(makeCell(values[i], color));
       }
 
-      // row 2: 2 wide cells (positions 4..5)
-      block.appendChild(cell(values[4], bg, "wide"));
-      block.appendChild(cell(values[5], bg, "wide"));
+      const middle = document.createElement("div");
+      middle.className = "block-row middle";
+      middle.appendChild(makeCell(values[4], color, "wide"));
+      middle.appendChild(makeCell(values[5], color, "wide"));
 
-      // row 3: 4 cells (positions 6..9)
+      const bottom = document.createElement("div");
+      bottom.className = "block-row bottom";
       for(let i = 6; i < 10; i++){
-        block.appendChild(cell(values[i], bg));
+        bottom.appendChild(makeCell(values[i], color));
       }
+
+      block.appendChild(top);
+      block.appendChild(middle);
+      block.appendChild(bottom);
 
       return block;
     }
 
     function render(){
-      const container = document.getElementById("puzzle");
-      container.innerHTML = "";
+      const puzzle = document.getElementById("puzzle");
+      puzzle.innerHTML = "";
 
       const data = showingSolution ? currentSolution : currentPuzzle;
       if(!data) return;
 
       for(let b = 0; b < 10; b++){
-        container.appendChild(renderBlock(data.blocks[b], b));
+        puzzle.appendChild(renderBlock(data.blocks[b], b));
       }
     }
 

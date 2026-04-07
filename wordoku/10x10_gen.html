@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>10x10 Shaped Wordoku V2</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 20px;
+      color: #222;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .controls {
+      max-width: 1200px;
+      margin: 0 auto 20px auto;
+      background: white;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .controls input,
+    .controls button {
+      margin: 6px;
+      padding: 10px 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #bbb;
+    }
+
+    .controls button {
+      cursor: pointer;
+      background: #f2f2f2;
+    }
+
+    .controls button:hover {
+      background: #e8e8e8;
+    }
+
+    .board {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .block-row-layout {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .block {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      border: 4px solid #222;
+      background: white;
+    }
+
+    .block-row {
+      display: flex;
+    }
+
+    .cell {
+      width: 58px;
+      height: 58px;
+      border: 1px solid #666;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      font-weight: bold;
+      box-sizing: border-box;
+    }
+
+    .wide-cell {
+      width: 116px;
+      height: 58px;
+      border: 1px solid #666;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      font-weight: bold;
+      box-sizing: border-box;
+    }
+
+    .hidden {
+      color: transparent;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+
+    .swatch {
+      width: 18px;
+      height: 18px;
+      border: 1px solid rgba(0,0,0,0.25);
+      border-radius: 4px;
+      flex: none;
+    }
+
+    @media print {
+      .controls {
+        display: none;
+      }
+      body {
+        background: white;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>10x10 Shaped Wordoku V2</h1>
+
+  <div class="controls">
+    <div>
+      <label>
+        Symbols:
+        <input id="symbolsInput" type="text" value="ABCDEFGHIJ" size="14">
+      </label>
+
+      <label>
+        Clues:
+        <input id="cluesInput" type="number" min="10" max="100" value="42">
+      </label>
+    </div>
+
+    <div>
+      <button id="newBtn">New Solution + Puzzle</button>
+      <button id="sameBtn">New Puzzle Same Solution</button>
+      <button id="toggleBtn">Show Solution</button>
+      <button id="printBtn">Print</button>
+    </div>
+
+    <div class="legend" id="legend"></div>
+  </div>
+
+  <div class="board" id="board"></div>
+
+  <script>
+    const COLORS = [
+      "#fff3b0",
+      "#c8f7c5",
+      "#ffd6a5",
+      "#d0ebff",
+      "#f8c8dc",
+      "#e9d5ff",
+      "#c7f9cc",
+      "#fde2e4",
+      "#bee1e6",
+      "#e2ece9"
+    ];
+
+    let currentSolution = null;
+    let currentPuzzle = null;
+    let showingSolution = false;
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function getSymbols() {
+      const raw = document.getElementById("symbolsInput").value.trim();
+      const chars = [...raw];
+
+      if (chars.length !== 10) {
+        alert("Please enter exactly 10 symbols.");
+        return null;
+      }
+
+      if (new Set(chars).size !== 10) {
+        alert("All 10 symbols must be different.");
+        return null;
+      }
+
+      return chars;
+    }
+
+    function clampClues(n) {
+      if (Number.isNaN(n)) return 42;
+      return Math.max(10, Math.min(100, n));
+    }
+
+    function buildLatin(symbols) {
+      const n = 10;
+      const rowPerm = shuffle([...Array(n).keys()]);
+      const colPerm = shuffle([...Array(n).keys()]);
+      const symPerm = shuffle([...Array(n).keys()]);
+
+      return Array.from({ length: n }, (_, r) =>
+        Array.from({ length: n }, (_, c) => {
+          const base = (rowPerm[r] + colPerm[c]) % n;
+          return symbols[symPerm[base]];
+        })
+      );
+    }
+
+    function makeSolution(symbols) {
+      const latin = buildLatin(symbols);
+
+      const blocks = Array.from({ length: 10 }, (_, blockIndex) =>
+        Array.from({ length: 10 }, (_, posIndex) => latin[posIndex][blockIndex])
+      );
+
+      return { symbols, blocks };
+    }
+
+    function makePuzzle(solution, clues) {
+      const blocks = solution.blocks.map(block => [...block]);
+      const coords = [];
+
+      for (let b = 0; b < 10; b++) {
+        for (let p = 0; p < 10; p++) {
+          coords.push({ b, p });
+        }
+      }
+
+      const shuffled = shuffle(coords);
+      const hideCount = 100 - clues;
+
+      for (let i = 0; i < hideCount; i++) {
+        const { b, p } = shuffled[i];
+        blocks[b][p] = "";
+      }
+
+      return { symbols: solution.symbols, blocks };
+    }
+
+    function makeLegend() {
+      const legend = document.getElementById("legend");
+      legend.innerHTML = "";
+
+      COLORS.forEach((color, i) => {
+        const item = document.createElement("div");
+        item.className = "legend-item";
+
+        const swatch = document.createElement("div");
+        swatch.className = "swatch";
+        swatch.style.background = color;
+
+        const text = document.createElement("span");
+        text.textContent = `Block ${i + 1}`;
+
+        item.appendChild(swatch);
+        item.appendChild(text);
+        legend.appendChild(item);
+      });
+    }
+
+    function makeCell(value, color, wide = false) {
+      const div = document.createElement("div");
+      div.className = wide ? "wide-cell" : "cell";
+      div.style.background = color;
+      div.textContent = value || "";
+      if (!value) div.classList.add("hidden");
+      return div;
+    }
+
+    function renderBlock(values, blockIndex) {
+      const color = COLORS[blockIndex];
+
+      const block = document.createElement("div");
+      block.className = "block";
+
+      const top = document.createElement("div");
+      top.className = "block-row";
+      for (let i = 0; i < 4; i++) {
+        top.appendChild(makeCell(values[i], color, false));
+      }
+
+      const middle = document.createElement("div");
+      middle.className = "block-row";
+      middle.appendChild(makeCell(values[4], color, true));
+      middle.appendChild(makeCell(values[5], color, true));
+
+      const bottom = document.createElement("div");
+      bottom.className = "block-row";
+      for (let i = 6; i < 10; i++) {
+        bottom.appendChild(makeCell(values[i], color, false));
+      }
+
+      block.appendChild(top);
+      block.appendChild(middle);
+      block.appendChild(bottom);
+
+      return block;
+    }
+
+    function render() {
+      const board = document.getElementById("board");
+      board.innerHTML = "";
+
+      const data = showingSolution ? currentSolution : currentPuzzle;
+      if (!data) return;
+
+      const topRow = document.createElement("div");
+      topRow.className = "block-row-layout";
+      [0, 1, 2, 3].forEach(i => topRow.appendChild(renderBlock(data.blocks[i], i)));
+
+      const middleRow = document.createElement("div");
+      middleRow.className = "block-row-layout";
+      [4, 5].forEach(i => middleRow.appendChild(renderBlock(data.blocks[i], i)));
+
+      const bottomRow = document.createElement("div");
+      bottomRow.className = "block-row-layout";
+      [6, 7, 8, 9].forEach(i => bottomRow.appendChild(renderBlock(data.blocks[i], i)));
+
+      board.appendChild(topRow);
+      board.appendChild(middleRow);
+      board.appendChild(bottomRow);
+    }
+
+    function newSolutionAndPuzzle() {
+      const symbols = getSymbols();
+      if (!symbols) return;
+
+      const clues = clampClues(parseInt(document.getElementById("cluesInput").value, 10));
+      document.getElementById("cluesInput").value = clues;
+
+      currentSolution = makeSolution(symbols);
+      currentPuzzle = makePuzzle(currentSolution, clues);
+      showingSolution = false;
+      document.getElementById("toggleBtn").textContent = "Show Solution";
+      render();
+    }
+
+    function newPuzzleSameSolution() {
+      if (!currentSolution) {
+        newSolutionAndPuzzle();
+        return;
+      }
+
+      const clues = clampClues(parseInt(document.getElementById("cluesInput").value, 10));
+      document.getElementById("cluesInput").value = clues;
+
+      currentPuzzle = makePuzzle(currentSolution, clues);
+      showingSolution = false;
+      document.getElementById("toggleBtn").textContent = "Show Solution";
+      render();
+    }
+
+    function toggleSolution() {
+      if (!currentSolution) return;
+
+      showingSolution = !showingSolution;
+      document.getElementById("toggleBtn").textContent =
+        showingSolution ? "Show Puzzle" : "Show Solution";
+      render();
+    }
+
+    document.getElementById("newBtn").addEventListener("click", newSolutionAndPuzzle);
+    document.getElementById("sameBtn").addEventListener("click", newPuzzleSameSolution);
+    document.getElementById("toggleBtn").addEventListener("click", toggleSolution);
+    document.getElementById("printBtn").addEventListener("click", () => window.print());
+
+    makeLegend();
+    newSolutionAndPuzzle();
+  </script>
+</body>
+</html>

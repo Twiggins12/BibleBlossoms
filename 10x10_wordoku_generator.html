@@ -3,71 +3,390 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>10x10 Word Sudoku Generator</title>
+  <title>10x10 Shaped Wordoku V2</title>
   <style>
-    :root{--bg:#f7f7fb;--card:#fff;--text:#222;--muted:#666;--line:#222;--thin:#bbb;--accent:#3b5bdb;--lineHi:#fff3bf;--cellHi:#dbe4ff;--bothHi:#ffd8a8}
-    *{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
-    .wrap{max-width:1200px;margin:0 auto;padding:24px}.card{background:var(--card);border-radius:14px;padding:18px;box-shadow:0 4px 18px rgba(0,0,0,.08);margin-bottom:18px}
-    h1{margin:0 0 8px;font-size:2rem} p{line-height:1.45}.controls,.button-row,.grids{display:grid;gap:14px}.controls{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));align-items:end}.button-row{grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:14px}.grids{grid-template-columns:repeat(auto-fit,minmax(420px,1fr));gap:18px}
-    label{display:block;font-weight:700;margin-bottom:6px} input,select,button{width:100%;padding:10px 12px;font-size:1rem;border-radius:10px;border:1px solid #cfcfe3} button{cursor:pointer;border:none;background:var(--accent);color:#fff;font-weight:700} button.secondary{background:#5c677d} button.print{background:#2b8a3e}
-    .status{margin-top:12px;min-height:24px;font-weight:700}.status.error{color:#c92a2a}.status.ok{color:#2b8a3e}.grid-title{font-size:1.15rem;font-weight:700;margin-bottom:10px}
-    table.sudoku{border-collapse:collapse;table-layout:fixed;width:100%;max-width:520px;background:#fff} table.sudoku td{width:10%;aspect-ratio:1/1;text-align:center;vertical-align:middle;border:1px solid var(--thin);font-size:1.05rem;font-weight:700;padding:0}
-    td.thick-right{border-right:3px solid var(--line)} td.thick-left{border-left:3px solid var(--line)} td.thick-top{border-top:3px solid var(--line)} td.thick-bottom{border-bottom:3px solid var(--line)} td.highlight-line{background:var(--lineHi)} td.highlight-cell{background:var(--cellHi)} td.highlight-both{background:var(--bothHi)}
-    .note{color:var(--muted);font-size:.95rem;margin-top:10px}.legend{font-family:Consolas,Monaco,monospace;white-space:pre-wrap;background:#f1f3f5;border-radius:10px;padding:12px}
-    @media print{body{background:#fff}.no-print{display:none!important}.wrap{max-width:none;padding:0}.card{box-shadow:none;border:none;padding:0;margin-bottom:16px}.grids{grid-template-columns:1fr 1fr;gap:22px}table.sudoku{max-width:none;width:100%}table.sudoku td{font-size:14pt}}
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      margin: 20px;
+      color: #222;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .controls {
+      max-width: 1200px;
+      margin: 0 auto 20px auto;
+      background: white;
+      padding: 16px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    .controls input,
+    .controls button {
+      margin: 6px;
+      padding: 10px 12px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #bbb;
+    }
+
+    .controls button {
+      cursor: pointer;
+      background: #f2f2f2;
+    }
+
+    .controls button:hover {
+      background: #e8e8e8;
+    }
+
+    .board {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .block-row-layout {
+      display: flex;
+      gap: 28px;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .block {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      border: 4px solid #222;
+      background: white;
+    }
+
+    .block-row {
+      display: flex;
+    }
+
+    .cell {
+      width: 58px;
+      height: 58px;
+      border: 1px solid #666;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      font-weight: bold;
+      box-sizing: border-box;
+    }
+
+    .wide-cell {
+      width: 116px;
+      height: 58px;
+      border: 1px solid #666;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 28px;
+      font-weight: bold;
+      box-sizing: border-box;
+    }
+
+    .hidden {
+      color: transparent;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 14px;
+    }
+
+    .swatch {
+      width: 18px;
+      height: 18px;
+      border: 1px solid rgba(0,0,0,0.25);
+      border-radius: 4px;
+      flex: none;
+    }
+
+    @media print {
+      .controls {
+        display: none;
+      }
+      body {
+        background: white;
+      }
+    }
   </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="card no-print">
-    <h1>10×10 Word Sudoku Generator</h1>
-    <p>Enter 10 unique characters. You can reveal the word as a highlighted row or column, as scattered highlighted cells that spell the word left to right by column, or both at once.</p>
-    <div class="controls">
-      <div><label for="wordInput">10 unique characters</label><input id="wordInput" type="text" maxlength="10" placeholder="A1B2C3D4E5" value="KINGDOMS1" /></div>
-      <div><label for="revealStyle">Reveal style</label><select id="revealStyle"><option value="any" selected>Random row, column, or scatter</option><option value="row">Random highlighted row</option><option value="col">Random highlighted column</option><option value="scatter">Scattered highlighted cells</option></select></div>
-      <div><label for="clueCount">How many clues to leave</label><select id="clueCount"><option value="56">56 clues (easy)</option><option value="50" selected>50 clues (medium)</option><option value="44">44 clues (harder)</option><option value="38">38 clues (hard)</option></select></div>
+  <h1>10x10 Shaped Wordoku V2</h1>
+
+  <div class="controls">
+    <div>
+      <label>
+        Symbols:
+        <input id="symbolsInput" type="text" value="ABCDEFGHIJ" size="14">
+      </label>
+
+      <label>
+        Clues:
+        <input id="cluesInput" type="number" min="10" max="100" value="42">
+      </label>
     </div>
-    <div class="button-row">
-      <button id="generateBtn" type="button">Generate Solution + Puzzle</button>
-      <button id="newPuzzleBtn" class="secondary" type="button">Make New Puzzle From Same Solution</button>
-      <button id="printBtn" class="print" type="button">Print</button>
+
+    <div>
+      <button id="newBtn">New Solution + Puzzle</button>
+      <button id="sameBtn">New Puzzle Same Solution</button>
+      <button id="toggleBtn">Show Solution</button>
+      <button id="printBtn">Print</button>
     </div>
-    <div id="status" class="status"></div>
+
+    <div class="legend" id="legend"></div>
   </div>
-  <div class="card"><div class="grids"><div><div class="grid-title">Puzzle</div><div id="puzzleGrid"></div><div class="note">Blank cells are for the solver to fill in.</div></div><div><div class="grid-title">Solution</div><div id="solutionGrid"></div><div class="note">Yellow = highlighted reveal.</div></div></div></div>
-  <div class="card"><div class="grid-title">Character Key</div><div id="legend" class="legend"></div><div id="placementNote" class="note" style="margin-top:10px;"></div></div>
-</div>
-<script>
-(function(){
-const SIZE=10,BOX_ROWS=5,BOX_COLS=2;
-let currentSolution=null,currentPuzzle=null,currentSymbols=null,currentReveal=null;
-const $=id=>document.getElementById(id);
-const wordInput=$("wordInput"), clueCount=$("clueCount"), revealStyle=$("revealStyle"), statusEl=$("status"), puzzleGridEl=$("puzzleGrid"), solutionGridEl=$("solutionGrid"), legendEl=$("legend"), placementNoteEl=$("placementNote");
-function setStatus(m,ok){statusEl.textContent=m;statusEl.className='status '+(ok?'ok':'error')}
-function cleanEntry(raw){return raw.toUpperCase().replace(/[^A-Z0-9]/g,'')}
-function validateEntry(text){if(text.length!==SIZE)return 'Your entry must be exactly 10 characters.'; if(new Set(text.split('')).size!==SIZE)return 'All 10 characters must be different.'; return null}
-function makeEmptyGrid(){return Array.from({length:SIZE},()=>Array(SIZE).fill(null))}
-function cloneGrid(g){return g.map(r=>r.slice())}
-function shuffle(a){const arr=a.slice();for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]]}return arr}
-function isValid(grid,row,col,val){for(let c=0;c<SIZE;c++)if(c!==col&&grid[row][c]===val)return false; for(let r=0;r<SIZE;r++)if(r!==row&&grid[r][col]===val)return false; const sr=Math.floor(row/BOX_ROWS)*BOX_ROWS, sc=Math.floor(col/BOX_COLS)*BOX_COLS; for(let r=sr;r<sr+BOX_ROWS;r++)for(let c=sc;c<sc+BOX_COLS;c++)if((r!==row||c!==col)&&grid[r][c]===val)return false; return true}
-function getChoices(grid,row,col){const out=[];for(let v=0;v<SIZE;v++)if(isValid(grid,row,col,v))out.push(v);return out}
-function findBestEmptyCell(grid){let best=null,bestChoices=null;for(let r=0;r<SIZE;r++)for(let c=0;c<SIZE;c++)if(grid[r][c]===null){const choices=getChoices(grid,r,c);if(!choices.length)return {row:r,col:c,choices:[]}; if(best===null||choices.length<bestChoices.length){best={row:r,col:c};bestChoices=choices;if(choices.length===1)return {row:r,col:c,choices}}} return best?{row:best.row,col:best.col,choices:bestChoices}:null}
-function fillGrid(grid){const next=findBestEmptyCell(grid); if(next===null)return true; if(!next.choices.length)return false; for(const v of shuffle(next.choices)){grid[next.row][next.col]=v; if(fillGrid(grid))return true; grid[next.row][next.col]=null} return false}
-function countSolutions(grid,limit){const work=cloneGrid(grid);let count=0; function solve(){if(count>=limit)return; const next=findBestEmptyCell(work); if(next===null){count++;return} if(!next.choices.length)return; for(const v of next.choices){work[next.row][next.col]=v; solve(); work[next.row][next.col]=null; if(count>=limit)return}} solve(); return count}
-function placeFixed(grid,r,c,v){if(grid[r][c]!==null && grid[r][c]!==v)return false; grid[r][c]=v; return isValid(grid,r,c,v)}
-function randomPermutation(n){return shuffle([...Array(n).keys()])}
-function buildReveal(style){const reveal={style,lineType:null,lineIndex:null,scatterRows:null}; let mode=style; if(style==='any'){mode=['row','col','scatter'][Math.floor(Math.random()*3)]} if(mode==='row'){reveal.lineType='row'; reveal.lineIndex=Math.floor(Math.random()*SIZE)} else if(mode==='col'){reveal.lineType='col'; reveal.lineIndex=Math.floor(Math.random()*SIZE)} else if(mode==='scatter'){reveal.scatterRows=randomPermutation(SIZE)} return reveal}
-function applyReveal(grid,reveal){if(reveal.lineType==='row'){for(let c=0;c<SIZE;c++)if(!placeFixed(grid,reveal.lineIndex,c,c))return false} else if(reveal.lineType==='col'){for(let r=0;r<SIZE;r++)if(!placeFixed(grid,r,reveal.lineIndex,r))return false} if(reveal.scatterRows){for(let c=0;c<SIZE;c++){if(!placeFixed(grid,reveal.scatterRows[c],c,c))return false}} return true}
-function generateSolution(){const style=revealStyle.value; for(let attempt=0;attempt<220;attempt++){const grid=makeEmptyGrid(); const reveal=buildReveal(style); if(!applyReveal(grid,reveal))continue; if(fillGrid(grid))return {grid,reveal}} throw new Error('Could not generate a solution. Please try again.')}
-function makePuzzleFromSolution(solution,cluesToLeave){const puzzle=cloneGrid(solution),cells=[]; for(let r=0;r<SIZE;r++)for(let c=0;c<SIZE;c++)cells.push([r,c]); const targetBlanks=SIZE*SIZE-cluesToLeave; let blanksMade=0; for(const [r,c] of shuffle(cells)){ if(blanksMade>=targetBlanks)break; const saved=puzzle[r][c]; puzzle[r][c]=null; if(countSolutions(puzzle,2)===1) blanksMade++; else puzzle[r][c]=saved } return puzzle}
-function getCellClassList(r,c){const classes=[]; if(c===0)classes.push('thick-left'); if(c===SIZE-1)classes.push('thick-right'); if(r===0)classes.push('thick-top'); if(r===SIZE-1)classes.push('thick-bottom'); if((c+1)%BOX_COLS===0)classes.push('thick-right'); if(c%BOX_COLS===0)classes.push('thick-left'); if((r+1)%BOX_ROWS===0)classes.push('thick-bottom'); if(r%BOX_ROWS===0)classes.push('thick-top'); return classes}
-function highlightClass(r,c){if(!currentReveal)return ''; const line=(currentReveal.lineType==='row'&&r===currentReveal.lineIndex)||(currentReveal.lineType==='col'&&c===currentReveal.lineIndex); const cell=currentReveal.scatterRows&&currentReveal.scatterRows[c]===r; if(line||cell)return 'highlight-line'; return ''}
-function renderGrid(container,grid,symbols,showHighlights){const table=document.createElement('table'); table.className='sudoku'; for(let r=0;r<SIZE;r++){const tr=document.createElement('tr'); for(let c=0;c<SIZE;c++){const td=document.createElement('td'); const classes=getCellClassList(r,c); if(showHighlights){const hc=highlightClass(r,c); if(hc)classes.push(hc)} td.className=classes.join(' '); td.textContent=grid[r][c]===null?'':symbols[grid[r][c]]; tr.appendChild(td)} table.appendChild(tr)} container.innerHTML=''; container.appendChild(table)}
-function renderLegend(symbols){legendEl.textContent=symbols.map((ch,i)=>(i+1)+' = '+ch).join('\\n'); const parts=[]; if(currentReveal){ if(currentReveal.lineType) parts.push((currentReveal.lineType==='row'?'Reveal: row ':'Reveal: column ')+(currentReveal.lineIndex+1)); if(currentReveal.scatterRows) parts.push('Reveal: scattered, one highlighted cell in each column, spelling the word left to right') } placementNoteEl.textContent=parts.join(' | ')}
-function generateAll(){const entry=cleanEntry(wordInput.value); wordInput.value=entry; const error=validateEntry(entry); if(error){setStatus(error,false); return} try{currentSymbols=entry.split(''); const generated=generateSolution(); currentSolution=generated.grid; currentReveal=generated.reveal; currentPuzzle=makePuzzleFromSolution(currentSolution,Number(clueCount.value)); renderGrid(solutionGridEl,currentSolution,currentSymbols,true); renderGrid(puzzleGridEl,currentPuzzle,currentSymbols,false); renderLegend(currentSymbols); setStatus('Generated a new solution and puzzle.',true)}catch(err){setStatus(err&&err.message?err.message:'Something went wrong.',false)}}
-function remakePuzzle(){if(!currentSolution||!currentSymbols){setStatus('Generate a solution first.',false);return} currentPuzzle=makePuzzleFromSolution(currentSolution,Number(clueCount.value)); renderGrid(puzzleGridEl,currentPuzzle,currentSymbols,false); setStatus('Made a new puzzle from the same solution.',true)}
-$('generateBtn').addEventListener('click',generateAll); $('newPuzzleBtn').addEventListener('click',remakePuzzle); $('printBtn').addEventListener('click',()=>window.print()); generateAll();
-})();
-</script>
+
+  <div class="board" id="board"></div>
+
+  <script>
+    const COLORS = [
+      "#fff3b0",
+      "#c8f7c5",
+      "#ffd6a5",
+      "#d0ebff",
+      "#f8c8dc",
+      "#e9d5ff",
+      "#c7f9cc",
+      "#fde2e4",
+      "#bee1e6",
+      "#e2ece9"
+    ];
+
+    let currentSolution = null;
+    let currentPuzzle = null;
+    let showingSolution = false;
+
+    function shuffle(arr) {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function getSymbols() {
+      const raw = document.getElementById("symbolsInput").value.trim();
+      const chars = [...raw];
+
+      if (chars.length !== 10) {
+        alert("Please enter exactly 10 symbols.");
+        return null;
+      }
+
+      if (new Set(chars).size !== 10) {
+        alert("All 10 symbols must be different.");
+        return null;
+      }
+
+      return chars;
+    }
+
+    function clampClues(n) {
+      if (Number.isNaN(n)) return 42;
+      return Math.max(10, Math.min(100, n));
+    }
+
+    function buildLatin(symbols) {
+      const n = 10;
+      const rowPerm = shuffle([...Array(n).keys()]);
+      const colPerm = shuffle([...Array(n).keys()]);
+      const symPerm = shuffle([...Array(n).keys()]);
+
+      return Array.from({ length: n }, (_, r) =>
+        Array.from({ length: n }, (_, c) => {
+          const base = (rowPerm[r] + colPerm[c]) % n;
+          return symbols[symPerm[base]];
+        })
+      );
+    }
+
+    function makeSolution(symbols) {
+      const latin = buildLatin(symbols);
+
+      const blocks = Array.from({ length: 10 }, (_, blockIndex) =>
+        Array.from({ length: 10 }, (_, posIndex) => latin[posIndex][blockIndex])
+      );
+
+      return { symbols, blocks };
+    }
+
+    function makePuzzle(solution, clues) {
+      const blocks = solution.blocks.map(block => [...block]);
+      const coords = [];
+
+      for (let b = 0; b < 10; b++) {
+        for (let p = 0; p < 10; p++) {
+          coords.push({ b, p });
+        }
+      }
+
+      const shuffled = shuffle(coords);
+      const hideCount = 100 - clues;
+
+      for (let i = 0; i < hideCount; i++) {
+        const { b, p } = shuffled[i];
+        blocks[b][p] = "";
+      }
+
+      return { symbols: solution.symbols, blocks };
+    }
+
+    function makeLegend() {
+      const legend = document.getElementById("legend");
+      legend.innerHTML = "";
+
+      COLORS.forEach((color, i) => {
+        const item = document.createElement("div");
+        item.className = "legend-item";
+
+        const swatch = document.createElement("div");
+        swatch.className = "swatch";
+        swatch.style.background = color;
+
+        const text = document.createElement("span");
+        text.textContent = `Block ${i + 1}`;
+
+        item.appendChild(swatch);
+        item.appendChild(text);
+        legend.appendChild(item);
+      });
+    }
+
+    function makeCell(value, color, wide = false) {
+      const div = document.createElement("div");
+      div.className = wide ? "wide-cell" : "cell";
+      div.style.background = color;
+      div.textContent = value || "";
+      if (!value) div.classList.add("hidden");
+      return div;
+    }
+
+    function renderBlock(values, blockIndex) {
+      const color = COLORS[blockIndex];
+
+      const block = document.createElement("div");
+      block.className = "block";
+
+      const top = document.createElement("div");
+      top.className = "block-row";
+      for (let i = 0; i < 4; i++) {
+        top.appendChild(makeCell(values[i], color, false));
+      }
+
+      const middle = document.createElement("div");
+      middle.className = "block-row";
+      middle.appendChild(makeCell(values[4], color, true));
+      middle.appendChild(makeCell(values[5], color, true));
+
+      const bottom = document.createElement("div");
+      bottom.className = "block-row";
+      for (let i = 6; i < 10; i++) {
+        bottom.appendChild(makeCell(values[i], color, false));
+      }
+
+      block.appendChild(top);
+      block.appendChild(middle);
+      block.appendChild(bottom);
+
+      return block;
+    }
+
+    function render() {
+      const board = document.getElementById("board");
+      board.innerHTML = "";
+
+      const data = showingSolution ? currentSolution : currentPuzzle;
+      if (!data) return;
+
+      const topRow = document.createElement("div");
+      topRow.className = "block-row-layout";
+      [0, 1, 2, 3].forEach(i => topRow.appendChild(renderBlock(data.blocks[i], i)));
+
+      const middleRow = document.createElement("div");
+      middleRow.className = "block-row-layout";
+      [4, 5].forEach(i => middleRow.appendChild(renderBlock(data.blocks[i], i)));
+
+      const bottomRow = document.createElement("div");
+      bottomRow.className = "block-row-layout";
+      [6, 7, 8, 9].forEach(i => bottomRow.appendChild(renderBlock(data.blocks[i], i)));
+
+      board.appendChild(topRow);
+      board.appendChild(middleRow);
+      board.appendChild(bottomRow);
+    }
+
+    function newSolutionAndPuzzle() {
+      const symbols = getSymbols();
+      if (!symbols) return;
+
+      const clues = clampClues(parseInt(document.getElementById("cluesInput").value, 10));
+      document.getElementById("cluesInput").value = clues;
+
+      currentSolution = makeSolution(symbols);
+      currentPuzzle = makePuzzle(currentSolution, clues);
+      showingSolution = false;
+      document.getElementById("toggleBtn").textContent = "Show Solution";
+      render();
+    }
+
+    function newPuzzleSameSolution() {
+      if (!currentSolution) {
+        newSolutionAndPuzzle();
+        return;
+      }
+
+      const clues = clampClues(parseInt(document.getElementById("cluesInput").value, 10));
+      document.getElementById("cluesInput").value = clues;
+
+      currentPuzzle = makePuzzle(currentSolution, clues);
+      showingSolution = false;
+      document.getElementById("toggleBtn").textContent = "Show Solution";
+      render();
+    }
+
+    function toggleSolution() {
+      if (!currentSolution) return;
+
+      showingSolution = !showingSolution;
+      document.getElementById("toggleBtn").textContent =
+        showingSolution ? "Show Puzzle" : "Show Solution";
+      render();
+    }
+
+    document.getElementById("newBtn").addEventListener("click", newSolutionAndPuzzle);
+    document.getElementById("sameBtn").addEventListener("click", newPuzzleSameSolution);
+    document.getElementById("toggleBtn").addEventListener("click", toggleSolution);
+    document.getElementById("printBtn").addEventListener("click", () => window.print());
+
+    makeLegend();
+    newSolutionAndPuzzle();
+  </script>
 </body>
 </html>

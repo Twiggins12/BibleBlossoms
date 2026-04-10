@@ -197,7 +197,8 @@
   </div>
 
   <div class="note">
-    Rule: No repeats within the same section or row.
+    Rule: No repeats within the same section or row.<br>
+    Exception: the single middle row of the center block is exempt.
   </div>
 
   <div class="error" id="errorBox"></div>
@@ -317,14 +318,15 @@ const visualRows = [
 ];
 
 const colorStyles = {
-  A: "#f5e663",
-  B: "#8fd18f",
-  C: "#8fc5ff",
-  D: "#ffffff",
-  E: "#ffb6d9"
+  A: "#f5e663",  // yellow
+  B: "#8fd18f",  // green
+  C: "#ffffff",  // white
+  D: "#8fc5ff",  // blue
+  E: "#ffb6d9"   // pink
 };
 
-const rowConstraintApplies = rowIndex => true;
+// Row 5 (index 4) is exempt, matching the comment above
+const rowConstraintApplies = rowIndex => rowIndex !== 4;
 
 const puzzleBoardEl = document.getElementById("puzzleBoard");
 const solutionBoardEl = document.getElementById("solutionBoard");
@@ -378,9 +380,7 @@ function shuffle(arr) {
   const a = arr.slice();
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    const temp = a[i];
-    a[i] = a[j];
-    a[j] = temp;
+    [a[i], a[j]] = [a[j], a[i]];
   }
   return a;
 }
@@ -486,23 +486,38 @@ function countSolutions(puzzle, symbols, limit = 2) {
   return count;
 }
 
+// Try many removal orders to better reach the requested clue count
 function generatePuzzleFromSolution(solution, symbols, cluesToKeep) {
-  const puzzle = solution.slice();
-  const order = shuffle([...Array(solution.length).keys()]);
+  let bestPuzzle = solution.slice();
+  let bestClueCount = solution.length;
+  const maxAttempts = 200;
 
-  for (const index of order) {
-    const backup = puzzle[index];
-    puzzle[index] = null;
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    const puzzle = solution.slice();
+    const order = shuffle([...Array(solution.length).keys()]);
 
-    if (countSolutions(puzzle, symbols, 2) !== 1) {
-      puzzle[index] = backup;
+    for (const index of order) {
+      const backup = puzzle[index];
+      puzzle[index] = null;
+
+      if (countSolutions(puzzle, symbols, 2) !== 1) {
+        puzzle[index] = backup;
+      }
+
+      const currentClues = puzzle.filter(v => v !== null).length;
+
+      if (currentClues < bestClueCount) {
+        bestClueCount = currentClues;
+        bestPuzzle = puzzle.slice();
+      }
+
+      if (currentClues <= cluesToKeep) {
+        return puzzle;
+      }
     }
-
-    const currentClues = puzzle.filter(v => v !== null).length;
-    if (currentClues <= cluesToKeep) break;
   }
 
-  return puzzle;
+  return bestPuzzle;
 }
 
 function renderBoard(boardEl, board, hideNulls) {
@@ -556,20 +571,35 @@ function doGenerate(makePuzzleToo) {
   const cluesToKeep = parseInt(difficultySelect.value, 10);
 
   let solution = null;
-  for (let tries = 0; tries < 50; tries++) {
+  let puzzle = null;
+
+  for (let tries = 0; tries < 200; tries++) {
     solution = generateSolution(symbols);
-    if (solution) break;
+    if (!solution) continue;
+
+    if (makePuzzleToo) {
+      puzzle = generatePuzzleFromSolution(solution, symbols, cluesToKeep);
+      const actualClues = puzzle.filter(v => v !== null).length;
+
+      if (actualClues <= cluesToKeep) {
+        break;
+      } else {
+        solution = null;
+        puzzle = null;
+      }
+    } else {
+      break;
+    }
   }
 
   if (!solution) {
-    showError("Could not generate a valid solution. Try again.");
+    showError("Could not generate a puzzle at that difficulty. Try again or choose an easier setting.");
     return;
   }
 
   renderBoard(solutionBoardEl, solution, false);
 
   if (makePuzzleToo) {
-    const puzzle = generatePuzzleFromSolution(solution, symbols, cluesToKeep);
     renderBoard(puzzleBoardEl, puzzle, true);
   } else {
     renderBoard(puzzleBoardEl, Array(positions.length).fill(null), true);

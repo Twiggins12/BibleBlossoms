@@ -261,5 +261,44 @@ header h3 {
     margin: 8px 0;
   }
 }
+/* Life Link bubble-bloom accordion */
 
+/* Make category headings clickable */
+.accordion-heading {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  font: inherit;
+  text-align: left;
+  border: none;
+}
+
+/* Hide closed sections and animate opening */
+.accordion-content {
+  display: flex;
+  flex-wrap: wrap;
+  height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: scale(0.97);
+  transform-origin: top center;
+  transition:
+    height 0.4s ease,
+    opacity 0.35s ease,
+    transform 0.4s ease;
+}
+
+/* Open category */
+.accordion-open .accordion-content {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .accordion-content {
+    transition: none;
+  }
+}
   </style>

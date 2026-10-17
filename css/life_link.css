@@ -285,7 +285,7 @@ header h3 {
 
 /* Hide closed sections and animate opening */
 .accordion-content {
-  display: block;
+  display: none;
   height: 0;
   min-height: 0;
   padding: 0;
@@ -302,11 +302,11 @@ header h3 {
 
 /* Open category */
 .accordion-open .accordion-content {
+  display: block;
   opacity: 1;
   transform: scale(1);
   overflow: visible;
 }
-
 /* Respect reduced-motion preferences */
 @media (prefers-reduced-motion: reduce) {
   .accordion-content {

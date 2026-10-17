@@ -996,29 +996,55 @@ versionSelect.addEventListener("change", async () => {
   loadBible(initial === "KJV" ? "WEB" : "KJV", false);
 })();
 
-// Life Link accordion: only one category open at a time
+
+// Life Link bubble-bloom accordion
+// Only one category opens at a time
+
 document.querySelectorAll('.accordion-heading').forEach(heading => {
+  const section = heading.closest('.section-container');
+  const content = section.querySelector('.accordion-content');
+
+  // Allow long Scripture passages to fit after opening
+  content.addEventListener('transitionend', event => {
+    if (event.propertyName === 'height' &&
+        section.classList.contains('accordion-open')) {
+      content.style.height = 'auto';
+    }
+  });
+
   heading.addEventListener('click', () => {
-    const section = heading.closest('.section-container');
     const wasOpen = section.classList.contains('accordion-open');
 
-    // Close all categories
-    document.querySelectorAll('.section-container').forEach(item => {
-      item.classList.remove('accordion-open');
+    // Close any currently open category
+    document.querySelectorAll('.accordion-open').forEach(openSection => {
+      const openContent = openSection.querySelector('.accordion-content');
+      const openHeading = openSection.querySelector('.accordion-heading');
 
-      const button = item.querySelector('.accordion-heading');
-      if (button) {
-        button.setAttribute('aria-expanded', 'false');
-      }
+      openContent.style.height = openContent.scrollHeight + 'px';
+      void openContent.offsetHeight;
+
+      openSection.classList.remove('accordion-open');
+      openHeading.setAttribute('aria-expanded', 'false');
+
+      requestAnimationFrame(() => {
+        openContent.style.height = '0px';
+      });
     });
 
-    // Open the selected category unless it was already open
+    // Open the selected category if it was closed
     if (!wasOpen) {
       section.classList.add('accordion-open');
       heading.setAttribute('aria-expanded', 'true');
+
+      content.style.height = '0px';
+
+      requestAnimationFrame(() => {
+        content.style.height = content.scrollHeight + 'px';
+      });
     }
   });
 });
+
     
 </script>
 

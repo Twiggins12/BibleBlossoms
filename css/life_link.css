@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap');
 
     html {
   scroll-behavior: smooth;
@@ -268,14 +268,15 @@ header h3 {
   box-sizing: border-box;
   cursor: pointer;
 
-  font-family: 'Allura', cursive;
-  font-size: 38px;
-  font-weight: 400;
-  line-height: 1;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 30px;
+  font-style: italic;
+  font-weight: 600;
+  line-height: 1.1;
   text-align: center;
 
   color: #4b0082;
-  text-shadow: 0.3px 0 currentColor;
+  text-shadow: none;
 
   background: transparent;
   border: none;
@@ -286,6 +287,9 @@ header h3 {
 .accordion-content {
   display: block;
   height: 0;
+  min-height: 0;
+  padding: 0;
+  border: 0;
   overflow: hidden;
   opacity: 0;
   transform: scale(0.97);

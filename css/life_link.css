@@ -45,7 +45,7 @@ body {
 .content {
   max-width: 800px;   /* controls width */
   margin: 0 auto;     /* centers the block */
-  padding: 20px;      /* keeps it off the edges */
+  padding: 5px 20px 20px;
 }
 
 .content p {
@@ -335,4 +335,27 @@ header h3 {
 
 #sections-container .accordion-content select {
   box-sizing: border-box;
+}
+/* Compact Life Link introduction */
+.life-link-intro {
+  max-width: 750px;
+  margin: 8px auto 12px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.life-link-intro h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  text-align: center;
+}
+
+.life-link-intro p {
+  margin: 0 0 8px;
+}
+
+.life-link-dates {
+  text-align: center;
+  font-size: 13px;
+  margin: 8px 0 12px;
 }

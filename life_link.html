@@ -779,6 +779,34 @@ function buildSection(section, index) {
 subSelect.style.display = "none";
 bookSelect.style.display = "none";
 
+// Create a breadcrumb trail for previous selections
+const breadcrumbs = document.createElement("div");
+breadcrumbs.className = "life-link-breadcrumbs";
+breadcrumbs.setAttribute("aria-label", "Current Scripture selections");
+
+const dropdownColumn = section.querySelector(".dropdown-column");
+dropdownColumn.prepend(breadcrumbs);
+
+// Create a clickable breadcrumb
+function addBreadcrumb(label, onClick) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "life-link-crumb";
+  button.textContent = label;
+  button.addEventListener("click", onClick);
+  breadcrumbs.appendChild(button);
+// Remove breadcrumbs from a selected step onward
+function clearBreadcrumbsFrom(step) {
+  const buttons = breadcrumbs.querySelectorAll(".life-link-crumb");
+
+  buttons.forEach((button, index) => {
+    if (index >= step) {
+      button.remove();
+    }
+  });
+}
+}
+    
   let rows = [];
 
 // CSV Loader
@@ -883,6 +911,27 @@ bookSelect.style.display = "none";
       opt.text = s;
       subSelect.appendChild(opt);
     });
+ // Show the chosen Main Topic as a clickable breadcrumb
+breadcrumbs.replaceChildren();
+
+if (mainSelect.value) {
+  addBreadcrumb(mainSelect.value, () => {
+  clearBreadcrumbsFrom(0);
+
+  mainSelect.style.display = "block";
+  subSelect.style.display = "none";
+  bookSelect.style.display = "none";
+
+  subSelect.value = "";
+  bookSelect.value = "";
+
+  versePanel.style.display = "none";
+  versePanel.open = false;
+  verseDiv.innerHTML = "";
+});
+
+  mainSelect.style.display = "none";
+}
   });
 
   subSelect.addEventListener("change", () => {
@@ -903,9 +952,26 @@ bookSelect.style.display = "none";
       opt.text = b;
       bookSelect.appendChild(opt);
     });
+ // Turn the selected Sub-topic into a clickable breadcrumb
+if (subSelect.value) {
+  addBreadcrumb(subSelect.value, () => {
+  clearBreadcrumbsFrom(1);
+
+  subSelect.style.display = "block";
+  bookSelect.style.display = "none";
+
+  bookSelect.value = "";
+
+  versePanel.style.display = "none";
+  versePanel.open = false;
+  verseDiv.innerHTML = "";
+});
+
+  subSelect.style.display = "none";
+}
   });
 
-  bookSelect.addEventListener("change", async () => {
+  bookSelect.addEventListener("change", async (event) => {
     verseDiv.innerHTML = "";
 
     if (!bible || bible.length === 0) {
@@ -968,6 +1034,23 @@ tdText.innerHTML = formatVerseText(
     verseDiv.appendChild(table);
     versePanel.style.display = "block";
     versePanel.open = true;
+  // Turn the selected Book into a clickable breadcrumb
+if (bookSelect.value && event.isTrusted) {
+    clearBreadcrumbsFrom(2);
+  addBreadcrumb(bookSelect.value, () => {
+  clearBreadcrumbsFrom(2);
+
+  bookSelect.style.display = "block";
+  bookSelect.value = "";
+
+  versePanel.style.display = "none";
+  versePanel.open = false;
+  verseDiv.innerHTML = "";
+});
+
+  bookSelect.style.display = "none";
+}
+  
   });
 }
 

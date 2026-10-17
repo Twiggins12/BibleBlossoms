@@ -77,17 +77,14 @@ header h3 {
   display: flex;
   align-items: baseline;
   justify-content: flex-start;
-  margin-bottom: 4px;
+  margin-bottom: 0;
 }
 
 .section-heading {
-  width: 400px;
-  margin-left: 350px;
-  margin-right: 30px;   /* spacing between heading and dropdowns */
-  font-size: 1.2em;
-  font-weight: bold;
-  color: #4b0082;
-  white-space: nowrap;
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  white-space: normal;
 }
 
 .dropdown-column {
@@ -272,15 +269,17 @@ header h3 {
   cursor: pointer;
 
   font-family: 'Allura', cursive;
-  font-size: 28px;
+  font-size: 38px;
   font-weight: 400;
-  line-height: 1.1;
+  line-height: 1;
   text-align: center;
 
   color: #4b0082;
+  text-shadow: 0.3px 0 currentColor;
+
   background: transparent;
   border: none;
-  padding: 4px 12px;
+  padding: 2px 10px;
 }
 
 /* Hide closed sections and animate opening */

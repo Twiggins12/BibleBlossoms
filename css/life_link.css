@@ -13,14 +13,18 @@ header {
 body {
   font-family: Arial, sans-serif;
   margin: 0;                /* remove page margin so header goes full width */
-  background-color: #f7f3ff; /* very light blue */
+  background-color: #f7f4ec; /* warm parchment cream fallback */
+  background-image: url("../images/Elegant Watercolor Tree Frame.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  background-attachment: fixed;
   position: relative;
 
-  display: flex;          /* 👈 important */
-  flex-direction: column; /* 👈 important */
-  min-height: 100vh;      /* 👈 makes page full screen height */
-}
-p {
+  display: flex;          /* important */
+  flex-direction: column; /* important */
+  min-height: 100vh;      /* makes page full screen height */
+}p {
   text-align: center;
 }
   .page-content {

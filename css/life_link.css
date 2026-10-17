@@ -218,4 +218,48 @@ header h3 {
 .copyright a:hover {
   text-decoration: underline;
 }
+/* Mobile layout */
+@media screen and (max-width: 768px) {
+
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .page-content {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+  }
+
+  .section-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .section-heading {
+    width: auto;
+    margin: 0 0 10px 0;
+    white-space: normal;
+  }
+
+  .dropdown-column {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .dropdown-column select {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 8px 0;
+  }
+}
+
   </style>

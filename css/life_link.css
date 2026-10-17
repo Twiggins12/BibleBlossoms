@@ -14,7 +14,12 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;                /* remove page margin so header goes full width */
   background-color: #f7f4ec; /* warm parchment cream fallback */
-  background-image: url("../images/Elegant Watercolor Tree Frame.png");
+  background-image:
+  linear-gradient(
+    rgba(255, 250, 240, 0.72),
+    rgba(255, 250, 240, 0.72)
+  ),
+  url("../images/Elegant Watercolor Tree Frame.png");
   background-repeat: no-repeat;
   background-position: center top;
   background-size: cover;

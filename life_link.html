@@ -995,7 +995,31 @@ versionSelect.addEventListener("change", async () => {
   // Optional: preload one "common" alternate in the background
   loadBible(initial === "KJV" ? "WEB" : "KJV", false);
 })();
-  
+
+// Life Link accordion: only one category open at a time
+document.querySelectorAll('.accordion-heading').forEach(heading => {
+  heading.addEventListener('click', () => {
+    const section = heading.closest('.section-container');
+    const wasOpen = section.classList.contains('accordion-open');
+
+    // Close all categories
+    document.querySelectorAll('.section-container').forEach(item => {
+      item.classList.remove('accordion-open');
+
+      const button = item.querySelector('.accordion-heading');
+      if (button) {
+        button.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // Open the selected category unless it was already open
+    if (!wasOpen) {
+      section.classList.add('accordion-open');
+      heading.setAttribute('aria-expanded', 'true');
+    }
+  });
+});
+    
 </script>
 
 <footer class="site-footer">

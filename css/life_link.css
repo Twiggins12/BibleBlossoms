@@ -286,7 +286,7 @@ header h3 {
 /* Hide closed sections and animate opening */
 .accordion-content {
   display: none;
-  height: 0;
+    height: 0 !important;
   min-height: 0;
   padding: 0;
   border: 0;
@@ -303,6 +303,7 @@ header h3 {
 /* Open category */
 .accordion-open .accordion-content {
   display: block;
+  height: auto !important;
   opacity: 1;
   transform: scale(1);
   overflow: visible;
@@ -361,12 +362,4 @@ header h3 {
   text-align: center;
   font-size: 13px;
   margin: 8px 0 12px;
-}
-/* Remove extra spacing from collapsed categories */
-#sections-container .section-container:not(.accordion-open) .accordion-content {
- height: 0;
-min-height: 0;
-margin: 0;
-padding: 0;
-  overflow: hidden;
 }

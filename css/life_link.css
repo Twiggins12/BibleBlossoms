@@ -219,6 +219,23 @@ header h3 {
 .copyright ul {
   margin-left: 120px !important;
   padding-left: 20px !important;
+    list-style: none;
+}
+.copyright li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.copyright li::before {
+  content: "✦";
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  color: #b49654;
+  font-size: 0.85em;
+  line-height: 1;
+  transform: scaleY(1.45);
+  transform-origin: center;
 }
 .copyright a:hover {
   text-decoration: underline;

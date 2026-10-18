@@ -920,12 +920,19 @@ if (!chapter || !versePart) return [];
   choice.textContent = t;
 
   choice.addEventListener("click", () => {
+  // Begin the reverse-bloom animation
+  mainTopicChoices.classList.add("bloom-closing");
+
+  setTimeout(() => {
     mainSelect.value = t;
     mainSelect.dispatchEvent(
       new Event("change", { bubbles: true })
     );
+
     mainTopicChoices.style.display = "none";
-  });
+    mainTopicChoices.classList.remove("bloom-closing");
+  }, 350);
+});
 
   mainTopicChoices.appendChild(choice);
 });
@@ -962,12 +969,19 @@ subs.forEach(s => {
   choice.textContent = s;
 
   choice.addEventListener("click", () => {
+  // Begin the reverse-bloom animation
+  subTopicChoices.classList.add("bloom-closing");
+
+  setTimeout(() => {
     subSelect.value = s;
     subSelect.dispatchEvent(
       new Event("change", { bubbles: true })
     );
+
     subTopicChoices.style.display = "none";
-  });
+    subTopicChoices.classList.remove("bloom-closing");
+  }, 350);
+});
 
   subTopicChoices.appendChild(choice);
 });
@@ -1028,15 +1042,22 @@ books.forEach(b => {
   choice.textContent = b;
 
   choice.addEventListener("click", () => {
+  // Begin the reverse-bloom animation
+  bookChoices.classList.add("bloom-closing");
+
+  setTimeout(() => {
     bookSelect.value = b;
     bookSelect.dispatchEvent(
-  new CustomEvent("change", {
-    bubbles: true,
-    detail: { bloomingChoice: true }
-  })
-);
+      new CustomEvent("change", {
+        bubbles: true,
+        detail: { bloomingChoice: true }
+      })
+    );
+
     bookChoices.style.display = "none";
-  });
+    bookChoices.classList.remove("bloom-closing");
+  }, 350);
+});
 
   bookChoices.appendChild(choice);
 });

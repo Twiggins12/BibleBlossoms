@@ -1163,14 +1163,9 @@ tdText.innerHTML = formatVerseText(
     verseDiv.appendChild(table);
     versePanel.style.display = "block";
     versePanel.open = true;
-      const firstChapterHeading = versesDiv.querySelector('[role="heading"]');
-
-if (firstChapterHeading &&
-    (event.isTrusted || event.detail?.bloomingChoice)) {
-  firstChapterHeading.focus();
-}
       document.getElementById("scripture-announcement").textContent =
   `Scripture verses for ${bookSelect.value} are ready.`;
+      
   // Turn the selected Book into a clickable breadcrumb
 if (bookSelect.value && (event.isTrusted || event.detail?.bloomingChoice)) {
     clearBreadcrumbsFrom(2);

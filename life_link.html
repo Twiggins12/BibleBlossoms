@@ -981,7 +981,8 @@ subs.forEach(s => {
     subSelect.dispatchEvent(
       new Event("change", { bubbles: true })
     );
-
+document.getElementById("scripture-announcement").textContent =
+  `Subtopic selected: ${s}. Choose a book.`;
     subTopicChoices.style.display = "none";
     subTopicChoices.classList.remove("bloom-closing");
   }, 350);

@@ -440,3 +440,26 @@ header h3 {
     transition: none;
   }
 }
+/* Gentle reverse-bloom animation */
+.life-link-choices.bloom-closing {
+  animation: topicUnbloom 0.35s ease-in forwards;
+}
+
+@keyframes topicUnbloom {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .life-link-choices.bloom-closing {
+    animation: none;
+  }
+}

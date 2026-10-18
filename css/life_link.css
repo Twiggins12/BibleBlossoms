@@ -177,7 +177,7 @@ header h3 {
   padding: 15px 0;
   text-align: center;
 
-  background: linear-gradient(to top, #ffe680, #f7f3ff 85%);
+  background: linear-gradient(to bottom, #e6d5ab, #f5edda);
 }
 
 .site-footer a {

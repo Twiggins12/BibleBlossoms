@@ -796,6 +796,14 @@ mainTopicChoices.setAttribute("aria-label", "Choose a Main Topic");
 breadcrumbs.after(mainTopicChoices);
     // Hide the original dropdown; show blooming choices instead
 mainSelect.style.display = "none";
+// Container for blooming Sub-topic choices
+const subTopicChoices = document.createElement("div");
+subTopicChoices.className = "life-link-choices";
+subTopicChoices.setAttribute("role", "group");
+subTopicChoices.setAttribute("aria-label", "Choose a Sub-topic");
+subTopicChoices.style.display = "none";
+
+mainTopicChoices.after(subTopicChoices);
     
 // Create a clickable breadcrumb
 function addBreadcrumb(label, onClick) {
@@ -932,12 +940,34 @@ bookSelect.style.display = "none";
       rows.filter(r => r.MainTopic === mainSelect.value).map(r => r.SubTopic)
     )];
 
-    subs.forEach(s => {
-      const opt = document.createElement("option");
-      opt.value = s;
-      opt.text = s;
-      subSelect.appendChild(opt);
-    });
+    // Create blooming Sub-topic choices
+subTopicChoices.replaceChildren();
+
+subs.forEach(s => {
+  const opt = document.createElement("option");
+  opt.value = s;
+  opt.text = s;
+  subSelect.appendChild(opt);
+
+  const choice = document.createElement("button");
+  choice.type = "button";
+  choice.className = "life-link-choice";
+  choice.textContent = s;
+
+  choice.addEventListener("click", () => {
+    subSelect.value = s;
+    subSelect.dispatchEvent(
+      new Event("change", { bubbles: true })
+    );
+    subTopicChoices.style.display = "none";
+  });
+
+  subTopicChoices.appendChild(choice);
+});
+
+// Show blooming choices instead of the dropdown
+subSelect.style.display = "none";
+subTopicChoices.style.display = mainSelect.value ? "flex" : "none";
  // Show the chosen Main Topic as a clickable breadcrumb
 breadcrumbs.replaceChildren();
 
@@ -945,7 +975,9 @@ if (mainSelect.value) {
   addBreadcrumb(mainSelect.value, () => {
   clearBreadcrumbsFrom(0);
 
-  mainSelect.style.display = "block";
+  mainSelect.style.display = "none";
+mainTopicChoices.style.display = "flex";
+subTopicChoices.style.display = "none";
   subSelect.style.display = "none";
   bookSelect.style.display = "none";
 
@@ -984,7 +1016,8 @@ if (subSelect.value) {
   addBreadcrumb(subSelect.value, () => {
   clearBreadcrumbsFrom(1);
 
-  subSelect.style.display = "block";
+  subSelect.style.display = "none";
+subTopicChoices.style.display = "flex";
   bookSelect.style.display = "none";
 
   bookSelect.value = "";

@@ -212,6 +212,11 @@ header h3 {
   margin-bottom: 15px;
 }
 
+.work-in-progress h3,
+.copyright h3 {
+  color: #356f73;
+}
+
 .copyright a {
   color: #4b0082;
   text-decoration: none;

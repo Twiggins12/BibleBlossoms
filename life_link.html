@@ -786,7 +786,17 @@ breadcrumbs.setAttribute("aria-label", "Current Scripture selections");
 
 const dropdownColumn = section.querySelector(".dropdown-column");
 dropdownColumn.prepend(breadcrumbs);
+    
+// Container for blooming Main Topic choices
+const mainTopicChoices = document.createElement("div");
+mainTopicChoices.className = "life-link-choices";
+mainTopicChoices.setAttribute("role", "group");
+mainTopicChoices.setAttribute("aria-label", "Choose a Main Topic");
 
+breadcrumbs.after(mainTopicChoices);
+    // Hide the original dropdown; show blooming choices instead
+mainSelect.style.display = "none";
+    
 // Create a clickable breadcrumb
 function addBreadcrumb(label, onClick) {
   const button = document.createElement("button");
@@ -883,11 +893,27 @@ if (!chapter || !versePart) return [];
 
   const mainTopics = [...new Set(rows.map(r => r.MainTopic))];
   mainTopics.forEach(t => {
-    const opt = document.createElement("option");
-    opt.value = t;
-    opt.text = t;
-    mainSelect.appendChild(opt);
+  const opt = document.createElement("option");
+  opt.value = t;
+  opt.text = t;
+  mainSelect.appendChild(opt);
+
+  // Create a clickable blooming topic
+  const choice = document.createElement("button");
+  choice.type = "button";
+  choice.className = "life-link-choice";
+  choice.textContent = t;
+
+  choice.addEventListener("click", () => {
+    mainSelect.value = t;
+    mainSelect.dispatchEvent(
+      new Event("change", { bubbles: true })
+    );
+    mainTopicChoices.style.display = "none";
   });
+
+  mainTopicChoices.appendChild(choice);
+});
 })
 .catch(err => {
   console.error("Error loading CSV files for section", index, csvFiles[index], err);

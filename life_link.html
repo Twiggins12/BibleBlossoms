@@ -1153,6 +1153,8 @@ tdText.innerHTML = formatVerseText(
     verseDiv.appendChild(table);
     versePanel.style.display = "block";
     versePanel.open = true;
+      document.getElementById("scripture-announcement").textContent =
+  `Scripture verses for ${bookSelect.value} are ready.`;
   // Turn the selected Book into a clickable breadcrumb
 if (bookSelect.value && (event.isTrusted || event.detail?.bloomingChoice)) {
     clearBreadcrumbsFrom(2);

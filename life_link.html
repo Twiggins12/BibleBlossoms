@@ -1126,7 +1126,16 @@ subTopicChoices.style.display = "flex";
         trChapter.className = "chapter-row";
         const tdChapter = document.createElement("td");
         tdChapter.colSpan = 2;
-        tdChapter.textContent = `Chapter ${chapterNum}`;
+const chapterHeading = document.createElement("span");
+chapterHeading.setAttribute("role", "heading");
+chapterHeading.setAttribute("aria-level", "3");
+chapterHeading.setAttribute(
+  "aria-label",
+  `${bookSelect.value}, Chapter ${chapterNum}`
+);
+chapterHeading.tabIndex = -1;
+chapterHeading.textContent = `Chapter ${chapterNum}`;
+tdChapter.appendChild(chapterHeading);
         trChapter.appendChild(tdChapter);
         fragment.appendChild(trChapter);
 

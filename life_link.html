@@ -795,6 +795,8 @@ function addBreadcrumb(label, onClick) {
   button.textContent = label;
   button.addEventListener("click", onClick);
   breadcrumbs.appendChild(button);
+}
+
 // Remove breadcrumbs from a selected step onward
 function clearBreadcrumbsFrom(step) {
   const buttons = breadcrumbs.querySelectorAll(".life-link-crumb");
@@ -804,7 +806,6 @@ function clearBreadcrumbsFrom(step) {
       button.remove();
     }
   });
-}
 }
     
   let rows = [];

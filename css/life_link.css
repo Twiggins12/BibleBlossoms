@@ -265,6 +265,10 @@ header h3 {
     box-sizing: border-box;
     margin: 8px 0;
   }
+.copyright ul {
+  margin-left: 0 !important;
+  padding-left: 20px !important;
+ }
 }
 /* Life Link bubble-bloom accordion */
 

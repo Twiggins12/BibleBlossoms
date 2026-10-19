@@ -976,7 +976,7 @@ subs.forEach(s => {
   choice.textContent = s;
 choice.setAttribute(
   "aria-label",
-  `${s}, Subtopic ${subs.indexOf(s) + 1} of ${subs.length}, under ${mainSelect.value}`
+  `${s}, ${subs.indexOf(s) + 1} of ${subs.length}`
 );
   choice.addEventListener("click", () => {
   // Begin the reverse-bloom animation

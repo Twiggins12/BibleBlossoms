@@ -778,20 +778,7 @@ function buildSection(section, index) {
   const bookSelect = section.querySelector(".bookSelect");
   const verseDiv = section.querySelector(".verseText");
   const versePanel = section.querySelector(".versePanel");
-    // Accessible Read Scripture button
-const readScriptureButton = document.createElement("button");
-readScriptureButton.type = "button";
-readScriptureButton.className = "read-scripture-button";
-readScriptureButton.textContent = "Read Scripture";
 
-readScriptureButton.addEventListener("click", () => {
-  const firstHeading = versesDiv.querySelector('[role="heading"]');
-  if (firstHeading) {
-    firstHeading.focus();
-  }
-});
-
-versesDiv.before(readScriptureButton);
 // Step-by-step Life Link navigation
 subSelect.style.display = "none";
 bookSelect.style.display = "none";

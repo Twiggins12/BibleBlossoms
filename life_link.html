@@ -1164,22 +1164,6 @@ tdText.innerHTML = formatVerseText(
     verseDiv.appendChild(table);
     versePanel.style.display = "block";
     versePanel.open = true;
-      // Create the Read Scripture button after verses load
-if (!versePanel.querySelector(".read-scripture-button")) {
-  const readButton = document.createElement("button");
-  readButton.type = "button";
-  readButton.className = "read-scripture-button";
-  readButton.textContent = "Read Scripture";
-
-  readButton.addEventListener("click", () => {
-    const firstHeading = versesDiv.querySelector('[role="heading"]');
-    if (firstHeading) {
-      firstHeading.focus();
-    }
-  });
-
-  versesDiv.before(readButton);
-}
      const selectedBook = bookSelect.value;
 
 setTimeout(() => {

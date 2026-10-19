@@ -500,3 +500,24 @@ header h3 {
     animation: none;
   }
 }
+/* Read Scripture accessibility button */
+.read-scripture-button {
+  display: block;
+  margin: 15px auto;
+  padding: 10px 20px;
+  background: #356f73;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.read-scripture-button:hover {
+  background: #28575b;
+}
+
+.read-scripture-button:focus-visible {
+  outline: 3px solid #b49654;
+  outline-offset: 3px;
+}

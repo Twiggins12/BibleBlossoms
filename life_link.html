@@ -1230,10 +1230,13 @@ versionSelect.addEventListener("change", async () => {
 // Life Link bubble-bloom accordion
 // Only one category opens at a time
 
-document.querySelectorAll('.accordion-heading').forEach(heading => {
+document.querySelectorAll('.accordion-heading').forEach((heading, index, headings) => {
   const section = heading.closest('.section-container');
   const content = section.querySelector('.accordion-content');
-
+heading.setAttribute(
+  "aria-label",
+  `${heading.textContent.trim()}, section ${index + 1} of ${headings.length}`
+);
   // Allow long Scripture passages to fit after opening
   content.addEventListener('transitionend', event => {
     if (event.propertyName === 'height' &&

@@ -1045,7 +1045,8 @@ books.forEach(b => {
   choice.type = "button";
   choice.className = "life-link-choice";
   choice.textContent = b;
-
+choice.setAttribute("aria-label",
+  `${b}, book ${books.indexOf(b) + 1} of ${books.length} for ${subSelect.value}`);
   choice.addEventListener("click", () => {
   // Begin the reverse-bloom animation
   bookChoices.classList.add("bloom-closing");

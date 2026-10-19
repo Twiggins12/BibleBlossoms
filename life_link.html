@@ -924,7 +924,7 @@ if (!chapter || !versePart) return [];
   choice.textContent = t;
 choice.setAttribute(
   "aria-label",
-  `${t}, Main Topic ${mainTopics.indexOf(t) + 1} of ${mainTopics.length}, under ${section.querySelector(".accordion-heading").textContent.trim()}`
+  `${t}, ${mainTopics.indexOf(t) + 1} of ${mainTopics.length}`
 );
   choice.addEventListener("click", () => {
   // Begin the reverse-bloom animation
@@ -974,7 +974,10 @@ subs.forEach(s => {
   choice.type = "button";
   choice.className = "life-link-choice";
   choice.textContent = s;
-
+choice.setAttribute(
+  "aria-label",
+  `${s}, Subtopic ${subs.indexOf(s) + 1} of ${subs.length}, under ${mainSelect.value}`
+);
   choice.addEventListener("click", () => {
   // Begin the reverse-bloom animation
   subTopicChoices.classList.add("bloom-closing");

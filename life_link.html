@@ -922,7 +922,10 @@ if (!chapter || !versePart) return [];
   choice.type = "button";
   choice.className = "life-link-choice";
   choice.textContent = t;
-
+choice.setAttribute(
+  "aria-label",
+  `${t}, Main Topic ${mainTopics.indexOf(t) + 1} of ${mainTopics.length}, under ${section.querySelector(".accordion-heading").textContent.trim()}`
+);
   choice.addEventListener("click", () => {
   // Begin the reverse-bloom animation
   mainTopicChoices.classList.add("bloom-closing");

@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&display=swap');
 
     html {
+  html {
   scroll-behavior: smooth;
+  font-size: var(--verse-text-scale, 100%);
+}
 }
 header {
   text-align: center;

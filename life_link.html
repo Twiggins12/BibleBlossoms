@@ -1288,7 +1288,49 @@ heading.setAttribute(
   });
 });
 
-    
+    // Scripture font enlargement controls
+(() => {
+  const decrease = document.getElementById("fontDecrease");
+  const increase = document.getElementById("fontIncrease");
+  const reset = document.getElementById("fontReset");
+
+  let fontSize = 100;
+
+  try {
+    const saved = Number(localStorage.getItem("lifeLinkFontSize"));
+    if (saved >= 80 && saved <= 200) fontSize = saved;
+  } catch (error) {}
+
+  function updateFontSize() {
+    document.documentElement.style.setProperty(
+      "--verse-text-scale", `${fontSize}%`
+    );
+
+    decrease.disabled = fontSize <= 80;
+    increase.disabled = fontSize >= 200;
+
+    try {
+      localStorage.setItem("lifeLinkFontSize", fontSize);
+    } catch (error) {}
+  }
+
+  decrease.addEventListener("click", () => {
+    fontSize = Math.max(80, fontSize - 10);
+    updateFontSize();
+  });
+
+  increase.addEventListener("click", () => {
+    fontSize = Math.min(200, fontSize + 10);
+    updateFontSize();
+  });
+
+  reset.addEventListener("click", () => {
+    fontSize = 100;
+    updateFontSize();
+  });
+
+  updateFontSize();
+})();
 </script>
 
 <footer class="site-footer">

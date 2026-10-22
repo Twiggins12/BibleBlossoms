@@ -131,6 +131,7 @@ header h3 {
   vertical-align: top;
   text-align: left;
   line-height: 1.2;   /* comfortable reading spacing */
+    font-size: var(--verse-text-scale, 100%);
 }
 
 .verse-number {

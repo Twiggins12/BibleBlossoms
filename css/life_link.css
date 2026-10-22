@@ -552,3 +552,22 @@ header h3 {
   outline: 3px solid #b49654;
   outline-offset: 3px;
 }
+/* Keep enlarged Scripture within mobile screens */
+@media (max-width: 768px) {
+  .versePanel,
+  .verseText,
+  .verse-table {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .verse-table {
+    table-layout: fixed;
+  }
+
+  .verse-row td {
+    overflow-wrap: anywhere;
+  }
+}

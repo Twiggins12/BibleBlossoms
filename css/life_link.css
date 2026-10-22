@@ -522,3 +522,32 @@ header h3 {
   outline: 3px solid #b49654;
   outline-offset: 3px;
 }
+/* Scripture text size controls */
+.text-size-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px auto 25px;
+}
+
+.text-size-controls button {
+  background: #356f73;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.text-size-controls button:hover {
+  background: #28575b;
+}
+
+.text-size-controls button:focus-visible {
+  outline: 3px solid #b49654;
+  outline-offset: 3px;
+}

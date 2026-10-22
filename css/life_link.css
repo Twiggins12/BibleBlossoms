@@ -463,7 +463,7 @@ header h3 {
 /* Mobile adjustments */
 @media (max-width: 768px) {
   .life-link-choice {
-    font-size: 21px;
+    font-size: 1.3125rem;
   }
 
   .life-link-choices {
